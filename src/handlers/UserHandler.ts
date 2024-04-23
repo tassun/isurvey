@@ -22,11 +22,11 @@ export class UserHandler extends ProcessHandler {
             create_date: { type: "DATE" },
             create_time: { type: "TIME" },
             create_millis: { type: "BIGINT" },
-            create_user: { type: "STRING" },
+            create_by: { type: "STRING" },
             update_date: { type: "DATE" },
             update_time: { type: "TIME" },
             update_millis: { type: "BIGINT" },
-            update_user: { type: "STRING" },
+            update_by: { type: "STRING" },
         }
     };
 
@@ -111,13 +111,13 @@ export class UserHandler extends ProcessHandler {
         data.create_date = now;
         data.create_time = now;
         data.create_millis = now.getTime();
-        data.create_user = context.meta?.user?.userid;
+        data.create_by = context.meta?.user?.userid;
         data.update_date = now;
         data.update_time = now;
         data.update_millis = now.getTime();
-        data.update_user = context.meta?.user?.userid;
-        let sql = new KnSQL("insert into tusers (userid,username,password,level,name,surname,email,mobile,create_date,create_time,create_millis,create_user,update_date,update_time,update_millis,update_user) ");
-        sql.append("values (?userid,?username,?password,?level,?name,?surname,?email,?mobile,?create_date,?create_time,?create_millis,?create_user,?update_date,?update_time,?update_millis,?update_user)");
+        data.update_by = context.meta?.user?.userid;
+        let sql = new KnSQL("insert into tusers (userid,username,password,level,name,surname,email,mobile,create_date,create_time,create_millis,create_by,update_date,update_time,update_millis,update_by) ");
+        sql.append("values (?userid,?username,?password,?level,?name,?surname,?email,?mobile,?create_date,?create_time,?create_millis,?create_by,?update_date,?update_time,?update_millis,?update_by)");
         this.obtainParameters(sql, data, this.model);
         this.logger.info(this.constructor.name+".processInsert:",sql);
         let rs = await sql.executeUpdate(db,context);
@@ -146,10 +146,10 @@ export class UserHandler extends ProcessHandler {
         data.update_date = now;
         data.update_time = now;
         data.update_millis = now.getTime();
-        data.update_user = context.meta?.user?.userid;
+        data.update_by = context.meta?.user?.userid;
         let sql = new KnSQL();
         sql.append("update tusers set level=?level, name=?name, surname=?surname, email=?email, mobile=?mobile, ");
-        sql.append("update_date=?update_date, update_time=?update_time, update_millis=?update_millis, update_user=?update_user ");
+        sql.append("update_date=?update_date, update_time=?update_time, update_millis=?update_millis, update_by=?update_by ");
         sql.append("where userid = ?userid");
         this.obtainParameters(sql, data, this.model);
         this.logger.info(this.constructor.name+".processUpdate:",sql);
