@@ -1,0 +1,54 @@
+{
+  "name": "isurvey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --project ./",
+    "dev": "ts-node-dev src/server.ts",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "tassun_oro@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tassun/isurvey/issues"
+  },
+  "homepage": "https://github.com/tassun/isurvey#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tassun/isurvey.git"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/express-session": "^1.18.0",
+    "@types/helmet": "^4.0.0",
+    "@types/jszip": "^3.4.1",
+    "@types/node": "^20.12.7",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "config": "^3.3.11",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-error-handler": "^1.1.0",
+    "express-session": "^1.18.0",
+    "helmet": "^7.1.0",
+    "jszip": "^3.10.1",
+    "mysql2": "^3.9.4",
+    "path": "^0.12.7",
+    "uuidv4": "^6.2.13",
+    "will-sql": "^1.0.26",
+    "will-util": "^1.0.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

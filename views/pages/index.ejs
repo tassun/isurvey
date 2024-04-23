@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Survey</title>		
+		<%- include('../asset/meta') %>		
+		<%- include('../asset/styles') %>		
+		<%- include('../asset/scripts') %>
+		<style nonce="YXNzdXJl">
+			.panel-container { margin-top : 15px; padding-top: 5px; padding-bottom: 5px; }
+			.page-header { margin-top : 10px; }
+			.topic-layer { text-align: center; }
+			.topic-content { width: 60%; }
+		</style>
+	</head>
+	<body>
+		<%- include('../partials/page_waiting') %>		
+		<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+			<%- include('../partials/page_header') %>
+			<div class="panel container panel-container">
+				<h1 class="page-header">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+				<div class="body">
+						<div class="topic-layer">
+							<a href="/survey/survey1">
+								<div class="btn btn-lg btn-info topic-content">
+									ผนวก ก แบบเก็บข้อมูลบุคคล
+								</div>
+							</a>
+						</div>
+						<br/>
+	
+						<div class="topic-layer">
+							<a href="/survey/survey2">
+								<div class="btn btn-lg btn-info topic-content">
+									ผนวก ข แบบแจงนับข้อมูลสถิติอาชญากรรม
+								</div>
+							</a>
+						</div>
+						<br/>
+	
+						<div class="topic-layer">
+							<a href="/survey/survey3">
+								<div class="btn btn-lg btn-info topic-content">
+									ผนวก ค ความรู้สึกหวาดกลัวภัยอาชญากรรม
+								</div>
+							</a>
+						</div>
+						<br/>
+	
+						<div class="topic-layer">
+							<a href="/survey/survey4">
+								<div class="btn btn-lg btn-info topic-content">
+								ผนวก ง สำรวจการติดสินบน
+								</div>
+							</a>
+						</div>
+						<br/>
+	
+						<div class="topic-layer">
+							<a href="/survey/survey5">
+								<div class="btn btn-lg btn-info topic-content">
+								ผนวก จ การค้ามนุษย์เพื่อบังคับใช้แรงงาน
+								</div>
+							</a>
+						</div>
+						<br/>
+	
+						<div class="topic-layer">
+							<a href="/survey/survey6">
+								<div class="btn btn-lg btn-info topic-content">
+								ผนวก ฉ การทำร้ายรังแกทางจิตใจ
+								</div>
+							</a>
+						</div>
+						<br/>
+	
+						<div class="topic-layer">
+							<a href="/survey/survey7">
+								<div class="btn btn-lg btn-info topic-content">
+								ผนวก ช ถูกกระทำความรุนแรงทางเพศ
+								</div>
+							</a>
+						</div>
+						<br/>
+	
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

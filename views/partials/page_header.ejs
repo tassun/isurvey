@@ -1,0 +1,20 @@
+<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="/index" class="navbar-brand"><img src="<%=meta.cdn_url%>/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown navbar-user">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="hidden-xs"><%=meta.user?.name%> <%=meta.user?.surname%></span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu pull-right">
+                    <%if(meta.user?.level=='ADMIN') {%>
+                    <li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+                    <%}%>
+                    <li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout logout-linker">ออกจากระบบ</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

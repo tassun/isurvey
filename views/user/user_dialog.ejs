@@ -1,0 +1,141 @@
+	<div class="modal fade" id="modal-edit">
+		<div class="modal-dialog modal-xm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">แก้ไขผู้ใช้งาน</h4>
+				</div>
+				<form class="b form app" data-parsley-validate="true" id="form-data-edit" method="post">
+					<input type="hidden" id="e_userid" name="userid"/>
+					<div class="ui form">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">ชื่อ <span class="star">*</span></label>
+									<input type="text" class="input" id="e_name" name="name" data-parsley-required="true" />
+								</div>
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">นามสกุล <span class="star">*</span></label>
+									<input type="text" class="input" id="e_surname" name="surname" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">อีเมล</label>
+									<input class="form-control input" type="text" id="e_email" name="email" data-parsley-type="email" placeholder="Email" />
+								</div>
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">เบอร์ติดต่อ <span class="star">*</span></label>
+									<input type="text" class="input" id="e_mobile" name="mobile" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">ระดับผู้ใช้งาน <span class="star">*</span></label>
+									<select class="default-select2 input " id="e_level" name="level">
+										<option value="ADMIN">Admin</option>
+										<option value="USER">User</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">รหัสผู้ใช้งาน <span class="star">*</span></label>
+									<input type="text" class="input" id="e_username" name="username" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">รหัสผ่าน <span class="star">*</span></label>
+									<input type="password" class="input" id="e_password" name="password" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">รหัสผ่าน (อีกครั้ง) <span class="star">*</span></label>
+									<input type="password" class="input" id="e_passwordconfirm" data-parsley-equalto="#e_password" data-parsley-required="true" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="javascript:void(0)" class="btn width-100 btn-default button ui primary" data-dismiss="modal">ยกเลิก</a>
+						<a href="javascript:void(0)" id="userupdatebutton" class="btn width-100 btn-default button ui primary btn-form-varidate-edit">บันทึก</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade pt-page pt-page-item border border-dark" id="modal-add">
+		<div class="modal-dialog modal-xm">
+			<div class="modal-content portal-area fa-portal-area">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">เพิ่มผู้ใช้งานใหม่</h4>
+				</div>
+				<form class="a form app" data-parsley-validate="true" id="form-data-add" method="post">
+					<input type="hidden" id="a_userid" name="userid"/>
+					<div class="ui form">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">ชื่อ <span class="star">*</span></label>
+									<input type="text" class="input" id="a_name" name="name" data-parsley-required="true" />
+								</div>
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">นามสกุล <span class="star">*</span></label>
+									<input type="text" class="input" id="a_surname" name="surname" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">อีเมล</label>
+									<input class="form-control input" type="text" id="a_email" name="email" data-parsley-type="email" placeholder="Email" />
+								</div>
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">เบอร์ติดต่อ <span class="star">*</span></label>
+									<input type="text" class="input" id="a_mobile" name="mobile" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">ระดับผู้ใช้งาน <span class="star">*</span></label>
+									<select class="default-select2 input " id="a_level" name="level">
+										<option value="ADMIN">Admin</option>
+										<option value="USER" selected>User</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">รหัสผู้ใช้งาน <span class="star">*</span></label>
+									<input type="text" class="input" id="a_username" name="username" data-parsley-required="true" />
+								</div>
+
+
+							</div>
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">รหัสผ่าน <span class="star">*</span></label>
+									<input type="password" class="input" id="a_password" name="password" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 m-b-15">
+									<label class="col-form-label">รหัสผ่าน (อีกครั้ง) <span class="star">*</span></label>
+									<input type="password" class="input" id="a_passwordconfirm" data-parsley-equalto="#a_password" data-parsley-required="true" />
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="javascript:void(0)" class="btn width-100 btn-default button ui primary" data-dismiss="modal">ยกเลิก</a>
+						<a href="javascript:void(0)" id="useraddbutton" class="btn width-100 btn-default button ui primary btn-form-varidate-save">บันทึก</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

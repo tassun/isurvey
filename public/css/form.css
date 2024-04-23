@@ -1,0 +1,133 @@
+.body {
+  margin-top: 10px;
+}
+
+.indent{
+  padding-left: 1.8em;
+}
+
+.star{
+  color:red;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+i.disabled {
+  color:black;
+}
+
+a.width{
+  width: -webkit-fill-available;
+}
+
+.line{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nText{
+  font-weight: 400;
+}
+
+.overFlow{
+  line-height: 4;
+}
+
+.collapseForm{
+  background-color: #efefef;
+}
+
+.tg {
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 95%;
+}
+
+.tg td {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+
+.tg th {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+
+.tg .tg-lboi {
+  border-color: inherit;
+  text-align: left;
+  vertical-align: middle
+}
+
+.tg .tg-9wq8 {
+  border-color: inherit;
+  text-align: center;
+  vertical-align: middle
+}
+
+.tg .tg-c3oa {
+  border-color: inherit;
+  text-align: center;
+  vertical-align: top
+}
+
+.tg .tg-c3ow {
+  border-color: inherit;
+  text-align: center;
+  vertical-align: top;
+  width: 30px;
+}
+
+.tg .tg-0lax {
+  text-align: left;
+  vertical-align: top
+}
+
+.tg .tg-0laq {
+  text-align: left;
+  vertical-align: top;
+}
+
+.tg .age {
+  width: 100px;
+}
+
+.tg .long {
+  width: 400px;
+}
+
+
+.bg{
+  background-color: #8080808a;
+  font-weight: 600;
+}
+
+.subhead{
+  background-color: #cccccc8a;
+}
+
+.tg .tg-0laa {
+  text-align: center;
+  vertical-align: top
+}
+
+.tg .tg-mid {
+  text-align: center;
+  vertical-align: middle
+}
+

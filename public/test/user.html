@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Survey</title>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link href="/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>  
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>      
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" />
+	<script type="text/javascript" src="/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<link rel="stylesheet" type="text/css" href="/user/user.css" />
+	<script type="text/javascript" src="/user/user.js"></script>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">จัดการผู้ใช้งาน (User)</h1>
+			<div class="body">
+				<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-add" class="ui green button "><i class="plus icon small"></i> เพิ่มผู้ใช้งานใหม่</a>
+				</br></br>
+				<table id="data-table" data-order='[[0,"asc"]]' class="table table-bordered table-hover table-striped table-td-valign-middle" style="width: 100%;">
+					<thead>
+						<tr class="inverse">
+							<th class="text-center">ลำดับที่</th>
+							<th class="text-center">รหัสผู้ใช้งาน (Username)</th>
+							<th class="text-center">ชื่อ</th>
+							<th class="text-center">นามสกุล</th>
+							<th class="text-center">ระดับผู้ใช้งาน</th>
+							<th class="text-center">อีเมล</th>
+							<th class="text-center">เบอร์ติดต่อ</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="data-table-body">
+							<tr>
+								<td>1</td>
+								<td>username1</td>
+								<td>name1</td>
+								<td>surname1</td>
+								<td>USER</td>
+								<td>email1</td>
+								<td>mobile1</td>
+								<td>
+									<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large" style="color:orange"></i></a>
+									<a href="javascript:void(0)" data-url="/admin/deleteUser/" class="btn-form-delete"><i class="trash icon large" style="color:red"></i></a>
+								</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>username2</td>
+								<td>name2</td>
+								<td>surname2</td>
+								<td>USER</td>
+								<td>email2</td>
+								<td>mobile2</td>
+								<td>
+									<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large" style="color:orange"></i></a>
+									<a href="javascript:void(0)" data-url="/admin/deleteUser/" class="btn-form-delete"><i class="trash icon large" style="color:red"></i></a>
+								</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>username3</td>
+								<td>name3</td>
+								<td>surname3</td>
+								<td>USER</td>
+								<td>email3</td>
+								<td>mobile3</td>
+								<td>
+									<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large" style="color:orange"></i></a>
+									<a href="javascript:void(0)" data-url="/admin/deleteUser/" class="btn-form-delete"><i class="trash icon large" style="color:red"></i></a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>username4</td>
+								<td>name4</td>
+								<td>surname4</td>
+								<td>ADMIN</td>
+								<td>email4</td>
+								<td>mobile4</td>
+								<td>
+									<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large" style="color:orange"></i></a>
+									<a href="javascript:void(0)" data-url="/admin/deleteUser/" class="btn-form-delete"><i class="trash icon large" style="color:red"></i></a>
+								</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>username5</td>
+								<td>name5</td>
+								<td>surname5</td>
+								<td>USER</td>
+								<td>email5</td>
+								<td>mobile5</td>
+								<td>
+									<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large" style="color:orange"></i></a>
+									<a href="javascript:void(0)" data-url="/admin/deleteUser/" class="btn-form-delete"><i class="trash icon large" style="color:red"></i></a>
+								</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>username6</td>
+								<td>name6</td>
+								<td>surname6</td>
+								<td>USER</td>
+								<td>email6</td>
+								<td>mobile6</td>
+								<td>
+									<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large" style="color:orange"></i></a>
+									<a href="javascript:void(0)" data-url="/admin/deleteUser/" class="btn-form-delete"><i class="trash icon large" style="color:red"></i></a>
+								</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>username7</td>
+								<td>name7</td>
+								<td>surname7</td>
+								<td>USER</td>
+								<td>email7</td>
+								<td>mobile7</td>
+								<td>
+									<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large" style="color:orange"></i></a>
+									<a href="javascript:void(0)" data-url="/admin/deleteUser/" class="btn-form-delete"><i class="trash icon large" style="color:red"></i></a>
+								</td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-edit">
+		<div class="modal-dialog modal-xm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">แก้ไขผู้ใช้งาน</h4>
+				</div>
+				<form class="b form app" data-parsley-validate="true" id="form-data-edit" method="post">
+					<input type="hidden" id="e_userid" name="userid" />
+					<div class="ui form">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">ชื่อ <span class="star">*</span></label>
+									<input type="text" class="input" id="e_name" name="name" data-parsley-required="true" />
+								</div>
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">นามสกุล <span class="star">*</span></label>
+									<input type="text" class="input" id="e_surname" name="surname" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">อีเมล</label>
+									<input class="form-control input" type="text" id="e_email" name="email" data-parsley-type="email" placeholder="Email" />
+								</div>
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">เบอร์ติดต่อ <span class="star">*</span></label>
+									<input type="text" class="input" id="e_mobile" name="mobile" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-2 m-b-15">
+									<label class="col-form-label">ระดับผู้ใช้งาน <span class="star">*</span></label>
+									<select class="default-select2 input " id="e_level" name="level">
+										<option value="ADMIN">Admin</option>
+										<option value="USER">User</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">รหัสผู้ใช้งาน <span class="star">*</span></label>
+									<input type="text" class="input" id="e_username" name="username" style="background:#d1d1d1;" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">รหัสผ่าน <span class="star">*</span></label>
+									<input type="password" class="input" id="e_password" name="password" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">รหัสผ่าน (อีกครั้ง) <span class="star">*</span></label>
+									<input type="password" class="input" id="e_passwordconfirm" data-parsley-equalto="#e_password" data-parsley-required="true" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="/index.html" class="btn width-100 btn-default button ui primary" data-dismiss="modal">ยกเลิก</a>
+						<a id="userupdatebutton" class="btn width-100 btn-default button ui primary btn-form-varidate-edit">บันทึก</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-add">
+		<div class="modal-dialog modal-xm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">เพิ่มผู้ใช้งานใหม่</h4>
+				</div>
+				<form class="a form app" data-parsley-validate="true" id="form-data-add" method="post">
+					<input type="hidden" id="a_userid" name="userid" />
+					<div class="ui form">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">ชื่อ <span class="star">*</span></label>
+									<input type="text" class="input" id="a_name" name="name" data-parsley-required="true" />
+								</div>
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">นามสกุล <span class="star">*</span></label>
+									<input type="text" class="input" id="a_surname" name="surname" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">อีเมล</label>
+									<input class="form-control input" type="text" id="a_email" name="email" data-parsley-type="email" placeholder="Email" />
+								</div>
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">เบอร์ติดต่อ <span class="star">*</span></label>
+									<input type="text" class="input" id="a_mobile" name="mobile" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+
+								<div class="col-lg-2 m-b-15">
+									<label class="col-form-label">ระดับผู้ใช้งาน <span class="star">*</span></label>
+									<select class="default-select2 input " id="a_level" name="level">
+										<option value="ADMIN">Admin</option>
+										<option value="USER" selected>User</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">รหัสผู้ใช้งาน <span class="star">*</span></label>
+									<input type="text" class="input" id="a_username" name="username" data-parsley-required="true" />
+								</div>
+
+
+							</div>
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">รหัสผ่าน <span class="star">*</span></label>
+									<input type="password" class="input" id="a_password" name="password" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 m-b-15">
+									<label class="col-form-label">รหัสผ่าน (อีกครั้ง) <span class="star">*</span></label>
+									<input type="password" class="input" id="a_passwordconfirm" data-parsley-equalto="#a_password" data-parsley-required="true" />
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="/index.html" class="btn width-100 btn-default button ui primary" data-dismiss="modal">ยกเลิก</a>
+						<a id="useraddbutton" class="btn width-100 btn-default button ui primary btn-form-varidate-save">บันทึก</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+    "HTTP_PORT": 8080,
+    "BASE_URL": "",
+    "SECRET_KEY": "ASSURE_OF_SECRET_KEY",
+    "DB_SECTION": "MYSQL",
+    "MYSQL" : { "alias": "mysql2", "dialect": "mysql", "url":"", "user": "root", "password": "root", "host": "dbs", "port": 3306, "database": "lawdb", "options": { "charset": "utf8", "connectionLimit": 100 } }
+}
