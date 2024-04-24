@@ -46,6 +46,14 @@ export interface KnModel {
      * white list of fields setting
      */
     fields?: KnFieldSetting;
+    /**
+     * black list of fields name
+     */
+    disableFields?: string[];
+    /**
+     * prefix field name with model name or not
+     */
+    prefixNaming?: boolean;
 }
 
 export interface KnPageSetting extends KnPageOffset {
@@ -137,6 +145,10 @@ export interface KnDataTableResultSet {
     tablename: string;
     resultset: KnResultSet;
     options?: any;
+}
+
+export interface KnDataCategory {
+    [name: string]: KnDataTableResultSet;
 }
 
 export interface KnValidateInfo {

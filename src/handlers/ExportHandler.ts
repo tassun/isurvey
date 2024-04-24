@@ -1,14 +1,14 @@
 import { KnDBConnector, KnResultSet, KnRecordSet, KnSQL } from 'will-sql';
 import { Utilities } from 'will-util';
 import { KnContextInfo, KnExportInfo, KnFormatInfo } from '../models/AssureAlias';
-import { ProcessHandler } from './ProcessHandler';
+import { ProcessHandler } from '../base/ProcessHandler';
 import path from 'path';
 import fs from 'fs';
 
 export class ExportHandler extends ProcessHandler {
     public exportDir: string = path.join(process.cwd(),"export");
     public exportInfo: KnExportInfo[] = [
-        {table:"users",file:"users.csv"}
+        {table:"tusers",file:"tusers.csv"}
     ];
 
     protected override async doExport(context: KnContextInfo) : Promise<KnRecordSet> {
@@ -25,7 +25,7 @@ export class ExportHandler extends ProcessHandler {
     public async processExport(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         let result = this.createRecordSet();
         for(let info of this.exportInfo) {
-            let rs = await this.collectData(context, db, info.table);
+            let rs = await this.getResultSet(context, db, info.table);
             if(rs) {
                 this.writeDataFile(info.file,rs)
                 result.records++;
@@ -35,9 +35,9 @@ export class ExportHandler extends ProcessHandler {
         return Promise.resolve(result);
     }
 
-    public async collectData(context: KnContextInfo, db: KnDBConnector, tableName: string) : Promise<KnResultSet> {
+    public async getResultSet(context: KnContextInfo, db: KnDBConnector, tableName: string) : Promise<KnResultSet> {
         let sql = new KnSQL("select * from ").append(tableName);
-        this.logger.info(this.constructor.name+".collectData:",sql);
+        this.logger.info(this.constructor.name+".getResultSet:",sql);
         return await sql.executeQuery(db,context);
     }
 
@@ -60,27 +60,16 @@ export class ExportHandler extends ProcessHandler {
     public override formatData(info: KnFormatInfo) : any {
         if(info.value instanceof Date) {
             if(info.field?.type == "DATE") {
-                info.value = ExportHandler.formatDate(info.value as Date);
+                info.value = Utilities.formatDate(info.value as Date, true);
             } else if(info.field?.type == "TIME") {
                 info.value = Utilities.formatTime(info.value as Date);
             } else if(info.field?.type == "DATETIME") {
-                info.value = ExportHandler.formatDate(info.value as Date) +' '+Utilities.formatTime(info.value as Date);
+                info.value = Utilities.formatDate(info.value as Date, true) +' '+Utilities.formatTime(info.value as Date);
             } else {
-                info.value = ExportHandler.formatDate(info.value as Date);
+                info.value = Utilities.formatDate(info.value as Date, true);
             }
         }
         return info.value;
-    }
-
-    public static formatDate(date: Date) : string {
-        let year = date.getFullYear();
-        let month = '' + (date.getMonth() + 1);
-        let day = '' + date.getDate();
-        if (month.length < 2) 
-            month = '0' + month;
-        if (day.length < 2) 
-            day = '0' + day;
-        return [year, month, day].join('-');
     }
     
 }

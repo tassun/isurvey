@@ -4,7 +4,7 @@ import { BaseRouter } from './BaseRouter';
 import { HTTP } from '../api/HTTP';
 import { AuthenError } from '../models/AuthenError';
 import { KnUserInfo } from '../models/AssureAlias';
-import { SigninHandler } from '../handlers/SigninHandler';
+import { SigninHandler } from '../base/SigninHandler';
 
 const router = express.Router();
 export class SigninRouter extends BaseRouter {

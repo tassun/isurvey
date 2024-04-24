@@ -4,7 +4,7 @@ import { API_URL, BASE_URL, CDN_URL, META_INFO, RELEASE_VERSION, EXCEPT_LAUNCH_P
 import { KnUtility } from '../utils/KnUtility';
 import { AuthenError } from '../models/AuthenError';
 import { HTTP } from '../api/HTTP';
-import { BaseSystem } from "../handlers/BaseSystem";
+import { BaseSystem } from "../base/BaseSystem";
 import { Responser } from '../utils/Responser';
 
 export class BaseRouter extends BaseSystem {

@@ -1,50 +1,11 @@
-import { KnRecordSet, KnSQLInterface } from 'will-sql';
-import { KnContextInfo, KnDataTable, KnDataSet, KnModel, KnFieldSetting, KnFormatInfo, KnDataEntity } from '../models/AssureAlias';
-import { BaseHandler } from './BaseHandler';
-import { KnSQLUtils } from '../utils/KnSQLUtils';
-import { KnUtility } from '../utils/KnUtility';
+import { KnRecordSet } from 'will-sql';
+import { KnContextInfo, KnDataTable, KnValidateInfo } from '../models/AssureAlias';
+import { SystemHandler } from './SystemHandler';
 
-export class ProcessHandler extends BaseHandler {
-    public model? : KnModel;
+export class ProcessHandler extends SystemHandler {
 
-    public createDataTable(action?: string, datasets: KnDataSet = {}, entities: KnDataEntity | Array<any> = {}, renderer?: string) : KnDataTable {
-        return {action: action?action:"", dataset: datasets, entity: entities, renderer: renderer};
-    }
-
-    protected obtainParameterValues(context: KnContextInfo, model: KnModel) : KnDataSet {
-        let result : KnDataSet = { };
-        if(model.fields) {
-            for(let key in model.fields) {
-                result[key] = context.params[key];
-            }
-        }
-        return result;
-    }
-
-    protected obtainParameters(knsql: KnSQLInterface, params?: any, model?: KnModel) {
-        if(params) {
-            for(let p in params) {
-                let pv = this.parseParameterValue(p,params[p],model);
-                knsql.set(p,pv);
-            }
-        }
-    }
-
-    protected parseParameterValue(name: string, value: any, model?: KnModel) : any {
-        if(!model) model = this.model;
-        if(!model) return value;
-        return KnSQLUtils.parseParameterValue(name, value, model);
-    }
-
-    public transformData(rs: any, fields?: KnFieldSetting) : KnDataSet {
-        if(!fields) {
-            fields = this.model?.fields;
-        }
-        return KnUtility.transformData(rs, fields, this.formatData);
-    }
-
-    protected formatData(info: KnFormatInfo) : any {
-        return KnUtility.formatData(info);
+    protected async validateRequireFields(context: KnContextInfo, throwError: boolean = false) : Promise<KnValidateInfo> {
+        return Promise.resolve({valid: true});
     }
 
     public async add(context: KnContextInfo) : Promise<KnDataTable> {
@@ -52,6 +13,7 @@ export class ProcessHandler extends BaseHandler {
     }
 
     public async edit(context: KnContextInfo) : Promise<KnDataTable> {
+        await this.validateRequireFields(context, true);
         return this.doEdit(context);
     }
 
@@ -60,14 +22,17 @@ export class ProcessHandler extends BaseHandler {
 	}
 
     public async retrieve(context: KnContextInfo) : Promise<KnRecordSet> {
+        await this.validateRequireFields(context, true);
         return this.doRetrieve(context);
     }
 
     public async update(context: KnContextInfo) : Promise<KnRecordSet> {
+        await this.validateRequireFields(context, true);
         return this.doUpdate(context);
 	}
 
     public async remove(context: KnContextInfo) : Promise<KnRecordSet> {
+        await this.validateRequireFields(context, true);
         return this.doRemove(context);
 	}
 

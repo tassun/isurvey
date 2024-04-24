@@ -110,5 +110,25 @@ export class KnUtility {
         }
         return info.value;
     }
+    
+    public static serializeTimestamp(now: Date, delimiter?: string, includeMillis: boolean = true) : string {
+		let dd = now.getDate(); 
+		let mo = now.getMonth()+1; 
+		let year = now.getFullYear(); 
+		let month = ((mo < 10) ? "0" : "") + mo; 
+		let day = ((dd < 10) ? "0" : "") + dd; 
+		let hh = now.getHours(); 
+		let mm = now.getMinutes(); 
+		let ss = now.getSeconds(); 
+		let hour = ((hh < 10) ? "0":"") + hh; 
+		let minute = ((mm < 10) ? "0" : "") + mm; 
+		let second = ((ss < 10) ? "0" : "") + ss; 
+        let ml = now.getMilliseconds();
+        let millis = ((ml < 100) ? "0" : "") + ml;
+		if(includeMillis) {
+			return [year, month, day, hour, minute, second, millis].join(delimiter?delimiter:'');
+		}
+		return [year, month, day, hour, minute, second].join(delimiter?delimiter:'');
+    }
 
 }

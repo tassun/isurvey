@@ -6,6 +6,7 @@ import { SigninRouter } from './SigninRouter';
 import { TestRouter } from './TestRouter';
 import { UserRouter } from './UserRouter';
 import { ExportRouter } from './ExportRouter';
+import { DataRouter } from './DataRouter';
 const errorHandler = require('express-error-handler');
 
 export class RouteManager extends BaseRouter {
@@ -63,6 +64,7 @@ export class RouteManager extends BaseRouter {
         let signin = new SigninRouter(this.dir,this.logger);
         let user = new UserRouter(this.dir,this.logger);
         let exporter = new ExportRouter(this.dir,this.logger);
+        let data = new DataRouter(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
             try {
@@ -86,6 +88,7 @@ export class RouteManager extends BaseRouter {
         app.get('/index', (req: Request, res: Response) => { render.doIndex(req,res); });        
         app.use("/user", user.route(app));
         app.use("/export", exporter.route(app));
+        app.use("/data", data.route(app));
 
         this.handleErrors(app);
     }

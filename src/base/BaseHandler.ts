@@ -13,7 +13,7 @@ export class BaseHandler extends BaseSystem {
     public section: string = DB_SECTION;
     
     protected async getUserInfo(conn: KnDBConnector, username: string) : Promise<KnUserInfo | undefined> {
-        if(username) {
+        if(username && username.trim().length>0) {
             let sql = new KnSQL("select * from tusers ");
             sql.append("where username = ?username ");
             sql.set("username",username);
@@ -28,7 +28,7 @@ export class BaseHandler extends BaseSystem {
     }
 
     protected async getUserInfoById(conn: KnDBConnector, useruuid: string) : Promise<KnUserInfo | undefined> {
-        if(useruuid) {
+        if(useruuid && useruuid.trim().length>0) {
             let sql = new KnSQL("select * from tusers ");
             sql.append("where userid = ?useruuid ");
             sql.set("useruuid",useruuid);
