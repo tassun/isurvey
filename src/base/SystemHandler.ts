@@ -11,6 +11,23 @@ export class SystemHandler extends BaseHandler {
         return {action: action?action:"", dataset: datasets, entity: entities, renderer: renderer};
     }
 
+    public emptyDataSet(fields?: KnFieldSetting) : KnDataSet {
+        let result : KnDataSet = {};
+        if(!fields) {
+            fields = this.model?.fields;
+        }
+        if(fields) {
+            for(let key in fields) {
+                let dbf = fields[key];
+                let selected = typeof dbf.selected === "undefined" || dbf.selected;
+                if(selected) {
+                    result[key] = "";
+                }
+            }
+        }
+        return result;
+    }
+
     protected isInPageSetting(key: string, model: KnModel) : boolean {
         let result = false;
         if(model.disableFields) {
@@ -34,7 +51,7 @@ export class SystemHandler extends BaseHandler {
                     let dbf = model.fields[fname];
                     let fcalc = dbf.calculated !== undefined && dbf.calculated;
                     if(!fcalc) {
-                        if(dbf.defaultValue !== undefined) knsql.set(fname,dbf.defaultValue);
+                        if(dbf.defaultValue !== undefined) knsql.set(fname,dbf.defaultValue,dbf.type);
                         if(dbf.created || (params && params.hasOwnProperty(fname))) {
                             if(found) {
                                 cols += ",";
@@ -73,7 +90,7 @@ export class SystemHandler extends BaseHandler {
                                 knsql.append(", ");
                             }
                             knsql.append(fname).append(" = ?").append(fname);
-                            if(dbf.defaultValue !== undefined) knsql.set(fname,dbf.defaultValue);
+                            if(dbf.defaultValue !== undefined) knsql.set(fname,dbf.defaultValue,dbf.type);
                             found = true;
                         } else {
                             if(dbf.updated) {
@@ -81,7 +98,7 @@ export class SystemHandler extends BaseHandler {
                                     knsql.append(", ");
                                 }
                                 knsql.append(fname).append(" = ?").append(fname);
-                                if(dbf.defaultValue !== undefined) knsql.set(fname,dbf.defaultValue);
+                                if(dbf.defaultValue !== undefined) knsql.set(fname,dbf.defaultValue,dbf.type);
                                 foundflag = true;
                             }
                         }
@@ -145,13 +162,19 @@ export class SystemHandler extends BaseHandler {
                     let fkey = dbf.key !== undefined && dbf.key;
                     if(fkey) {
                         let pv = this.parseParameterValue(fname,params[fname],model);
-                        knsql.set(fname,pv);                    
+                        knsql.set(fname,pv,dbf.type);                    
                     }
                 }
             } else {
+                let fields = model?.fields;
                 for(let p in params) {
+                    let dbf = fields?fields[p]:undefined;
                     let pv = this.parseParameterValue(p,params[p],model);
-                    knsql.set(p,pv);
+                    if(dbf) {
+                        knsql.set(p,pv,dbf.type);
+                    } else {
+                        knsql.set(p,pv);
+                    }
                 }
             }
         }

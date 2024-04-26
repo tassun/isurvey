@@ -1,13 +1,12 @@
-import express from 'express';
 import { Application, Request, Response, Router } from 'express';
-import { BaseRouter } from "./BaseRouter";
+import { OperateRouter } from "../base/OperateRouter";
 import { ExportHandler } from "../handlers/ExportHandler";
 import fs from "fs";
 import path from "path";
 import JSZip from "jszip";
 
-const router = express.Router();
-export class ExportRouter extends BaseRouter {
+export class ExportRouter extends OperateRouter {
+    
     public zipDir: string = path.join(process.cwd(),"zip");
     public zipFile: string = "export_alls.zip";
     public exportFile: string = "export_alls.zip";
@@ -52,11 +51,11 @@ export class ExportRouter extends BaseRouter {
 		}
 	}
     
-    public route(app: Application) : Router {
+    public override route(app: Application) : Router {
 		//gui can post or get
-		router.get('/csv', async (req: Request, res: Response) => { this.routeExport(req,res); });
-		router.post('/csv', async (req: Request, res: Response) => { this.routeExport(req,res); });
-        return router
+		this.router.get('/csv', async (req: Request, res: Response) => { this.routeExport(req,res); });
+		this.router.post('/csv', async (req: Request, res: Response) => { this.routeExport(req,res); });
+        return this.router
     }
 
 }

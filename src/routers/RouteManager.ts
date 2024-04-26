@@ -1,14 +1,15 @@
 import { Application, Request, Response } from 'express';
 import { Utilities } from 'will-util';
-import { BaseRouter } from './BaseRouter';
+import { BaseRouter } from '../base/BaseRouter';
 import { RenderRouter } from './RenderRouter';
 import { SigninRouter } from './SigninRouter';
 import { TestRouter } from './TestRouter';
 import { UserRouter } from './UserRouter';
 import { ExportRouter } from './ExportRouter';
 import { DataRouter } from './DataRouter';
-const errorHandler = require('express-error-handler');
+import { Survey1Router } from './Survey1Router';
 
+const errorHandler = require('express-error-handler');
 export class RouteManager extends BaseRouter {
 
     private doHome(req: Request, res: Response,) {
@@ -65,6 +66,7 @@ export class RouteManager extends BaseRouter {
         let user = new UserRouter(this.dir,this.logger);
         let exporter = new ExportRouter(this.dir,this.logger);
         let data = new DataRouter(this.dir,this.logger);
+        let survey = new Survey1Router(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
             try {
@@ -89,6 +91,7 @@ export class RouteManager extends BaseRouter {
         app.use("/user", user.route(app));
         app.use("/export", exporter.route(app));
         app.use("/data", data.route(app));
+        app.use("/survey", survey.route(app));
 
         this.handleErrors(app);
     }

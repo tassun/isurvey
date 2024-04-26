@@ -51,27 +51,18 @@ function initDataTable() {
         },
         fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $(nRow).data("userdata", aData);
-            let editbtn = $('<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large" style="color:orange"></i></a>');
-            let delbtn = $('<a href="javascript:void(0)" class="btn-form-delete"><i class="trash icon large" style="color:red"></i></a>');
+            let editbtn = $('<a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#modal-edit"><i class="edit icon large enable-color"></i></a>');
+            let delbtn = $('<a href="javascript:void(0)" class="btn-form-delete"><i class="trash icon large alert-color"></i></a>');
             delbtn.click(function() { confirmDeleteUser(this); });
             let td = $('td:last', nRow).empty();
             td.append(editbtn).append(delbtn);
         }
     });
 }
-function validBlank() {
-	var pass = true;
-	$('.chk_empty').each(function (i, obj) {
-		if (obj.value == "") {
-			pass = false;
-		}
-	});
-	return pass;
-}
 function confirmAddUser() {
     var $form = $('#form-data-add');
     if (validBlank() && $form.parsley().validate()) {
-        confirmSaveMessage(function() { addNewUser() });
+        confirmSaveMessage(function() { addNewUser(); });
     } else {
         warningMessage();
     }

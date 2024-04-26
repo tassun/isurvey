@@ -1,6 +1,12 @@
 import { KnDBConfig, KnDBTypes, KnResultSet, KnPageOffset } from "will-sql";
 
 export const RESERVED_PARAMETERS: string[] = ["program", "subprog", "language", "authtoken", "action", "caption", "ciphertext"];
+export const RESERVED_FIELDS: string[] = ["authtoken","ciphertext","language","tokenkey"];
+export const INSERT_MODES: string[] = ["create", "insert", "add", "entry", "enter", "entrance"];
+export const UPDATE_MODES: string[] = ["retrieve", "find", "list", "get", "query", "view", "search", "retrieval", "edit", "update", "modify"];
+export const RETRIEVE_MODES: string[] = ["retrieve", "get", "retrieval", "edit", "view", "query"];
+export const DELETE_MODES: string[] = ["delete", "remove", "reset", "erase", "clear"];
+export const COLLECT_MODES: string[] = ["collect", "find", "list", "query", "search", "inquiry", "enquiry"];
 
 export type KnGenericObject = { [name: string]: any };
 
@@ -21,6 +27,7 @@ export interface KnDBField {
     created? : boolean;
     updated? : boolean
     defaultValue?: any;
+    remark?: string;
     options?: KnGenericObject;
 }
 

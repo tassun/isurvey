@@ -87,6 +87,7 @@ export class KnUtility {
     }
 
     public static formatData(info: KnFormatInfo) : any {
+        if(info.field?.options?.disabledFormat) return info.value;
         if(info.value instanceof Date) {
             if(info.field?.type == "DATE") {
                 info.value = Utilities.formatDate(info.value as Date);
@@ -98,37 +99,43 @@ export class KnUtility {
                 info.value = Utilities.formatDate(info.value as Date);
             }
         } else if(typeof info.value === "number") {
-            if(info.field?.type == "INTEGER" || info.field?.type == "BIGINT") {
-                let maxdigit = info.field?.options?.maxdigit || 0;
-                let mindigit = info.field?.options?.mindigit || 0;
-                info.value = (info.value as number).toLocaleString("en-US", { maximumFractionDigits: maxdigit, minimumFractionDigits: mindigit });
-            } else {
-                let maxdigit = info.field?.options?.maxdigit || 2;
-                let mindigit = info.field?.options?.mindigit || 2;
-                info.value = (info.value as number).toLocaleString("en-US", { maximumFractionDigits: maxdigit, minimumFractionDigits: mindigit });
-            }
+            try {
+                if(info.field?.type == "INTEGER" || info.field?.type == "BIGINT") {
+                    let maxdigit = info.field?.options?.maxdigit || 0;
+                    let mindigit = info.field?.options?.mindigit || 0;
+                    info.value = (info.value as number).toLocaleString("en-US", { maximumFractionDigits: maxdigit, minimumFractionDigits: mindigit });
+                } else {
+                    let maxdigit = info.field?.options?.maxdigit || 6;
+                    let mindigit = info.field?.options?.mindigit || 2;
+                    info.value = (info.value as number).toLocaleString("en-US", { maximumFractionDigits: maxdigit, minimumFractionDigits: mindigit });
+                }
+            } catch(ex) { console.error(ex); }
+        } else if(typeof info.value === "string" && info.value!="") {
+            try {
+                if(info.field?.type == "INTEGER" || info.field?.type == "BIGINT") {
+                    let value = Utilities.parseInteger(info.value);
+                    if(value) {
+                        let maxdigit = info.field?.options?.maxdigit || 0;
+                        let mindigit = info.field?.options?.mindigit || 0;
+                        info.value = value.toLocaleString("en-US", { maximumFractionDigits: maxdigit, minimumFractionDigits: mindigit });
+                    }
+                } else if(info.field?.type == "DECIMAL") {
+                    let value = Utilities.parseFloat(info.value);
+                    if(value) {
+                        let maxdigit = info.field?.options?.maxdigit || 6;
+                        let mindigit = info.field?.options?.mindigit || 2;
+                        info.value = value.toLocaleString("en-US", { maximumFractionDigits: maxdigit, minimumFractionDigits: mindigit });
+                    }
+                }
+            } catch(ex) { console.error(ex); }
         }
-        return info.value;
+        return info.value;    
     }
     
-    public static serializeTimestamp(now: Date, delimiter?: string, includeMillis: boolean = true) : string {
-		let dd = now.getDate(); 
-		let mo = now.getMonth()+1; 
-		let year = now.getFullYear(); 
-		let month = ((mo < 10) ? "0" : "") + mo; 
-		let day = ((dd < 10) ? "0" : "") + dd; 
-		let hh = now.getHours(); 
-		let mm = now.getMinutes(); 
-		let ss = now.getSeconds(); 
-		let hour = ((hh < 10) ? "0":"") + hh; 
-		let minute = ((mm < 10) ? "0" : "") + mm; 
-		let second = ((ss < 10) ? "0" : "") + ss; 
-        let ml = now.getMilliseconds();
-        let millis = ((ml < 100) ? "0" : "") + ml;
-		if(includeMillis) {
-			return [year, month, day, hour, minute, second, millis].join(delimiter?delimiter:'');
-		}
-		return [year, month, day, hour, minute, second].join(delimiter?delimiter:'');
+    public static removeAttributes(data: any,...names: string[]) {
+        for(let name of names) {
+            delete data[name];
+        }
     }
 
 }

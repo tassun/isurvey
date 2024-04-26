@@ -78,12 +78,33 @@ export class OperateHandler extends ProcessHandler {
     }
 
     protected override async doEdit(context: KnContextInfo) : Promise<KnDataTable> {
-        let rs = await this.doRetrieve(context);
-        if(rs.rows && rs.rows.length>0) {
-            let row = this.transformData(rs.rows[0]);
-            return this.createDataTable("edit", row);
+        let db = this.getPrivateConnector();
+        try {
+            return await this.processEdit(context, db);
+        } catch(ex: any) {
+            return Promise.reject(this.getDBError(ex));
+        } finally {
+            if(db) db.close();
         }
-        return this.recordNotFound();
+    }
+
+    protected override async doView(context: KnContextInfo) : Promise<KnDataTable> {
+        let db = this.getPrivateConnector();
+        try {
+            return await this.processView(context, db);
+        } catch(ex: any) {
+            return Promise.reject(this.getDBError(ex));
+        } finally {
+            if(db) db.close();
+        }
+    }
+
+    protected override async doAdd(context: KnContextInfo) : Promise<KnDataTable> {
+        return this.getDataAdd(context);
+    }
+
+    public async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
+        return this.createDataTable("add",this.emptyDataSet());
     }
 
     public async processInsert(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
@@ -104,6 +125,32 @@ export class OperateHandler extends ProcessHandler {
     
     public async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         return this.notImplementation();
+    }
+    
+    public async processEdit(context: KnContextInfo, db: KnDBConnector) : Promise<KnDataTable> {
+        let rs = await this.processRetrieve(context,db);
+        return await this.getDataEdit(context, db, rs);
+    }
+
+    public async processView(context: KnContextInfo, db: KnDBConnector) : Promise<KnDataTable> {
+        let rs = await this.processRetrieve(context,db);
+        return await this.getDataView(context, db, rs);
+    }
+
+    public async getDataEdit(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
+        if(rs.rows && rs.rows.length>0) {
+            let row = this.transformData(rs.rows[0]);
+            return this.createDataTable("edit", row);
+        }
+        return this.recordNotFound();    
+    }
+
+    public async getDataView(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
+        if(rs.rows && rs.rows.length>0) {
+            let row = this.transformData(rs.rows[0]);
+            return this.createDataTable("view", row);
+        }
+        return this.recordNotFound();
     }
 
 }

@@ -12,9 +12,18 @@ export class ProcessHandler extends SystemHandler {
         return this.doAdd(context);
     }
 
+    public async entry(context: KnContextInfo) : Promise<KnDataTable> {
+        return this.doEntry(context);
+    }
+
     public async edit(context: KnContextInfo) : Promise<KnDataTable> {
         await this.validateRequireFields(context, true);
         return this.doEdit(context);
+    }
+
+    public async view(context: KnContextInfo) : Promise<KnDataTable> {
+        await this.validateRequireFields(context, true);
+        return this.doView(context);
     }
 
     public async insert(context: KnContextInfo) : Promise<KnRecordSet> {
@@ -48,7 +57,15 @@ export class ProcessHandler extends SystemHandler {
         return this.notImplementation();
     }
 
+    protected async doEntry(context: KnContextInfo) : Promise<KnDataTable> {
+        return this.notImplementation();
+    }
+
     protected async doEdit(context: KnContextInfo) : Promise<KnDataTable> {
+        return this.notImplementation();
+    }
+
+    protected async doView(context: KnContextInfo) : Promise<KnDataTable> {
         return this.notImplementation();
     }
 

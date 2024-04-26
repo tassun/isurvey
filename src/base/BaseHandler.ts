@@ -1,7 +1,7 @@
 import os from "os";
-import { KnResultSet, KnSQL, KnDBConnector, KnRecordSet, KnDBConfig, KnDBConnections, KnDBError } from 'will-sql';
+import { KnResultSet, KnDBConnector, KnRecordSet, KnDBConfig, KnDBConnections, KnDBError } from 'will-sql';
 import { VerifyError } from "../models/VerifyError";
-import { KnContextInfo, KnUserInfo, KnValidateInfo } from "../models/AssureAlias";
+import { KnContextInfo, KnValidateInfo } from "../models/AssureAlias";
 import { JSONReply } from "../api/JSONReply";
 import { HTTP } from "../api/HTTP";
 import { DB_SECTION } from "../utils/EnvironmentVariable";
@@ -9,47 +9,8 @@ import { Utilities } from "will-util";
 import { BaseSystem } from "./BaseSystem";
 
 export class BaseHandler extends BaseSystem {
-    public user?: KnUserInfo;
     public section: string = DB_SECTION;
     
-    protected async getUserInfo(conn: KnDBConnector, username: string) : Promise<KnUserInfo | undefined> {
-        if(username && username.trim().length>0) {
-            let sql = new KnSQL("select * from tusers ");
-            sql.append("where username = ?username ");
-            sql.set("username",username);
-            this.logger.info(this.constructor.name+".getUserInfo:",sql);
-            let rs = await sql.executeQuery(conn);
-            if(rs.rows && rs.rows.length>0) {
-                let row = rs.rows[0];
-                return Promise.resolve({ userid: row.id, username: row.username, password: row.password, level: row.level, name: row.name, surname: row.surname, email: row.email, mobile: row.mobile });
-            }
-        }
-        return Promise.resolve(undefined);
-    }
-
-    protected async getUserInfoById(conn: KnDBConnector, useruuid: string) : Promise<KnUserInfo | undefined> {
-        if(useruuid && useruuid.trim().length>0) {
-            let sql = new KnSQL("select * from tusers ");
-            sql.append("where userid = ?useruuid ");
-            sql.set("useruuid",useruuid);
-            this.logger.info(this.constructor.name+".getUserInfoById:",sql);
-            let rs = await sql.executeQuery(conn);
-            if(rs.rows && rs.rows.length>0) {
-                let row = rs.rows[0];
-                return Promise.resolve({ userid: row.id, username: row.username, password: row.password, level: row.level, name: row.name, surname: row.surname, email: row.email, mobile: row.mobile });
-            }
-        }
-        return Promise.resolve(undefined);
-    }
-
-    protected async retainUser(conn: KnDBConnector, useruuid: string) {
-        try {
-            this.user = await this.getUserInfo(conn, useruuid);
-        } catch(ex) {
-            console.error(ex);
-        }
-    }
-
     protected getHeaderParameter(context: KnContextInfo, parameterName: string) : string | undefined {
         let result = undefined;
         if(context) {     

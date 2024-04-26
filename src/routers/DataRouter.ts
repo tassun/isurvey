@@ -1,14 +1,17 @@
-import express from 'express';
-import { BaseRouter } from "./BaseRouter";
+import { OperateRouter } from "../base/OperateRouter";
 import { Application, Request, Response, Router } from 'express';
 import { DataHandler } from "../base/DataHandler";
 
-const router = express.Router();
-export class DataRouter extends BaseRouter {
+export class DataRouter extends OperateRouter {
+
+	public override getHandler(): DataHandler {
+		return new DataHandler(this.logger);
+	}
+
 	public async routeCategory(req: Request, res: Response) {
 		let ctx = await this.createContext(req);
 		try {
-			let handler = new DataHandler(this.logger);
+			let handler = this.getHandler();
 			let rs = await handler.category(ctx);
 			let reply = this.createJSONReply("category",rs);
 			this.response(res,reply);
@@ -16,10 +19,11 @@ export class DataRouter extends BaseRouter {
 			this.responseError(res, ex, "category");
 		}
 	}
+
 	public async routeCategories(req: Request, res: Response) {
 		let ctx = await this.createContext(req);
 		try {
-			let handler = new DataHandler(this.logger);
+			let handler = this.getHandler();
 			let rs = await handler.categories(ctx);
 			let reply = this.createJSONReply("categories",rs);
 			this.response(res,reply);
@@ -27,11 +31,27 @@ export class DataRouter extends BaseRouter {
 			this.responseError(res, ex, "categories");
 		}
 	}
-    public route(app: Application) : Router {
-		router.post('/category', async (req: Request, res: Response) => { this.routeCategory(req,res); });
-		router.get('/category', async (req: Request, res: Response) => { this.routeCategory(req,res); });
-		router.post('/categories', async (req: Request, res: Response) => { this.routeCategories(req,res); });
-		router.get('/categories', async (req: Request, res: Response) => { this.routeCategories(req,res); });
-        return router;
+
+	public async routeCategorize(req: Request, res: Response) {
+		let ctx = await this.createContext(req);
+		try {
+			let handler = this.getHandler();
+			let rs = await handler.categorize(ctx);
+			let reply = this.createJSONReply("categorize",rs);
+			this.response(res,reply);
+		} catch(ex) { 
+			this.responseError(res, ex, "categorize");
+		}
+	}
+
+    public override route(app: Application) : Router {
+		this.router.post('/category', async (req: Request, res: Response) => { this.routeCategory(req,res); });
+		this.router.get('/category', async (req: Request, res: Response) => { this.routeCategory(req,res); });
+		this.router.post('/categories', async (req: Request, res: Response) => { this.routeCategories(req,res); });
+		this.router.get('/categories', async (req: Request, res: Response) => { this.routeCategories(req,res); });
+		this.router.post('/categorize', async (req: Request, res: Response) => { this.routeCategorize(req,res); });
+		this.router.get('/categorize', async (req: Request, res: Response) => { this.routeCategorize(req,res); });
+        return this.router;
     }
+
 }

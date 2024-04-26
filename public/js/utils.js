@@ -1,3 +1,16 @@
+function maxLengthCheck(object) {
+    if (object.value.length > object.maxLength)
+        object.value = object.value.slice(0, object.maxLength)
+}
+function validBlank() {
+	var pass = true;
+	$('.chk_empty').each(function (i, obj) {
+		if (obj.value == "") {
+			pass = false;
+		}
+	});
+	return pass;
+}
 function warningMessage(callback, title = 'กรอกข้อมูลไม่ครบถ้วน', message = 'กรุณากรอกข้อมูลที่เป็น <span class="star">* สีแดง</span>ให้ครบก่อนบันทึกข้อมูล') {
 	$.alert({
 		icon: 'warning sign icon',
@@ -55,4 +68,32 @@ function confirmDeleteMessage(callback, title = 'ยืนยันการล�
         closeIconClass: 'fa fa-close',
         confirm: function () { if(callback) callback(); }
     });
+}
+function confirmCancelMessage(callback, title = 'ยืนยันการยกเลิกรายการ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยัน') {
+    $.confirm({
+        icon: 'alarm outline icon',
+        title: title,
+        content: message,
+        confirmButton: 'ตกลง',
+        cancelButton: 'ยกเลิก',
+        confirmButtonClass: 'ui button green',
+        cancelButtonClass: 'ui button red',
+        columnClass: 'ui grid center aligned',
+        closeIcon: true,
+        closeIconClass: 'fa fa-close',
+        confirm: function () { if(callback) callback(); }
+    });
+}
+function successMessage(callback, title = "การดำเนินการ", message = "สำเร็จเรียบร้อยแล้ว") {
+	$.alert({
+		icon: 'info circle icon',
+		title: title,
+		content: message,
+		confirmButton: 'ตกลง',
+		confirmButtonClass: 'ui button blue',
+		confirmIcon: true,
+		confirmIconClass: 'fa fa-ok',
+		columnClass: 'ui grid center aligned',
+		confirm: function () { if(callback) callback(); }		
+	});
 }

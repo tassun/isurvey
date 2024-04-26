@@ -7,6 +7,7 @@ export const RELEASE_VERSION: string = config.env("RELEASE_VERSION","v1.0.0");
 export const EXCEPT_LAUNCH_PATH: string = config.env("EXCEPT_LAUNCH_PATH","page_forgot");
 export const DEFAULT_LANGUAGE: string = config.env("DEFAULT_LANGUAGE","TH");
 export const VALID_ACCESSOR: boolean = config.env("VALID_ACCESSOR","true") === "true";
+export const INLINE_BINDING: boolean = config.env("INLINE_BINDING") === "true";
 
 export const HTTP_PORT: number = parseInt(config.env("HTTP_PORT","8080")) || 8080;
 export const HTTPS_PORT: number = parseInt(config.env("HTTPS_PORT","8843")) || 8843;

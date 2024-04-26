@@ -267,3 +267,6 @@ a:hover { text-decoration: none; }
 	  margin: 30px auto;
 	}
 }
+.enable-color { color:orange; }
+.disable-color { color:gray; }
+.alert-color { color:red; } 

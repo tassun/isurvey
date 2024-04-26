@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>tjsurvey : รายการแบบสำรวจข้อมูล</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link href="/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>  
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>      
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" />
+	<script type="text/javascript" src="/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<link rel="stylesheet" type="text/css" href="/survey/survey.css" />
+	<script type="text/javascript" src="/survey/survey.js"></script>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+                            <li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container panel-container">
+			<div class="body">
+				<h4>โครงการสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชนและโครงการจัดเก็บข้อมูลตัวชี้วัดและวิเคราะห์สถานการณ์อาชญากรรมและกระบวนการยุติธรรมของประเทศไทย</h4>
+				<a href="/survey/add" type="button" class="ui green button "><i class="plus icon small"></i> สำรวจข้อมูลใหม่</a>
+				<a href="/export/csv" id="export-linker" class="ui blue button"><i class="download icon small"></i> นำออกข้อมูลแบบสำรวจ</a>
+				<div class="page-title"><h1 class="page-header">รายการแบบสำรวจ</h1></div>
+				<table id="data-table" class="table table-bordered table-hover table-striped table-td-valign-middle" style="width: 100%;">
+					<thead>
+						<tr class="inverse">
+							<th class="text-center">แบบสำรวจลำดับที่</th>
+							<th class="text-center">บ้านเลขที่</th>
+							<th class="text-center">จังหวัด</th>
+							<th class="text-center">เพศ</th>
+							<th class="text-center">อายุ</th>
+							<th class="text-center">ผู้สำรวจ</th>
+							<th class="text-center">แก้ไข</th>
+						</tr>
+					</thead>
+					<tbody>
+							<tr>
+								<td class="text-center">profile_code</td>
+								<td class="text-center">A2</td>
+								<td class="text-center">A4_1_</td>
+								<td class="text-center">1_1_1</td>
+								<td class="text-center">1_1_2</td>
+								<td class="text-center">create_by</td>
+								<td class="text-center">
+								<a href="/survey/profile_id" type="button"><i class="edit icon large" style="color:orange"></i></a>
+								<a href="javascript:void(0)" data-url="/survey/deleteData/profile_id" class="btn-form-delete"><i class="delete icon large" style="color:red"></i></a>
+								<a href="javascript:void(0)" ><i class="delete icon large" style="color:gray"></i></a>
+								</td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

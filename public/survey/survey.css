@@ -1,5 +1,5 @@
-.body {
-  margin-top: 10px;
+.body{
+  margin-top: 0px;
 }
 .star {
   color:red;
@@ -48,7 +48,8 @@ table td.c, table th.c {
 table td.r, table th.r {
   text-align: center;
 }
-#e_username { background:#d1d1d1; }
-.panel-container { margin-top : 10px; padding-top: 10px; }
-.page-header { margin-top : 10px; margin-bottom: 0px; }
+.panel-container { margin-top: 10px; padding-top: 10px; }
+.page-header { margin-top: 10px; margin-bottom: 0px; }
 #data-table { width: 100%; }
+#export-linker { float: right; }
+.page-title { margin-top : 10px; margin-bottom: 10px; }

@@ -1,18 +1,22 @@
 import express from 'express';
 import { Application, Request, Response, Router } from 'express';
-import { BaseRouter } from './BaseRouter';
+import { BaseRouter } from '../base/BaseRouter';
 import { HTTP } from '../api/HTTP';
 import { AuthenError } from '../models/AuthenError';
 import { KnUserInfo } from '../models/AssureAlias';
-import { SigninHandler } from '../base/SigninHandler';
+import { SigninHandler } from '../handlers/SigninHandler';
 
 const router = express.Router();
 export class SigninRouter extends BaseRouter {
-	public handler = new SigninHandler(this.logger);
+
+	public getHandler(): SigninHandler {
+		return new SigninHandler(this.logger);
+	}
+
 	public async routeSignin(req: Request, res: Response) {
 		let ctx = await this.createContext(req);
 		try {
-			let reply = await this.handler.signin(ctx);
+			let reply = await this.getHandler().signin(ctx);
 			if(reply.head.errorflag=="N") {
 				let userInfo = { ...reply.body };
 				this.bindUser(req,userInfo as KnUserInfo);
@@ -25,6 +29,7 @@ export class SigninRouter extends BaseRouter {
 			this.responseError(res, ex, "signin");
 		}
 	}
+
 	public async routeSignout(req: Request, res: Response) {
 		let ctx = await this.createContext(req);
 		try {
@@ -33,7 +38,7 @@ export class SigninRouter extends BaseRouter {
 			this.logger.debug(this.constructor.name+".signout :",userInfo);
 			if(userInfo) {
 				ctx.params.useruuid = userInfo.userid;
-				let reply = await this.handler.signout(ctx);
+				let reply = await this.getHandler().signout(ctx);
 				if(reply.head.errorflag=="N") {
 					this.response(res,reply);
 				} else {
@@ -48,10 +53,11 @@ export class SigninRouter extends BaseRouter {
 			this.responseError(res, ex, "signout");
 		}
 	}
+
 	public async routeLogin(req: Request, res: Response) {
 		let ctx = await this.createContext(req);
 		try {
-			let reply = await this.handler.signin(ctx);
+			let reply = await this.getHandler().signin(ctx);
 			if(reply.head.errorflag=="N") {
 				let userInfo = { ...reply.body };
 				this.bindUser(req,userInfo as KnUserInfo);
@@ -64,16 +70,12 @@ export class SigninRouter extends BaseRouter {
 			res.redirect('/login');
 		}
 	}
+
 	public route(app: Application) : Router {
-		router.post('/signin', async (req: Request, res: Response) => {
-			this.routeSignin(req,res);
-		});
-		router.post('/signout', async (req: Request, res: Response) => {
-			this.routeSignout(req,res);
-		});
-		router.post('/login', async (req: Request, res: Response) => {
-			this.routeLogin(req,res);
-		});
+		router.post('/signin', async (req: Request, res: Response) => { this.routeSignin(req,res); });
+		router.post('/signout', async (req: Request, res: Response) => { this.routeSignout(req,res); });
+		router.post('/login', async (req: Request, res: Response) => { this.routeLogin(req,res); });
 		return router;
 	}
+
 }
