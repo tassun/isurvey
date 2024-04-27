@@ -20,11 +20,11 @@ export class SigninHandler extends BaseHandler {
         return Promise.resolve(undefined);
     }
 
-    public async getUserInfoById(conn: KnDBConnector, useruuid: string) : Promise<KnUserInfo | undefined> {
-        if(useruuid && useruuid.trim().length>0) {
+    public async getUserInfoById(conn: KnDBConnector, userid: string) : Promise<KnUserInfo | undefined> {
+        if(userid && userid.trim().length>0) {
             let sql = new KnSQL("select * from tusers ");
-            sql.append("where userid = ?useruuid ");
-            sql.set("useruuid",useruuid);
+            sql.append("where userid = ?userid ");
+            sql.set("userid",userid);
             this.logger.info(this.constructor.name+".getUserInfoById:",sql);
             let rs = await sql.executeQuery(conn);
             if(rs.rows && rs.rows.length>0) {

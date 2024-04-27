@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Survey</title>
+		<%- include('../asset/meta') %>		
+		<%- include('../asset/styles') %>		
+		<%- include('../asset/scripts') %>
+		<link rel="stylesheet" type="text/css" href="<%=meta.cdn_url%>/survey/survey_profile.css" />
+		<script type="text/javascript" src="<%=meta.cdn_url%>/survey/survey_profile.js"></script>
+		<script type="text/javascript" nonce="YXNzdXJl">
+			var data_category = <%-JSON.stringify(data.entity)%>;
+		</script>
+	</head>
+	<body>
+		<%- include('../partials/page_waiting') %>
+		<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+			<%- include('../partials/page_header') %>
+			<%- include('./survey_profile_kit') %>
+		</div>
+	</body>
+</html>

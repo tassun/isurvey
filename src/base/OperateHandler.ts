@@ -1,4 +1,4 @@
-import { KnRecordSet, KnDBConnector } from 'will-sql';
+import { KnRecordSet, KnDBConnector, KnSQL } from 'will-sql';
 import { KnContextInfo, KnDataTable } from '../models/AssureAlias';
 import { ProcessHandler } from './ProcessHandler';
 import { Utilities } from 'will-util';
@@ -124,6 +124,13 @@ export class OperateHandler extends ProcessHandler {
     }
     
     public async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        if(this.model?.name) {
+            let sql = new KnSQL();
+            sql.append("select * from ").append(this.model?.name);
+            this.logger.info(this.constructor.name+".processList:",sql);
+            let rs = await sql.executeQuery(db,context);
+            return Promise.resolve(this.createRecordSet(rs));
+        } 
         return this.notImplementation();
     }
     

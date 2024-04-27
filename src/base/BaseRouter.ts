@@ -137,7 +137,9 @@ export class BaseRouter extends BaseSystem {
     }
 
     public bindUser(req: Request,user: KnUserInfo) {
-        (req as any).session.user = user;
+        let usr = { ...user } as any;
+        delete usr.password;
+        (req as any).session.user = usr;
     }
 
     public unbindUser(req: Request) {

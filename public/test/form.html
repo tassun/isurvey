@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Survey</title>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link href="/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" href="/assets/css/style.min.css" />
+	<link rel="stylesheet" href="/css/form.css"/>
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>  
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>      
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<style nonce="YXNzdXJl">
+		.panel-container { margin-top : 15px; padding-top: 5px; padding-bottom: 15px; }
+		.page-header { margin-top : 10px; font-weight: 700; }
+		.topic-title { margin-top: 5px; margin-bottom: 15px; }
+		.topic-layer { text-align: center; margin-bottom: 8px; }
+		.topic-content { width: 100%; text-wrap: wrap; word-wrap: break-word; }
+		.icon-edit { color: orange; position: absolute; top: 5px; left: 15px; font-weight: bold; }
+	</style>
+	<script type="text/javascript" src="/js/libs.js"></script>
+	<script type="text/javascript" src="/js/header.js"></script>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/member/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout logout-linker">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container panel-container">
+			<div class="page-header"><h3>แบบสำรวจข้อมูล</h3></div>
+			<div class="body">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="row topic-title">
+							<div class="col-md-12"><h3>การสำรวจอาชญากรรมภาคประชาชน</h3></div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/survey1/survey1" class="topic-linker">
+									<i class="fa fa-edit edit icon large pull-left icon-edit"></i>
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										การเก็บข้อมูลอาชญากรรม
+									</span>								
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/survey2/survey2" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										ความหวาดกลัวภัยอาชญากรรม
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/survey3/survey3" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										การสำรวจการเรียกรับสินบน
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/survey4/survey4" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										การสำรวจการค้ามนุษย์บังคับแรงงาน
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/survey5/survey5" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										การสำรวจการทำร้ายรังแกทางจิตใจ
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/survey6/survey6" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										การสำรวจการถูกกระทำรุนแรงทางเพศ
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="row topic-title">
+							<div class="col-md-12"><h3>ตัวชี้วัดกระบวนการยุติธรรม</h3></div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/measure1/measure1" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										ความรู้และความเข้าใจสิทธิพื้นฐาน
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/measure2/measure2" class="topic-linker">
+									<i class="fa fa-edit edit icon large pull-left icon-edit"></i>
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										ความรู้พื้นฐานเกี่ยวกับช่องทางและการเข้าถึงกระบวนการยุติธรรม
+									</span>								
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/measure3/measure3" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										ระดับการรับรู้ความเข้าใจกฏหมาย
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/measure4/measure4" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										ระดับการเข้าถึงและความเชื่อมั่นต่อกระบวนการยุติธรรม
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/measure5/measure5" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										กระบวนการยุติธรรมทางเลือกและการระงับข้อพิพาท
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 topic-layer">
+								<a href="/measure6/measure6" class="topic-linker">
+									<span class="btn btn-info btn-lg topic-layer topic-content text-wrap">
+										ระดับการเคารพกฏหมาย
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

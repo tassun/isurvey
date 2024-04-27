@@ -11,11 +11,11 @@ function validBlank() {
 	});
 	return pass;
 }
-function warningMessage(callback, title = 'กรอกข้อมูลไม่ครบถ้วน', message = 'กรุณากรอกข้อมูลที่เป็น <span class="star">* สีแดง</span>ให้ครบก่อนบันทึกข้อมูล') {
+function warningMessage(callback, addon, title = 'กรอกข้อมูลไม่ครบถ้วน', message = 'กรุณากรอกข้อมูลที่เป็น <span class="star">* สีแดง</span>ให้ครบก่อนบันทึกข้อมูล') {
 	$.alert({
 		icon: 'warning sign icon',
 		title: title,
-		content: message,
+		content: message+(addon ? '<br/>'+addon : ''),
 		confirmButton: 'ตกลง',
 		confirmButtonClass: 'ui button blue',
 		confirmIcon: true,
@@ -24,11 +24,11 @@ function warningMessage(callback, title = 'กรอกข้อมูลไม�
 		confirm: function () { if(callback) callback(); }
 	});
 }
-function confirmSaveMessage(callback, title = 'ยืนยันการบันทึกข้อมูล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยันการบันทึกข้อมูล') {
+function confirmMessage(callback, addon, title = 'ยืนยัน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยัน') {
     $.confirm({
         icon: 'alarm outline icon',
         title: title,
-        content: message,
+        content: message+(addon ? '<br/>'+addon : ''),
         confirmButton: 'ตกลง',
         cancelButton: 'ยกเลิก',
         confirmButtonClass: 'ui button green',
@@ -39,56 +39,23 @@ function confirmSaveMessage(callback, title = 'ยืนยันการบั
         confirm: function () { if(callback) callback(); }
     });
 }
-function confirmUpdateMessage(callback, title = 'ยืนยันการบันทึกข้อมูล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยันการบันทึกข้อมูล') {
-    $.confirm({
-        icon: 'alarm outline icon',
-        title: title,
-        content: message,
-        confirmButton: 'ตกลง',
-        cancelButton: 'ยกเลิก',
-        confirmButtonClass: 'ui button green',
-        cancelButtonClass: 'ui button red',
-        columnClass: 'ui grid center aligned',
-        closeIcon: true,
-        closeIconClass: 'fa fa-close',
-        confirm: function () { if(callback) callback(); }
-    });
+function confirmSaveMessage(callback, addon, title = 'ยืนยันการบันทึกข้อมูล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยันการบันทึกข้อมูล') {
+    confirmMessage(callback, addon, title, message);
 }
-function confirmDeleteMessage(callback, title = 'ยืนยันการลบข้อมูล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยันการลบข้อมูล') {
-    $.confirm({
-        icon: 'alarm outline icon',
-        title: title,
-        content: message,
-        confirmButton: 'ตกลง',
-        cancelButton: 'ยกเลิก',
-        confirmButtonClass: 'ui button green',
-        cancelButtonClass: 'ui button red',
-        columnClass: 'ui grid center aligned',
-        closeIcon: true,
-        closeIconClass: 'fa fa-close',
-        confirm: function () { if(callback) callback(); }
-    });
+function confirmUpdateMessage(callback, addon, title = 'ยืนยันการบันทึกข้อมูล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยันการบันทึกข้อมูล') {
+    confirmMessage(callback, addon, title, message);
 }
-function confirmCancelMessage(callback, title = 'ยืนยันการยกเลิกรายการ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยัน') {
-    $.confirm({
-        icon: 'alarm outline icon',
-        title: title,
-        content: message,
-        confirmButton: 'ตกลง',
-        cancelButton: 'ยกเลิก',
-        confirmButtonClass: 'ui button green',
-        cancelButtonClass: 'ui button red',
-        columnClass: 'ui grid center aligned',
-        closeIcon: true,
-        closeIconClass: 'fa fa-close',
-        confirm: function () { if(callback) callback(); }
-    });
+function confirmDeleteMessage(callback, addon, title = 'ยืนยันการลบข้อมูล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยันการลบข้อมูล') {
+    confirmMessage(callback, addon, title, message);
 }
-function successMessage(callback, title = "การดำเนินการ", message = "สำเร็จเรียบร้อยแล้ว") {
+function confirmCancelMessage(callback, addon, title = 'ยืนยันการยกเลิกรายการ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยัน') {
+    confirmMessage(callback, addon, title, message);
+}
+function successMessage(callback, addon, title = "การดำเนินการ", message = "สำเร็จเรียบร้อยแล้ว") {
 	$.alert({
 		icon: 'info circle icon',
 		title: title,
-		content: message,
+		content: message+(addon ? '<br/>'+addon : ''),
 		confirmButton: 'ตกลง',
 		confirmButtonClass: 'ui button blue',
 		confirmIcon: true,

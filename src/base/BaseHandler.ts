@@ -7,6 +7,7 @@ import { HTTP } from "../api/HTTP";
 import { DB_SECTION } from "../utils/EnvironmentVariable";
 import { Utilities } from "will-util";
 import { BaseSystem } from "./BaseSystem";
+import e from "express";
 
 export class BaseHandler extends BaseSystem {
     public section: string = DB_SECTION;
@@ -45,7 +46,9 @@ export class BaseHandler extends BaseSystem {
         return msg?msg:"SQL error";
     }
 
-    public getDBError(err: any, code: number = -31000) : KnDBError {
+    public getDBError(err: any, code: number = -31000) : KnDBError | VerifyError {
+        if(err instanceof VerifyError) return err;
+        if(err instanceof KnDBError) return err;
         return new KnDBError(this.getSQLError(err),code);
     }
 

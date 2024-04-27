@@ -1,0 +1,6 @@
+.panel-container { margin-top : 15px; padding-top: 5px; padding-bottom: 15px; }
+.page-header { margin-top : 10px; font-weight: 700; }
+.topic-title { margin-top: 5px; margin-bottom: 15px; }
+.topic-layer { text-align: center; margin-bottom: 8px; }
+.topic-content { width: 100%; text-wrap: wrap; word-wrap: break-word; }
+.icon-edit { color: orange; position: absolute; top: 5px; left: 15px; font-weight: bold; }

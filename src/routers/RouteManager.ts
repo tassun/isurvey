@@ -7,7 +7,8 @@ import { TestRouter } from './TestRouter';
 import { UserRouter } from './UserRouter';
 import { ExportRouter } from './ExportRouter';
 import { DataRouter } from './DataRouter';
-import { Survey1Router } from './Survey1Router';
+import { SurveyRouter } from './SurveyRouter';
+import { FormRouter } from './FormRouter';
 
 const errorHandler = require('express-error-handler');
 export class RouteManager extends BaseRouter {
@@ -34,7 +35,7 @@ export class RouteManager extends BaseRouter {
         try {
             await this.validateUser(req,res);
         } catch(ex:any) { 
-            this.logger.error(this.constructor.name+".route: error",ex);
+            this.logger.error(this.constructor.name+".doValidate: error",ex);
             let ctx = this.buildContext(req);
             if(ctx.params.ajax=="true") {
                 this.responseError(res,ex,"user");
@@ -66,7 +67,8 @@ export class RouteManager extends BaseRouter {
         let user = new UserRouter(this.dir,this.logger);
         let exporter = new ExportRouter(this.dir,this.logger);
         let data = new DataRouter(this.dir,this.logger);
-        let survey = new Survey1Router(this.dir,this.logger);
+        let survey = new SurveyRouter(this.dir,this.logger);
+        let form = new FormRouter(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
             try {
@@ -87,11 +89,13 @@ export class RouteManager extends BaseRouter {
 
         app.use(async (req: Request, res: Response, next: Function) => { this.doValidate(req,res,next); });
 
-        app.get('/index', (req: Request, res: Response) => { render.doIndex(req,res); });        
+        //app.get('/index', (req: Request, res: Response) => { render.doIndex(req,res); });
+        app.get('/index', (req: Request, res: Response) => { survey.routeListAlls(req,res); });
         app.use("/user", user.route(app));
         app.use("/export", exporter.route(app));
         app.use("/data", data.route(app));
         app.use("/survey", survey.route(app));
+        app.use("/form", form.route(app));
 
         this.handleErrors(app);
     }

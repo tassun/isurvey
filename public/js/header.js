@@ -1,6 +1,24 @@
 $(function() {
-    $("#logoutlinker").click(function() { startWaiting(); logOut(); return false; });
+    $("#logoutlinker").click(function() { confirmLogout(); return false; });
 });
+function confirmLogout() {
+    $.confirm({
+        icon: 'alarm outline icon',
+        title: 'ยืนยันการออกจากระบบ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+        content: 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยันการออกจากระบบ',
+        confirmButton: 'ตกลง',
+        cancelButton: 'ยกเลิก',
+        confirmButtonClass: 'ui button green',
+        cancelButtonClass: 'ui button red',
+        columnClass: 'ui grid center aligned',
+        closeIcon: true,
+        closeIconClass: 'fa fa-close',
+        confirm: function () {
+            startWaiting(); 
+            logOut(); 
+        },
+    });
+}
 function logOut() {
     forceLogout();
     doLogout();
