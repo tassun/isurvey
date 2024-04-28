@@ -196,7 +196,8 @@ export class SurveyProfileHandler extends OperateHandler {
 
     public override async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
         let dt = await super.getDataAdd(context);
-        dt.dataset.creator_name = context.meta?.user?.name+" "+context.meta?.user?.surname;
+        dt.dataset.creator_name = "";
+        if(context.meta?.user?.name) dt.dataset.creator_name = context.meta?.user?.name+" "+(context.meta?.user?.surname?context.meta?.user?.surname:"");
         dt.dataset.profile_code = Utilities.serializeTimestamp(Utilities.now());
         let db = this.getPrivateConnector();
         try {

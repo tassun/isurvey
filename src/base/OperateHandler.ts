@@ -24,9 +24,13 @@ export class OperateHandler extends ProcessHandler {
 
     protected override async doInsert(context: KnContextInfo) : Promise<KnRecordSet> {
         let db = this.getPrivateConnector();
+        await db.beginWork();
         try {
-            return await this.processInsert(context, db);
+            let rs = await this.processInsert(context, db);
+            await db.commitWork();
+            return Promise.resolve(rs);
         } catch(ex: any) {
+            await db.rollbackWork();
             return Promise.reject(this.getDBError(ex));
         } finally {
             if(db) db.close();
@@ -46,9 +50,13 @@ export class OperateHandler extends ProcessHandler {
 
     protected override async doUpdate(context: KnContextInfo) : Promise<KnRecordSet> {
         let db = this.getPrivateConnector();
+        await db.beginWork();
         try {
-            return await this.processUpdate(context, db);
+            let rs = await this.processUpdate(context, db);
+            await db.commitWork();
+            return Promise.resolve(rs);
         } catch(ex: any) {
+            await db.rollbackWork();
             return Promise.reject(this.getDBError(ex));
         } finally {
             if(db) db.close();
@@ -57,9 +65,13 @@ export class OperateHandler extends ProcessHandler {
 
     protected override async doRemove(context: KnContextInfo) : Promise<KnRecordSet> {
         let db = this.getPrivateConnector();
+        await db.beginWork();
         try {
-            return await this.processRemove(context, db);
+            let rs = await this.processRemove(context, db);
+            await db.commitWork();
+            return Promise.resolve(rs);
         } catch(ex: any) {
+            await db.rollbackWork();
             return Promise.reject(this.getDBError(ex));
         } finally {
             if(db) db.close();

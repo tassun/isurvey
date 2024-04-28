@@ -2,6 +2,7 @@
 			<h1 class="page-header page-title" style="margin-top: 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
 			<div class="body">
 				<form class="a form app form-horizontal" id="form-data-validate" name="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="ajax" name="ajax" value="true" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<div class="container" style="text-align: right;">
 						<div class="line indent row">
@@ -685,23 +686,28 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								<div class="col-form-label inputTextFix remark-layer">
 									หมายเหตุ กรณีตอบข้อใดข้อหนึ่งให้นับเป็นเคยใช้บริการหน่วยงานในกระบวนการยุติธรรม
 								</div>
 							</div>
 							</br>
 							<div class="row">
-								<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+								<div class="col-lg-1.5 btn-container">
 									<% if(!page.isUpdateMode(data.action)) {%>
-										<a href="javascript:void(0);" id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large"></i> บันทึก</a>
+										<a href="javascript:void(0);" id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
 									<% } %>
 									<% if(page.isUpdateMode(data.action)) {%>
-										<a href="javascript:void(0);" id="buttonupdate" class="ui basic green button btn-form-varidate-edit"><i class="save icon large"></i> ปรับปรุง</a>
+										<a href="javascript:void(0);" id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.profile_id%>"><i class="save icon large button"></i> ปรับปรุง</a>
 									<% } %>
 								</div>
 								<div class="col-lg-1.5">
-									<a href="javascript:void(0);" id="buttoncancel" class="ui basic red button"><i class="cancel icon large"></i> ยกเลิก</a>
+									<a href="javascript:void(0);" id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
 								</div>
+								<% if(page.isUpdateMode(data.action)) {%>
+									<div class="col-lg-1.5">
+										<a href="javascript:void(0);" id="buttonnext" class="ui basic blue button btn-form-varidate-next" data-key="<%=data.dataset?.profile_id%>"><i class="arrow circle right icon large button"></i> ถัดไป</a>
+									</div>
+								<% } %>
 							</div>
 							</br>
 						</div>

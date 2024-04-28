@@ -115,15 +115,21 @@ export class BaseRouter extends BaseSystem {
         Responser.responseError(res, err, model?model:this.constructor.name, method);
     }
 
-    public responseErrorPage(res: Response, err: any, ctx?: KnContextInfo): void {
-        let info = this.getMetaInfo(ctx);
+    public isRecordNotFound(err: any): boolean {
         if(err instanceof VerifyError) {
             let ve = err as VerifyError;
             if(ve.errno==-16004) { 
-                //record not found
-                res.render("pages/notinfo",{error: err, meta: info});
-                return;            
+                return true;
             }
+        }
+        return false;
+    }
+
+    public responseErrorPage(res: Response, err: any, ctx?: KnContextInfo): void {
+        let info = this.getMetaInfo(ctx);
+        if(this.isRecordNotFound(err)) {
+            res.render("pages/notinfo",{error: err, meta: info});
+            return;
         }
         res.render("pages/error",{error: err, meta: info});
     }

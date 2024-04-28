@@ -73,7 +73,11 @@ function deleteSurvey(userdata) {
         },
         success: function(data,status,xhr){ 
             stopWaiting();
-            refreshDataTable();
+            if(data.head.errorflag=="Y") {
+                alertmsg(data.head.errordesc);
+            } else {
+                refreshDataTable();
+            }
         }
     });
 }

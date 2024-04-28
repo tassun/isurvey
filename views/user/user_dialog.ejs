@@ -43,14 +43,19 @@
 									<label class="col-form-label">รหัสผู้ใช้งาน <span class="star">*</span></label>
 									<input type="text" class="input" id="e_username" name="username" readonly />
 								</div>
+								<div class="col-lg-4 m-b-15 form-check">	
+									<br/><br/>
+									<label for="e_editable" class="col-form-label form-check-label">
+										<input type="checkbox" class="input form-check-input" id="e_editable" name="editable" value="1" />
+										<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;แก้ไขรหัสผ่าน</span>
+									</label>
+								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-4 m-b-15">
 									<label class="col-form-label">รหัสผ่าน <span class="star">*</span></label>
 									<input type="password" class="input" id="e_password" name="password" data-parsley-required="true" />
 								</div>
-							</div>
-							<div class="row">
 								<div class="col-lg-4 m-b-15">
 									<label class="col-form-label">รหัสผ่าน (อีกครั้ง) <span class="star">*</span></label>
 									<input type="password" class="input" id="e_passwordconfirm" data-parsley-equalto="#e_password" data-parsley-required="true" />
@@ -98,7 +103,6 @@
 								</div>
 							</div>
 							<div class="row">
-
 								<div class="col-lg-3 m-b-15">
 									<label class="col-form-label">ระดับผู้ใช้งาน <span class="star">*</span></label>
 									<select class="default-select2 input " id="a_level" name="level">
@@ -108,27 +112,21 @@
 								</div>
 							</div>
 							<div class="row">
-
 								<div class="col-lg-4 m-b-15">
 									<label class="col-form-label">รหัสผู้ใช้งาน <span class="star">*</span></label>
 									<input type="text" class="input" id="a_username" name="username" data-parsley-required="true" />
 								</div>
-
-
 							</div>
 							<div class="row">
 								<div class="col-lg-4 m-b-15">
 									<label class="col-form-label">รหัสผ่าน <span class="star">*</span></label>
 									<input type="password" class="input" id="a_password" name="password" data-parsley-required="true" />
 								</div>
-							</div>
-							<div class="row">
 								<div class="col-lg-4 m-b-15">
 									<label class="col-form-label">รหัสผ่าน (อีกครั้ง) <span class="star">*</span></label>
 									<input type="password" class="input" id="a_passwordconfirm" data-parsley-equalto="#a_password" data-parsley-required="true" />
 								</div>
 							</div>
-
 						</div>
 					</div>
 					<div class="modal-footer">

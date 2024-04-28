@@ -26,6 +26,7 @@ export class UserHandler extends OperateHandler {
             update_time: { type: "TIME" },
             update_millis: { type: "BIGINT" },
             update_by: { type: "STRING" },
+            editable: { type: "STRING", calculated: true },
         }
     };
 
@@ -74,7 +75,8 @@ export class UserHandler extends OperateHandler {
         let data = this.obtainParameterValues(context, this.model);
         this.ensureTimestamp(context, data, false);
         let sql = new KnSQL();
-        sql.append("update ").append(this.model.name).append(" set username=?username, password=?password, level=?level, name=?name, surname=?surname, email=?email, mobile=?mobile, ");
+        sql.append("update ").append(this.model.name).append(" set username=?username, level=?level, name=?name, surname=?surname, email=?email, mobile=?mobile, ");
+        if(data.editable=="1") sql.append("password=?password, ");
         sql.append("update_date=?update_date, update_time=?update_time, update_millis=?update_millis, update_by=?update_by ");
         sql.append("where userid = ?userid");
         this.assignParameterValues(sql, data, this.model);

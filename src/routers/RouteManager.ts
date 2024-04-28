@@ -9,6 +9,8 @@ import { ExportRouter } from './ExportRouter';
 import { DataRouter } from './DataRouter';
 import { SurveyRouter } from './SurveyRouter';
 import { FormRouter } from './FormRouter';
+import { MeasureBRouter } from './MeasureBRouter';
+import { MeasureCRouter } from './MeasureCRouter';
 
 const errorHandler = require('express-error-handler');
 export class RouteManager extends BaseRouter {
@@ -69,6 +71,8 @@ export class RouteManager extends BaseRouter {
         let data = new DataRouter(this.dir,this.logger);
         let survey = new SurveyRouter(this.dir,this.logger);
         let form = new FormRouter(this.dir,this.logger);
+        let measure_b = new MeasureBRouter(this.dir,this.logger);
+        let measure_c = new MeasureCRouter(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
             try {
@@ -96,6 +100,8 @@ export class RouteManager extends BaseRouter {
         app.use("/data", data.route(app));
         app.use("/survey", survey.route(app));
         app.use("/form", form.route(app));
+        app.use("/measure_b", measure_b.route(app));
+        app.use("/measure_c", measure_c.route(app));
 
         this.handleErrors(app);
     }

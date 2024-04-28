@@ -7,9 +7,10 @@ $(function() {
     setupUI();
 });
 function setupComponents() {
-    $("#buttonsave").click(function() { confirmSaveSurvey(); });
-    $("#buttoncancel").click(function() { confirmCancelSurvey(); });
-    $("#buttonupdate").click(function() { confirmUpdateSurvey(); });
+    $("#buttonsave").click(function() { confirmSaveSurvey(this); });
+    $("#buttoncancel").click(function() { confirmCancelSurvey(this); });
+    $("#buttonupdate").click(function() { confirmUpdateSurvey(this); });
+    $("#buttonnext").click(function() { confirmNextSurvey(this); });
     setupProvince("province_2",$("#province_2").attr("data-value"),$("#province_1").val());
     setupAmphure("amphure_2", $("#province_2").attr("data-value"),$("#amphure_2").attr("data-value"));
     setupDistrict("district_2",$("#amphure_2").attr("data-value"),$("#district_2").attr("data-value"));
@@ -60,7 +61,6 @@ function setupUI() {
             $("#A_06_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
-
     $('input[name="A_07"]').on('change', function() {
         if ($(this).val() == '7') {
             $("#A_07_text").attr('data-parsley-required', 'true').prop('readonly', false);
@@ -91,13 +91,18 @@ function setupUI() {
         if ($(this).val() == '2') {
             $("#A_09_text").attr('data-parsley-required', 'true').prop('readonly', false);
             $('input.A_09_2').prop('disabled', false);
+            $("#A_09_09").trigger("change");
         } else {
             $("#A_09_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
             $('input.A_09_2').prop('checked', false).prop('disabled', true);
         }
     });
-    $("#A_09_09").click(function() {
-        $("#A_09_text").attr('data-parsley-required', 'true').prop('readonly', false);
+    $("#A_09_09").change(function() {
+        if($(this).is(":checked")) {
+            $("#A_09_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#A_09_text").attr('data-parsley-required', 'false').prop('readonly', true);
+        }
     });
     $('input[name="A_10"]').on('change', function() {
         if ($(this).val() == '6') {
@@ -142,30 +147,34 @@ function assignSelctedValues() {
     if($("#amphure_2").val()!="") $("#A4_2_2_text").val($("#amphure_2 option:selected").text());
     if($("#district_2").val()!="") $("#A4_2_3_text").val($("#district_2 option:selected").text());
 }
-function confirmCancelSurvey() {
+function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
         window.history.back();
     });
 }
-function confirmSaveSurvey() {
+function confirmSaveSurvey(src) {
     assignSelctedValues();
     var $form = $('#form-data-validate');
     if (validBlank() && $form.parsley().validate()) {
-        confirmSaveMessage(function() { saveSurvey(); });
+        confirmSaveMessage(function() { saveSurvey(src); });
     } else {
         warningMessage();
     }
 }
-function confirmUpdateSurvey() {
+function confirmUpdateSurvey(src) {
     assignSelctedValues();
     var $form = $('#form-data-validate');
     if (validBlank() && $form.parsley().validate()) {
-        confirmUpdateMessage(function() { updateSurvey(); });
+        confirmUpdateMessage(function() { updateSurvey(src); });
     } else {
         warningMessage();
     }
 }
-function saveSurvey() {
+function confirmNextSurvey(src) {
+    let profile_id = $(src).attr("data-key");
+    gotoSurveyForm(profile_id);
+}
+function saveSurvey(src) {
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey/insert",
@@ -179,11 +188,17 @@ function saveSurvey() {
         },
         success: function(data,status,xhr){ 
             stopWaiting();
-            successMessage(function() { });
+            if(data.head.errorflag=="Y") {
+                alertmsg(data.head.errordesc);
+            } else {
+                let profile_id = data.body.rows.profile_id;
+                successMessage(function() { gotoSurveyForm(profile_id); });
+            }
         }
     });
 }
-function updateSurvey() {
+function updateSurvey(src) {
+    let profile_id = $(src).attr("data-key");
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey/update",
@@ -197,9 +212,16 @@ function updateSurvey() {
         },
         success: function(data,status,xhr){ 
             stopWaiting();
-            successMessage(function() { });
+            if(data.head.errorflag=="Y") {
+                alertmsg(data.head.errordesc);
+            } else {
+                successMessage(function() { gotoSurveyForm(profile_id); });
+            }
         }
     });
+}
+function gotoSurveyForm(profile_id) {
+    submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
 }
 function setupDistrict(src,amphurCode,districtCode,defaultCaption="เลือกตำบล") {
     let listing = $("#"+src).empty();

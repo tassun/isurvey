@@ -51,7 +51,8 @@ export class SurveyFormHandler extends OperateHandler {
                     form_url: row["form_url"],
                     form_table: row["form_table"],
                     seqno: row["seqno"],
-                    editable: row["editable"]
+                    editable: row["editable"],
+                    survey_id: row["survey_id"]
                 });
             }
         }
@@ -62,7 +63,7 @@ export class SurveyFormHandler extends OperateHandler {
     public override async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         let profile_id = context.params.profile_id;
         let sql = new KnSQL();
-        sql.append("SELECT f.*,t.type_title,t.seqno AS typeno,IF(p.profile_id IS NULL,'0','1') AS editable ");
+        sql.append("SELECT f.*,t.type_title,t.seqno AS typeno,IF(p.survey_id IS NULL OR p.survey_id = '','0','1') AS editable,p.survey_id ");
         sql.append("FROM survey_form f ");
         sql.append("JOIN survey_form_type t ON t.type_id = f.form_type ");
         sql.append("LEFT JOIN survey_profile_form p ON p.form_id = f.form_id AND p.profile_id = ?profile_id ");

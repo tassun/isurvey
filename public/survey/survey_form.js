@@ -11,5 +11,6 @@ $(function() {
 function openSurveyForm(src) {
     let link = $(src);
     let url = link.attr("data-url");
-    submitWindow({url: BASE_URL+url, params: {profile_id: $("#profile_id").val()}, windowName: "_self"});
+    let survey_id = link.attr("data-survey");
+    submitWindow({url: BASE_URL+url, params: {profile_id: $("#profile_id").val(), survey_id: survey_id}, windowName: "_self"});
 }

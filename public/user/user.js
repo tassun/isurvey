@@ -21,6 +21,19 @@ $(function() {
     });
 	$("#modal-add").find(".modal-dialog").draggable();
 	$("#modal-edit").find(".modal-dialog").draggable();
+    $("#e_editable").change(function() {
+        if($(this).is(":checked")) {
+            $("#e_password").prop("disabled",false);
+            $("#e_passwordconfirm").prop("disabled",false);
+            $("#e_password").attr("data-parsley-required",true);
+            $("#e_passwordconfirm").attr("data-parsley-required",true);
+        } else {
+            $("#e_password").prop("disabled",true);
+            $("#e_passwordconfirm").prop("disabled",true);
+            $("#e_password").attr("data-parsley-required",false);
+            $("#e_passwordconfirm").attr("data-parsley-required",false);
+        }
+    });
 });
 function initDataTable() {
     datatable = $('#data-table').DataTable({
@@ -69,6 +82,7 @@ function confirmAddUser() {
 }
 function addNewUser() {
     let userdata = {
+        ajax: true,
         name: $("#a_name").val(),
         surname: $("#a_surname").val(),
         email: $("#a_email").val(),
@@ -123,9 +137,11 @@ function confirmEditUser(element) {
     $('#e_mobile').val(mobile);
     $('#e_username').val(username);
     $('#e_password').val(password);
+    $("#e_passwordconfirm").val("");
     $("#userupdatebutton").unbind("click").bind('click', function () {
         confirmUpdateUser(tr,userdata);
     });
+    $("#e_editable").trigger("change");
 }
 function confirmUpdateUser(row,datarow) {
     var $form = $('#form-data-edit');
@@ -137,6 +153,7 @@ function confirmUpdateUser(row,datarow) {
 }
 function updateUser(row,datarow) {
     let userdata = {
+        ajax: true,
         userid: $('#e_userid').val(),
         name: $('#e_name').val(),
         surname: $('#e_surname').val(),
@@ -146,6 +163,7 @@ function updateUser(row,datarow) {
         username: $('#e_username').val(),
         password: $('#e_password').val(),
         passwordconfirm: $('#e_passwordconfirm').val(),
+        editable: $('#e_editable').is(":checked") ? "1" : "0",
     };
     startWaiting();
     jQuery.ajax({
@@ -178,7 +196,7 @@ function deleteUser(userdata) {
     startWaiting();
     $.ajax({
         url: BASE_URL+"/user/remove",
-        data: { userid: userdata.userid },
+        data: { ajax: true, userid: userdata.userid },
         type: "POST",
         dataType: "json",
         contentType: defaultContentType,
@@ -197,24 +215,4 @@ function refreshDataTable() {
 }
 function updateDataTable(row,userdata) {
     refreshDataTable();
-    /*not work
-    let seqno = $(row).find("td:eq(0)").text();
-    let rowIndex = Number(seqno)-1;
-    let tablerow = datatable.row(rowIndex);
-    let rowdata = tablerow.data();
-    if(rowdata) {
-        rowdata.username = userdata.username;
-        rowdata.name = userdata.name;
-        rowdata.surname = userdata.surname;
-        rowdata.level = userdata.level;
-        rowdata.email = userdata.email;
-        rowdata.mobile = userdata.mobile;
-        rowdata.password = userdata.password;
-        tablerow.draw(false);
-    }*/
-}
-function destroyDataTable() {
-    //not work
-    if(datatable) datatable.destroy(true);
-    initDataTable();
 }

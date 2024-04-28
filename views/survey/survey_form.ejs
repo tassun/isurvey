@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Survey</title>
+	<title>Survey Form</title>
 	<%- include('../asset/meta') %>		
 	<%- include('../asset/styles') %>		
 	<%- include('../asset/scripts') %>
@@ -34,7 +34,7 @@
 						<%for(let row of rows) { %>
 							<div class="row">
 								<div class="col-md-12 topic-layer">
-									<a href="javascript:void(0);" class="topic-linker" data-url="<%=row.form_url%>" data-key="<%=row.form_id%>">
+									<a href="javascript:void(0);" class="topic-linker" data-form="<%=row.form_id%>" data-url="<%=row.form_url%>" data-survey="<%=row.survey_id%>">
 										<% if(row.editable=="1") { %>
 											<i class="fa fa-edit edit icon large pull-left icon-edit"></i>
 										<% } %>
