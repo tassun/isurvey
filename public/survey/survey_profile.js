@@ -262,7 +262,7 @@ function setupProvince(src,provinceCode,ignoreProvinceCode,defaultCaption="à¹€à¸
 function setupDefaultSelectOptions(listing,defaultValue,defaultCaption) {
     if(defaultValue!=null) $("<option value='"+defaultValue+"'>"+defaultCaption+"</option>").appendTo(listing);
 }
-function setupSelectOptions(arrays,listing,defaultValue,defaultCaption,keyField="code",valueField="name_th") {
+function setupSelectOptions(arrays,listing,defaultValue,defaultCaption,keyField="key_code",valueField="name_th") {
     if(!defaultCaption) defaultCaption = "   ";
     setupDefaultSelectOptions(listing,defaultValue,defaultCaption);
     if(arrays) {

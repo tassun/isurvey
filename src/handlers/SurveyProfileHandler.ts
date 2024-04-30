@@ -197,7 +197,7 @@ export class SurveyProfileHandler extends OperateHandler {
         sql.append("s.A_01 AS gender_code,s.A_02 AS age_code,s.A_02_text AS ages,if(s.create_by=?userid,'1','0') as ownered,");
         sql.append("tgender.name_th AS gender_name,concat(tusers.name,' ',tusers.surname) AS creator_name ");
         sql.append("from ").append(this.model.name).append(" s ");
-        sql.append("left join tgender on tgender.code = s.A_01 ");
+        sql.append("left join tgender on tgender.key_code = s.A_01 ");
         sql.append("left join tusers on tusers.userid = s.create_by ");
         sql.append("where s.master_id is null or s.master_id = '' ");
         sql.append("order by profile_code desc ");

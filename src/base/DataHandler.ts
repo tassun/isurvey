@@ -66,7 +66,7 @@ export class DataHandler extends ProcessHandler {
         return Promise.resolve(results);
     }
 
-    public async getDataCategorize(category: KnDataCategory, defaultSettings: KnDataMapSetting = {keyName: "code", valueNames:["name_th"]}) : Promise<KnDataEntity> {
+    public async getDataCategorize(category: KnDataCategory, defaultSettings: KnDataMapSetting = {keyName: "key_code", valueNames:["name_th"]}) : Promise<KnDataEntity> {
         let result : KnDataEntity = { };
         for(let key in category) {
             let dts = category[key];
