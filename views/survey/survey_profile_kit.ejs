@@ -135,17 +135,17 @@
 							<label for="wight">ข้อมูลบุคคลของผู้ตอบแบบสอบถาม (ผู้แทนครัวเรือน)</label>
 							<div class="row">
 								<label class="col-form-label">1. เพศ<span class="star"> * </span></label>
-								<div class="col-lg-1">
+								<div class="col-lg-2">
 									<label class="radio-inline col-form-label">
 										<input type="radio" id="A_01_1" name="A_01" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.A_01)%> /> (1) ชาย
 									</label>
 								</div>
-								<div class="col-lg-1">
+								<div class="col-lg-2">
 								<label class="radio-inline col-form-label">
 									<input type="radio" id="A_01_2" name="A_01" value="2" <%=page.checked("2",data.dataset?.A_01)%> /> (2) หญิง
 								</label>
 								</div>
-								<div class="col-lg-3">
+								<div class="col-lg-4">
 								<label class="radio-inline col-form-label">
 									<input type="radio" id="A_01_3" name="A_01" value="3" <%=page.checked("3",data.dataset?.A_01)%> /> (3) เพศทางเลือก
 								</label>
@@ -153,15 +153,15 @@
 							</div>
 							<div class="row">
 								<label class="col-form-label">2. อายุ<span class="star"> *</span></label>
-								<div class="col-lg-3">
+								<div class="col-lg-4">
 									<div class="row">
 										<div class="col-lg-2">
 											<label class="radio-inline col-form-label">
-												<input type="radio" id="A_02_1" name="A_02" value="0" <%=page.checked("0",data.dataset?.A_02)%> /> ระบุ
+												<input type="radio" id="A_02_1" name="A_02" value="0" data-parsley-required="true" <%=page.checked("0",data.dataset?.A_02)%> /> ระบุ
 											</label>	
 										</div>
 										<div class="col-lg-4">
-											<input type="number" class="form-control iint" oninput="maxLengthCheck(this)" min="0" max="150" maxlength="3" id="A_02_text" name="A_02_text" data-parsley-required="true" value="<%=data.dataset?.A_02_text%>" />
+											<input type="number" class="form-control iint" oninput="maxLengthCheck(this)" min="0" max="150" maxlength="3" id="A_02_text" name="A_02_text" value="<%=data.dataset?.A_02_text%>" />
 										</div>
 										<span class="col-form-label lol-lg">
 											ปี (เต็มปีบริบูรณ์)
@@ -273,7 +273,7 @@
 									โปรดระบุ
 								</div>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A_05_text" name="A_05_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_05_text%>" readonly />
+									<input type="text" class="form-control" id="A_05_text" name="A_05_text" maxlength="100" value="<%=data.dataset?.A_05_text%>" readonly />
 								</div>
 							</div>
 							<div class="row">
@@ -325,7 +325,7 @@
 									โปรดระบุ
 								</div>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A_06_text" name="A_06_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_06_text%>" readonly />
+									<input type="text" class="form-control" id="A_06_text" name="A_06_text" maxlength="100" value="<%=data.dataset?.A_06_text%>" readonly />
 								</div>
 								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
 									(กรณีศึกษาในระบบการศึกษานอกโรงเรียนของกระทรวงศึกษาธิการ (กศน.) ให้ระบุระดับการศึกษาสูงสุดที่สอบวัดระดับผ่าน)
@@ -368,7 +368,7 @@
 									โปรดระบุ
 								</div>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A_07_text" name="A_07_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_07_text%>" readonly />
+									<input type="text" class="form-control" id="A_07_text" name="A_07_text" maxlength="100" value="<%=data.dataset?.A_07_text%>" readonly />
 								</div>
 							</div>
 							<div class="row">
@@ -387,7 +387,7 @@
 									โปรดระบุ
 								</div>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A_08_text" name="A_08_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_08_text%>" readonly />
+									<input type="text" class="form-control" id="A_08_text" name="A_08_text" maxlength="100" value="<%=data.dataset?.A_08_text%>" readonly />
 								</div>
 							</div>
 							<div class="row">
@@ -438,7 +438,7 @@
 									โปรดระบุ
 								</div>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A_08_N_text" name="A_08_N_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_08_N_text%>" readonly />
+									<input type="text" class="form-control" id="A_08_N_text" name="A_08_N_text" maxlength="100" value="<%=data.dataset?.A_08_N_text%>" readonly />
 								</div>
 							</div>
 							<div class="row">
@@ -484,7 +484,7 @@
 											โปรดระบุ
 										</div>
 										<div class="col-lg-4">
-											<input type="text" class="form-control" id="A_09_text" name="A_09_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_09_text%>" readonly />
+											<input type="text" class="form-control" id="A_09_text" name="A_09_text" maxlength="100" value="<%=data.dataset?.A_09_text%>" readonly />
 										</div>
 									</div>
 								</div>
@@ -520,7 +520,7 @@
 									โปรดระบุ
 								</div>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A_10_text" name="A_10_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_10_text%>" readonly />
+									<input type="text" class="form-control" id="A_10_text" name="A_10_text" maxlength="100" value="<%=data.dataset?.A_10_text%>" readonly />
 								</div>
 							</div>
 							</br>
@@ -582,7 +582,7 @@
 									โปรดระบุ
 								</div>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A_12_text" name="A_12_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_12_text%>" readonly />
+									<input type="text" class="form-control" id="A_12_text" name="A_12_text" maxlength="100" value="<%=data.dataset?.A_12_text%>" readonly />
 								</div>
 							</div>
 							<div class="row">
@@ -613,7 +613,7 @@
 									โปรดระบุ
 								</div>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A_13_text" name="A_13_text" maxlength="100" data-parsley-required="true" value="<%=data.dataset?.A_13_text%>" readonly />
+									<input type="text" class="form-control" id="A_13_text" name="A_13_text" maxlength="100" value="<%=data.dataset?.A_13_text%>" readonly />
 								</div>
 							</div>
 							<div class="row">
@@ -695,18 +695,18 @@
 							<div class="row">
 								<div class="col-lg-1.5 btn-container">
 									<% if(!page.isUpdateMode(data.action)) {%>
-										<a href="javascript:void(0);" id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+										<a href="javascript:void(0)" id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
 									<% } %>
 									<% if(page.isUpdateMode(data.action)) {%>
-										<a href="javascript:void(0);" id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.profile_id%>"><i class="save icon large button"></i> ปรับปรุง</a>
+										<a href="javascript:void(0)" id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.profile_id%>"><i class="save icon large button"></i> ปรับปรุง</a>
 									<% } %>
 								</div>
 								<div class="col-lg-1.5">
-									<a href="javascript:void(0);" id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
+									<a href="javascript:void(0)" id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
 								</div>
 								<% if(page.isUpdateMode(data.action)) {%>
 									<div class="col-lg-1.5">
-										<a href="javascript:void(0);" id="buttonnext" class="ui basic blue button btn-form-varidate-next" data-key="<%=data.dataset?.profile_id%>"><i class="arrow circle right icon large button"></i> ถัดไป</a>
+										<a href="javascript:void(0)" id="buttonnext" class="ui basic blue button btn-form-varidate-next" data-key="<%=data.dataset?.profile_id%>"><i class="arrow circle right icon large button"></i> ถัดไป</a>
 									</div>
 								<% } %>
 							</div>
