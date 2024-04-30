@@ -1,106 +1,104 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-
 <head>
 	<meta charset="utf-8" />
 	<title>tjsurvey : แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-
-	<!-- ================== BEGIN BASE CSS STYLE ================== -->
-	<link rel="stylesheet" href="<?php echo base_url() . 'css/formSurvey.css?ts=' . time() ?>">
-	<link rel="stylesheet" href="<?php echo base_url() . "js/css/cupertino/jquery-ui-1.9.2.custom.min.css" ?>">
-	<link rel="stylesheet" href="<?php echo base_url() . "semantic/semantic.min.css" ?>">
-	<link rel="stylesheet" href="<?php echo base_url() . 'plugins/jquery-confirm/css/jquery-confirm.css' ?>">
-
+	<link rel="stylesheet" href="/css/form.css">
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" href="/semantic/semantic.min.css">
+	<link rel="stylesheet" href="/plugins/jquery-confirm/css/jquery-confirm.css">
 	<link href="http://fonts.googleapis.com/css?family=Nunito:400,300,700" rel="stylesheet" id="fontFamilySrc" />
-
-	<link href="<?php echo base_url() . 'assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css?ts=' . time() ?>" rel='stylesheet' />
-	<link href="<?php echo base_url() . 'assets/css/animate.min.css'  ?>" rel='stylesheet' />
-	<link href="<?php echo base_url() . 'assets/css/style.min.css?ts=' . time()  ?>" rel='stylesheet' />
-	<script type="text/javascript" src="<?php echo base_url() . "newjs/jquery-1.12.3.js" ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url() . "newjs/jquery-ui-1.11.4.custom.js" ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url() . 'plugins/jquery-confirm/js/jquery-confirm.js' ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url() . 'js/custom/app.custom.js?ts=' . time() ?>"></script>
-	<!-- ================== END BASE CSS STYLE ================== -->
-
-	<!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
-
-	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
-
-	<!-- ================== BEGIN BASE JS ================== -->
-	<!-- ================== END BASE JS ================== -->
-
-	<!--[if lt IE 9]>
-	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
-	<![endif]-->
+	<link href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" rel='stylesheet' />
+	<link href="/assets/css/animate.min.css" rel='stylesheet' />
+	<link href="/assets/css/style.min.css" rel='stylesheet' />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>  
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>      
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/custom/app.custom.js"></script>
+	<script src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<script src="/assets/js/apps.min.js"></script>
+	<style>
+		.data-table { width: 100%; }
+		.nowrap { white-space: nowrap; }
+	</style>
+	<script>
+		$(document).ready(function() {
+			App.init();
+			$('input[type="radio"]').mousedown(function() {
+				if (this.checked) {
+					$(this).mouseup(function() {
+						var radio = this;
+						setTimeout(function() {
+							radio.checked = false;
+						}, 5);
+						$(this).unbind('mouseup');
+					});
+				}
+			});
+		});
+		function maxLengthCheck(object) {
+			if (object.value.length > object.maxLength)
+				object.value = object.value.slice(0, object.maxLength)
+		}
+		function checkId(id) {
+			if (id != null) {
+				id.checked = true;
+			}
+		};
+		function checkIdnCheckBOX(id, value) {
+			if (id != null) {
+				if (value == 1) {
+					id.checked = true;
+				}
+			}
+		};
+	</script>
 </head>
-
 <body>
-	<!-- begin #page-loader -->
-	<div id="page-loader" class="page-loader fade in"><span class="spinner">Loading...</span></div>
-	<!-- end #page-loader -->
-
-	<!-- begin #page-container -->
-	<div id="page-container" class="fade page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
-		<!-- begin #header -->
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
 		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
-			<!-- begin container-fluid -->
 			<div class="container-fluid">
-				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="<?= site_url('main/index') ?>" class="navbar-brand"><img src="<?php echo base_url() . '/img/logo.png' ?>" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
 				</div>
-				<!-- end mobile sidebar expand / collapse button -->
-
-				<!-- begin navbar-right -->
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown navbar-user">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-							<span class="hidden-xs"><?= $u_disp ?></span> <b class="caret"></b>
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu pull-right">
-							<? if ($u_level == 'ADMIN') { ?>
-								<li><a href="<?= site_url('admin/addMember') ?>">จัดการผู้ใช้งาน (User)</a></li>
-							<? } ?>
-							<li><a href="javascript:void(0)" class="item btn-form-logout" data-url="<?= site_url('main/submitLogout') ?>">ออกจากระบบ</a></li>
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
 						</ul>
 					</li>
 				</ul>
-				<!-- end navbar-right -->
 			</div>
-			<!-- end container-fluid -->
 		</div>
-		<!-- end #header -->
-		</a>
-		<!-- begin #content -->
 		<div class="panel container" style="margin-top : 10px;">
 			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
 			<div class="body">
-				<form class="a form app form-horizontal" id="form-data-varidate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
-
-
-					<label for="wight">ความรู้สึกหวาดกลัวภัยอาชญากรรม (ผนวก ค) </label></br>
-					<label for="wight">ท่านมีความรู้สึกปลอดภัยมากน้อยเพียงใดในกรณีต่าง ๆ ต่อไปนี้</label>
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>ความรู้สึกหวาดกลัวภัยอาชญากรรม (ผนวก ค) </label></br>
+					<label>ท่านมีความรู้สึกปลอดภัยมากน้อยเพียงใดในกรณีต่าง ๆ ต่อไปนี้</label>
 					<div class="p-fluid p-formgrid p-grid">
 						<div class="p-field p-col">
-
 							<div class="row">
-								<table class="tg" style="margin-left : 10px;">
+								<table class="tg data-table" style="margin-left : 10px;">
 									<thead>
 										<tr>
 											<th class="tg-9wq8 bg" rowspan="2">สถานการณ์<br></th>
 											<th class="tg-c3oa bg" colspan="4">ความรู้สึกปลอดภัย</th>
 										</tr>
 										<tr>
-											<th class="tg-c3ow bg">4<br><br>รู้สึกไม่ปลอดภัยมาก</th>
-											<th class="tg-c3ow bg">3<br><br>รู้สึกไม่ปลอดภัย<br>มาก</th>
-											<th class="tg-c3ow bg">2<br><br>รู้สึกปลอดภัย</th>
-											<th class="tg-c3ow bg">1<br><br>รู้สึกปลอดภัยมาก</th>
+											<th class="tg-c3ow bg">4<br/><br/><label class="nowrap">รู้สึกไม่ปลอดภัยมาก</label></th>
+											<th class="tg-c3ow bg">3<br/><br/><label class="nowrap">รู้สึกไม่ปลอดภัยมาก</label></th>
+											<th class="tg-c3ow bg">2<br/><br/><label class="nowrap">รู้สึกปลอดภัย</label></th>
+											<th class="tg-c3ow bg">1<br/><br/><label class="nowrap">รู้สึกปลอดภัยมาก</label></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -138,17 +136,17 @@
 					<div class="p-fluid p-formgrid p-grid">
 						<div class="p-field p-col">
 							<div class="row">
-								<table class="tg" style="margin-left : 10px;">
+								<table class="tg data-table" style="margin-left : 10px;">
 									<thead>
 										<tr>
 											<th class="tg-9wq8 bg" rowspan="2">สถานการณ์<br></th>
 											<th class="tg-c3oa bg" colspan="4">ความรู้สึกกังวล</th>
 										</tr>
 										<tr>
-											<th class="tg-c3ow bg">1<br><br>รู้สึกไม่กังวลเลย</th>
-											<th class="tg-c3ow bg">2<br><br>รู้สึกไม่กังวล</th>
-											<th class="tg-c3ow bg">3<br><br>รู้สึกกังวล<br>มาก</th>
-											<th class="tg-c3ow bg">4<br><br>รู้สึกกังวลมาก</th>
+											<th class="tg-c3ow bg">1<br/><br/><label class="nowrap">รู้สึกไม่กังวลเลย</label></th>
+											<th class="tg-c3ow bg">2<br/><br/><label class="nowrap">รู้สึกไม่กังวล</label></th>
+											<th class="tg-c3ow bg">3<br/><br/><label class="nowrap">รู้สึกกังวลมาก</label></th>
+											<th class="tg-c3ow bg">4<br/><br/><label class="nowrap">รู้สึกกังวลมาก</label></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -181,85 +179,19 @@
 							</div>
 						</div>
 					</div>
-
-					</br></br>
-
+					<br/>
 					<div class="row">
 						<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
-							<a value="Save" id='buttonSaveLast' data-url="<?= site_url('main/saveSurvey/false') ?>" class="ui basic green button btn-form-varidate-save"><i class="save icon large"></i> บันทึก</a>
+							<a href="javascript:void(0)"  id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
 						</div>
 						<div class="col-lg-1.5">
-							<a href="<?= site_url('/main/listSurveyAll/') ?>" class="ui basic red button "><i class="cancel  icon large"></i> ยกเลิก</a>
+							<a href="javascript:void(0)" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
 						</div>
 					</div>
-					</br></br></br></br>
+					<br/>
+				</form>
 			</div>
 		</div>
-		</form>
 	</div>
-	</div>
-	<!-- end #content -->
-
-	</div>
-	<!-- end page container -->
-
-
-
-	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="<?php echo base_url() . '/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js' ?>"></script>
-
-	<script src="<?php echo base_url() . '/assets/plugins/slimscroll/jquery.slimscroll.min.js' ?>"></script>
-	<!-- ================== END BASE JS ================== -->
-
-	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-	<script src="<?php echo base_url() . '/assets/plugins/parsley/dist/parsley.js' ?>"></script>
-
-	<script src="<?php echo base_url() . '/assets/js/apps.min.js' ?>"></script>
-	<!-- ================== END PAGE LEVEL JS ================== -->
-
-	<script>
-		$(document).ready(function() {
-			App.init();
-		});
-
-
-
-		function maxLengthCheck(object) {
-			if (object.value.length > object.maxLength)
-				object.value = object.value.slice(0, object.maxLength)
-		}
-
-		function checkId(id) {
-			if (id != null) {
-				id.checked = true;
-			}
-		};
-
-		function checkIdnCheckBOX(id, value) {
-			if (id != null) {
-				if (value == 1) {
-					id.checked = true;
-				}
-			}
-		};
-
-		$('input[type="radio"]').mousedown(function() {
-			// if it was checked before
-			if (this.checked) {
-				// bind event to reset state after click is completed
-				$(this).mouseup(function() {
-					// bind param, because "this" will point somewhere else in setTimeout
-					var radio = this;
-					// apparently if you do it immediatelly, it will be overriden, hence wait a tiny bit
-					setTimeout(function() {
-						radio.checked = false;
-					}, 5);
-					// don't handle mouseup anymore unless bound again
-					$(this).unbind('mouseup');
-				});
-			}
-		});
-	</script>
 </body>
-
 </html>
