@@ -7,9 +7,9 @@ $(function() {
     setupUI();
 });
 function setupComponents() {
-    $("#buttonsave").click(function() { confirmSaveSurvey(this); });
-    $("#buttoncancel").click(function() { confirmCancelSurvey(this); });
-    $("#buttonupdate").click(function() { confirmUpdateSurvey(this); });
+    $("#buttonsave").click(function() { confirmSaveSurvey(this); return false; });
+    $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
+    $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
 }
 function setupUI() {
     $("input[type=radio]:checked").trigger("change");

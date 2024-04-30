@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Measure</title>
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/form.css" />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.maskedinput-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.ui.waiting-min.js"></script>
+	<script type="text/javascript" src="/js/calendar/calendar-min.js" defer></script>
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/libs.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<script type="text/javascript" src="/js/header.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</h1>
+			<label class="col-form-label">แบบสำรวจข้อมูลระดับการเคารพกฎหมายของประชาชน</label>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>ส่วนที่ 2 ระดับการเคารพกฎหมายของประชาชน</label></br>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-9wq8 bg" rowspan="3">ข้อคำถาม<br></th>
+											<th class="tg-c3oa bg" colspan="5">ระดับความคิดเห็น</th>
+										</tr>
+										<tr>
+											<th class="tg-9wq8 bg nowrap">เห็นด้วย</th>
+											<th class="tg-c3ow bg nowrap">ค่อนข้างเห็นด้วย</th>
+											<th class="tg-c3ow bg nowrap">ปานกลาง</th>
+											<th class="tg-c3ow bg nowrap">ค่อนข้างไม่เห็นด้วย</th>
+											<th class="tg-c3ow bg nowrap">ไม่เห็นด้วย</th>
+										</tr>
+										<tr>
+											<th class="tg-9wq8 bg">5</th>
+											<th class="tg-c3ow bg">4</th>
+											<th class="tg-c3ow bg">3</th>
+											<th class="tg-c3ow bg">2</th>
+											<th class="tg-c3ow bg">1</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0lax">2.1 หากพบว่ามีการก่ออาชญากรรมหรือการกระทำผิดกฎหมายท่านพร้อมจะให้ความช่วยเหลือแจ้งเบาะแสกับเจ้าหน้าที่หรือให้ความร่วมมือในการป้องกันการกระทำผิด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="6_2115" name="6_S6_2_1_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2114" name="6_S6_2_1_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2113" name="6_S6_2_1_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2112" name="6_S6_2_1_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2111" name="6_S6_2_1_1" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2 กฎหมายของประเทศไทยไม่ได้เป็นภาระต่อชีวิตความเป็นอยู่หรือเป็นภาระต่อการประกอบอาชีพของประชาชนมากเกินไป<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="6_2215" name="6_S6_2_2_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2214" name="6_S6_2_2_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2213" name="6_S6_2_2_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2212" name="6_S6_2_2_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2211" name="6_S6_2_2_1" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.3 กฎหมายและกระบวนการยุติธรรมเป็นการคุ้มครองสังคมโดยไม่ได้มีการออกกฎหมายหรือบังคับใช้กฎหมายเพื่อเอื้อประโยชน์ต่อคนใดคนหนึ่งหรือกลุ่มบุคคลใดบุคคลหนึ่งอันเป็นการเอารัดเอาเปรียบต่อประชาชนทั่วไป<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="6_2315" name="6_S6_2_3_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2314" name="6_S6_2_3_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2313" name="6_S6_2_3_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2312" name="6_S6_2_3_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2311" name="6_S6_2_3_1" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.4 ระบบกฎหมายและกระบวนการยุติธรรมส่งเสริมให้ประชาชนสามารถเข้าไปมีส่วนร่วมหรือร่วมคิดร่วมทำในการสร้างเสริมความยุติธรรม รวมถึงสร้างการบังคับใช้กฎหมายและป้องกันการกระทำผิดที่มีประสิทธิภาพ<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="6_2415" name="6_S6_2_4_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2414" name="6_S6_2_4_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2413" name="6_S6_2_4_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2412" name="6_S6_2_4_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2411" name="6_S6_2_4_1" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.5 การบังคับใช้กฎหมายมีความโปร่งใสสามารถตรวจสอบได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="6_2515" name="6_S6_2_5_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2514" name="6_S6_2_5_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2513" name="6_S6_2_5_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2512" name="6_S6_2_5_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2511" name="6_S6_2_5_1" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.6 ท่านพร้อมจะปฏิบัติตามกฎหมายโดยไม่ต้องมีใครบังคับ<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="6_2615" name="6_S6_2_6_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2614" name="6_S6_2_6_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2613" name="6_S6_2_6_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2612" name="6_S6_2_6_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="6_2611" name="6_S6_2_6_1" value="1"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>					
+					<br/>
+					<div class="row">
+						<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+							<a href="javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+						</div>
+						<div class="col-lg-1.5">
+							<a href="/survey/listalls" class="ui basic red button "><i class="cancel icon large button"></i> ยกเลิก</a>
+						</div>
+					</div>
+					<br/>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

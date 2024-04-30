@@ -6,7 +6,7 @@ import path from "path";
 import JSZip from "jszip";
 
 export class ExportRouter extends OperateRouter {
-    
+    public zipFolder: boolean = false;
     public zipDir: string = path.join(process.cwd(),"zip");
     public zipFile: string = "export_alls.zip";
     public exportFile: string = "export_alls.zip";
@@ -18,14 +18,24 @@ export class ExportRouter extends OperateRouter {
         if(rs && rs.rows.length>0) {
             let zipper = new JSZip();
             let zipPath = handler.exportDir;
-            const directoryContents = fs.readdirSync(zipPath, { withFileTypes: true});             
+            const directoryContents = fs.readdirSync(zipPath, { withFileTypes: true});
             if(directoryContents.length>0) {
-                directoryContents.forEach(({ name }) => {
-                    const filePath = path.join(zipPath, name);            
-                    if(fs.statSync(filePath).isFile()) {
-                        zipper.file(name, fs.readFileSync(filePath, "utf-8"));
+                //zip all files in folder
+                if(this.zipFolder) {
+                    directoryContents.forEach(({ name }) => {
+                        const filePath = path.join(zipPath, name);            
+                        if(fs.statSync(filePath).isFile()) {
+                            zipper.file(name, fs.readFileSync(filePath, "utf-8"));
+                        }
+                    });
+                } else {
+                    for(let name of rs.rows) {
+                        const filePath = path.join(zipPath, name);            
+                        if(fs.statSync(filePath).isFile()) {
+                            zipper.file(name, fs.readFileSync(filePath, "utf-8"));
+                        }
                     }
-                });
+                }
                 let fullfilename = path.join(this.zipDir,this.zipFile);
                 let output = await zipper.generateAsync({type:"blob"});
                 this.logger.debug(output);

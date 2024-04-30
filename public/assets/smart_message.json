@@ -53,6 +53,6 @@
 "-3001": {"TH":"รหัสผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่", "EN":"Invalid user or password"},
 "-3002": {"TH":"รหัสผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่", "EN":"Invalid user or password"},
 "-3003": {"TH":"รหัสผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่", "EN":"Invalid user or password"},
-"-11200": {"TH":"ผู้ใช้งานไม่ถูกต้องหรือหมดอายุการใช้งาน กรุณาเข้าระบบใหม่", "EN":"Unauthorized access or session expired"}
-
+"-11200": {"TH":"ผู้ใช้งานไม่ถูกต้องหรือหมดอายุการใช้งาน กรุณาเข้าระบบใหม่", "EN":"Unauthorized access or session expired, please login again."},
+"-16062": {"TH":"ผู้ใช้งานไม่ถูกต้องหรือหมดอายุการใช้งาน กรุณาเข้าระบบใหม่", "EN":"Unauthorized access or session expired, please login again. "}
 }

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>tjsurvey : แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link rel="stylesheet" href="/css/form.css">
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" href="/semantic/semantic.min.css">
+	<link rel="stylesheet" href="/plugins/jquery-confirm/css/jquery-confirm.css">
+	<link href="http://fonts.googleapis.com/css?family=Nunito:400,300,700" rel="stylesheet" id="fontFamilySrc" />
+	<link href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" rel='stylesheet' />
+	<link href="/assets/css/animate.min.css" rel='stylesheet' />
+	<link href="/assets/css/style.min.css" rel='stylesheet' />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>  
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>      
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/custom/app.custom.js"></script>
+	<script src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<script src="/assets/js/apps.min.js"></script>
+	<style>
+		.nowrap { white-space: nowrap; }
+	</style>
+	<script>
+		$(document).ready(function() {
+			App.init();
+			$('input[type="radio"]').mousedown(function() {
+				if (this.checked) {
+					$(this).mouseup(function() {
+						var radio = this;
+						setTimeout(function() {
+							radio.checked = false;
+						}, 5);
+						$(this).unbind('mouseup');
+					});
+				}
+			});
+		});
+		function maxLengthCheck(object) {
+			if (object.value.length > object.maxLength)
+				object.value = object.value.slice(0, object.maxLength)
+		}
+		function checkId(id) {
+			if (id != null) {
+				id.checked = true;
+			}
+		};
+		function checkIdnCheckBOX(id, value) {
+			if (id != null) {
+				if (value == 1) {
+					id.checked = true;
+				}
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs"><?= $u_disp ?></span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</h1>
+			<label class="col-form-label">แบบสำรวจข้อมูลการรับรู้ระดับการรับรู้และความเข้าใจเกี่ยวกับกระบวนการยุติธรรมทางเลือกและการระงับข้อพิพาท</label>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>ส่วนที่ 2 ระดับการรับรู้และความเข้าใจเกี่ยวกับกระบวนการยุติธรรมทางเลือก</label></br>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-9wq8 bg nowrap">ข้อคำถาม</th>
+											<th class="tg-c3ow bg nowrap">ทราบ</th>
+											<th class="tg-c3ow bg nowrap">ไม่ทราบ</th>
+											<th class="tg-c3ow bg nowrap">ไม่ประสงค์จะตอบ</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0lax">2.1 ประเทศไทยมีระบบการยุติข้อพิพาทโดยไม่ต้องนำคดีขึ้นสู่ศาลด้วยการใช้วิธีการไกล่เกลี่ย หรือประนีประนอมยอมความ หรือระบบอนุญาโตตุลาการนอกศาล<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="5_2111" name="5_S5_2_1_1" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2112" name="5_S5_2_1_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2113" name="5_S5_2_1_1" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2 นอกจากการไกล่เกลี่ยระงับข้อพิพาทกระบวนการยุติธรรมทางเลือกยังรวมถึงทางเลือกในการปฏิบัติต่อผู้กระทำผิด เช่น มาตรการพิเศษแทนการดำเนินคดีในคดีเด็กและเยาวชน การไกล่เกลี่ยคดีอาญาแทนการดำเนินคดีโดยตำรวจและศาล การบำบัดฟื้นฟู ผู้ติดยาเสพติดแทนการลงโทษจำคุก<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="5_2121" name="5_S5_2_1_2" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2122" name="5_S5_2_1_2" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2123" name="5_S5_2_1_2" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.3 ช่องทางในการติดต่อขอรับบริการยุติธรรมทางเลือกมีทั้งในคดีแพ่งโดยขอรับบริการจากศาลหรือสถาบันอนุญาโตตุลาการ และในคดีอาญาทั้งในขั้นตอนของตำรวจ อัยการ ศาล รวมถึงยุติธรรมจังหวัด ยุติธรรมชุมชน ด้วย<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="5_2131" name="5_S5_2_1_3" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2132" name="5_S5_2_1_3" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2133" name="5_S5_2_1_3" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.4 กระบวนการยุติธรรมทางเลือกเป็นมาตรการเสริมเพื่อช่วยให้คู่กรณีปรับความเข้าใจกัน ผู้กระทำผิดสำนึกผิด และยินยอมเข้ารับการช่วยเหลือฟื้นฟูพฤติกรรม พร้อมทั้งเยียวยาความเสียหายแก่ผู้เสียหาย โดยมิใช่การทดแทนกระบวนการยุติธรรมเดิม <span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="5_2141" name="5_S5_2_1_4" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2142" name="5_S5_2_1_4" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2143" name="5_S5_2_1_4" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.5 วัตถุประสงค์ของกระบวนการยุติธรรมทางเลือกนอกเหนือจากลดขั้นตอนและระยะเวลาการดำเนินคดีคือการช่วยฟื้นฟูความสัมพันธ์ระหว่างคู่กรณี<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="5_2151" name="5_S5_2_1_5" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2152" name="5_S5_2_1_5" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2153" name="5_S5_2_1_5" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.6 วัตถุประสงค์ของกระบวนการยุติธรรมทางเลือกอีกประการหนึ่งคือลดการกระทำผิดซ้ำโดยส่งเสริมให้ผู้กระทำผิดเปลี่ยนแปลงตนเองภายใต้ความร่วมมือของชุมชน หน่วยงานที่เกี่ยวข้อง และผู้เสียหาย<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="5_2161" name="5_S5_2_1_6" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2162" name="5_S5_2_1_6" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="5_2163" name="5_S5_2_1_6" value="3"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>				
+					<br>
+					<label for="wight">ส่วนที่ 3 ข้อพิพาทและการจัดการข้อพิพาทที่พบ</label></br>
+					<div class="row">
+						<label class="col-form-label">3.1 ในรอบปีที่ผ่านมา (1 มกราคม 2566 – 31 ธันวาคม 2566) ท่านเคยประสบกับข้อพิพาทต่าง ๆ เหล่านี้หรือไม่ (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_311" name="5_S5_3_1_1" value="1"> (1) ไม่เคย
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_312" name="5_S5_3_1_2" value="1"> (2) ข้อพิพาทเกี่ยวกับที่ดินหรือการซื้อและขายสินทรัพย์ (เช่น ข้อพิพาทเรื่องกรรมสิทธิ์ในทรัพย์สิน หรือการครอบครองที่ดินโดยมิชอบ)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_313" name="5_S5_4_1_3" value="1"> (3) ข้อพิพาทที่อยู่อาศัย (เช่น ปัญหากับเจ้าของบ้านหรือ ผู้เช่าเกินค่าเช่า ความเสียหายหรือการ	ซ่อมแซม การเรียกเก็บค่าส่วนกลาง ถูกฟ้องขับไล่หรือยึดบ้าน)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_314" name="5_S5_3_1_4" value="1"> (4) ข้อพิพาทเกี่ยวกับที่ดินทำกิน (เช่น ที่ดินทับซ้อนกับเขตป่าไม้หรือพื้นที่อนุรักษ์หรือที่ดินของรัฐอื่น การบุกรุกป่า) 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_315" name="5_S5_3_1_5" value="1"> (5) ข้อพิพาทเกี่ยวกับการไล่รื้อที่ดิน (เช่น การบุกรุกที่ดินของรัฐ)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_316" name="5_S5_3_1_6" value="1"> (6) ปัญหาครอบครัว (เช่น การหย่าร้าง การแบ่งสิทธิ์เลี้ยงดูบุตร หรือพินัยกรรม)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_317" name="5_S5_3_1_7" value="1"> (7) การเรียกร้องค่าชดเชยสำหรับการบาดเจ็บหรือการเจ็บป่วยที่เกิดจากอุบัติเหตุ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_318" name="5_S5_3_1_8" value="1"> (8) การเรียกร้องค่าชดเชยสำหรับการบาดเจ็บหรือการเจ็บป่วยที่เกิดทำร้ายร่างกายหรือประทุษร้ายต่อกายหรือจิตใจ (เช่น ถูกทำร้าย ถูกข่มขืน ถูกปล้นชิงทรัพย์ หรือการประทุษร้ายอื่น ๆ)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_319" name="5_S5_3_1_9" value="1"> (9) การเรียกร้องค่าชดเชยจากการรักษาพยาบาลผิดพลาดทางการแพทย์
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3110" name="5_S5_3_1_10" value="1"> (10) ข้อพิพาทเกี่ยวกับการจ้างงานหรือแรงงาน (เช่น ค่าจ้าง สวัสดิการ การถูกไล่ออกอย่างไม่เป็นธรรม หรือการถูกล่วงละเมิดในที่ทำงาน)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3111" name="5_S5_3_1_11" value="1"> (11) การเรียกร้องจ่ายเงินของรัฐบาล (เช่น เบี้ยยังชีพผู้พิการ เบี้ยยังชีพผู้สูงอายุ เงินช่วยเหลือการศึกษา)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3112" name="5_S5_3_1_12" value="1"> (12) บริการและสวัสดิการของรัฐบาล (เช่น ปัญหาการเข้าถึงการรักษาพยาบาล การศึกษา น้ำและไฟฟ้า)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3113" name="5_S5_3_1_13" value="1"> (13) สินค้าและบริการอื่นๆ หรือการเรียกร้องเกี่ยวกับการคุ้มครองผู้บริโภค (เช่น ปัญหาเกี่ยวกับกับบริการหรือสินค้าไม่ได้คุณภาพ) 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3114" name="5_S5_3_1_14" value="1"> (14) ข้อพิพาทเกี่ยวกับสัญญาประกันภัย
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3115" name="5_S5_3_1_15" value="1"> (15) ข้อพิพาทเกี่ยวกับหนี้สิน (เช่น ไม่สามารถชำระหนี้ได้)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3116" name="5_S5_3_1_16" value="1"> (16) ข้อพิพาทเกี่ยวกับการทำลายสิ่งแวดล้อมหรือการปล่อยมลภาวะที่ส่งผลกระทบต่อท่าน ทรัพย์สินของท่าน หรือชุมชนที่ท่านอาศัยอยู่ (เช่น มลพิษทางน้ำ การทิ้งขยะ)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3117" name="5_S5_3_1_17" value="1"> (17) ข้อพิพาทโต้เถียงในละแวกบ้าน รวมทั้งปัญหากับเพื่อนบ้าน (เช่นเสียงดังรบกวน ทำลายทรัพย์สิน หรือการบริโภคเครื่องดื่มแอลกอฮอล์หรือยาเสพติด)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3118" name="5_S5_3_1_18" value="1"> (18) ข้อพิพาทเกี่ยวกับโครงการพัฒนาของรัฐ (เช่น ผลกระทบทางสิ่งแวดล้อมจากโครงการของรัฐขนาดใหญ่ การสร้างโรงไฟฟ้า การสร้างที่จัดเก็บขยะ การเวนคืนที่ดิน เป็นต้น)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3119" name="5_S5_3_1_19" value="1"> (19) ข้อพิพาทอื่นๆ
+							</label>
+						</div>
+						<div class="row indent" class="col-lg-12">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="5_3119_text" name="5_S5_3_1_19_text" data-parsley-required="true" readonly />
+							</div>
+						</div>
+					</div>
+					<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							หมายเหตุ: กรณีตอบข้อใดข้อหนึ่งให้นับเป็นเคยประสบกับปัญหาข้อพิพาท
+							</div>
+						</div>
+					<br>
+					<div class="row">
+						<label class="col-form-label">3.2 กรณีที่ท่านเคยประสบกับข้อพิพาท ท่านได้ใช้บริการกับหน่วยงานใดบ้างในการระงับข้อพิพาท (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
+					</div>
+					<div class="row indent">
+						<label class="col-form-label">3.2.1 การระงับข้อพิพาทอย่างเป็นทางการ</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_321" name="5_S5_3_2_1" value="1"> (1) ศาลยุติธรรม (ทั้งคดีแพ่งและคดีปกครอง)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_322" name="5_S5_3_2_2" value="1"> (2) ศาลปกครอง
+							</label>
+						</div>
+						<label class="col-form-label">3.2.2 การระงับข้อพิพาททางเลือก</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_323" name="5_S5_3_2_3" value="1"> (3) การไกล่เกลี่ยประนีประนอมยอมความโดยตำรวจ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_324" name="5_S5_3_2_4" value="1"> (4) การไกล่เกลี่ยประนีประนอมยอมความโดยพนักงานอัยการ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_325" name="5_S5_3_2_5" value="1"> (5) การไกล่เกลี่ยประนีประนอมโดยศาลยุติธรรม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_326" name="5_S5_3_2_6" value="1"> (6) การไกล่เกลี่ยประนีประนอมโดยศาลปกครอง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_327" name="5_S5_3_2_7" value="1"> (7) ศูนย์คุ้มครองสิทธิและเสรีภาพ กรมคุ้มครองสิทธิและเสรีภาพ กระทรวงยุติธรรม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_328" name="5_S5_3_2_8" value="1"> (8) สำนักงานยุติธรรมจังหวัด
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_329" name="5_S5_3_2_9" value="1"> (9) สำนักงานยุติธรรมชุมชน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3210" name="5_S5_3_2_10" value="1"> (10) ศูนย์ไกล่เกลี่ยข้อพิพาทภาคประชาชน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3211" name="5_S5_3_2_11" value="1"> (11) ผู้นำหรือผู้มีอำนาจทางศาสนา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3212" name="5_S5_3_2_12" value="1"> (12) ผู้นำชุมชนหรือผู้มีอำนาจ (เช่น กำนัน ผู้ใหญ่บ้าน หรือผู้นำท้องถิ่น)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3213" name="5_S5_3_2_13" value="1"> (13) ผู้ประนีประนอม นักไกล่เกลี่ย ทนายความ นักกฎหมายชุมชน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3214" name="5_S5_3_2_14" value="1"> (14) อนุญาโตตุลาการ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3215" name="5_S5_3_2_15" value="1"> (15) ศูนย์ดำรงธรรม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3216" name="5_S5_3_2_16" value="1"> (16) หน่วยงานของรัฐที่เกี่ยวข้อง (เช่น กรมป่าไม้ กรมอุทยานฯ การท่าเรือฯ สถาบัน	พัฒนาองค์กรชุมชน สำนักงานคุ้มครองผู้บริโภค เป็นต้น)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3217" name="5_S5_3_2_17" value="1"> (17) การร้องเรียนผ่านช่องทางของรัฐต่าง ๆ (เช่น 1111 ผู้ตรวจการแผ่นดิน สำนักงาน	คณะกรรมการสิทธิมนุษยชนแห่งชาติ คณะกรรมาธิการฯ ต่างๆ ช่องทางร้องเรียนของหน่วยงานของรัฐที่รับผิดชอบ)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3218" name="5_S5_3_2_18" value="1"> (18) ความช่วยเหลือจากองค์กรภาคเอกชน NGOs
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3219" name="5_S5_3_2_19" value="1"> (19) บุคคลหรือองค์กรอื่น
+							</label>
+						</div>
+						<div class="col-lg-12">
+							<div class="col-form-label inputTextFix" style="margin-left: 30px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-5">
+								<input type="text" class="form-control" id="5_3219_text" name="5_S5_3_2_19_text" data-parsley-required="true" readonly />
+							</div>
+						</div>
+						<label class="col-form-label">3.2.3 ไม่ได้เข้าสู่การระงับข้อพิพาท</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3220" name="5_S5_3_2_20" value="1"> (20) ไม่ทราบช่องทางหรือวิธีการในการเข้าสู่กระบวนการระงับข้อพิพาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3221" name="5_S5_3_2_21" value="1"> (21) ได้จัดการปัญหาด้วยตนเอง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3222" name="5_S5_3_2_22" value="1"> (22) ค่าใช้จ่ายแพงเกินไป 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3223" name="5_S5_3_2_23" value="1"> (23) เป็นเรื่องเล็กน้อยคิดว่าปัญหาไม่สำคัญเพียงพอ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3224" name="5_S5_3_2_24" value="1"> (24) ปัญหาเกิดจากท่านเอง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3225" name="5_S5_3_2_25" value="1"> (25) คู่กรณีไม่ยินยอมเข้าสู่กระบวนการระงับหรือแก้ไขปัญหาข้อพิพาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3226" name="5_S5_3_2_26" value="1"> (26) ไม่สะดวก/ไม่มีเวลา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3227" name="5_S5_3_2_27" value="1"> (27) ไม่ไว้วางใจเจ้าหน้าที่
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3228" name="5_S5_3_2_28" value="1"> (28) ไม่คิดว่าจะช่วยได้
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3229" name="5_S5_3_2_29" value="1"> (29) กังวลกับผลกระทบหรือกลัวผลเสียที่จะตามมา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="5_3230" name="5_S5_3_2_30" value="1"> (30) เหตุผลอื่นๆ ในการไม่ได้เข้าสู่การระงับข้อพิพาท
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="5_3230_text" name="5_S5_3_2_30_text" data-parsley-required="true" readonly />
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<label class="col-form-label">3.3 หากในช่วงสองปีที่ผ่านท่านเคยประสบข้อพิพาทและได้เข้ารับการระงับข้อพิพาท ปัญหาของท่านที่ท่านพบได้รับการแก้ไขอย่างไร<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_331" name="5_S5_3_3_1" value="1"> (1) ปัญหาทั้งหมดไม่ได้รับการแก้ไขเลย
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_332" name="5_S5_3_3_1" value="2"> (2) ปัญหาส่วนใหญ่ไม่ได้รับการแก้ไข
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_333" name="5_S5_3_3_1" value="3"> (3) ปัญหาบางส่วนได้รับการแก้ไข
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_334" name="5_S5_3_3_1" value="4"> (4) ปัญหาส่วนใหญ่ได้รับการแก้ไข
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_335" name="5_S5_3_3_1" value="5"> (5) ปัญหาทั้งหมดได้รับการแก้ไข
+							</label>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<label class="col-form-label">3.4 ในภาพรวมท่านมีความพึงพอใจต่อกระบวนการระงับข้อพิพาททั้งที่เป็นทางการและไม่เป็นทางการที่ท่านได้ใช้บริการมากน้อยเพียงใด<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_341" name="5_S5_3_4_1" value="1"> (1) ไม่พอใจ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_342" name="5_S5_3_4_1" value="2"> (2) ค่อนข้างไม่พอใจ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_343" name="5_S5_3_4_1" value="3"> (3) ปานกลาง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_344" name="5_S5_3_4_1" value="4"> (4) ค่อนข้างพอใจ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="5_345" name="5_S5_3_4_1" value="5"> (5) พอใจ
+							</label>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+							<a href="javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+						</div>
+						<div class="col-lg-1.5">
+							<a href="/survey/listalls"  class="ui basic red button "><i class="cancel icon large button"></i> ยกเลิก</a>
+						</div>
+					</div>
+					<br/>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

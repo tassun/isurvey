@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="<%=meta.cdn_url%>/measure_c/measure_c.js"></script>
 </head>
 <body>
+	<%- include('../partials/page_waiting') %>
 	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
 		<%- include('../partials/page_header') %>
 		<div class="panel container" style="margin-top : 10px;">
@@ -16,6 +17,7 @@
 			<div class="body">
 				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
 					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
 					<label>ส่วนที่ 3 ระดับการรับรู้ความเข้าใจกฎหมาย</label><br/>
@@ -147,7 +149,7 @@
 								โปรดระบุ
 							</div>
 							<div class="col-lg-12">
-								<input type="text" class="form-control" id="MC_2_text" name="MC_2_text" value="<%=data.dataset?.MC_2_text%>" maxlength="50" data-parsley-required="true"  readonly />
+								<input type="text" class="form-control" id="MC_2_text" name="MC_2_text" value="<%=data.dataset?.MC_2_text%>" maxlength="50" readonly />
 							</div>
 						</div>
 					</div>
@@ -155,7 +157,7 @@
 					<div class="row">
 						<label class="col-form-label">3.3 กรณีท่านประสบปัญหาหรือต้องการทราบข้อมูลทางกฎหมายแล้วไม่สามารถหาช่องทางหรือเข้าถึงหน่วยงานที่ให้ข้อมูลได้ อะไรคือปัญหาที่พบและข้อเสนอแนะในการแก้ปัญหาหรืออะไรที่อยากให้หน่วยงานของรัฐจัดให้เพิ่มเติม<span class="star"> *</span></label>
 						<div class="col-lg-12">
-							<textarea rows="5" class="form-control" id="MC_3_text" name="MC_3_text"><%=data.dataset?.MC_3_text%></textarea>
+							<textarea rows="5" class="form-control" id="MC_3_text" name="MC_3_text" data-parsley-required="true"><%=data.dataset?.MC_3_text%></textarea>
 						</div>
 					</div>
 					<br/>

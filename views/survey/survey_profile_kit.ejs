@@ -3,6 +3,7 @@
 			<div class="body">
 				<form class="a form app form-horizontal" id="form-data-validate" name="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
 					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<div class="container" style="text-align: right;">
 						<div class="line indent row">
@@ -216,7 +217,7 @@
 										<input type="radio" id="A_04_2" name="A_04" value="2" <%=page.checked("2",data.dataset?.A_04)%> /> (2) สามารถจับจ่ายใช้สอยได้อย่างสบาย มีเงินเหลือเก็บ
 									</label>
 									<label class="radio-inline col-form-label  col-lg-3">
-										<input type="radio" id="A_04_3" name="A_04" value="3" <%=page.checked("3",data.dataset?.A_04)%> /> (3) สามารถจับจ่ายใช้สอยได้อย่างสบาย มีเงินเหลือเก็บ
+										<input type="radio" id="A_04_3" name="A_04" value="3" <%=page.checked("3",data.dataset?.A_04)%> /> (3) พอกินพอใช้ แต่ไม่มีเงินเหลือเก็บ
 									</label>
 									<label class="radio-inline col-form-label  col-lg-3">
 										<input type="radio" id="A_04_4" name="A_04" value="4" <%=page.checked("4",data.dataset?.A_04)%> /> (4) รายได้ไม่เพียงพอต่อค่าใช้จ่าย โดยยังขาดเหลืออยู่บ้าง

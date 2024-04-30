@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>tjsurvey : แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link rel="stylesheet" href="/css/form.css">
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" href="/semantic/semantic.min.css">
+	<link rel="stylesheet" href="/plugins/jquery-confirm/css/jquery-confirm.css">
+	<link href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" rel='stylesheet' />
+	<link href="/assets/css/animate.min.css" rel='stylesheet' />
+	<link href="/assets/css/style.min.css" rel='stylesheet' />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>  
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>      
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/custom/app.custom.js"></script>
+	<script src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<script src="/assets/js/apps.min.js"></script>
+	<style>
+		.nowrap { white-space: nowrap; }
+	</style>
+	<script>
+		$(document).ready(function() {
+			App.init();
+			$('input[type="radio"]').mousedown(function() {
+				if (this.checked) {
+					$(this).mouseup(function() {
+						var radio = this;
+						setTimeout(function() {
+							radio.checked = false;
+						}, 5);
+						$(this).unbind('mouseup');
+					});
+				}
+			});
+		});
+		function maxLengthCheck(object) {
+			if (object.value.length > object.maxLength)
+				object.value = object.value.slice(0, object.maxLength)
+		}
+		function checkId(id) {
+			if (id != null) {
+				id.checked = true;
+			}
+		};
+		function checkIdnCheckBOX(id, value) {
+			if (id != null) {
+				if (value == 1) {
+					id.checked = true;
+				}
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</h1>
+			<label class="col-form-label">แบบสำรวจการรับรู้สิทธิทางกฎหมาย และความรู้พื้นฐานด้านกระบวนการยุติธรรม</label>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-varidate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>ส่วนที่ 2 การรับรู้สิทธิทางกฎหมาย และความรู้พื้นฐานด้านกระบวนการยุติธรรม </label><br/>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-9wq8 bg">ข้อคำถาม</th>
+											<th class="tg-c3ow bg nowrap">ทราบ</th>
+											<th class="tg-c3ow bg nowrap">ไม่ทราบ</th>
+											<th class="tg-c3ow bg nowrap">ไม่ประสงค์จะตอบ</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0laq bg" colspan="4">2.1 ความรู้และความเข้าใจสิทธิพื้นฐาน</td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.1 ท่านทราบว่าเจ้าหน้าที่ตำรวจหรือเจ้าหน้าที่ของรัฐอื่นไม่มีสิทธิที่จะจับกุมหรือคุมขังตัวท่านเว้นแต่มีหมายจับจากศาลหรือเป็นความผิดซึ่งหน้า (พบเห็นการกระทำผิดต่อหน้าเจ้าหน้าที่)<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2111" name="2_S2_2_1_1" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2112" name="2_S2_2_1_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2113" name="2_S2_2_1_1" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.2 ท่านทราบว่าเจ้าหน้าที่ตำรวจหรือเจ้าหน้าที่ของรัฐอื่นไม่มีสิทธิที่เข้าตรวจค้นบ้าน สำนักงาน หรือพื้นที่ส่วนตัวของท่าน (พื้นที่รโหฐาน)เว้นแต่จะมีหมายค้นตามคำสั่งศาล<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2121" name="2_S2_2_1_2" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2122" name="2_S2_2_1_2" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2123" name="2_S2_2_1_2" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.3 ท่านทราบว่าท่านมีสิทธิจะพบทนายความเมื่อตกเป็นผู้ต้องหาหรือจำเลยในคดีอาญา และมีสิทธิที่จะปรึกษาผู้ที่ท่านไว้วางใจสองต่อสอง<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2131" name="2_S2_2_1_3" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2132" name="2_S2_2_1_3" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2133" name="2_S2_2_1_3" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.4 ท่านทราบว่าหากท่านถูกจับกุมหรือควบคุมตัวท่านมีสิทธิที่จะได้รับการเยี่ยมตามสมควร<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2141" name="2_S2_2_1_4" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2142" name="2_S2_2_1_4" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2143" name="2_S2_2_1_4" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.5 ท่านทราบว่าหากท่านถูกจับกุมหรือควบคุมตัวท่านมีสิทธิที่จะได้รับการรักษาพยาบาลตามสมควรเมื่อเจ็บป่วย<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2151" name="2_S2_2_1_5" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2152" name="2_S2_2_1_5" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2153" name="2_S2_2_1_5" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.6 ท่านว่าการควบคุมหรือคุมขังผู้ต้องหาหรือจำเลยในคดีอาญาสามารถทำได้เท่าที่จำเป็นโดยผู้ต้องหาหรือจำเลยมีสิทธิที่จะร้องให้มีการขอปล่อยตัวชั่วคราวโดยมีหลักประกัน (ประกันตัว) หรือไม่มีหลักประกันก็ได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2161" name="2_S2_2_1_6" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2162" name="2_S2_2_1_6" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2163" name="2_S2_2_1_6" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.7 ท่านทราบว่าเจ้าหน้าที่จะค้นตัวบุคคลโดยใช้ความรุนแรงเกินความจำเป็นหรือจะทำร้ายร่างกายไม่ได้เว้นแต่มีการต่อสู้ขัดขืน<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2171" name="2_S2_2_1_7" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2172" name="2_S2_2_1_7" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2173" name="2_S2_2_1_7" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.8 ท่านทราบว่าการซ้อมทรมาน การทำร้ายร่างกาย การใช้ความรุนแรง หรือการบังคับให้รับสารภาพในการดำเนินคดีจะกระทำมิได้ โดยเจ้าพนักงานจะต้องมีการบันทึกภาพวิดีโอ (บันทึกภาพและเสียงอย่างต่อเนื่อง) ในขณะจับกุมหรือควบคุมตัวจนนำส่งพนักงานสอบสวนเพื่อป้องกันเหตุดังกล่าว<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2181" name="2_S2_2_1_8" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2182" name="2_S2_2_1_8" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2183" name="2_S2_2_1_8" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.9 ท่านมีสิทธิจะได้รับบริการจากเจ้าหน้าที่อย่างเป็นธรรมโดยไม่เลือกปฏิบัติหรือไม่ถูกดำเนินคดีอย่างไม่เป็นธรรมด้วยความแตกต่างในเรื่อง ถิ่นกำเนิด เชื้อชาติ ภาษา เพศ อายุ ศาสนา การศึกษา ความพิการ สภาพร่างกาย สุขภาพ หรือสถานะของบุคคล ฐานะทางเศรษฐกิจหรือสังคม หรือความแตกต่างในความคิดเห็นทางการเมือง<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2191" name="2_S2_2_1_9" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2192" name="2_S2_2_1_9" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2193" name="2_S2_2_1_9" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.10 ท่านทราบว่าหากท่านถูกจับกุมหรือดำเนินคดีจะสันนิษฐานไว้ก่อนว่าท่านเป็นผู้ ‘บริสุทธิ์’ จนกว่าคดีจะถึงที่สุด การปฏิบัติและการควบคุมตัวจะกระทำเหมือนท่านเป็นผู้กระทำผิดมิได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_21101" name="2_S2_2_1_10" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_21102" name="2_S2_2_1_10" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_21103" name="2_S2_2_1_10" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0laq bg" colspan="4">2.2 ความรู้พื้นฐานเกี่ยวกับช่องทางและการเข้าถึงกระบวนการยุติธรรม</td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.1 ท่านทราบว่าหากท่านตกเป็นเหยื่ออาชญากรรมหรือตกเป็นผู้เสียหายในคดีอาญา ท่านสามารถขอรับความช่วยเหลือจากตำรวจหรือเจ้าพนักงานกรมสอบสวนคดีพิเศษในการสืบสวนติดตามตัวคนร้ายและดำเนินคดีกับผู้กระทำผิดได้โดยไม่ต้องเสียค่าใช้จ่ายในการดำเนินคดี<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2211" name="2_S2_2_2_1" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2212" name="2_S2_2_2_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2213" name="2_S2_2_2_1" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.2 กรณีไม่พอใจหรือไม่ไว้วางใจกับดำเนินคดีของเจ้าหน้าที่ตำรวจ (หรือเจ้าหน้าที่กรมสอบสวนคดีพิเศษ) หรือคำสั่งของเจ้าพนักงานอัยการ ท่านทราบว่าท่านสามารถเป็นโจทก์ในการยื่นฟ้องคดีต่อศาลได้โดยตรง หรือเข้าเป็นโจทก์ร่วมในการดำเนินคดีได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2221" name="2_S2_2_2_2" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2222" name="2_S2_2_2_2" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2223" name="2_S2_2_2_2" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.3 หากท่านตกเป็นเหยื่ออาชญากรรมในความผิดเกี่ยวกับชีวิตร่างกายถึงแก่ความตายหรือได้รับอันตรายสาหัส หรือความผิดการกระทำรุนแรงทางเพศโดยที่ท่านไม่ได้มีส่วนร่วมในการก่อเหตุ ท่านหรือทายาทของท่านมีสิทธิร้องขอเงินชดเชยเยียวยาจากรัฐได้จากกรมคุ้มครองสิทธิเสรีภาพหรือขอรับความช่วยเหลือผ่านหน่วยงานยุติธรรมจังหวัดในทุกจังหวัด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2231" name="2_S2_2_2_3" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2232" name="2_S2_2_2_3" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2233" name="2_S2_2_2_3" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.4 ท่านทราบว่าประเทศไทยมีกระบวนการคุ้มครองพิเศษและมาตรการพิเศษในการดำเนินคดีกับเด็กและเยาวชน (ผู้มีอายุต่ำกว่า 18 ปี) ดำเนินการโดยสถานพินิจและคุ้มครองเด็กและเยาวชนและศาลเยาวชนและครอบครัวในทุกจังหวัด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2241" name="2_S2_2_2_4" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2242" name="2_S2_2_2_4" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2243" name="2_S2_2_2_4" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.5 ท่านทราบว่าหากท่านไม่พอใจคำตัดสินคดีของศาลท่านสามารถยื่นอุทธรณ์คดีได้ภายในกำหนดระยะเวลาและเงื่อนไขที่กำหนดผ่านหน่วยงานศาลที่พิจารณาคดีนั้น<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2251" name="2_S2_2_2_5" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2252" name="2_S2_2_2_5" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2253" name="2_S2_2_2_5" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.6 ท่านทราบว่าหากท่านกระทำผิดไม่ร้ายแรงถึงขนาดต้องโทษจำคุก หรือกระทำผิดที่มีโทษจำคุกแต่มีโอกาสที่จะกลับใจแก้ไขได้ ท่านมีสิทธิที่จะได้รับการพิจารณาให้มีการคุมความประพฤติหรือใช้มาตรการอื่น ๆ แทนการลงโทษจำคุกได้โดยสำนักงานคุมประพฤติในทุกจังหวัด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2261" name="2_S2_2_2_6" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2262" name="2_S2_2_2_6" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2263" name="2_S2_2_2_6" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.7 ท่านทราบว่าผู้กระทำความผิดเสพยาเสพติดหรือผู้ติดยาเสพติดสามารถเข้ารับการบำบัดฟื้นฟูสมรรถภาพผู้ติดยาเสพติดแทนการดำเนินคดีอาญาได้โดยสำนักงานคุมประพฤติในทุกจังหวัด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2271" name="2_S2_2_2_7" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2272" name="2_S2_2_2_7" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2273" name="2_S2_2_2_7" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.8 ท่านทราบว่าหากผู้กระทำผิดได้รับการลงโทษถึงจำคุกผู้ถูกลงโทษจำคุกดังกล่าวมีสิทธิที่ได้รับการดูแลและการสงเคราะห์ผู้ต้องขังจากเรือนจำ<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2281" name="2_S2_2_2_8" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2282" name="2_S2_2_2_8" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2283" name="2_S2_2_2_8" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.9 ท่านทราบว่านักโทษในเรือนจำมีสิทธิขอรับการลดหย่อนโทษหากประพฤติหรือมีการกลับใจแก้ไขไม่กลับไปกระทำผิดอีกโดยยื่นคำร้องไปยังเรือนจำที่นักโทษถูกคุมขังอยู่<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_2291" name="2_S2_2_2_9" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2292" name="2_S2_2_2_9" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_2293" name="2_S2_2_2_9" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.10 ท่านทราบว่าผู้พ้นโทษมีสิทธิได้รับการสงเคราะห์ช่วยเหลือและได้รับการดูแลหลังปล่อยโดยขอรับความช่วยเหลือผ่านเรือนจำที่นักโทษได้รับการปล่อยตัว สำนักงานคุมประพฤติ หรือสำนักงานพัฒนาสังคมและความมั่นคงของมนุษย์จังหวัด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_22101" name="2_S2_2_2_10" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22102" name="2_S2_2_2_10" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22103" name="2_S2_2_2_10" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.11 ท่านทราบว่าหน่วยงานในกระบวนการยุติธรรมมีการกำหนดระยะเวลาแล้วเสร็จในการดำเนินการในขั้นตอนต่าง ๆ หากการดำเนินการไม่แล้วเสร็จตามระยะเวลาที่กำหนดสามารถร้องเรียนผู้บังคับบัญชาของเจ้าพนักงานให้เร่งรัดติดตามและแก้ไขเหตุแห่งความล่าช้านั้น<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_22111" name="2_S2_2_2_11" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22112" name="2_S2_2_2_11" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22113" name="2_S2_2_2_11" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.12 ในกรณีที่ท่านชนะคดีแพ่งท่านทราบว่าท่านสามารถติดต่อหน่วยงานบังคับคดีเพื่อติดตามยึด อายัด และจำหน่ายทรัพย์สินของลูกหนี้ หรือดำเนินการต่าง ๆ ตามคำสั่งศาลได้ผ่านสำนักงานบังคับคดีในทุกจังหวัด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_22121" name="2_S2_2_2_12" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22122" name="2_S2_2_2_12" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22123" name="2_S2_2_2_12" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.13 ท่านทราบว่าหากท่านไม่มีเงินจ้างทนายความหน่วยงานของรัฐจะต้องเป็นผู้จัดหาทนายให้ผ่านสถานีตำรวจหรือศาลก็ได้ <span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_22131" name="2_S2_2_2_13" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22132" name="2_S2_2_2_13" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22133" name="2_S2_2_2_13" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.14 หากท่านไม่มีเงินค่าใช้จ่ายในการต่อสู้คดี ท่านสามารถขอเงินช่วยเหลือในการต่อสู้คดีทั้งคดีแพ่งและคดีอาญาผ่านสำนักงานกองทุนยุติธรรมหรือสำนักงานยุติธรรมจังหวัดในทุกจังหวัด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_22141" name="2_S2_2_2_14" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22142" name="2_S2_2_2_14" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22143" name="2_S2_2_2_14" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.15 ท่านทราบว่าหากท่านถูกจับกุมหรือควบคุมตัวหากไม่มีเงินประกันตัวสามารถขอรับความช่วยเหลือหลักทรัพย์ในการประกันตัวผ่านสำนักงานกองทุนยุติธรรมหรือสำนักงานยุติธรรมจังหวัดในทุกจังหวัด หรือสามารถขอรับความช่วยเหลือในการปล่อยตัวชั่วคราวโดยไม่มีหลักประกันผ่านศาลก็ได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_22151" name="2_S2_2_2_15" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22152" name="2_S2_2_2_15" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22153" name="2_S2_2_2_15" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.16 ท่านทราบว่าสามารถขอรับคำปรึกษาทางกฎหมายและช่องทางขอรับความช่วยเหลือต่าง ๆ ในกระบวนการยุติธรรมได้ผ่านสายด่วนยุติธรรม 1111 กด 77<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_22161" name="2_S2_2_2_16" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22162" name="2_S2_2_2_16" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22163" name="2_S2_2_2_16" value="3"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.17 ในกรณีได้รับความเดือดร้อนหรือไม่ได้รับความเป็นธรรมท่านสามารถขอความช่วยเหลือผ่านองค์กร มูลนิธิ หรือหน่วยงานภาคเอกชนที่ทำงานด้านยุติธรรมนอกเหนือจากหน่วยงานของรัฐด้านกระบวนการยุติธรรมก็ได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="2_22171" name="2_S2_2_2_17" value="1" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22172" name="2_S2_2_2_17" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="2_22173" name="2_S2_2_2_17" value="3"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					</br/>
+					<div class="row">
+						<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+							<a href="javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+						</div>
+						<div class="col-lg-1.5">
+							<a href="/survey/listalls" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
+						</div>
+					</div>
+					</br/>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

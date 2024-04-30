@@ -11,6 +11,9 @@ import { SurveyRouter } from './SurveyRouter';
 import { FormRouter } from './FormRouter';
 import { MeasureBRouter } from './MeasureBRouter';
 import { MeasureCRouter } from './MeasureCRouter';
+import { MeasureDRouter } from './MeasureDRouter';
+import { MeasureERouter } from './MeasureERouter';
+import { MeasureFRouter } from './MeasureFRouter';
 
 const errorHandler = require('express-error-handler');
 export class RouteManager extends BaseRouter {
@@ -73,6 +76,9 @@ export class RouteManager extends BaseRouter {
         let form = new FormRouter(this.dir,this.logger);
         let measure_b = new MeasureBRouter(this.dir,this.logger);
         let measure_c = new MeasureCRouter(this.dir,this.logger);
+        let measure_d = new MeasureDRouter(this.dir,this.logger);
+        let measure_e = new MeasureERouter(this.dir,this.logger);
+        let measure_f = new MeasureFRouter(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
             try {
@@ -102,6 +108,9 @@ export class RouteManager extends BaseRouter {
         app.use("/form", form.route(app));
         app.use("/measure_b", measure_b.route(app));
         app.use("/measure_c", measure_c.route(app));
+        app.use("/measure_d", measure_d.route(app));
+        app.use("/measure_e", measure_e.route(app));
+        app.use("/measure_f", measure_f.route(app));
 
         this.handleErrors(app);
     }

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Measure</title>
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/form.css" />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.maskedinput-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.ui.waiting-min.js"></script>
+	<script type="text/javascript" src="/js/calendar/calendar-min.js" defer></script>
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/libs.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<script type="text/javascript" src="/js/header.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<script>
+		$(function() {
+			$("#MC_2_15").change(function() {
+				if($(this).is(":checked")) {
+					$("#MC_2_text").attr('data-parsley-required', 'true').prop('readonly', false);
+				} else {
+					$("#MC_2_text").attr('data-parsley-required', 'false').prop('readonly', true);
+				}
+    		});
+		});
+	</script>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</h1>
+			<label class="col-form-label">แบบสำรวจระดับการรับรู้ความเข้าใจกฎหมาย</label>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-varidate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label for="wight">ส่วนที่ 3 ระดับการรับรู้ความเข้าใจกฎหมาย</label></br>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-9wq8 bg" rowspan="3">ข้อคำถาม<br></th>
+											<th class="tg-c3oa bg" colspan="5">ระดับความคิดเห็น</th>
+										</tr>
+										<tr>
+											<th class="tg-9wq8 bg nowrap">มาก</th>
+											<th class="tg-c3ow bg nowrap">ค่อนข้างมาก</th>
+											<th class="tg-c3ow bg nowrap">ปานกลาง</th>
+											<th class="tg-c3ow bg nowrap">ค่อนข้างน้อย</th>
+											<th class="tg-c3ow bg nowrap">น้อย</th>
+										</tr>
+										<tr>
+											<th class="tg-9wq8 bg">5</th>
+											<th class="tg-c3ow bg">4</th>
+											<th class="tg-c3ow bg">3</th>
+											<th class="tg-c3ow bg">2</th>
+											<th class="tg-c3ow bg">1</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0laq bg" colspan="6">3.1 ระดับการรับรู้และความเข้าใจกฎหมาย</td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">3.1.1 ท่านมีความรู้ความเข้าใจกฎหมายที่เกี่ยวข้องกับการประกอบอาชีพของท่านเป็นอย่างดี<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="3_3115" name="3_S2_3_1_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3114" name="3_S2_3_1_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3113" name="3_S2_3_1_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3112" name="3_S2_3_1_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3111" name="3_S2_3_1_1" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">3.1.2 ท่านมีความรู้ความเข้าใจกฎหมายที่เกี่ยวข้องในการใช้ชีวิตประจำวันของท่านเป็นอย่างดี<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="3_3125" name="3_S2_3_1_2" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3124" name="3_S2_3_1_2" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3123" name="3_S2_3_1_2" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3122" name="3_S2_3_1_2" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3121" name="3_S2_3_1_2" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">3.1.3 ในกรณีที่ท่านประสบปัญหาและต้องการขอข้อมูลทางกฎหมายท่านสามารถขอรับความช่วยเหลือผ่านช่องทางต่าง ๆ เพื่อขอคำแนะนำหรือขอความรู้ทางกฎหมายได้ อาทิ กำนันผู้ใหญ่บ้าน หน่วยงานยุติธรรมชุมชน ศูนย์ดำรงธรรม องค์กรภาคเอกชน ช่องทางสายด่วนต่าง ๆ หรือหน่วยงานของรัฐที่เกี่ยวข้อง<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="3_3135" name="3_S2_3_1_3" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3134" name="3_S2_3_1_3" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3133" name="3_S2_3_1_3" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3132" name="3_S2_3_1_3" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3131" name="3_S2_3_1_3" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">3.1.4 หน่วยงานของรัฐหรือผู้นำชุมชนมีการให้ความรู้และจัดกิจกรรมแนะนำข้อมูลข่าวสารทางกฎหมาย หรือแนะนำกฎหมายใหม่ ๆ ให้แก่ท่านอย่างเพียงพอและสม่ำเสมอ<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="3_3145" name="3_S2_3_1_4" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3144" name="3_S2_3_1_4" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3143" name="3_S2_3_1_4" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3142" name="3_S2_3_1_4" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3141" name="3_S2_3_1_4" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">3.1.5 หน่วยงานที่มีหน้าที่ให้ความช่วยเหลือและให้คำแนะนำทางกฎหมายทั้งภาครัฐและภาคเอกชนมีอย่างเพียงพอและทั่วถึง<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="3_3155" name="3_S2_3_1_5" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3154" name="3_S2_3_1_5" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3153" name="3_S2_3_1_5" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3152" name="3_S2_3_1_5" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="3_3151" name="3_S2_3_1_5" value="1"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<label class="col-form-label">3.2 ท่านคิดว่ามีประเด็นข้อกฎหมายหรือความรู้ด้านกระบวนการยุติธรรมในประเด็นใดที่ท่านต้องการรับรู้เพิ่มเติมเพื่อใช้ในการประกอบอาชีพหรือเพื่อใช้ในชีวิตประจำวัน (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_321" name="3_S3_3_2_1" value="1"> (1) ขั้นตอนและกระบวนการดำเนินคดีในกระบวนการยุติธรรมทางอาญา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_322" name="3_S3_3_2_2" value="1"> (2) ขั้นตอนและกระบวนการดำเนินคดีในกระบวนการยุติธรรมทางแพ่ง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_323" name="3_S3_3_2_3" value="1"> (3) ขั้นตอนและกระบวนการดำเนินคดีในกระบวนการยุติธรรมทางปกครอง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_324" name="3_S3_3_2_4" value="1"> (4) กฎหมายเกี่ยวกับที่ดินทำกิน ป่าไม้ อุทยานแห่งชาติ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_325" name="3_S3_3_2_5" value="1"> (5) กฎหมายเกี่ยวสิ่งแวดล้อม มลภาวะ และการรักษาสภาพแวดล้อม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_326" name="3_S3_3_2_6" value="1"> (6) กฎหมายเกี่ยวหนี้สินและการประนอมหนี้
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_327" name="3_S3_3_2_7" value="1"> (7) กฎหมายเกี่ยวกับการบังคับคดี และการล้มละลาย
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_328" name="3_S3_3_2_8" value="1"> (8) กฎหมายเกี่ยวกับการทุจริตคอรัปชั่นและการร้องทุกข์กล่าวโทษเจ้าหน้าที่รัฐที่ทุจริต
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_329" name="3_S3_3_2_9" value="1"> (9) กฎหมายเกี่ยวกับความมั่นคง (เช่น ความผิดต่อพระมหากษัตริย์ การก่อการร้าย ภัยอันตรายต่อรัฐ)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_3210" name="3_S3_3_2_10" value="1"> (10) กฎหมายเกี่ยวกับการชุมนุม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_3211" name="3_S3_3_2_11" value="1"> (11) กฎหมายเกี่ยวกับการจัดตั้งและการประกอบธุรกิจ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_3212" name="3_S3_3_2_12" value="1"> (12) กฎหมายเกี่ยวกับภาษี
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_3213" name="3_S3_3_2_13" value="1"> (13) กฎหมายเกี่ยวกับทรัพย์สินทางปัญญา (เช่น สิทธิบัตร เครื่องหมายการค้า การละเมิดลิขสิทธิ์)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="3_3214" name="3_S3_3_2_14" value="1"> (14) กฎหมายเกี่ยวกับการค้าและการคุ้มครองผู้บริโภค
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="MC_2_15" name="3_S3_3_2_15" value="1"> (15) อื่น ๆ
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="MC_2_text" name="3_S3_3_2_15_text" data-parsley-required="true" readonly />
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<label class="col-form-label">3.3 กรณีท่านประสบปัญหาหรือต้องการทราบข้อมูลทางกฎหมายแล้วไม่สามารถหาช่องทางหรือเข้าถึงหน่วยงานที่ให้ข้อมูลได้ อะไรคือปัญหาที่พบและข้อเสนอแนะในการแก้ปัญหาหรืออะไรที่อยากให้หน่วยงานของรัฐจัดให้เพิ่มเติม<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<textarea rows="5" class="form-control" id="3_331" name="3_S3_3_3_1"></textarea>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+							<a href="javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+						</div>
+						<div class="col-lg-1.5">
+							<a href="/survey/listalls" class="ui basic red button "><i class="cancel icon large button"></i> ยกเลิก</a>
+						</div>
+					</div>
+					<br/>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

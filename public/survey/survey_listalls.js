@@ -7,6 +7,7 @@ $(function() {
     initDataTable();
     $("#refreshuserutton").on('click', function () {
         refreshDataTable();
+        return false;
     });
 });
 function initDataTable() {

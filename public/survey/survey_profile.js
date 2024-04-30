@@ -7,10 +7,10 @@ $(function() {
     setupUI();
 });
 function setupComponents() {
-    $("#buttonsave").click(function() { confirmSaveSurvey(this); });
-    $("#buttoncancel").click(function() { confirmCancelSurvey(this); });
-    $("#buttonupdate").click(function() { confirmUpdateSurvey(this); });
-    $("#buttonnext").click(function() { confirmNextSurvey(this); });
+    $("#buttonsave").click(function() { confirmSaveSurvey(this); return false; });
+    $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
+    $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
+    $("#buttonnext").click(function() { confirmNextSurvey(this); return false; });
     setupProvince("province_2",$("#province_2").attr("data-value"),$("#province_1").val());
     setupAmphure("amphure_2", $("#province_2").attr("data-value"),$("#amphure_2").attr("data-value"));
     setupDistrict("district_2",$("#amphure_2").attr("data-value"),$("#district_2").attr("data-value"));

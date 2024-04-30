@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>tjsurvey : แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link rel="stylesheet" href="/css/form.css">
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" href="/semantic/semantic.min.css">
+	<link rel="stylesheet" href="/plugins/jquery-confirm/css/jquery-confirm.css">
+	<link href="http://fonts.googleapis.com/css?family=Nunito:400,300,700" rel="stylesheet" id="fontFamilySrc" />
+	<link href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" rel='stylesheet' />
+	<link href="/assets/css/animate.min.css" rel='stylesheet' />
+	<link href="/assets/css/style.min.css" rel='stylesheet' />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>  
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>      
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/custom/app.custom.js"></script>
+	<script src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<script src="/assets/js/apps.min.js"></script>
+	<style>
+		.nowrap { white-space: nowrap; }
+	</style>
+	<script>
+		$(document).ready(function() {
+			App.init();
+			$('input[type="radio"]').mousedown(function() {
+				if (this.checked) {
+					$(this).mouseup(function() {
+						var radio = this;
+						setTimeout(function() {
+							radio.checked = false;
+						}, 5);
+						$(this).unbind('mouseup');
+					});
+				}
+			});
+		});
+		function maxLengthCheck(object) {
+			if (object.value.length > object.maxLength)
+				object.value = object.value.slice(0, object.maxLength)
+		}
+		function checkId(id) {
+			if (id != null) {
+				id.checked = true;
+			}
+		};
+		function checkIdnCheckBOX(id, value) {
+			if (id != null) {
+				if (value == 1) {
+					id.checked = true;
+				}
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+								<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</h1>
+			<label class="col-form-label">แบบสำรวจระดับการเข้าถึงกระบวนการยุติธรรม และความเชื่อมั่นต่อกระบวนการยุติธรรม
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>ส่วนที่ 4 ระดับการเข้าถึงกระบวนการยุติธรรม และความเชื่อมั่นต่อกระบวนการยุติธรรม</label></br>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-9wq8 bg" rowspan="3">ข้อคำถาม<br></th>
+											<th class="tg-c3oa bg" colspan="5">ระดับความคิดเห็น</th>
+										</tr>
+										<tr>
+											<th class="tg-9wq8 bg nowrap">มาก</th>
+											<th class="tg-c3ow bg nowrap">ค่อนข้างมาก</th>
+											<th class="tg-c3ow bg nowrap">ปานกลาง</th>
+											<th class="tg-c3ow bg nowrap">ค่อนข้างน้อย</th>
+											<th class="tg-c3ow bg nowrap">น้อย</th>
+										</tr>
+										<tr>
+											<th class="tg-9wq8 bg">5</th>
+											<th class="tg-c3ow bg">4</th>
+											<th class="tg-c3ow bg">3</th>
+											<th class="tg-c3ow bg">2</th>
+											<th class="tg-c3ow bg">1</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0laq bg" colspan="6">4.1 ระดับการเข้าถึงกระบวนการยุติธรรม</td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.1.1 หากท่านตกเป็นผู้ต้องหาหรือจำเลยในคดีอาญาแล้วถูกคุมขัง ท่านสามารถติดต่อหรือขอรับความช่วยเหลือในการขอหลักประกันในการปล่อยตัวชั่วคราว (การประกันตัว) ได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4115" name="4_S4_4_1_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4114" name="4_S4_4_1_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4113" name="4_S4_4_1_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4112" name="4_S4_4_1_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4111" name="4_S4_4_1_1" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.1.2 หากท่านตกเป็นเหยื่ออาชญากรรมถูกทำร้ายหรือถูกประทุษร้ายต่อชีวิตร่างกายจากความผิดทางอาญาหรือเป็นทายาทของผู้เสียชีวิตจากความผิดทางอาญาดังกล่าว ท่านสามารถติดต่อหรือขอรับความช่วยเหลือในการขอรับเงินชดเชยเยียวยาจากรัฐได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4125" name="4_S4_4_1_2" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4124" name="4_S4_4_1_2" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4123" name="4_S4_4_1_2" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4122" name="4_S4_4_1_2" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4121" name="4_S4_4_1_2" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.1.3 หากท่านตกเป็นเหยื่อต้องกลายเป็น ‘แพะ’ ถูกกล่าวหาโดยไม่ได้กระทำผิด ท่านสามารถขอความช่วยเหลือในการพิสูจน์หลักฐานยืนยันความบริสุทธิ์ได้ หรือสามารถขอให้มีการรื้อฟื้นคดีที่ถูกกล่าวหานั้นได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4135" name="4_S4_4_1_3" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4134" name="4_S4_4_1_3" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4133" name="4_S4_4_1_3" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4132" name="4_S4_4_1_3" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4131" name="4_S4_4_1_3" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.1.4 หากตกเป็นเหยื่อต้องกลายเป็น ‘แพะ’ ติดคุกโดยไม่มีความผิด ท่านสามารถขอรับเงินชดเชยเยียวยาจากรัฐผ่านช่องทางสำนักงานยุติธรรมจังหวัดหรือกรมคุ้มครองสิทธิเสรีภาพ<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4145" name="4_S4_4_1_4" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4144" name="4_S4_4_1_4" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4143" name="4_S4_4_1_4" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4142" name="4_S4_4_1_4" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4141" name="4_S4_4_1_4" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.1.5 กรณีท่านตกเป็นเหยื่อหรือผู้เสียหายจากคดีอาญาท่านสามารถติดต่อขอรับความช่วยเหลือหรือแจ้งความในการดำเนินคดีต่อเจ้าพนักงานผู้เกี่ยวข้องได้โดยสะดวก<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4155" name="4_S4_4_1_5" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4154" name="4_S4_4_1_5" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4153" name="4_S4_4_1_5" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4152" name="4_S4_4_1_5" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4151" name="4_S4_4_1_5" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.1.6 หากท่านไม่ได้รับความเป็นธรรมในการดำเนินคดีท่านสามารถร้องเรียนหรือร้องขอความเป็นธรรมผ่านช่องทางต่าง ๆ หรือขอความช่วยเหลือต่อหน่วยงานที่เกี่ยวข้องได้โดยสะดวก<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4165" name="4_S4_4_1_6" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4164" name="4_S4_4_1_6" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4163" name="4_S4_4_1_6" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4162" name="4_S4_4_1_6" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4161" name="4_S4_4_1_6" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.1.7 หากคดีของท่านล่าช้าเกินควร ท่านสามารถร้องเรียนหรือติดต่อขอความช่วยเหลือ หรือร้องขอความเป็นธรรมผ่านช่องทางต่าง ๆ หรือขอความช่วยเหลือต่อหน่วยงานที่เกี่ยวข้องได้โดยสะดวก<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4175" name="4_S4_4_1_7" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4174" name="4_S4_4_1_7" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4173" name="4_S4_4_1_7" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4172" name="4_S4_4_1_7" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4171" name="4_S4_4_1_7" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0laq bg" colspan="6">4.2 ระดับความเชื่อมั่นต่อกระบวนการยุติธรรมในภาพรวม</td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.2.1 หากท่านตกเป็นเหยื่อหรือผู้เสียหายในคดีอาญาท่านเชื่อมั่นว่าหน่วยงานในกระบวนการยุติธรรมจะสามารถติดตามตัวคนร้ายและดำเนินคดีกับผู้กระทำผิดให้ท่านได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4215" name="4_S4_4_2_1" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4214" name="4_S4_4_2_1" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4213" name="4_S4_4_2_1" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4212" name="4_S4_4_2_1" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4211" name="4_S4_4_2_1" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.2.2 ท่านเชื่อว่าจะไม่ถูกกลั่นแกล้งจากเจ้าหน้าที่ของรัฐในการจับกุมท่านโดยไม่ได้กระทำผิด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4225" name="4_S4_4_2_2" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4224" name="4_S4_4_2_2" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4223" name="4_S4_4_2_2" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4222" name="4_S4_4_2_2" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4221" name="4_S4_4_2_2" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.2.3 ท่านเชื่อมั่นว่ากระบวนการยุติธรรมจะไม่ถูกแทรกแซงจากผู้มีอิทธิพลหรืออำนาจที่ไม่ชอบธรรม<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4235" name="4_S4_4_2_3" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4234" name="4_S4_4_2_3" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4233" name="4_S4_4_2_3" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4232" name="4_S4_4_2_3" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4231" name="4_S4_4_2_3" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.2.4 ท่านเชื่อว่าเจ้าหน้าที่ในกระบวนการยุติธรรมปฏิบัติต่อทุกคนในการดำเนินคดีเช่นเดียวกันโดยไม่มีการเลือกปฏิบัติ (จากสถานะทางเศรษฐกิจ สังคม เพศ ความเชื่อ ศาสนา เชื้อชาติ ฯลฯ)<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4245" name="4_S4_4_2_4" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4244" name="4_S4_4_2_4" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4243" name="4_S4_4_2_4" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4242" name="4_S4_4_2_4" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4241" name="4_S4_4_2_4" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.2.5 ท่านเชื่อว่าการดำเนินคดีเป็นไปโดยถูกต้องปราศจากการคอรัปชั่น การเรียกรับสินบน หรือการเรียกรับผลประโยชน์ในทางมิชอบ<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4255" name="4_S4_4_2_5" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4254" name="4_S4_4_2_5" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4253" name="4_S4_4_2_5" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4252" name="4_S4_4_2_5" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4251" name="4_S4_4_2_5" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.2.6 ท่านเชื่อมั่นว่าจะไม่เกิดการตัดสินที่ผิดพลาดในกระบวนการพิจารณาคดีในชั้นศาล<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4265" name="4_S4_4_2_6" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4264" name="4_S4_4_2_6" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4263" name="4_S4_4_2_6" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4262" name="4_S4_4_2_6" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4261" name="4_S4_4_2_6" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.2.7 ท่านเชื่อมั่นว่ากระบวนการยุติธรรมมีการปฏิบัติต่อผู้กระทำผิดที่เหมาะสม ได้สัดส่วนกับความร้ายแรงของการกระทำผิด <span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4275" name="4_S4_4_2_7" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4274" name="4_S4_4_2_7" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4273" name="4_S4_4_2_7" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4272" name="4_S4_4_2_7" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4271" name="4_S4_4_2_7" value="1"></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4.2.8 ท่านเชื่อมั่นว่ากระบวนการยุติธรรมได้แก้ไขบำบัดฟื้นฟูผู้กระทำผิดที่เหมาะสมสามารถคืนคนดีสู่สังคมได้อย่างเป็น ปกติสุข<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="4_4285" name="4_S4_4_2_8" value="5" data-parsley-required="true"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4284" name="4_S4_4_2_8" value="4"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4283" name="4_S4_4_2_8" value="3"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4282" name="4_S4_4_2_8" value="2"></td>
+											<td class="tg-0laa"><input type="radio" id="4_4281" name="4_S4_4_2_8" value="1"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<label class="col-form-label">4.3 ท่านประเมินความเชื่อมั่นต่อกระบวนการยุติธรรมจากสิ่งใด (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="4_431" name="4_S4_4_3_1" value="1"> (1) ประสบการณ์ตรงในการรับบริการจากหน่วยงานในกระบวนการยุติธรรม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="4_432" name="4_S4_4_3_2" value="1"> (2) การรับรู้ข้อมูลจากข่าว สื่อมวลชน หรือผ่านสื่อต่าง ๆ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="4_433" name="4_S4_4_3_3" value="1"> (3) การแลกเปลี่ยนความคิดเห็นหรือพูดคุยกับคนในชุมชน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="4_434" name="4_S4_4_3_4" value="1"> (4) การบอกเล่าจากผู้ใกล้ชิด ญาติ พี่น้อง คนรู้จักในชุมชน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="4_435" name="4_S4_4_3_5" value="1"> (5) ความเป็นอยู่ในสังคมของคนในชุมชนหรือละแวกที่พักอาศัย หรือปัญหาที่พบในชุมชน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="4_436" name="4_S4_4_3_6" value="1"> (6) หน่วยงานที่ต้องไปติดต่อในชีวิตประจำวันหรือการประกอบอาชีพ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="4_437" name="4_S4_4_3_7" value="1"> (7) กิจกรรมประชาสัมพันธ์ต่าง ๆ ของหน่วยงานของรัฐ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="4_438" name="4_S4_4_3_8" value="1"> (8) อื่น ๆ
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="4_438_text" name="4_S4_4_3_8_text" data-parsley-required="true" readonly />
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<label class="col-form-label">4.4 กรณีท่านประสบปัญหาการเข้าถึงกระบวนการยุติธรรมข้างต้น อะไรคือปัญหาที่พบและข้อเสนอแนะในการแก้ปัญหาหรืออะไรที่อยากให้หน่วยงานของรัฐจัดให้เพิ่มเติม<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<textarea rows="5" class="form-control" id="4_441" name="4_S4_4_4_1"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">4.5 ท่านมีข้อเสนอแนะในการแก้ปัญหาหรืออะไรที่อยากให้หน่วยงานของรัฐจัดให้เพิ่มเติมเพื่อสร้างความเชื่อมั่นในกระบวนการยุติธรรม<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<textarea rows="5" class="form-control" id="4_451" name="4_S4_4_5_1"></textarea>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+							<a href="javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+						</div>
+						<div class="col-lg-1.5">
+							<a href="/survey/listalls" class="ui basic red button "><i class="cancel icon large button"></i> ยกเลิก</a>
+						</div>
+					</div>
+					<br/>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

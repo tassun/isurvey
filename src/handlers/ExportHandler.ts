@@ -8,7 +8,13 @@ import fs from 'fs';
 export class ExportHandler extends ProcessHandler {
     public exportDir: string = path.join(process.cwd(),"export");
     public exportInfo: KnExportInfo[] = [
-        {table:"tusers",file:"tusers.csv"}
+        {table:"tusers",file:"users.csv"},
+        {table:"survey_profile",file:"survey_profile.csv"},
+        {table:"measure_b",file:"measure_b.csv"},
+        {table:"measure_c",file:"measure_c.csv"},
+        {table:"measure_d",file:"measure_d.csv"},
+        {table:"measure_e",file:"measure_e.csv"},
+        {table:"measure_f",file:"measure_f.csv"}
     ];
 
     protected override async doExport(context: KnContextInfo) : Promise<KnRecordSet> {

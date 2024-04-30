@@ -7,17 +7,19 @@ export class OperateHandler extends ProcessHandler {
 
     protected ensureTimestamp(context: KnContextInfo, data: any, created: boolean = true, updated: boolean = true) : any {
         let now = Utilities.now();
+        let userid = context.meta?.user?.userid;
+        if(!userid) userid = context.params?.userid;
         if(created) {
             data.create_date = now;
             data.create_time = now;
             data.create_millis = now.getTime();
-            data.create_by = context.meta?.user?.userid;
+            data.create_by = userid;
         }
         if(updated) {
             data.update_date = now;
             data.update_time = now;
             data.update_millis = now.getTime();
-            data.update_by = context.meta?.user?.userid;
+            data.update_by = userid;
         }
         return data;
     }

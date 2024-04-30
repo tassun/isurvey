@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Measure</title>
+	<%- include('../asset/meta') %>		
+	<%- include('../asset/styles') %>		
+	<%- include('../asset/scripts') %>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/measure_f/measure_f.js"></script>
+</head>
+<body>
+	<%- include('../partials/page_waiting') %>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<%- include('../partials/page_header') %>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</h1>
+			<label class="col-form-label">แบบสำรวจข้อมูลระดับการเคารพกฎหมายของประชาชน</label>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
+					<label>ส่วนที่ 6 ระดับการเคารพกฎหมายของประชาชน</label></br>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-9wq8 bg" rowspan="3">ข้อคำถาม<br></th>
+											<th class="tg-c3oa bg" colspan="5">ระดับความคิดเห็น</th>
+										</tr>
+										<tr>
+											<th class="tg-9wq8 bg nowrap">เห็นด้วย</th>
+											<th class="tg-c3ow bg nowrap">ค่อนข้างเห็นด้วย</th>
+											<th class="tg-c3ow bg nowrap">ปานกลาง</th>
+											<th class="tg-c3ow bg nowrap">ค่อนข้างไม่เห็นด้วย</th>
+											<th class="tg-c3ow bg nowrap">ไม่เห็นด้วย</th>
+										</tr>
+										<tr>
+											<th class="tg-9wq8 bg">5</th>
+											<th class="tg-c3ow bg">4</th>
+											<th class="tg-c3ow bg">3</th>
+											<th class="tg-c3ow bg">2</th>
+											<th class="tg-c3ow bg">1</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0lax">2.1 หากพบว่ามีการก่ออาชญากรรมหรือการกระทำผิดกฎหมายท่านพร้อมจะให้ความช่วยเหลือแจ้งเบาะแสกับเจ้าหน้าที่หรือให้ความร่วมมือในการป้องกันการกระทำผิด<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="MF_1_5" name="MF_1" value="5" <%=page.checked("5",data.dataset?.MF_1)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_1_4" name="MF_1" value="4" <%=page.checked("4",data.dataset?.MF_1)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_1_3" name="MF_1" value="3" <%=page.checked("3",data.dataset?.MF_1)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_1_2" name="MF_1" value="2" <%=page.checked("2",data.dataset?.MF_1)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_1_1" name="MF_1" value="1" <%=page.checked("1",data.dataset?.MF_1)%> /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2 กฎหมายของประเทศไทยไม่ได้เป็นภาระต่อชีวิตความเป็นอยู่หรือเป็นภาระต่อการประกอบอาชีพของประชาชนมากเกินไป<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="MF_2_5" name="MF_2" value="5" <%=page.checked("5",data.dataset?.MF_2)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_2_4" name="MF_2" value="4" <%=page.checked("4",data.dataset?.MF_2)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_2_3" name="MF_2" value="3" <%=page.checked("3",data.dataset?.MF_2)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_2_2" name="MF_2" value="2" <%=page.checked("2",data.dataset?.MF_2)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_2_1" name="MF_2" value="1" <%=page.checked("1",data.dataset?.MF_2)%> /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.3 กฎหมายและกระบวนการยุติธรรมเป็นการคุ้มครองสังคมโดยไม่ได้มีการออกกฎหมายหรือบังคับใช้กฎหมายเพื่อเอื้อประโยชน์ต่อคนใดคนหนึ่งหรือกลุ่มบุคคลใดบุคคลหนึ่งอันเป็นการเอารัดเอาเปรียบต่อประชาชนทั่วไป<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="MF_3_5" name="MF_3" value="5" <%=page.checked("5",data.dataset?.MF_3)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_3_4" name="MF_3" value="4" <%=page.checked("4",data.dataset?.MF_3)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_3_3" name="MF_3" value="3" <%=page.checked("3",data.dataset?.MF_3)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_3_2" name="MF_3" value="2" <%=page.checked("2",data.dataset?.MF_3)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_3_1" name="MF_3" value="1" <%=page.checked("1",data.dataset?.MF_3)%> /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.4 ระบบกฎหมายและกระบวนการยุติธรรมส่งเสริมให้ประชาชนสามารถเข้าไปมีส่วนร่วมหรือร่วมคิดร่วมทำในการสร้างเสริมความยุติธรรม รวมถึงสร้างการบังคับใช้กฎหมายและป้องกันการกระทำผิดที่มีประสิทธิภาพ<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="MF_4_5" name="MF_4" value="5" <%=page.checked("5",data.dataset?.MF_4)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_4_4" name="MF_4" value="4" <%=page.checked("4",data.dataset?.MF_4)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_4_3" name="MF_4" value="3" <%=page.checked("3",data.dataset?.MF_4)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_4_2" name="MF_4" value="2" <%=page.checked("2",data.dataset?.MF_4)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_4_1" name="MF_4" value="1" <%=page.checked("1",data.dataset?.MF_4)%> /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.5 การบังคับใช้กฎหมายมีความโปร่งใสสามารถตรวจสอบได้<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="MF_5_5" name="MF_5" value="5" <%=page.checked("5",data.dataset?.MF_5)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_5_4" name="MF_5" value="4" <%=page.checked("4",data.dataset?.MF_5)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_5_3" name="MF_5" value="3" <%=page.checked("3",data.dataset?.MF_5)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_5_2" name="MF_5" value="2" <%=page.checked("2",data.dataset?.MF_5)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_5_1" name="MF_5" value="1" <%=page.checked("1",data.dataset?.MF_5)%> /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.6 ท่านพร้อมจะปฏิบัติตามกฎหมายโดยไม่ต้องมีใครบังคับ<span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="MF_6_5" name="MF_6" value="5" <%=page.checked("5",data.dataset?.MF_6)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_6_4" name="MF_6" value="4" <%=page.checked("4",data.dataset?.MF_6)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_6_3" name="MF_6" value="3" <%=page.checked("3",data.dataset?.MF_6)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_6_2" name="MF_6" value="2" <%=page.checked("2",data.dataset?.MF_6)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="MF_6_1" name="MF_6" value="1" <%=page.checked("1",data.dataset?.MF_6)%> /></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>					
+					<br/>
+					<div class="row">
+						<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+							<% if(!page.isUpdateMode(data.action)) {%>
+								<a href="javascript:void(0);" id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+							<% } %>
+							<% if(page.isUpdateMode(data.action)) {%>
+								<a href="javascript:void(0);" id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.survey_id%>"><i class="save icon large button"></i> ปรับปรุง</a>
+							<% } %>
+						</div>
+						<div class="col-lg-1.5">
+							<a href="javascript:void(0);" id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
+						</div>
+					</div>
+					<br/>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

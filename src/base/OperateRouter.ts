@@ -20,6 +20,7 @@ export class OperateRouter extends BaseRouter {
 				this.response(res,reply);
 			} else {
 				let reply = this.createJSONReply("insert");
+				reply.head.composeError("4004","Handler not found");
 				this.response(res,reply);
 			}
 		} catch(ex) { 
@@ -37,6 +38,7 @@ export class OperateRouter extends BaseRouter {
 				this.response(res,reply);
 			} else {
 				let reply = this.createJSONReply("retrieve");
+				reply.head.composeError("4004","Handler not found");
 				this.response(res,reply);
 			}
 		} catch(ex) { 
@@ -54,6 +56,7 @@ export class OperateRouter extends BaseRouter {
 				this.response(res,reply);
 			} else {
 				let reply = this.createJSONReply("update");
+				reply.head.composeError("4004","Handler not found");
 				this.response(res,reply);
 			}
 		} catch(ex) { 
@@ -71,6 +74,7 @@ export class OperateRouter extends BaseRouter {
 				this.response(res,reply);
 			} else {
 				let reply = this.createJSONReply("remove");
+				reply.head.composeError("4004","Handler not found");
 				this.response(res,reply);
 			}
 		} catch(ex) { 
@@ -88,6 +92,7 @@ export class OperateRouter extends BaseRouter {
 				this.response(res,reply);
 			} else {
 				let reply = this.createJSONReply("list");
+				reply.head.composeError("4004","Handler not found");
 				this.response(res,reply);
 			}
 		} catch(ex) { 

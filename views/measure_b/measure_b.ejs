@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="<%=meta.cdn_url%>/measure_b/measure_b.js"></script>
 </head>
 <body>
+	<%- include('../partials/page_waiting') %>
 	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
 		<%- include('../partials/page_header') %>
 		<div class="panel container" style="margin-top : 10px;">
@@ -16,6 +17,7 @@
 			<div class="body">
 				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
 					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
 					<label>ส่วนที่ 2 การรับรู้สิทธิทางกฎหมาย และความรู้พื้นฐานด้านกระบวนการยุติธรรม </label><br/>

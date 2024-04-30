@@ -4,3 +4,4 @@
 .topic-layer { text-align: center; margin-bottom: 8px; }
 .topic-content { width: 100%; text-wrap: wrap; word-wrap: break-word; }
 .icon-edit { color: orange; position: absolute; top: 5px; left: 15px; font-weight: bold; }
+.topic-single { width: 60%; text-wrap: wrap; word-wrap: break-word; }
