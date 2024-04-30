@@ -2,7 +2,7 @@ var mouseX = 0;
 var mouseY = 0;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
-	try { startApplication("survey1"); }catch(ex) { }
+	try { startApplication("profile"); }catch(ex) { }
     setupComponents();
     setupUI();
 });

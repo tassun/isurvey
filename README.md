@@ -15,7 +15,7 @@ npm run start
 The project will run at http://localhost:8080/
 
 ## Setup
-Since this project required database setup before starting you have to create database schema by run sql file under folder `/database/lawdb_mysql.sql` this sql snippet file come with MySQL.
+Since this project required database setup before starting you have to create database schema by run sql file under folder `/database/legaldb_mysql.sql` this sql snippet file come with MySQL.
 
 ## Configuration
 After setup database you may change configuration setting to access your database by `/config/default.json`. see more detail [will-sql](https://www.npmjs.com/package/will-sql)

@@ -2,6 +2,7 @@
     "HTTP_PORT": 8080,
     "BASE_URL": "",
     "SECRET_KEY": "ASSURE_OF_SECRET_KEY",
+    "VALID_ACCESSOR": "false",
     "DB_SECTION": "MYSQL",
-    "MYSQL" : { "alias": "mysql2", "dialect": "mysql", "url":"", "user": "root", "password": "root", "host": "localhost", "port": 3306, "database": "lawdb", "options": { "charset": "utf8", "connectionLimit": 100 } }
+    "MYSQL" : { "alias": "mysql2", "dialect": "mysql", "url":"", "user": "root", "password": "root", "host": "localhost", "port": 3306, "database": "legaldb", "options": { "charset": "utf8", "connectionLimit": 100 } }
 }

@@ -1,4 +1,5 @@
-import { KnModel } from '../models/AssureAlias';
+import { KnDBConnector } from 'will-sql';
+import { KnModel, KnContextInfo, KnDataSet } from '../models/AssureAlias';
 import { SurveyOperateHandler } from './SurveyOperateHandler';
 
 export class MeasureEHandler extends SurveyOperateHandler {
@@ -68,6 +69,11 @@ export class MeasureEHandler extends SurveyOperateHandler {
             ME_3_30_text: { type: "STRING", created: true, updated: true  },
             ME_4_1: { type: "STRING", created: true, updated: true  },
             ME_4_2: { type: "STRING", created: true, updated: true  },
+            ME_C_known: { type: "INTEGER", created: true, updated: true  },
+            ME_C_unknown: { type: "INTEGER", created: true, updated: true  },
+            ME_C_noidea: { type: "INTEGER", created: true, updated: true  },
+            ME_C_mark: { type: "INTEGER", created: true, updated: true  },
+            ME_C_total: { type: "INTEGER", created: true, updated: true  },
             create_date: { type: "DATE", created: true, updated: false  },
             create_time: { type: "TIME", created: true, updated: false  },
             create_millis: { type: "BIGINT", created: true, updated: false  },
@@ -78,5 +84,27 @@ export class MeasureEHandler extends SurveyOperateHandler {
             update_by: { type: "STRING", created: true, updated: true  }
         }
     };
+
+    protected override processCalculate(context: KnContextInfo, db: KnDBConnector, data: KnDataSet) : KnDataSet {
+        data.ME_C_known = 0;
+        data.ME_C_unknown = 0;
+        data.ME_C_noidea = 0;
+        data.ME_C_mark = 0;
+        data.ME_C_total = 0;
+        let keys = Object.keys(data).filter(key => key.startsWith("ME_1_"));
+        for (let key of keys) {
+            let value = data[key];
+            if (value === "1") {
+                data.ME_C_known += 1;
+            } else if (value === "2") {
+                data.ME_C_unknown += 1;
+            } else if (value === "3") {
+                data.ME_C_noidea += 1;
+            }
+        }
+        data.ME_C_mark = data.ME_C_known;
+        data.ME_C_total = keys.length - data.ME_C_noidea;
+        return data;
+    }
 
 }

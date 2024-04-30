@@ -1,5 +1,7 @@
-import { KnModel } from '../models/AssureAlias';
+import { KnDBConnector } from 'will-sql';
+import { KnModel, KnContextInfo, KnDataSet } from '../models/AssureAlias';
 import { SurveyOperateHandler } from './SurveyOperateHandler';
+import { Utilities } from 'will-util';
 
 export class MeasureDHandler extends SurveyOperateHandler {
     public readonly form_id : string = "MEASURE_D";
@@ -34,6 +36,12 @@ export class MeasureDHandler extends SurveyOperateHandler {
             MD_3_text: { type: "STRING", created: true, updated: true  },
             MD_4_text: { type: "STRING", created: true, updated: true  },
             MD_5_text: { type: "STRING", created: true, updated: true  },
+            MD_C_1_mark: { type: "INTEGER", created: true, updated: true  },
+            MD_C_1_total: { type: "INTEGER", created: true, updated: true  },
+            MD_C_1_avg: { type: "DECIMAL", created: true, updated: true  },
+            MD_C_2_mark: { type: "INTEGER", created: true, updated: true  },
+            MD_C_2_total: { type: "INTEGER", created: true, updated: true  },
+            MD_C_2_avg: { type: "DECIMAL", created: true, updated: true  },
             create_date: { type: "DATE", created: true, updated: false  },
             create_time: { type: "TIME", created: true, updated: false  },
             create_millis: { type: "BIGINT", created: true, updated: false  },
@@ -44,5 +52,35 @@ export class MeasureDHandler extends SurveyOperateHandler {
             update_by: { type: "STRING", created: true, updated: true  }
         }
     };
+
+    protected override processCalculate(context: KnContextInfo, db: KnDBConnector, data: KnDataSet) : KnDataSet {
+        data.MD_C_1_mark = 0;
+        data.MD_C_1_total = 0;
+        data.MD_C_1_avg = 0.0;
+        let keys = Object.keys(data).filter(key => key.startsWith("MD_1_"));
+        for (let key of keys) {
+            let value = data[key];
+            let mark = Utilities.parseInteger(value);
+            if(!mark) mark = 0;
+            data.MD_C_1_mark += mark;
+        }
+        data.MD_C_1_total = keys.length;
+        data.MD_C_1_avg = data.MD_C_1_total>0?data.MD_C_1_mark / data.MD_C_1_total:0.0;
+
+        data.MD_C_2_mark = 0;
+        data.MD_C_2_total = 0;
+        data.MD_C_2_avg = 0.0;
+        keys = Object.keys(data).filter(key => key.startsWith("MD_2_"));
+        for (let key of keys) {
+            let value = data[key];
+            let mark = Utilities.parseInteger(value);
+            if(!mark) mark = 0;
+            data.MD_C_2_mark += mark;
+        }
+        data.MD_C_2_total = keys.length;
+        data.MD_C_2_avg = data.MD_C_2_total>0?data.MD_C_2_mark / data.MD_C_2_total:0.0;
+
+        return data;
+    }
 
 }

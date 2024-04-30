@@ -2,7 +2,7 @@ var mouseX = 0;
 var mouseY = 0;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
-	try { startApplication("survey"); }catch(ex) { }
+	try { startApplication("form"); }catch(ex) { }
     $("a.topic-linker").click(function() {
         openSurveyForm(this);
         return false;

@@ -36,6 +36,22 @@ export class SurveyProfileHandler extends OperateHandler {
             A_01: { type: "STRING", created: true, updated: true },
             A_02: { type: "STRING", created: true, updated: true },
             A_02_text: { type: "STRING", created: true, updated: true },
+            A_02_1: { type: "STRING", created: true, updated: true },
+            A_02_2: { type: "STRING", created: true, updated: true },
+            A_02_3: { type: "STRING", created: true, updated: true },
+            A_02_4: { type: "STRING", created: true, updated: true },
+            A_02_5: { type: "STRING", created: true, updated: true },
+            A_02_6: { type: "STRING", created: true, updated: true },
+            A_02_7: { type: "STRING", created: true, updated: true },
+            A_02_8: { type: "STRING", created: true, updated: true },
+            A_02_9: { type: "STRING", created: true, updated: true },
+            A_02_10: { type: "STRING", created: true, updated: true },
+            A_02_11: { type: "STRING", created: true, updated: true },
+            A_02_12: { type: "STRING", created: true, updated: true },
+            A_02_13: { type: "STRING", created: true, updated: true },
+            A_02_14: { type: "STRING", created: true, updated: true },
+            A_02_15: { type: "STRING", created: true, updated: true },
+            A_02_16: { type: "STRING", created: true, updated: true },
             A_03: { type: "STRING", created: true, updated: true },
             A_04: { type: "STRING", created: true, updated: true },
             A_05: { type: "STRING", created: true, updated: true },
@@ -125,6 +141,7 @@ export class SurveyProfileHandler extends OperateHandler {
         if(profile_code && profile_code.trim().length>0) data.profile_code = profile_code;
         this.ensureDataSet(data);
         this.ensureTimestamp(context, data);
+        this.processCalculate(context, db, data);
         let sql = this.composeQueryInsert(context,this.model,data);
         this.logger.info(this.constructor.name+".processInsert:",sql);
         let rs = await sql.executeUpdate(db,context);
@@ -155,6 +172,7 @@ export class SurveyProfileHandler extends OperateHandler {
         if(!data.profile_code || data.profile_code.trim().length==0) data.profile_code = Utilities.serializeTimestamp(Utilities.now());
         this.ensureDataSet(data);
         this.ensureTimestamp(context, data, false);
+        this.processCalculate(context, db, data);
         let sql = this.composeQueryUpdate(context,this.model,data);
         this.logger.info(this.constructor.name+".processUpdate:",sql);
         let rs = await sql.executeUpdate(db,context);
@@ -216,6 +234,32 @@ export class SurveyProfileHandler extends OperateHandler {
         let ds = await this.getDataCategory(context,db);
         dt.entity = ds;
         return dt;
+    }
+
+    protected processCalculate(context: KnContextInfo, db: KnDBConnector, data: KnDataSet) : KnDataSet {
+        let ageflag = data.A_02;
+        let agetext = data.A_02_text;
+        if(ageflag && ageflag=="0" && agetext && agetext.trim().length>0) {
+            let ages = Utilities.parseInteger(agetext);
+            if(!ages) ages = 0;
+            if(ages<=17) data.A_02_1 = "1";
+            else if(ages>=18 && ages<=19) data.A_02_2 = "1";
+            else if(ages>=20 && ages<=24) data.A_02_3 = "1";
+            else if(ages>=25 && ages<=29) data.A_02_4 = "1";
+            else if(ages>=30 && ages<=34) data.A_02_5 = "1";
+            else if(ages>=35 && ages<=39) data.A_02_6 = "1";
+            else if(ages>=40 && ages<=44) data.A_02_7 = "1";
+            else if(ages>=45 && ages<=49) data.A_02_8 = "1";
+            else if(ages>=50 && ages<=54) data.A_02_9 = "1";
+            else if(ages>=55 && ages<=59) data.A_02_10 = "1";
+            else if(ages>=60 && ages<=64) data.A_02_11 = "1";
+            else if(ages>=65 && ages<=69) data.A_02_12 = "1";
+            else if(ages>=70 && ages<=74) data.A_02_13 = "1";
+            else if(ages>=75 && ages<=79) data.A_02_14 = "1";
+            else if(ages>=80 && ages<=89) data.A_02_15 = "1";
+            else if(ages>=90) data.A_02_16 = "1";
+        }
+        return data;
     }
 
 }

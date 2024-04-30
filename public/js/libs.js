@@ -603,6 +603,15 @@ function setupScreenControls(aform) {
 		$this.on("keyup",function(event) { return fs_chkKey(this,event,decimal,null); });
 		$this.on("keypress",function(event) { return fs_intNumsOnly_chkKey(this,event,decimal); });
 	});
+	$("input[type=number].iint",aform||this.document).each(function(index,element) { 
+		$(this).on("keypress",function(event) { return fs_intNumsOnly(this,event); });
+	});
+	$("input[type=number].imoney",aform||this.document).each(function(index,element) { 
+		let $this = $(this);
+		let decimal = $this.attr("decimal");
+		$this.on("keyup",function(event) { return fs_chkKey(this,event,decimal,null); });
+		$this.on("keypress",function(event) { return fs_intNumsOnly_chkKey(this,event,decimal); });
+	});
 }
 function setupPageSorting(acontrol,afunction) {
 	if(!acontrol) acontrol = "datatable";

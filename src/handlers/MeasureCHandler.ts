@@ -1,5 +1,7 @@
-import { KnModel } from '../models/AssureAlias';
+import { KnDBConnector } from 'will-sql';
+import { KnModel, KnContextInfo, KnDataSet } from '../models/AssureAlias';
 import { SurveyOperateHandler } from './SurveyOperateHandler';
+import { Utilities } from 'will-util';
 
 export class MeasureCHandler extends SurveyOperateHandler {
     public readonly form_id : string = "MEASURE_C";
@@ -30,6 +32,9 @@ export class MeasureCHandler extends SurveyOperateHandler {
             MC_2_15: { type: "STRING", created: true, updated: true  },
             MC_2_text: { type: "STRING", created: true, updated: true  },
             MC_3_text: { type: "STRING", created: true, updated: true  },
+            MC_C_mark: { type: "INTEGER", created: true, updated: true  },
+            MC_C_total: { type: "INTEGER", created: true, updated: true  },
+            MC_C_avg: { type: "DECIMAL", created: true, updated: true  },
             create_date: { type: "DATE", created: true, updated: false  },
             create_time: { type: "TIME", created: true, updated: false  },
             create_millis: { type: "BIGINT", created: true, updated: false  },
@@ -40,5 +45,21 @@ export class MeasureCHandler extends SurveyOperateHandler {
             update_by: { type: "STRING", created: true, updated: true  }
         }
     };
+
+    protected override processCalculate(context: KnContextInfo, db: KnDBConnector, data: KnDataSet) : KnDataSet {
+        data.MC_C_mark = 0;
+        data.MC_C_total = 0;
+        data.MC_C_avg = 0.0;
+        let keys = Object.keys(data).filter(key => key.startsWith("MC_1_"));
+        for (let key of keys) {
+            let value = data[key];
+            let mark = Utilities.parseInteger(value);
+            if(!mark) mark = 0;
+            data.MC_C_mark += mark;
+        }
+        data.MC_C_total = keys.length;
+        data.MC_C_avg = data.MC_C_total>0?data.MC_C_mark / data.MC_C_total:0.0;
+        return data;
+    }
 
 }
