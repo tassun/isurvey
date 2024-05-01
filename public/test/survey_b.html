@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/form.css" />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.maskedinput-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.ui.waiting-min.js"></script>
+	<script type="text/javascript" src="/js/calendar/calendar-min.js" defer></script>
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/libs.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<script type="text/javascript" src="/js/header.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<style>
+		.data-table { width: 100%; }
+		.ctrl-label { font-weight: 100; }
+	</style>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>แบบแจงนับข้อมูลสถิติอาชญากรรม (ผนวก ข) </label></br>
+					</br>
+					<label>รหัสครัวเรือน</label>
+					<label class="radio-inline col-form-label  col-lg-3">
+						<input type="text" class="form-control" id="1_S2_1_text" name="1_S2_1_text" readonly />
+					</label>
+					<label>รหัสผู้เก็บ</label>
+					<label class="radio-inline col-form-label  col-lg-3">
+						<input type="text" class="form-control" id="1_S2_2_text" name="1_S2_2_text" readonly />
+					</label>
+					</br>
+					<label>จำนวนสมาชิกในครัวเรือนที่อยู่อาศัยในห้วง พ.ศ. 2565 มากกว่า 6 เดือนขึ้นไป รวมทั้งสิ้น</label>
+					<label class="radio-inline col-form-label  col-lg-1">
+						<input type="text" class="form-control" id="1_S2_3_text" name="1_S2_3_text" value="1" readonly />
+					</label>
+					<label>คน</label>
+					</br>
+					<label>(นับรวมผู้ตอบและสมาชิกทุกคน (ทุกช่วงอายุ) ในรอบ 1 ปีที่ผ่านมา)</label>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row" style="margin-left: 10px;">
+								<table class="tg data-table">
+									<thead>
+										<tr>
+											<th>ลำดับที่สมาชิก</br>ในครัวเรือน</th>
+											<th>เพศ<span class="star"> *</span></th>
+											<th>อายุ<span class="star"> *</span></th>
+											<th>การตกเป็นเหยื่อ</br>อาชญากรรม</br>(1 ม.ค. – 31 ธ.ค. 65)<span class="star"> *</span></th>
+											<th><u>หมายเหตุ</u></br>(กรณีไม่ระบุคำตอบ)</th>
+											<th>กรอกข้อมูลและรายละเอียด</br>การตกเป็นเหยื่ออาชญากรรม</th>
+										</tr>
+									</thead>
+									<tbody id="familyTable">
+										<tr>
+											<td>1. (ตัวผู้ตอบ)</td>
+											<td class="nowrap"><input type="radio" id="1_2111" name="1_S2_1_1" value="1" data-parsley-required="true"><label for="1_2111" class="ctrl-label">&nbsp;ชาย&nbsp;&nbsp;</label><input type="radio" id="1_2112" name="1_S2_1_1" value="2"><label for="1_2112" class="ctrl-label">&nbsp;หญิง&nbsp;&nbsp;</label> <input type="radio" id="1_2113" name="1_S2_1_1" value="3"><label for="1_2113" class="ctrl-label">&nbsp;ทางเลือก&nbsp;</label></td>
+											<td><input type="number" class="form-control age" oninput="maxLengthCheck(this)" maxlength="3" id="1_212" name="1_S2_1_2" data-parsley-required="true" /></td>
+											<td class="nowrap"><input type="radio" id="1_2131" name="1_S2_1_3" value="1"><label class="ctrl-label" for="1_2131">&nbsp;เคย&nbsp;&nbsp;</label><input type="radio" id="1_2132" name="1_S2_1_3" value="2" data-parsley-required="true"><label class="ctrl-label" for="1_2132">&nbsp;ไม่เคย&nbsp;</label></td>
+											<td><input type="text" class="form-control" id="1_214" name="1_S2_1_4" /></td>
+											<td class="text-center">
+												<a href="/main/goVictims" id="1_2151_a" name="1_S2_1_5_BUTTON" type="button" class="ui basic black button btn-form-hiddend-save-go disabled"><i id="1_2151_i" class="edit icon large readonly"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<a href="javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+				</div>
+				<div class="col-lg-1.5">
+					<a href="javascript:void(0)" id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>

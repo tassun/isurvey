@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/form.css" />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.maskedinput-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.ui.waiting-min.js"></script>
+	<script type="text/javascript" src="/js/calendar/calendar-min.js" defer></script>
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/libs.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<script type="text/javascript" src="/js/header.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<style>
+		.data-table { width: 100%; }
+		.nowrap { white-space: nowrap; }
+	</style>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>แบบสำรวจข้อมูลการทำร้ายรังแกทางจิตใจ (ผนวก ฉ) </label></br>
+					<div class="row">
+						<label class="col-form-label">1. ในรอบ 1 ปีที่ผ่านมาท่านเคยตกเป็นเหยื่อการถูกทำร้ายรังแกทางจิตใจจากคนในครอบครัวหรือคนใกล้ชิดในลักษณะต่าง ๆ เหล่านี้หรือไม่<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="5_1111" name="5_S5_1_1_1" value="1" data-parsley-required="true"> (1) สมาชิกในครอบครัวหรือคนรัก ทำร้าย ขู่ว่าจะทำร้าย หรือขู่ว่าจะพรากลูกของท่าน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1112" name="5_S5_1_1_1" value="2"> (2) สมาชิกในครอบครัวหรือคนรัก จำกัดทางเลือกในการวางแผนครอบครัว เช่น ห้ามท่านใช้การคุมกำเนิด หรือทำให้ท่านเข้าใจผิดกับการคุมกำเนิดของเขา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1113" name="5_S5_1_1_1" value="3"> (3) สมาชิกในครอบครัวหรือคนรักบังคับหรือไม่ยินยอมหากท่านจะขออนุญาตไปพบแพทย์
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1114" name="5_S5_1_1_1" value="4"> (4) สมาชิกในครอบครัวหรือคนรัก พยายามจำกัดไม่ให้ท่านพูดคุยกับบุคคลอื่นด้วยความหึงหวง หรือ รบเร้าที่จะทราบว่าท่านอยู่ที่ไหนตลอดเวลา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1115" name="5_S5_1_1_1" value="5"> (5) สมาชิกในครอบครัวหรือคนรักบังคับควบคุมในเรื่องการแต่งกายของท่าน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1116" name="5_S5_1_1_1" value="6"> (6) ถูกทำให้ตกใจหรือกลัวโดยเจตนา เช่น ตะโกน ทุบสิ่งของ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1117" name="5_S5_1_1_1" value="7"> (7) ถูกคนในครอบครัวหรือคนใกล้ชิดทำลายทรัพย์สินหรือสัตว์เลี้ยงของท่านถูกทำให้เสียหายหรือถูกทำลายเพื่อทำให้ท่านตกใจหรือเสียใจ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1118" name="5_S5_1_1_1" value="8"> (8) บุคคลใกล้ชิดท่านถูกทำร้ายหรือถูกข่มขู่ว่าจะถูกทำร้าย
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1119" name="5_S5_1_1_1" value="9"> (9) ถูกจำกัดเสรีภาพในการเดินทาง เช่น กักขัง ยึดบัตรประจำตัวหรือหนังสือเดินทาง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_11110" name="5_S5_1_1_1" value="10"> (10) พยายามจำกัดการติดต่อกับครอบครัวหรือเพื่อน หรือจำกัดการใช้สื่อสังคมออนไลน์ เช่น Facebook, Instagram, Twitter
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">2. ในกรณีที่เคยมีประสบการณ์ผู้ก่อเหตุเป็นบุคคลใด (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="checkbox-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="checkbox" id="5_1121" name="5_S5_1_1_2" value="1"> (1) บิดา/มารดา
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_1122" name="5_S5_1_1_2" value="2"> (2) ผู้ปกครอง
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_1123" name="5_S5_1_1_2" value="3"> (3) สามี
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_1124" name="5_S5_1_1_2" value="4"> (4) ภรรยา
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_1125" name="5_S5_1_1_2" value="5"> (5) คู่ชีวิตรูปแบบอื่น
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_1126" name="5_S5_1_1_2" value="6"> (6) คู่รักที่ยังไม่ได้แต่งงานหรือใช้ชีวิตอยู่ร่วมกัน
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_1127" name="5_S5_1_1_2" value="7"> (7) ลูกหลาน
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_1128" name="5_S5_1_1_2" value="8"> (8) พี่น้อง
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_1129" name="5_S5_1_1_2" value="9"> (9) เครือญาติ
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_11210" name="5_S5_1_1_2" value="10"> (10) เพื่อนบ้านหรือผู้อยู่ในชุมชนใกล้เคียง
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_11211" name="5_S5_1_1_2" value="11"> (11) เพื่อน
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_11212" name="5_S5_1_1_2" value="12"> (12) ความสัมพันธ์อื่นๆ (ระบุ)
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="5_11213" name="5_S5_1_1_2" value="13"> (13) ไม่ประสงค์จะตอบ
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="5_11212_text" name="5_S5_1_1_2_text" data-parsley-required="true" readonly />
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">3. จากกรณีดังกล่าวเป็นสาเหตุให้ท่านได้รับอันตรายทางจิตใจในระดับใด<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="5_1131" name="5_S5_1_1_3" value="1" data-parsley-required="true"> (1) ยังสามารถใช้ชีวิตได้ตามปกติ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1132" name="5_S5_1_1_3" value="2"> (2) รู้สึกเครียดหรือหวาดกลัวจนไม่สามารถใช้ชีวิตได้ตามปกติ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1133" name="5_S5_1_1_3" value="3"> (3) มีความผิดปกติทางจิตใจจนไม่สามารถใช้ชีวิตได้ตามปกติ (เช่น นอนไม่หลับ หวาดระแวง เห็นภาพหลอน)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="5_1134" name="5_S5_1_1_3" value="4"> (4) ได้รับการวินิจฉัยทา
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<a href="่javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+				</div>
+				<div class="col-lg-1.5">
+					<a href="่javascript:void(0)" class="ui basic red button "><i class="cancel icon large button"></i> ยกเลิก</a>
+				</div>
+			</div>
+			<br />
+		</div>
+	</div>
+</body>
+</html>

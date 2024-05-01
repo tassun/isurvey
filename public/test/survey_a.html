@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Survey</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="Cache-Control" content="no-store">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="-1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+		<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+		<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+		<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/form.css" />
+		<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+		<script type="text/javascript" src="/jquery/js/jquery.maskedinput-min.js"></script>
+		<script type="text/javascript" src="/jquery/js/jquery.ui.waiting-min.js"></script>
+		<script type="text/javascript" src="/js/calendar/calendar-min.js" defer></script>
+		<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+		<script type="text/javascript" src="/js/libs.js"></script>
+		<script type="text/javascript" src="/js/utils.js"></script>
+		<script type="text/javascript" src="/js/header.js"></script>
+		<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+		<style>
+		.indent { padding-bottom: 5px; }
+		.page-title { margin-top : 10px; }
+		</style>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/member/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container panel-container" style="margin-top : 10px;">
+			<h1 class="page-header page-title" style="margin-top: 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-varidate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<div class="container" style="text-align: right;">
+						<div class="line indent">
+							<label class="col-form-label nText">ผู้สำรวจ</label>
+							<div class="col-lg-3">
+								<input type="text" class="form-control" name="user_text" value="" readonly />
+							</div>
+						</div>
+						<div class="line">
+							<label class="col-form-label nText">แบบสำรวจลำดับที่</label>
+							<div class="col-lg-2">
+								<input type="hidden" name="1_text" value="" readonly />
+								<input type="text" class="form-control" name="2_text" value="" readonly />
+							</div>
+						</div>
+					</div>
+					<label for="wight">ส่วนที่ 1 ข้อมูลเกี่ยวกับผู้ตอบแบบสอบถาม</label>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<label class="col-form-label">A1 ข้อมูลส่วนบุคคล</label></br>
+							</div>
+							<div class="row indent">
+								<label class="col-form-label nText col-lg-3">A2 บ้านเลขที่<span class="star"> *</span></label>
+								<div class="col-lg-2 ">
+									<input type="text" class="form-control" id="A2" name="A2" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row indent">
+								<label class="col-form-label nText col-lg-3">A3 พิกัดบ้าน (NS) (EW)<span class="star"> *</span></label>
+								<div class="col-lg-2 ">
+									<input type="text" class="form-control" id="A3" name="A3" data-parsley-required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<label class="nText">หมายเหตุ : ข้อมูลที่จัดเก็บจากการสำรวจครั้งนี้จะถูกเก็บไว้เป็นความลับ และถูกนำมาใช้วิเคราะห์ในภาพรวมเพื่อประโยชน์สำหรับการดำเนินงานของสำนักงานกิจการยุติธรรม กระทรวงยุติธรรม เท่านั้น</label></br>
+							</div>
+							<div class="row">
+								<label class="col-form-label">A4 พื้นที่<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<div style="width: 50%; float:left;">
+										<div class="row" style="margin-left: 10px; padding-top: 13px;">
+											<input type="radio" id="A4_1" name="A4" value="1" data-parsley-required="true">
+											<label for="A4_1" class="radio-inline " style="align-self: center;">(A4.1) กรุงเทพมหานคร</label>
+										</div>
+										<div class="row" style=" padding-top: 13px;">
+											<label class="radio-inline col-lg-3" style="align-self: center; margin-left: 40px;">เขต<span class="star"> *</span></label>
+											<label class="radio-inline col-form-label  col-lg-5">
+												<select name="A4_1_2" id="amphure_1" class="form-control" disabled>
+													<option value="">เลือกเขต</option>
+												</select>
+											</label>
+										</div>
+										<div class="row">
+											<label class="radio-inline col-lg-3" style="align-self: center; margin-left: 40px;">แขวง<span class="star"> *</span></label>
+											<label class="radio-inline col-form-label  col-lg-5">
+												<select name="A4_1_3" id="district_1" class="form-control" disabled>
+													<option value="">เลือกแขวง</option>
+												</select>
+											</label>
+										</div>
+										<div class="row">
+											<label class="radio-inline col-lg-3" style="align-self: center; margin-left: 40px;">เขตสถานีตำรวจ<span class="star"> *</span></label>
+											<label class="radio-inline col-form-label  col-lg-5">
+												<input type="text" class="form-control" id="A4_1_4" name="A4_1_4" data-parsley-required="true" readonly />
+											</label>
+										</div>
+									</div>
+									<div style="width: 50%; float:right;">
+										<div class="row" style="margin-left: 10px;">
+											<input type="radio" id="A4_2" name="A4" value="2">
+											<label for="A4_2" class="radio-inline col-lg-5" style="align-self: center;">(A4.2) จังหวัดอื่นๆ (ระบุ)</label>
+										</div>
+										<div class="row">
+											<label class="radio-inline col-lg-45" style="align-self: center; margin-left: 30px;">จังหวัด<span class="star"> *</span></label>
+											<label class="radio-inline col-form-label  col-lg-5">
+												<select name="A4_2_1" id="province_2" class="form-control" disabled>
+													<option value="">เลือกจังหวัด</option>
+												</select>
+											</label>
+										</div>
+										<div class="row">
+											<label class="radio-inline col-lg-45" style="align-self: center; margin-left: 30px;">อำเภอ<span class="star"> *</span></label>
+											<label class="radio-inline col-form-label  col-lg-5">
+												<select name="A4_2_2" id="amphure_2" class="form-control" disabled>
+													<option value="">เลือกอำเภอ</option>
+												</select>
+											</label>
+										</div>
+										<div class="row">
+											<label class="radio-inline col-lg-45" style="align-self: center; margin-left: 30px;">ตำบล<span class="star"> *</span></label>
+											<label class="radio-inline col-form-label  col-lg-5">
+												<select name="A4_2_3" id="district_2" class="form-control" disabled>
+													<option value="">เลือกตำบล</option>
+												</select>
+											</label>
+										</div>
+										<div class="row">
+											<label class="radio-inline col-lg-45" style="align-self: center; margin-left: 30px;">เขตสถานีตำรวจ<span class="star"> *</span></label>
+											<label class="radio-inline col-form-label  col-lg-5">
+												<input type="text" class="form-control" id="A4_2_4" name="A4_2_4" data-parsley-required="true" readonly />
+											</label>
+										</div>
+										<div class="row">
+											<label class="radio-inline col-lg-45" style="align-self: center; margin-left: 30px;">อบต./ท.ตำบล/ท.เมือง/ท.นคร<span class="star"> *</span></label>
+											<label class="radio-inline col-form-label  col-lg-5">
+												<input type="text" class="form-control" id="A4_2_5" name="A4_2_5" data-parsley-required="true" readonly />
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<label for="wight">ข้อมูลบุคคลของผู้ตอบแบบสอบถาม (ผู้แทนครัวเรือน)</label>
+							<div class="row">
+								<label class="col-form-label">1. เพศ<span class="star"> * </span></label>
+								<div class="col-lg-1">
+									<label class="radio-inline col-form-label">
+										<input type="radio" id="A_01_1" name="A_01" value="1" data-parsley-required="true"> (1) ชาย
+									</label>
+								</div>
+								<div class="col-lg-1">
+								<label class="radio-inline col-form-label">
+									<input type="radio" id="A_01_2" name="A_01" value="2"> (2) หญิง
+								</label>
+								</div>
+								<div class="col-lg-3">
+								<label class="radio-inline col-form-label">
+									<input type="radio" id="A_01_3" name="A_01" value="3"> (3) เพศทางเลือก
+								</label>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">2. อายุ<span class="star"> *</span></label>
+								<div class="col-lg-3">
+									<div class="row">
+										<div class="col-lg-2">
+											<label class="radio-inline col-form-label">
+												<input type="radio" id="A_02_1" name="A_02" value="0"> ระบุ
+											</label>	
+										</div>
+										<div class="col-lg-4">
+											<input type="number" class="form-control" oninput="maxLengthCheck(this)" min="0" max="150" maxlength="3" id="A_02_text" name="A_02_text" data-parsley-required="true" />
+										</div>
+										<span class="col-form-label lol-lg">
+											ปี (เต็มปีบริบูรณ์)
+										</span>
+									</div>
+								</div>
+								<label class="radio-inline col-form-label  col-lg-2">
+									<input type="radio" id="A_02_2" name="A_02" value="1">(1) ไม่ทราบ
+								</label>
+								<label class="radio-inline col-form-label  col-lg-2">
+									<input type="radio" id="A_02_3" name="A_02" value="2">(2) ไม่ประสงค์จะตอบ
+								</label>
+							</div>
+							<div class="row">
+								<label class="col-form-label">3. รายได้ครัวเรือน<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_03_1" name="A_03" value="1" data-parsley-required="true"> (1) ไม่เกิน 15,000 บาท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_03_2" name="A_03" value="2"> (2) 15,001-25,000 บาท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_03_3" name="A_03" value="3"> (3) 25,001-35,000 บาท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_03_4" name="A_03" value="4"> (4) 35,001-45,000 บาท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_03_5" name="A_03" value="5"> (5) 45,001-55,000 บาท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_03_6" name="A_03" value="6"> (6) 55,001-65,000 บาท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_03_7" name="A_03" value="7"> (7) 65,001-75,000 บาท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_03_8" name="A_03" value="8"> (8) มากกว่า 75,000 บาท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_03_9" name="A_03" value="9"> (9) ไม่ประสงค์จะตอบ
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">4. ครัวเรือนของท่านมีระดับรายได้เพียงพอต่อการดำรงชีวิตและค่าใช้จ่ายพื้นฐานมากน้อยเพียงใด <span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_04_1" name="A_04" value="1" data-parsley-required="true"> (1) มีฐานะร่ำรวย (สามารถจับจ่ายใช้สอย โดยมีเงินเหลือเก็บจำนวนมาก)
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_04_2" name="A_04" value="2"> (2) สามารถจับจ่ายใช้สอยได้อย่างสบาย มีเงินเหลือเก็บ
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_04_3" name="A_04" value="3"> (3) สามารถจับจ่ายใช้สอยได้อย่างสบาย มีเงินเหลือเก็บ
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_04_4" name="A_04" value="4"> (4) รายได้ไม่เพียงพอต่อค่าใช้จ่าย โดยยังขาดเหลืออยู่บ้าง
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_04_5" name="A_04" value="5"> (5) ขัดสน มีชีวิตอยู่อย่างยากลำบาก
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_04_6" name="A_04" value="6"> (6) ลำบากยากจน มีรายได้ในระดับที่ต้องใช้ชีวิตอย่างยากลำบากมาก
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_04_7" name="A_04" value="7"> (7) ไม่ทราบ
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_04_8" name="A_04" value="8"> (8) ไม่ประสงค์จะตอบ
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">5. อาชีพ<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_05_1" name="A_05" value="1" data-parsley-required="true"> (1) ข้าราชการ พนักงานรัฐวิสาหกิจ
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_05_2" name="A_05" value="2"> (2) พนักงานเอกชน
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_05_3" name="A_05" value="3"> (3) นักเรียน/นักศึกษา
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_05_4" name="A_05" value="4"> (5) รับจ้างทั่วไป
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_05_5" name="A_05" value="5"> (5) เกษตรกรรม
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_05_6" name="A_05" value="6"> (6) ประกอบธุรกิจ
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_05_7" name="A_05" value="7"> (7) ไม่ได้ประกอบอาชีพ
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_05_8" name="A_05" value="8"> (8) อื่น ๆ...
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_05_9" name="A_05" value="9"> (9) ไม่ประสงค์จะตอบ
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									โปรดระบุ
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="A_05_text" name="A_05_text" maxlength="100" data-parsley-required="true" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">6. การศึกษาระดับสูงสุด<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_06_1" name="A_06" value="1" data-parsley-required="true"> (1) ไม่เคยเข้ารับการศึกษา
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_2" name="A_06" value="2"> (2) การศึกษาทางเลือกนอกโรงเรียน (อาทิ Home School)
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_3" name="A_06" value="3"> (3) ประถมศึกษา
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_4" name="A_06" value="4"> (4) มัธยมศึกษาตอนต้น
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_5" name="A_06" value="5"> (5) มัธยมศึกษาตอนปลาย
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_6" name="A_06" value="6"> (6) ปวช.
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_7" name="A_06" value="7"> (7) ปวส.
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_8" name="A_06" value="8"> (8) ปริญญาตรี
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_9" name="A_06" value="9"> (9) ปริญญาโท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_10" name="A_06" value="10"> (10) สูงกว่าปริญญาโท
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_11" name="A_06" value="11"> (11) การศึกษาในรูปแบบอื่น...
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_12" name="A_06" value="12"> (12) ไม่ทราบ
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_06_13" name="A_06" value="13"> (13) ไม่ประสงค์จะตอบ
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									โปรดระบุ
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="A_06_text" name="A_06_text" maxlength="100" data-parsley-required="true" readonly />
+								</div>
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									(กรณีศึกษาในระบบการศึกษานอกโรงเรียนของกระทรวงศึกษาธิการ (กศน.) ให้ระบุระดับการศึกษาสูงสุดที่สอบวัดระดับผ่าน)
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">7. สถานภาพสมรส<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_07_1" name="A_07" value="1" data-parsley-required="true"> (1) โสด
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_07_2" name="A_07" value="2"> (2) แต่งงานแล้ว
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_07_3" name="A_07" value="3"> (3) อยู่ร่วมกัน
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_07_4" name="A_07" value="4"> (4) แยกกันอยู่
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_07_5" name="A_07" value="5"> (5) หย่าร้าง
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_07_6" name="A_07" value="6"> (6) หม้าย
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_07_7" name="A_07" value="7"> (7) อื่น ๆ โปรดระบุ
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_07_8" name="A_07" value="8"> (8) ไม่ทราบ
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_07_9" name="A_07" value="9"> (9) ไม่ประสงค์จะตอบ
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									โปรดระบุ
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="A_07_text" name="A_07_text" maxlength="100" data-parsley-required="true" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">8. สัญชาติ<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_08_1" name="A_08" value="1" data-parsley-required="true"> (1) ไทย
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_2" name="A_08" value="2"> (2) อื่น ๆ โปรดระบุ
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									โปรดระบุ
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="A_08_text" name="A_08_text" maxlength="100" data-parsley-required="true" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									เหตุผลที่ท่านอาศัยอยู่ในประเทศไทย
+								</div>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_08_N_1" name="A_08_N" value="1" disabled> (1) แรงงานต่างด้าว
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_2" name="A_08_N" value="2" disabled> (2) นักศึกษาต่างชาติ ฝึกอบรม
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_3" name="A_08_N" value="3" disabled> (3) ได้รับการจ้างงานในประเทศไทย (ตามสัญญาจ้างตั้งแต่ก่อนเข้ามาในประเทศ)
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_4" name="A_08_N" value="4" disabled> (4) ได้รับการจ้างงานในประเทศไทย (เพิ่งหางานได้หลังจากเข้าประเทศ)
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_5" name="A_08_N" value="5" disabled> (5) ติดตามคู่สมรส ครอบครัว (รวมถึงความสัมพันธ์คู่รักในรูปแบบอื่น)
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_6" name="A_08_N" value="6" disabled> (6) ติดตามบิดามารดา หรือผู้ปกครอง
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_7" name="A_08_N" value="7" disabled> (7) เกิดและพำนักในประเทศไทยตั้งแต่เกิด แต่ไม่ได้สัญชาติไทย
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_8" name="A_08_N" value="8" disabled> (8) นักท่องเที่ยวระยะยาวต่อเนื่องในช่วงเวลาที่เก็บแบบสอบถาม
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_9" name="A_08_N" value="9" disabled> (9) ผู้ลี้ภัยจากสงคราม ความขัดแย้งภายในประเทศ
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_10" name="A_08_N" value="10" disabled> (10) อื่น ๆ
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_11" name="A_08_N" value="11" disabled> (11) ไม่ทราบ
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_08_N_12" name="A_08_N" value="12" disabled> (12) ไม่ประสงค์จะตอบ
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									โปรดระบุ
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="A_08_N_text" name="A_08_N_text" maxlength="100" data-parsley-required="true" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">9. ความพิการ<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_09_1" name="A_09" value="1" data-parsley-required="true"> (1) ไม่พิการ
+									</label>
+									<label class="radio-inline col-form-label col-lg-4">
+										<input type="radio" id="A_09_2" name="A_09" value="2" data-parsley-required="true"> (2) พิการ (ตอบได้มากกว่าหนึ่งข้อ)
+									</label>
+									<div class="col-lg-12">										
+										<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+											<input type="checkbox" id="A_09_01" name="A_09_01" value="1"> (1) บกพร่องทางการเห็น
+										</label>
+										<label class="radio-inline col-form-label col-lg-3">
+											<input type="checkbox" id="A_09_02" name="A_09_02" value="1"> (2) บกพร่องทางการได้ยิน
+										</label>
+										<label class="radio-inline col-form-label col-lg-3">
+											<input type="checkbox" id="A_09_03" name="A_09_03" value="1"> (3) บกพร่องทางสติปัญญา
+										</label>
+										<label class="radio-inline col-form-label col-lg-3">
+											<input type="checkbox" id="A_09_04" name="A_09_04" value="1"> (4) บกพร่องทางร่างกายและสุขภาพ
+										</label>
+										<label class="radio-inline col-form-label col-lg-3">
+											<input type="checkbox" id="A_09_05" name="A_09_05" value="1"> (5) บกพร่องทางการเรียนรู้
+										</label>
+										<label class="radio-inline col-form-label col-lg-3">
+											<input type="checkbox" id="A_09_06" name="A_09_06" value="1"> (6) บกพร่องทางการพูดและภาษา
+										</label>
+										<label class="radio-inline col-form-label col-lg-3">
+											<input type="checkbox" id="A_09_07" name="A_09_07" value="1"> (7) บกพร่องทางพฤติกรรมและอารมณ์
+										</label>
+										<label class="radio-inline col-form-label col-lg-3">
+											<input type="checkbox" id="A_09_08" name="A_09_08" value="1"> (8) ออทิสติก
+										</label>
+										<label class="radio-inline col-form-label col-lg-3">
+											<input type="checkbox" id="A_09_09" name="A_09_09" value="1"> (9) พิการอื่น ๆ 
+										</label>
+									</div>
+									<div class="row">
+										<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+											โปรดระบุ
+										</div>
+										<div class="col-lg-4">
+											<input type="text" class="form-control" id="A_09_text" name="A_09_text" maxlength="100" data-parsley-required="true" readonly />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">10. ศาสนา<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_10_1" name="A_10" value="1" data-parsley-required="true"> (1) ไม่มีศาสนา
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_10_2" name="A_10" value="2"> (2) คริสต์
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_10_3" name="A_10" value="3"> (3) อิสลาม
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_10_4" name="A_10" value="4"> (4) พราหมณ์-ฮินดู
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_10_5" name="A_10" value="5"> (5) พุทธ
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_10_6" name="A_10" value="6"> (6) อื่น ๆ โปรดระบุ
+									</label>
+									<label class="radio-inline col-form-label col-lg-3">
+										<input type="radio" id="A_10_7" name="A_10" value="7"> (7) ไม่ประสงค์จะตอบ
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									โปรดระบุ
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="A_10_text" name="A_10_text" maxlength="100" data-parsley-required="true" readonly />
+								</div>
+							</div>
+							</br>
+							<div class="row">
+								<label class="col-form-label">11. ท่านเห็นการปฏิบัติงานของเจ้าหน้าที่ตำรวจ หรือเจ้าหน้าที่ของหน่วยงานด้านยุติธรรม </br>เช่น เจ้าหน้าที่คุมประพฤติ เจ้าหน้าที่ราชทัณฑ์ เจ้าหน้าที่ยุติธรรมจังหวัด เจ้าหน้าที่ยุติธรรมชุมชน เป็นต้น </br>ในการปฏิบัติงานในพื้นที่ชุมชนของท่านมากน้อยเพียงใด<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_11_1" name="A_11" value="1" data-parsley-required="true"> (1) สัปดาห์ละครั้ง
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_11_2" name="A_11" value="2"> (2) เดือนละครั้ง
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_11_3" name="A_11" value="3"> (3) ปีละครั้ง
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_11_4" name="A_11" value="4"> (4) มากกว่า 1 ครั้ง/ปี
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_11_5" name="A_11" value="5"> (5) ไม่เคยพบ
+									</label>
+								</div>
+							</div>
+							</br>
+							<div class="row">
+								<label class="col-form-label">12. สถานะของท่านในครัวเรือน (ท่านมีความเกี่ยวข้องสัมพันธ์กับเจ้าของบ้านอย่างไร)<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_12_1" name="A_12" value="1" data-parsley-required="true"> (1) เจ้าของบ้าน
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_12_2" name="A_12" value="2"> (2) คู่สมรส
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_12_3" name="A_12" value="3"> (3) บิดามารดา
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_12_4" name="A_12" value="4"> (4) บุตร
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_12_5" name="A_12" value="5"> (5) ปู่/ย่า/ตา/ยาย
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_12_6" name="A_12" value="6"> (6) หลาน
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_12_7" name="A_12" value="7"> (7) พี่/น้อง
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_12_8" name="A_12" value="8"> (8) ลุง/ป้า/น้า/อา
+									</label>
+									<label class="radio-inline col-form-label  col-lg-3">
+										<input type="radio" id="A_12_9" name="A_12" value="9"> (9) อื่นๆ...
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									โปรดระบุ
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="A_12_text" name="A_12_text" maxlength="100" data-parsley-required="true" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">13. ลักษณะบริเวณที่อยู่อาศัย<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label  col-lg-8" style="margin-left: 10px;">
+										<input type="radio" id="A_13_1" name="A_13" value="1" data-parsley-required="true"> (1) เขตที่พักอาศัยทั่วไป เช่น หมู่บ้านจัดสรร บ้านเดี่ยว
+									</label>
+									<label class="radio-inline col-form-label  col-lg-8">
+										<input type="radio" id="A_13_2" name="A_13" value="2"> (2) เขตธุรกิจ เช่น เขตที่มีบริษัท ห้าง ร้าน อยู่รวมกันเป็นบริเวณกว้าง
+									</label>
+									<label class="radio-inline col-form-label  col-lg-8">
+										<input type="radio" id="A_13_3" name="A_13" value="3"> (3) เขตชุมชนแออัด หรือชุมชนที่มีลักษณะบ้านเรือนหนาแน่น และประชากรอยู่อย่างแออัด
+									</label>
+									<label class="radio-inline col-form-label  col-lg-8">
+										<input type="radio" id="A_13_4" name="A_13" value="4"> (4) เขตอุตสาหกรรม หรือชุมชนที่อยู่ในบริเวณที่มีโรงงานอุตสาหกรรมจำนวนมากหรือนิคมอุตสาหกรรมตั้งอยู่
+									</label>
+									<label class="radio-inline col-form-label  col-lg-8">
+										<input type="radio" id="A_13_5" name="A_13" value="5"> (5) เขตเกษตรกรรม หรือชุมชนที่อยู่ในบริเวณพื้นที่เกษตรกรรม
+									</label>
+									<label class="radio-inline col-form-label  col-lg-8">
+										<input type="radio" id="A_13_6" name="A_13" value="6"> (6) อื่นๆ...
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									โปรดระบุ
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="A_13_text" name="A_13_text" maxlength="100" data-parsley-required="true" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">14. ในช่วงระยะเวลา 5 ปี ที่ผ่านมา พ.ศ.2562 จนถึงปัจจุบันท่านเคยมาติดต่อหรือรับบริการจากหน่วยงานในกระบวนการยุติธรรมหรือไม่<span class="star"> *</span></label>
+								<div class="col-lg-12">
+									<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+										<input type="radio" id="A_14_1" name="A_14" value="0" data-parsley-required="true"> (0) ไม่เคยรับบริการ
+									</label>
+									<label class="radio-inline col-form-label  col-lg-4">
+										<input type="radio" id="A_14_2" name="A_14" value="1"> (1) เคยรับบริการ (ตอบได้มากกว่าหนึ่งข้อ)
+									</label>
+									<div class="col-lg-12">
+										<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+											<input type="checkbox" id="A_14_01" name="A_14_01" value="1" data-parsley-required="true"> (1) ตำรวจ
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_02" name="A_14_02" value="1"> (2) อัยการ
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_03" name="A_14_03" value="1"> (3) ศาล
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_04" name="A_14_04" value="1"> (4) สำนักงานคณะกรรมการป้องกันและปราบปรามการทุจริตแห่งชาติ (ป.ป.ช.) หรือสำนักงาน ป.ป.ช.ภาค หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_05" name="A_14_05" value="1"> (5) สำนักงานคณะกรรมการป้องกันและปราบปรามการทุจริตในภาครัฐ (ป.ป.ท.) หรือสำนักงาน ป.ป.ท. ภาค หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_06" name="A_14_06" value="1"> (6) สำนักงานคณะกรรมการป้องกันและปราบปรามยาเสพติด (ป.ป.ส.) หรือสำนักงาน ป.ป.ส. ภาคหรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_07" name="A_14_07" value="1"> (7) กรมสอบสวนคดีพิเศษ หรือกองปฏิบัติการคดีพิเศษภาค หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_08" name="A_14_08" value="1"> (8) สำนักงานป้องกันและปราบปรามการฟอกเงิน (ปปง.) หรือหน่วยงานในสังกัด)
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_09" name="A_14_09" value="1"> (9) สำนักงานกองทุนยุติธรรม
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_10" name="A_14_10" value="1"> (10) สำนักงานยุติธรรมจังหวัด/สำนักงานยุติธรรมชุมชน
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_11" name="A_14_11" value="1"> (11) สถาบันนิติวิทยาศาสตร์ หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_12" name="A_14_12" value="1"> (12) กรมคุ้มครองสิทธิและเสรีภาพ หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_13" name="A_14_13" value="1"> (13) กรมคุมประพฤติ หรือสำนักงานคุมประพฤติ หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_14" name="A_14_14" value="1"> (14) กรมพินิจและคุ้มครองเด็กและเยาวชน หรือสถานพินิจคุ้มครองเด็กและเยาวชน หรือศูนย์ฝึกอบรมเด็กและเยาวชน หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_15" name="A_14_15" value="1"> (15) กรมราชทัณฑ์ หรือเรือนจำ/ทัณฑสถาน หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_16" name="A_14_16" value="1"> (16) กรมบังคับคดี หรือสำนักงานบังคับคดี หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_17" name="A_14_17" value="1"> (17) สถาบันอนุญาโตตุลาการ
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_18" name="A_14_18" value="1"> (18) ศาลปกครอง หรือศาลปกครองภาค หรือหน่วยงานในสังกัด
+										</label>
+										<label class="radio-inline col-form-label  col-lg-3">
+											<input type="checkbox" id="A_14_19" name="A_14_19" value="1"> (19) สำนักงานคณะกรรมการสิทธิมนุษยชนแห่งชาติs
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+									หมายเหตุ กรณีตอบข้อใดข้อหนึ่งให้นับเป็นเคยใช้บริการหน่วยงานในกระบวนการยุติธรรม
+								</div>
+							</div>
+							</br>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<a href="javascript:void(0)" id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+				</div>
+				<div class="col-lg-1.5">
+					<a href="/survey/listalls" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
+				</div>
+			</div>
+			</br>
+		</div>
+	</div>
+</body>
+</html>

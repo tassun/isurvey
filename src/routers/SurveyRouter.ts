@@ -78,8 +78,10 @@ export class SurveyRouter extends OperateRouter {
 		this.router.post('/add', async (req: Request, res: Response) => { this.routeAdd(req,res); });
 		this.router.get('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
 		this.router.post('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
+		this.router.get('/edit/:profile_id', async (req: Request, res: Response) => { this.routeEdit(req,res); });
 		this.router.get('/form', async (req: Request, res: Response) => { this.routeForm(req,res); });
 		this.router.post('/form', async (req: Request, res: Response) => { this.routeForm(req,res); });
+		this.router.get('/form/:profile_id', async (req: Request, res: Response) => { this.routeForm(req,res); });
 		return this.router;
 	}
 	

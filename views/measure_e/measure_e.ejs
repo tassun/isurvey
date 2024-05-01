@@ -315,23 +315,23 @@
 							</label>
 						</div>
 					</div>
-					<br/>
-					<div class="row">
-						<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
-							<% if(!page.isUpdateMode(data.action)) {%>
-								<a href="javascript:void(0);" id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
-							<% } %>
-							<% if(page.isUpdateMode(data.action)) {%>
-								<a href="javascript:void(0);" id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.survey_id%>"><i class="save icon large button"></i> ปรับปรุง</a>
-							<% } %>
-						</div>
-						<div class="col-lg-1.5">
-							<a href="javascript:void(0);" id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</a>
-						</div>
-					</div>
-					<br/>
 				</form>
 			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<% if(!page.isUpdateMode(data.action)) {%>
+						<button id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</button>
+					<% } %>
+					<% if(page.isUpdateMode(data.action)) {%>
+						<button id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.survey_id%>"><i class="save icon large button"></i> ปรับปรุง</button>
+					<% } %>
+				</div>
+				<div class="col-lg-1.5">
+					<button id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+			<br/>
 		</div>
 	</div>
 </body>

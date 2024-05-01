@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/form.css" />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.maskedinput-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.ui.waiting-min.js"></script>
+	<script type="text/javascript" src="/js/calendar/calendar-min.js" defer></script>
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/libs.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<script type="text/javascript" src="/js/header.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<style>
+		.data-table { width: 100%; }
+		.nowrap { white-space: nowrap; }
+	</style>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>แบบสำรวจข้อมูลความรุนแรงและการทรมานทุกรูปแบบที่มีต่อเด็ก (ผนวก ช) </label></br>
+					<div class="row">
+						<label class="col-form-label">1. ท่านเคยถูกกระทำความรุนแรงทางเพศหรือมีกิจกรรมทางเพศ โดยตกเป็นเหยื่ออาชญากรรมก่อนอายุ 18 ปี<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="6_1111" name="6_S6_1_1_1" value="1" data-parsley-required="true"> (1) ใช่
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="6_1112" name="6_S6_1_1_1" value="2"> (2) ไม่ใช่
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">2. ท่านตกเป็นเหยื่ออาชญากรรมครั้งแรกในขณะที่มีอายุ<span class="star"> *</span></label>
+						<div class="col-lg-2">
+							<input type="number" class="form-control" maxlength="3" id="6_1121" name="6_S6_1_2_1" data-parsley-required="true" />
+						</div>
+						<div class="col-form-label inputTextFix">
+							ปี (เต็มปีบริบูรณ์)
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">3. เหตุที่เกิดขึ้นเป็นเรื่องอะไร (ตอบได้มากกว่าหนึ่งข้อ)</span></label>
+						<label class="col-form-label">3.1 ความรุนแรงทางเพศ (ในที่นี้หมายถึง การข่มเหง การแสวงหาประโยชน์อย่างไม่ถูกต้อง การค้ามนุษย์ และความรุนแรงและการทรมานทุกรูปแบบที่มีต่อเด็ก)<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="checkbox-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="checkbox" id="6_11311" name="6_S6_1_3_1_1" value="1"> การบังคับ ชักจูงเด็ก ให้มีกิจกรรมทางเพศโดยไม่ยิมยอม
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="6_11312" name="6_S6_1_3_1_1" value="2"> การผลิตหรือจำหน่ายสื่อลามกโดยใช้เด็กเป็นเครื่องมือ
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="6_11313" name="6_S6_1_3_1_1" value="3"> ล่อลวง ชักจูง หรือ บังคับให้เป็นโสเภณีเด็ก ทั้งนี้รวมถึงการชักจูงล่อลวงผ่านผู้ปกครอง
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="6_11314" name="6_S6_1_3_1_1" value="4"> ถูกนำตัวมาขาย เอาตัวเป็นทาสด้วยวัตถุประสงค์ทางเพศ
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="6_11315" name="6_S6_1_3_1_1" value="5"> บังคับแต่งงาน (ในขณะที่ยังมีอายุไม่ถึง 18 ปี)
+							</label>
+							<label class="checkbox-inline col-form-label  col-lg-3">
+								<input type="checkbox" id="6_11316" name="6_S6_1_3_1_1" value="6"> ถูกบังคับหรือทรมานในลักษณะอื่น ๆ เพื่อวัตถุประสงค์ทางเพศ (ระบุ)
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="6_11316_text" name="6_S6_1_3_1_1_text" data-parsley-required="true" readonly />
+						</div>
+					</div>
+					<label class="col-form-label">3.2 กิจกรรมทางเพศ ในที่นี้หมายถึง การมีเพศสัมพันธ์ทั้งที่มีการร่วมประเวณีและไม่มีการร่วมประเวณี ไม่ว่าเด็กจะยินยอมหรือไม่ยินยอมก็ตาม<span class="star"> *</span></label>
+					<div class="col-lg-12">
+						<label class="checkbox-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+							<input type="checkbox" id="6_11321" name="6_S6_1_3_1_2" value="1"> ร่วมประเวณีด้วยความยินยอม
+						</label>
+						<label class="checkbox-inline col-form-label  col-lg-3">
+							<input type="checkbox" id="6_11322" name="6_S6_1_3_1_2" value="2"> ร่วมประเวณีโดยไม่ยินยอม
+						</label>
+						<label class="checkbox-inline col-form-label  col-lg-3">
+							<input type="checkbox" id="6_11323" name="6_S6_1_3_1_2" value="3"> ให้สำเร็จความใคร่
+						</label>
+						<label class="checkbox-inline col-form-label  col-lg-3">
+							<input type="checkbox" id="6_11324" name="6_S6_1_3_1_2" value="4"> การทำอนาจาร (กอด จูบ ลูบ คลำ สัมผัสร่างกายในลักษณะไม่สมควรทางเพศ)
+						</label>
+						<label class="checkbox-inline col-form-label  col-lg-3">
+							<input type="checkbox" id="6_11325" name="6_S6_1_3_1_2" value="5"> การบันทึกภาพลามกอนาจาร
+						</label>
+						<label class="checkbox-inline col-form-label  col-lg-3">
+							<input type="checkbox" id="6_11326" name="6_S6_1_3_1_2" value="6"> จัดทำสื่อโฆษณาที่มีลักษณะลามกอนาจารหรือไม่สมควรในทางเพศ (เช่น เปิดเผยร่างกายมากเกินสมควร)
+						</label>
+						<label class="checkbox-inline col-form-label  col-lg-3">
+							<input type="checkbox" id="6_11327" name="6_S6_1_3_1_2" value="7"> ล่อลวงให้เป็นผู้ให้บริการในธุรกิจทางเพศแต่ไม่ถึงกับให้บริการเป็นโสเภณี เช่น เป็นเด็กเสิร์ฟ ในสถานบริการที่ใช้เรื่องเพศชักจูงลูกค้า เป็นเด็กนั่งดริงค์ PR (ถ้าถึงกับเป็นโสเภณีถือเป็นความรุนแรงทางเพศตามข้อ 3.1)
+						</label>
+					</div>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<a href="javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+				</div>
+				<div class="col-lg-1.5">
+					<a href="javascript:void(0)" class="ui basic red button "><i class="cancel icon large button"></i> ยกเลิก</a>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>
