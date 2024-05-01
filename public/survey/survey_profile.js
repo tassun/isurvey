@@ -4,6 +4,7 @@ $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("profile"); }catch(ex) { }
     setupComponents();
+    setupDataControls();
     setupUI();
 });
 function setupComponents() {
@@ -11,6 +12,8 @@ function setupComponents() {
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
     $("#buttonnext").click(function() { confirmNextSurvey(this); return false; });
+}
+function setupDataControls() {
     setupProvince("province_2",$("#province_2").attr("data-value"),$("#province_1").val());
     setupAmphure("amphure_2", $("#province_2").attr("data-value"),$("#amphure_2").attr("data-value"));
     setupDistrict("district_2",$("#amphure_2").attr("data-value"),$("#district_2").attr("data-value"));

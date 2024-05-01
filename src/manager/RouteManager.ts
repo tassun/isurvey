@@ -1,19 +1,21 @@
 import { Application, Request, Response } from 'express';
 import { Utilities } from 'will-util';
 import { BaseRouter } from '../base/BaseRouter';
-import { RenderRouter } from './RenderRouter';
-import { SigninRouter } from './SigninRouter';
-import { TestRouter } from './TestRouter';
-import { UserRouter } from './UserRouter';
-import { ExportRouter } from './ExportRouter';
-import { DataRouter } from './DataRouter';
-import { SurveyRouter } from './SurveyRouter';
-import { FormRouter } from './FormRouter';
-import { MeasureBRouter } from './MeasureBRouter';
-import { MeasureCRouter } from './MeasureCRouter';
-import { MeasureDRouter } from './MeasureDRouter';
-import { MeasureERouter } from './MeasureERouter';
-import { MeasureFRouter } from './MeasureFRouter';
+import { RenderRouter } from '../routers/RenderRouter';
+import { SigninRouter } from '../routers/SigninRouter';
+import { TestRouter } from '../routers/TestRouter';
+import { UserRouter } from '../routers/UserRouter';
+import { ExportRouter } from '../routers/ExportRouter';
+import { DataRouter } from '../routers/DataRouter';
+import { SurveyRouter } from '../routers/SurveyRouter';
+import { FormRouter } from '../routers/FormRouter';
+import { MeasureBRouter } from '../routers/MeasureBRouter';
+import { MeasureCRouter } from '../routers/MeasureCRouter';
+import { MeasureDRouter } from '../routers/MeasureDRouter';
+import { MeasureERouter } from '../routers/MeasureERouter';
+import { MeasureFRouter } from '../routers/MeasureFRouter';
+import { SurveyFRouter } from '../routers/SurveyFRouter';
+import { SurveyGRouter } from '../routers/SurveyGRouter';
 
 const errorHandler = require('express-error-handler');
 export class RouteManager extends BaseRouter {
@@ -79,6 +81,8 @@ export class RouteManager extends BaseRouter {
         let measure_d = new MeasureDRouter(this.dir,this.logger);
         let measure_e = new MeasureERouter(this.dir,this.logger);
         let measure_f = new MeasureFRouter(this.dir,this.logger);
+        let survey_f = new SurveyFRouter(this.dir,this.logger);
+        let survey_g = new SurveyGRouter(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
             try {
@@ -111,6 +115,8 @@ export class RouteManager extends BaseRouter {
         app.use("/measure_d", measure_d.route(app));
         app.use("/measure_e", measure_e.route(app));
         app.use("/measure_f", measure_f.route(app));
+        app.use("/survey_f", survey_f.route(app));
+        app.use("/survey_g", survey_g.route(app));
 
         this.handleErrors(app);
     }
