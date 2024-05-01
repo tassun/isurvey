@@ -14,6 +14,8 @@ import { MeasureCRouter } from '../routers/MeasureCRouter';
 import { MeasureDRouter } from '../routers/MeasureDRouter';
 import { MeasureERouter } from '../routers/MeasureERouter';
 import { MeasureFRouter } from '../routers/MeasureFRouter';
+import { SurveyCRouter } from '../routers/SurveyCRouter';
+import { SurveyERouter } from '../routers/SurveyERouter';
 import { SurveyFRouter } from '../routers/SurveyFRouter';
 import { SurveyGRouter } from '../routers/SurveyGRouter';
 
@@ -81,6 +83,8 @@ export class RouteManager extends BaseRouter {
         let measure_d = new MeasureDRouter(this.dir,this.logger);
         let measure_e = new MeasureERouter(this.dir,this.logger);
         let measure_f = new MeasureFRouter(this.dir,this.logger);
+        let survey_c = new SurveyCRouter(this.dir,this.logger);
+        let survey_e = new SurveyERouter(this.dir,this.logger);
         let survey_f = new SurveyFRouter(this.dir,this.logger);
         let survey_g = new SurveyGRouter(this.dir,this.logger);
 
@@ -115,6 +119,8 @@ export class RouteManager extends BaseRouter {
         app.use("/measure_d", measure_d.route(app));
         app.use("/measure_e", measure_e.route(app));
         app.use("/measure_f", measure_f.route(app));
+        app.use("/survey_c", survey_c.route(app));
+        app.use("/survey_e", survey_e.route(app));
         app.use("/survey_f", survey_f.route(app));
         app.use("/survey_g", survey_g.route(app));
 

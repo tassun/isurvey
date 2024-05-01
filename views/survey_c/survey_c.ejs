@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<%- include('../asset/meta') %>		
+	<%- include('../asset/styles') %>		
+	<%- include('../asset/scripts') %>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_c/survey_c.js"></script>
+</head>
+<body>
+	<%- include('../partials/page_waiting') %>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<%- include('../partials/page_header') %>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
+					<label>ความรู้สึกหวาดกลัวภัยอาชญากรรม (ผนวก ค) </label></br>
+					<label>ท่านมีความรู้สึกปลอดภัยมากน้อยเพียงใดในกรณีต่าง ๆ ต่อไปนี้</label>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg data-table" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-9wq8 bg" rowspan="2">สถานการณ์<br></th>
+											<th class="tg-c3oa bg" colspan="4">ความรู้สึกปลอดภัย</th>
+										</tr>
+										<tr>
+											<th class="tg-c3ow bg">4<br/><br/><label class="nowrap">รู้สึกไม่ปลอดภัยมาก</label></th>
+											<th class="tg-c3ow bg">3<br/><br/><label class="nowrap">รู้สึกไม่ปลอดภัย</label></th>
+											<th class="tg-c3ow bg">2<br/><br/><label class="nowrap">รู้สึกปลอดภัย</label></th>
+											<th class="tg-c3ow bg">1<br/><br/><label class="nowrap">รู้สึกปลอดภัยมาก</label></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0laq bg" colspan="6">ความรู้สึกหวาดกลัวภัยอาชญากรรม</td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.1 การเดินตามลำพังในละแวกที่พักอาศัยในตอน<u>กลางคืน</u><span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_1_4" name="SC_1_1" value="4" <%=page.checked("4",data.dataset?.SC_1_1)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_1_3" name="SC_1_1" value="3" <%=page.checked("3",data.dataset?.SC_1_1)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_1_2" name="SC_1_1" value="2" <%=page.checked("2",data.dataset?.SC_1_1)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_1_1" name="SC_1_1" value="1" <%=page.checked("1",data.dataset?.SC_1_1)%> data-parsley-required="true" /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.2 เมื่อต้องอยู่บ้านคนเดียวในเวลา<u>กลางคืน</u><span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_2_4" name="SC_1_2" value="4" <%=page.checked("4",data.dataset?.SC_1_2)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_2_3" name="SC_1_2" value="3" <%=page.checked("3",data.dataset?.SC_1_2)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_2_2" name="SC_1_2" value="2" <%=page.checked("2",data.dataset?.SC_1_2)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_2_1" name="SC_1_2" value="1" <%=page.checked("1",data.dataset?.SC_1_2)%> data-parsley-required="true" /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.1.3 เมื่อต้องอยู่บ้านคนเดียวในเวลา<u>กลางวัน</u><span class="star"> *</span></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_3_4" name="SC_1_3" value="4" <%=page.checked("4",data.dataset?.SC_1_3)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_3_3" name="SC_1_3" value="3" <%=page.checked("3",data.dataset?.SC_1_3)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_3_2" name="SC_1_3" value="2" <%=page.checked("2",data.dataset?.SC_1_3)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_1_3_1" name="SC_1_3" value="1" <%=page.checked("1",data.dataset?.SC_1_3)%> data-parsley-required="true" /></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<br />
+					<label for="wight">2.2 ท่านมีความรู้สึกกังวลมากน้อยเพียงใดในกรณีต่าง ๆ ต่อไปนี้</label>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg data-table" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-9wq8 bg" rowspan="2">สถานการณ์<br></th>
+											<th class="tg-c3oa bg" colspan="4">ความรู้สึกกังวล</th>
+										</tr>
+										<tr>
+											<th class="tg-c3ow bg">1<br/><br/><label class="nowrap">รู้สึกไม่กังวลเลย</label></th>
+											<th class="tg-c3ow bg">2<br/><br/><label class="nowrap">รู้สึกไม่กังวล</label></th>
+											<th class="tg-c3ow bg">3<br/><br/><label class="nowrap">รู้สึกกังวล</label></th>
+											<th class="tg-c3ow bg">4<br/><br/><label class="nowrap">รู้สึกกังวลมาก</label></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0laq bg" colspan="6">ความรู้สึกกังวลภัยอาชญากรรม</td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.1 ถูกจี้หรือถูกปล้น</td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_1_1" name="SC_2_1" value="1" <%=page.checked("1",data.dataset?.SC_2_1)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_1_2" name="SC_2_1" value="2" <%=page.checked("2",data.dataset?.SC_2_1)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_1_3" name="SC_2_1" value="3" <%=page.checked("3",data.dataset?.SC_2_1)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_1_4" name="SC_2_1" value="4" <%=page.checked("4",data.dataset?.SC_2_1)%> /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.2 บุกรุกเคหะสถาน</td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_2_1" name="SC_2_2" value="1" <%=page.checked("1",data.dataset?.SC_2_2)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_2_2" name="SC_2_2" value="2" <%=page.checked("2",data.dataset?.SC_2_2)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_2_3" name="SC_2_2" value="3" <%=page.checked("3",data.dataset?.SC_2_2)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_2_4" name="SC_2_2" value="4" <%=page.checked("4",data.dataset?.SC_2_2)%> /></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2.2.3 ถูกขโมยหรือทำลายทรัพย์ทรัพย์สินมีค่า</td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_3_1" name="SC_2_3" value="1" <%=page.checked("1",data.dataset?.SC_2_3)%> data-parsley-required="true" /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_3_2" name="SC_2_3" value="2" <%=page.checked("2",data.dataset?.SC_2_3)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_3_3" name="SC_2_3" value="3" <%=page.checked("3",data.dataset?.SC_2_3)%> /></td>
+											<td class="tg-0laa"><input type="radio" id="SC_2_3_4" name="SC_2_3" value="4" <%=page.checked("4",data.dataset?.SC_2_3)%> /></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<% if(!page.isUpdateMode(data.action)) {%>
+						<button id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</button>
+					<% } %>
+					<% if(page.isUpdateMode(data.action)) {%>
+						<button id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.survey_id%>"><i class="save icon large button"></i> ปรับปรุง</button>
+					<% } %>
+				</div>
+				<div class="col-lg-1.5">
+					<button id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>

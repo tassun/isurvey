@@ -272,3 +272,4 @@ a:hover { text-decoration: none; }
 .alert-color { color:red; } 
 .nowrap { white-space: nowrap; }
 .page-container input[type="radio"] { cursor: pointer; }
+.data-table { width: 100%; }

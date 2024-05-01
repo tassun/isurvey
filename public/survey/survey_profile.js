@@ -12,6 +12,7 @@ function setupComponents() {
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
     $("#buttonnext").click(function() { confirmNextSurvey(this); return false; });
+    $("#buttonnexttop").click(function() { confirmNextSurvey(this); return false; });
 }
 function setupDataControls() {
     setupProvince("province_2",$("#province_2").attr("data-value"),$("#province_1").val());

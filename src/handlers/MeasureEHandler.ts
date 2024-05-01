@@ -68,7 +68,11 @@ export class MeasureEHandler extends SurveyOperateHandler {
             ME_3_30: { type: "STRING", created: true, updated: true  },
             ME_3_30_text: { type: "STRING", created: true, updated: true  },
             ME_4_1: { type: "STRING", created: true, updated: true  },
-            ME_4_2: { type: "STRING", created: true, updated: true  },
+            ME_C_3_21_sum: { type: "INTEGER", created: true, updated: true  },
+            ME_C_3_22_sum: { type: "INTEGER", created: true, updated: true  },
+            ME_C_3_23_sum: { type: "INTEGER", created: true, updated: true  },
+            ME_C_3_formal: { type: "INTEGER", created: true, updated: true  },
+            ME_C_3_informal: { type: "INTEGER", created: true, updated: true  },
             ME_C_known: { type: "INTEGER", created: true, updated: true  },
             ME_C_unknown: { type: "INTEGER", created: true, updated: true  },
             ME_C_noidea: { type: "INTEGER", created: true, updated: true  },
@@ -104,6 +108,18 @@ export class MeasureEHandler extends SurveyOperateHandler {
         }
         data.ME_C_mark = data.ME_C_known;
         data.ME_C_total = keys.length - data.ME_C_noidea;
+
+        let keys_21 = ["ME_3_1","ME_3_2"];
+        let keys_22 = ["ME_3_3","ME_3_4","ME_3_5","ME_3_6","ME_3_7","ME_3_8","ME_3_9","ME_3_10","ME_3_11","ME_3_12","ME_3_13","ME_3_14","ME_3_15","ME_3_16","ME_3_17","ME_3_18","ME_3_19"];
+        let keys_23 = ["ME_3_20","ME_3_21","ME_3_22","ME_3_23","ME_3_24","ME_3_25","ME_3_26","ME_3_27","ME_3_28","ME_3_29","ME_3_30"];
+        let keys_formal = ["ME_3_1","ME_3_2","ME_3_3","ME_3_4","ME_3_5","ME_3_6","ME_3_7","ME_3_8","ME_3_9","ME_3_13","ME_3_14","ME_3_15","ME_3_16","ME_3_17"];
+        let keys_informal = ["ME_3_10","ME_3_11","ME_3_12","ME_3_18","ME_3_19"];
+        data.ME_C_3_21_sum = keys_21.reduce((sum, key) => data[key] === "1" ? sum + 1 : sum, 0);
+        data.ME_C_3_22_sum = keys_22.reduce((sum, key) => data[key] === "1" ? sum + 1 : sum, 0);
+        data.ME_C_3_23_sum = keys_23.reduce((sum, key) => data[key] === "1" ? sum + 1 : sum, 0);
+        data.ME_C_3_formal = keys_formal.reduce((sum, key) => data[key] === "1" ? sum + 1 : sum, 0);
+        data.ME_C_3_informal = keys_informal.reduce((sum, key) => data[key] === "1" ? sum + 1 : sum, 0);
+
         return data;
     }
 
