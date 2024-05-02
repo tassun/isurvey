@@ -465,6 +465,8 @@ function initWaiting() {
 	let lh = fslayer.height();
 	fslayer.css("top",fstop-lh);
 	fslayer.css("left",fsleft);
+	mouseX = fstop-lh;
+	mouseY = fsleft;
 }
 function startWaiting() {
 	try{

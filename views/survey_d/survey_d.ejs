@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<%- include('../asset/meta') %>		
+	<%- include('../asset/styles') %>		
+	<%- include('../asset/scripts') %>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_d/survey_d.js"></script>
+</head>
+<body>
+	<%- include('../partials/page_waiting') %>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<%- include('../partials/page_header') %>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
+					<label>แบบสำรวจข้อมูลการให้สินบนหรือถูกเรียกรับสินบนจากหน่วยงานของรัฐหรือเจ้าหน้าที่รัฐ (ผนวก ง) </label></br>
+					<label>ในรอบ 1 ปีที่ผ่านมาท่านเคยติดต่อกับเจ้าหน้าที่ของรัฐหรือหน่วยงานของรัฐต่าง ๆ เหล่านี้หรือไม่ ไม่ว่าจะเป็นการเดินทางไปติดต่อหน่วยงานดังกล่าวด้วยตนเอง หรือผ่านบุคคลอื่น (เช่น นายหน้า ตัวแทน พนักงาน) หากเคยท่านเคยมีประสบการณ์ในการให้สินบนหรือถูกเรียกรับสินบนหรือมีความจำเป็นจะต้องให้สินบน ของขวัญ ของกำนัล หรือแลกเปลี่ยนผลประโยชน์ต่าง ๆ เพื่อแลกกับการอำนวยความสะดวกหรือการไม่จับกุมจับกุมความผิด หรือการรับโครงการภาครัฐ หรืออำนวยความสะดวกในการขออนุญาตต่าง ๆ หรือเร่งรัดการพิจารณาต่าง ๆ หรือไม่</label>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row">
+								<table class="tg data-table" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-c3oa bg">หน่วยงาน</th>
+											<th class="tg-c3oa bg">การติดต่อ</th>
+											<th class="tg-c3oa bg">การเรียกรับสินบน</th>
+											<th class="tg-c3oa bg">จำนวนครั้ง <br />(การเรียกรับสินบน)</th>
+											<th class="tg-c3oa bg">กรอกข้อมูลและรายละเอียด</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="tg-0lax">1. เจ้าหน้าที่องค์ปกครองส่วนท้องถิ่น (อบต. เทศบาล อบจ. กรุงเทพมหานคร หรือเมืองพัทยา)</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_1_1_1" name="SD_1_1" value="1" <%=page.checked("1",data.dataset?.SD_1_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_1_1_0" name="SD_1_1" value="0" <%=page.checked("0",data.dataset?.SD_1_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_1_2_1" name="SD_1_2" value="1" <%=page.checked("1",data.dataset?.SD_1_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_1_2_0" name="SD_1_2" value="0" <%=page.checked("0",data.dataset?.SD_1_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_1_counter"><%=data.dataset?.SD_1_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_1_linker" data-column="SD_1" data-refer="<%=data.dataset?.SD_1_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">2. ที่ว่าการอำเภอ ที่ว่าการจังหวัด หรือติดต่อเจ้าหน้าที่ฝ่ายปกครอง (ปลัดอำเภอ นายอำเภอ ผู้ว่าราชการจังหวัด ข้าราชการหรือเจ้าหน้าที่ในที่ว่าการอำเภอ ที่ว่าการจังหวัด หรือศูนย์ดำรงธรรม เป็นต้น) </td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_2_1_1" name="SD_2_1" value="1" <%=page.checked("1",data.dataset?.SD_2_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_2_1_0" name="SD_2_1" value="0" <%=page.checked("0",data.dataset?.SD_2_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_2_2_1" name="SD_2_2" value="1" <%=page.checked("1",data.dataset?.SD_2_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_2_2_0" name="SD_2_2" value="0" <%=page.checked("0",data.dataset?.SD_2_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_2_counter"><%=data.dataset?.SD_2_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_2_linker" data-column="SD_2" data-refer="<%=data.dataset?.SD_2_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">3. กำนัน ผู้ใหญ่บ้าน</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_3_1_1" name="SD_3_1" value="1" <%=page.checked("1",data.dataset?.SD_3_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_3_1_0" name="SD_3_1" value="0" <%=page.checked("0",data.dataset?.SD_3_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_3_2_1" name="SD_3_2" value="1" <%=page.checked("1",data.dataset?.SD_3_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_3_2_0" name="SD_3_2" value="0" <%=page.checked("0",data.dataset?.SD_3_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_3_counter"><%=data.dataset?.SD_3_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_3_linker" data-column="SD_3" data-refer="<%=data.dataset?.SD_3_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">4. สำนักงานประกันสังคม</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_4_1_1" name="SD_4_1" value="1" <%=page.checked("1",data.dataset?.SD_4_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_4_1_0" name="SD_4_1" value="0" <%=page.checked("0",data.dataset?.SD_4_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_4_2_1" name="SD_4_2" value="1" <%=page.checked("1",data.dataset?.SD_4_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_4_2_0" name="SD_4_2" value="0" <%=page.checked("0",data.dataset?.SD_4_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_4_counter"><%=data.dataset?.SD_4_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_4_linker" data-column="SD_4" data-refer="<%=data.dataset?.SD_4_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">5. สำนักงานพัฒนาสังคมและความมั่นคงของมนุษย์ บ้านพัก สถานสงเคราะห์</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_5_1_1" name="SD_5_1" value="1" <%=page.checked("1",data.dataset?.SD_5_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_5_1_0" name="SD_5_1" value="0" <%=page.checked("0",data.dataset?.SD_5_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_5_2_1" name="SD_5_2" value="1" <%=page.checked("1",data.dataset?.SD_5_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_5_2_0" name="SD_5_2" value="0" <%=page.checked("0",data.dataset?.SD_5_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_5_counter"><%=data.dataset?.SD_5_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_5_linker" data-column="SD_5" data-refer="<%=data.dataset?.SD_5_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">6. การเคหะแห่งชาติ</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_6_1_1" name="SD_6_1" value="1" <%=page.checked("1",data.dataset?.SD_6_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_6_1_0" name="SD_6_1" value="0" <%=page.checked("0",data.dataset?.SD_6_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_6_2_1" name="SD_6_2" value="1" <%=page.checked("1",data.dataset?.SD_6_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_6_2_0" name="SD_6_2" value="0" <%=page.checked("0",data.dataset?.SD_6_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_6_counter"><%=data.dataset?.SD_6_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_6_linker" data-column="SD_6" data-refer="<%=data.dataset?.SD_6_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">7. ครู อาจารย์ในโรงเรียน เจ้าหน้าที่ในสถานศึกษาหรือโรงเรียนของรัฐ</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_7_1_1" name="SD_7_1" value="1" <%=page.checked("1",data.dataset?.SD_7_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_7_1_0" name="SD_7_1" value="0" <%=page.checked("0",data.dataset?.SD_7_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_7_2_1" name="SD_7_2" value="1" <%=page.checked("1",data.dataset?.SD_7_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_7_2_0" name="SD_7_2" value="0" <%=page.checked("0",data.dataset?.SD_7_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_7_counter"><%=data.dataset?.SD_7_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_7_linker" data-column="SD_7" data-refer="<%=data.dataset?.SD_7_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">8. อาจารย์มหาวิทยาลัย เจ้าหน้าที่มหาวิทยาลัยในสถาบันอุดมศึกษาของรัฐ</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_8_1_1" name="SD_8_1" value="1" <%=page.checked("1",data.dataset?.SD_8_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_8_1_0" name="SD_8_1" value="0" <%=page.checked("0",data.dataset?.SD_8_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_8_2_1" name="SD_8_2" value="1" <%=page.checked("1",data.dataset?.SD_8_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_8_2_0" name="SD_8_2" value="0" <%=page.checked("0",data.dataset?.SD_8_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_8_counter"><%=data.dataset?.SD_8_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_8_linker" data-column="SD_8" data-refer="<%=data.dataset?.SD_8_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">9. หน่วยงานหรือเจ้าหน้าที่ด้านการแพทย์หรือสาธารณสุข (รวมถึงโรงพยาบาลส่งเสริมสุขภาพตำบล)</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_9_1_1" name="SD_9_1" value="1" <%=page.checked("1",data.dataset?.SD_9_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_9_1_0" name="SD_9_1" value="0" <%=page.checked("0",data.dataset?.SD_9_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_9_2_1" name="SD_9_2" value="1" <%=page.checked("1",data.dataset?.SD_9_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_9_2_0" name="SD_9_2" value="0" <%=page.checked("0",data.dataset?.SD_9_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_9_counter"><%=data.dataset?.SD_9_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void()" id="SD_9_linker" data-column="SD_9" data-refer="<%=data.dataset?.SD_9_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">10. ตำรวจ</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_10_1_1" name="SD_10_1" value="1" <%=page.checked("1",data.dataset?.SD_10_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_10_1_0" name="SD_10_1" value="0" <%=page.checked("0",data.dataset?.SD_10_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_10_2_1" name="SD_10_2" value="1" <%=page.checked("1",data.dataset?.SD_10_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_10_2_0" name="SD_10_2" value="0" <%=page.checked("0",data.dataset?.SD_10_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_10_counter"><%=data.dataset?.SD_10_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_10_linker" data-column="SD_10" data-refer="<%=data.dataset?.SD_10_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">11. ทหาร</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_11_1_1" name="SD_11_1" value="1" <%=page.checked("1",data.dataset?.SD_11_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_11_1_0" name="SD_11_1" value="0" <%=page.checked("0",data.dataset?.SD_11_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_11_2_1" name="SD_11_2" value="1" <%=page.checked("1",data.dataset?.SD_11_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_11_2_0" name="SD_11_2" value="0" <%=page.checked("0",data.dataset?.SD_11_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_11_counter"><%=data.dataset?.SD_11_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_11_linker" data-column="SD_11" data-refer="<%=data.dataset?.SD_11_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">12. อัยการ</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_12_1_1" name="SD_12_1" value="1" <%=page.checked("1",data.dataset?.SD_12_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_12_1_0" name="SD_12_1" value="0" <%=page.checked("0",data.dataset?.SD_12_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_12_2_1" name="SD_12_2" value="1" <%=page.checked("1",data.dataset?.SD_12_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_12_2_0" name="SD_12_2" value="0" <%=page.checked("0",data.dataset?.SD_12_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_12_counter"><%=data.dataset?.SD_12_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_12_linker" data-column="SD_12" data-refer="<%=data.dataset?.SD_12_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">13. ศาล</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_13_1_1" name="SD_13_1" value="1" <%=page.checked("1",data.dataset?.SD_13_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_13_1_0" name="SD_13_1" value="0" <%=page.checked("0",data.dataset?.SD_13_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_13_2_1" name="SD_13_2" value="1" <%=page.checked("1",data.dataset?.SD_13_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_13_2_0" name="SD_13_2" value="0" <%=page.checked("0",data.dataset?.SD_13_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_13_counter"><%=data.dataset?.SD_13_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_13_linker" data-column="SD_13" data-refer="<%=data.dataset?.SD_13_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">14. สรรพากร</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_14_1_1" name="SD_14_1" value="1" <%=page.checked("1",data.dataset?.SD_14_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_14_1_0" name="SD_14_1" value="0" <%=page.checked("0",data.dataset?.SD_14_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_14_2_1" name="SD_14_2" value="1" <%=page.checked("1",data.dataset?.SD_14_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_14_2_0" name="SD_14_2" value="0" <%=page.checked("0",data.dataset?.SD_14_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_14_counter"><%=data.dataset?.SD_14_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_14_linker" data-column="SD_14" data-refer="<%=data.dataset?.SD_14_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">15. ศุลกากร</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_15_1_1" name="SD_15_1" value="1" <%=page.checked("1",data.dataset?.SD_15_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_15_1_0" name="SD_15_1" value="0" <%=page.checked("0",data.dataset?.SD_15_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_15_2_1" name="SD_15_2" value="1" <%=page.checked("1",data.dataset?.SD_15_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_15_2_0" name="SD_15_2" value="0" <%=page.checked("0",data.dataset?.SD_15_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_15_counter"><%=data.dataset?.SD_15_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_15_linker" data-column="SD_15" data-refer="<%=data.dataset?.SD_15_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">16. หน่วยงานขนส่งและทะเบียนรถ</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_16_1_1" name="SD_16_1" value="1" <%=page.checked("1",data.dataset?.SD_16_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_16_1_0" name="SD_16_1" value="0" <%=page.checked("0",data.dataset?.SD_16_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_16_2_1" name="SD_16_2" value="1" <%=page.checked("1",data.dataset?.SD_16_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_16_2_0" name="SD_16_2" value="0" <%=page.checked("0",data.dataset?.SD_16_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_16_counter"><%=data.dataset?.SD_16_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_16_linker" data-column="SD_16" data-refer="<%=data.dataset?.SD_16_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">17. สำนักงานที่ดิน</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_17_1_1" name="SD_17_1" value="1" <%=page.checked("1",data.dataset?.SD_17_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_17_1_0" name="SD_17_1" value="0" <%=page.checked("0",data.dataset?.SD_17_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_17_2_1" name="SD_17_2" value="1" <%=page.checked("1",data.dataset?.SD_17_2)%> />เคย</input>
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_17_2_0" name="SD_17_2" value="0" <%=page.checked("0",data.dataset?.SD_17_2)%> data-parsley-required="true" />ไม่เคย</input>
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_17_counter"><%=data.dataset?.SD_17_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_17_linker" data-column="SD_17" data-refer="<%=data.dataset?.SD_17_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">18. กรมการกงสุลหรือสำนักงานหนังสือเดินทาง (passport)</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_18_1_1" name="SD_18_1" value="1" <%=page.checked("1",data.dataset?.SD_18_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_18_1_0" name="SD_18_1" value="0" <%=page.checked("0",data.dataset?.SD_18_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_18_2_1" name="SD_18_2" value="1" <%=page.checked("1",data.dataset?.SD_18_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_18_2_0" name="SD_18_2" value="0" <%=page.checked("0",data.dataset?.SD_18_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_18_counter"><%=data.dataset?.SD_18_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_18_linker" data-column="SD_18" data-refer="<%=data.dataset?.SD_18_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">19. หน่วยงานตรวจคนเข้าเมือง</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_19_1_1" name="SD_19_1" value="1" <%=page.checked("1",data.dataset?.SD_19_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_19_1_0" name="SD_19_1" value="0" <%=page.checked("0",data.dataset?.SD_19_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_19_2_1" name="SD_19_2" value="1" <%=page.checked("1",data.dataset?.SD_19_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_19_2_0" name="SD_19_2" value="0" <%=page.checked("0",data.dataset?.SD_19_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_19_counter"><%=data.dataset?.SD_19_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_19_linker" data-column="SD_19" data-refer="<%=data.dataset?.SD_19_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">20. หน่วยงานด้านแรงงาน สวัสดิการและคุ้มครองแรงงาน</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_20_1_1" name="SD_20_1" value="1" <%=page.checked("1",data.dataset?.SD_20_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_20_1_0" name="SD_20_1" value="0" <%=page.checked("0",data.dataset?.SD_20_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_20_2_1" name="SD_20_2" value="1" <%=page.checked("1",data.dataset?.SD_20_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_20_2_0" name="SD_20_2" value="0" <%=page.checked("0",data.dataset?.SD_20_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_20_counter"><%=data.dataset?.SD_20_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_20_linker" data-column="SD_20" data-refer="<%=data.dataset?.SD_20_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">21. หน่วยงานของรัฐหรือรัฐวิสาหกิจด้านสาธารณูปโภค (ไฟฟ้า น้ำประปา สุขาภิบาล ฯลฯ)</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_21_1_1" name="SD_21_1" value="1" <%=page.checked("1",data.dataset?.SD_21_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_21_1_0" name="SD_21_1" value="0" <%=page.checked("0",data.dataset?.SD_21_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_21_2_1" name="SD_21_2" value="1" <%=page.checked("1",data.dataset?.SD_21_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_21_2_0" name="SD_21_2" value="0" <%=page.checked("0",data.dataset?.SD_21_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_21_counter"><%=data.dataset?.SD_21_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_21_linker" data-column="SD_21" data-refer="<%=data.dataset?.SD_21_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+										<tr>
+											<td class="tg-0lax">22. หน่วยงานรัฐอื่น</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_22_1_1" name="SD_22_1" value="1" <%=page.checked("1",data.dataset?.SD_22_1)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" id="SD_22_1_0" name="SD_22_1" value="0" <%=page.checked("0",data.dataset?.SD_22_1)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa nowrap">
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_22_2_1" name="SD_22_2" value="1" <%=page.checked("1",data.dataset?.SD_22_2)%> />เคย
+												</label>
+												<label class="radio-inline col-form-label">
+													<input type="radio" class="sd-radio" id="SD_22_2_0" name="SD_22_2" value="0" <%=page.checked("0",data.dataset?.SD_22_2)%> data-parsley-required="true" />ไม่เคย
+												</label>
+											</td>
+											<td class="tg-0laa"><label class="col-form-label" id="SD_22_counter"><%=data.dataset?.SD_22_counter%></label></td>
+											<td class="tg-0laa"><a href="javascript:void(0)" id="SD_22_linker" data-column="SD_22" data-refer="<%=data.dataset?.SD_22_refer%>" class="sd-linker ui basic black button small disabled"><i class="edit icon large"></i></a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<% if(!page.isUpdateMode(data.action)) {%>
+						<button id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</button>
+					<% } %>
+					<% if(page.isUpdateMode(data.action)) {%>
+						<button id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.survey_id%>"><i class="save icon large button"></i> ปรับปรุง</button>
+					<% } %>
+				</div>
+				<div class="col-lg-1.5">
+					<button id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>
