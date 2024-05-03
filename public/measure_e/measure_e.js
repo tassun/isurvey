@@ -16,25 +16,25 @@ function setupUI() {
         if($(this).is(":checked")) {
             $("#ME_2_19_text").attr('data-parsley-required', 'true').prop('readonly', false);
         } else {
-            $("#ME_2_19_text").attr('data-parsley-required', 'false').prop('readonly', true);
+            $("#ME_2_19_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
     $("#ME_3_19").change(function() {
         if($(this).is(":checked")) {
             $("#ME_3_19_text").attr('data-parsley-required', 'true').prop('readonly', false);
         } else {
-            $("#ME_3_19_text").attr('data-parsley-required', 'false').prop('readonly', true);
+            $("#ME_3_19_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
     $("#ME_3_30").change(function() {
         if($(this).is(":checked")) {
             $("#ME_3_30_text").attr('data-parsley-required', 'true').prop('readonly', false);
         } else {
-            $("#ME_3_30_text").attr('data-parsley-required', 'false').prop('readonly', true);
+            $("#ME_3_30_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
-    $("input[type=radio]:checked").trigger("change");
-    $("input[type=checkbox]:checked").trigger("change");
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
+    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
 }
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {

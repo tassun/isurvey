@@ -12,7 +12,7 @@ function setupComponents() {
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
 }
 function setupUI() {
-    $("input[type=radio]:checked").trigger("change");
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
 }
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {

@@ -14,7 +14,7 @@
 		<div class="panel container" style="margin-top : 10px;">
 			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจตัวชี้วัดกระบวนการยุติธรรม</h1>
 			<label class="col-form-label">แบบสำรวจข้อมูลระดับการเคารพกฎหมายของประชาชน</label>
-			<div class="body">
+			<div class="body" id="form-data-layer">
 				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
 					<input type="hidden" id="ajax" name="ajax" value="true" />
 					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />

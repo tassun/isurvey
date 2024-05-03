@@ -27,7 +27,7 @@ function setupUI() {
             $(this).closest("tr").find("a.sd-linker").prop('disabled', true).addClass("disabled");
         }
     });
-    $("input[type=radio]:checked").trigger("change");
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
 }
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {

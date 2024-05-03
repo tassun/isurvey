@@ -16,11 +16,11 @@ function setupUI() {
         if($(this).is(":checked")) {
             $("#MC_2_text").attr('data-parsley-required', 'true').prop('readonly', false);
         } else {
-            $("#MC_2_text").attr('data-parsley-required', 'false').prop('readonly', true);
+            $("#MC_2_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
-    $("input[type=radio]:checked").trigger("change");
-    $("input[type=checkbox]:checked").trigger("change");
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
+    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
 }
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {

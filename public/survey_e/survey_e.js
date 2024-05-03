@@ -46,8 +46,8 @@ function setupUI() {
     $("#se7-layer").find("input[type=checkbox]").change(function() {
         $("#SE_7_1_label").removeClass("parsley-error");
     });
-    $("input[type=radio]:checked").trigger("change");
-    $("input[type=checkbox]:checked").trigger("change");
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
+    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
 }
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
