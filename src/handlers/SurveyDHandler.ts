@@ -120,4 +120,27 @@ export class SurveyDHandler extends SurveyOperateHandler {
         return dt;
     }
 
+    public override async processInsert(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        let rs = await super.processInsert(context, db);        
+        let sql = new KnSQL();
+        sql.append("UPDATE survey_dx set survey_state = 'CONFIRM' ");
+        sql.append("WHERE master_id = ?master_id ");
+        sql.set("master_id", rs.rows.survey_id);
+        this.logger.info(this.constructor.name+".processInsert:",sql);
+        await sql.executeUpdate(db,context);
+        return Promise.resolve(rs);
+    }
+
+    public override async processUpdate(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        let survey_id = context.params.survey_id;
+        let rs = await super.processUpdate(context, db);
+        let sql = new KnSQL();
+        sql.append("UPDATE survey_dx set survey_state = 'CONFIRM' ");
+        sql.append("WHERE master_id = ?master_id ");
+        sql.set("master_id", survey_id);
+        this.logger.info(this.constructor.name+".processUpdate:",sql);
+        await sql.executeUpdate(db,context);
+        return Promise.resolve(rs);
+    }
+
 }

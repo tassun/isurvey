@@ -64,7 +64,7 @@ export class SurveyDXHandler extends SurveyOperateHandler {
         dt.dataset.survey_id = context.params.survey_id;
         dt.dataset.master_id = context.params.master_id;
         dt.dataset.column_id = context.params.column_id;
-        return dt;
+        return Promise.resolve(dt);
     }
 
     public async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
@@ -89,7 +89,7 @@ export class SurveyDXHandler extends SurveyOperateHandler {
         dt.dataset.survey_id = context.params.survey_id;
         dt.dataset.master_id = context.params.master_id;
         dt.dataset.column_id = context.params.column_id;
-        return dt;    
+        return Promise.resolve(dt);    
     }
 
     protected override processCalculate(context: KnContextInfo, db: KnDBConnector, data: KnDataSet, action?: string) : KnDataSet {
