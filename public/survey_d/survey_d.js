@@ -154,6 +154,13 @@ function setupSurveyDXDataTable(profile_id,master_id,column_id) {
         let survey_id = tr.attr("data-survey");
         openSurveyDXView(profile_id,survey_id);
     });
+    $("a.dx-delete-linker",$("#dxdatatablelayer")).click(function() { 
+        let tr = $(this).closest("tr");
+        let survey_id = tr.attr("data-survey");
+        let text = tr.find("td").eq(1).text();
+        let text2 = tr.find("td").eq(2).text();
+        confirmSurveyDXDelete(profile_id,survey_id,text,text2);
+    });
 }
 function openSurveyDXEntry(profile_id,master_id,column_id) {
     console.log("openSurveyDXEntry: profile_id: " + profile_id + ", master_id: " + master_id+", column_id: "+column_id);
@@ -209,4 +216,29 @@ function setupDialogComponents() {
     $("#dx-modal-dialog").modal("show");
     setupComponentsApt();
     setupUIApt();
+}
+function confirmSurveyDXDelete(profile_id,survey_id,text,text2) {
+    confirmDeleteMessage(function() { deleteDXForm(profile_id,survey_id); }, text+"<br/>"+text2);
+}
+function deleteDXForm(profile_id,survey_id) {
+    startWaiting();
+    $.ajax({
+        url: BASE_URL+"/survey_dx/remove",
+        data: { 
+            ajax: true,
+            profile_id: profile_id, 
+            survey_id: survey_id 
+        },
+        type: "POST",
+        dataType: "html",
+        contentType: defaultContentType,
+        error : function(transport,status,errorThrown) {
+            stopWaiting();
+            submitFailure(transport,status,errorThrown);
+        },
+        success: function(data,status,xhr){ 
+            stopWaiting();
+            displaySurveyDXDataTable();
+        }
+    });
 }
