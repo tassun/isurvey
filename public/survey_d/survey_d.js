@@ -230,7 +230,7 @@ function deleteDXForm(profile_id,survey_id) {
             survey_id: survey_id 
         },
         type: "POST",
-        dataType: "html",
+        dataType: "json",
         contentType: defaultContentType,
         error : function(transport,status,errorThrown) {
             stopWaiting();
@@ -238,7 +238,11 @@ function deleteDXForm(profile_id,survey_id) {
         },
         success: function(data,status,xhr){ 
             stopWaiting();
-            displaySurveyDXDataTable();
+            if(data.head.errorflag=="Y") {
+                alertmsg(data.head.errordesc);
+            } else {
+                successMessage(function() { displaySurveyDXDataTable();});
+            }
         }
     });
 }

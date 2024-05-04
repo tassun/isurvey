@@ -18,6 +18,7 @@ export class ExportHandler extends ProcessHandler {
         {table:"survey_b",file:"survey_b.csv"},
         {table:"survey_c",file:"survey_c.csv"},
         {table:"survey_d",file:"survey_d.csv"},
+        {table:"survey_dx",file:"survey_dx.csv"},
         {table:"survey_e",file:"survey_e.csv"},
         {table:"survey_f",file:"survey_f.csv"},
         {table:"survey_g",file:"survey_g.csv"}
