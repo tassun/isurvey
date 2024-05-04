@@ -61,11 +61,17 @@ export class RouteManager extends BaseRouter {
     }
 
     private handleErrors(app: Application) {
+        app.use((err: any, req: Request, res: Response, next: Function) => {
+            if(err) { console.error(err); }
+            next(err);
+        });
         const handleError = errorHandler({
             views: {
               404: 'pages/notfound',
-              500: 'pages/servererror'
-            }
+              500: 'pages/servererror',
+              default: 'pages/servererror'
+            },
+            shutdown: function(state: any) { }
         });
         app.use(errorHandler.httpError(404));
         app.use(handleError);    
