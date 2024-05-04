@@ -26,27 +26,47 @@ export class SurveyDXRouter extends SurveyOperateRouter {
             }
 		} catch(ex) { 
 			this.logger.error(this.constructor.name+".routeListing",ex);
-			this.sendError(res, ex, "add", ctx);
+			this.sendError(res, ex, "listing", ctx);
 		}
 	}
 
-	public async routeDialog(req: Request, res: Response) {
+	public async routeView(req: Request, res: Response) {
 		let ctx = await this.createContext(req);
-		this.logger.debug(this.constructor.name+".routeDialog",ctx);
+		this.logger.debug(this.constructor.name+".routeView",ctx);
 		try {
 			let handler = this.getHandler();
             if(handler && this.progid.trim().length>0) {
                 let rs = await handler.edit(ctx);
                 let pager = new KnPageRender(this.progid,ctx);
                 let param = this.buildParams(ctx,rs,pager);
-                this.logger.debug(this.constructor.name+".routeDialog",rs);
+                this.logger.debug(this.constructor.name+".routeView",rs);
                 res.render(this.progid+"/"+this.progid+"_dialog",param);
             } else {
                 res.render("pages/noservice",{error:"Handler not found"});
             }
 		} catch(ex) { 
-			this.logger.error(this.constructor.name+".routeDialog",ex);
-			this.sendError(res, ex, "add", ctx);
+			this.logger.error(this.constructor.name+".routeView",ex);
+			this.sendError(res, ex, "view", ctx);
+		}
+	}
+
+	public async routeEntry(req: Request, res: Response) {
+		let ctx = await this.createContext(req);
+		this.logger.debug(this.constructor.name+".routeEntry",ctx);
+		try {
+			let handler = this.getHandler();
+            if(handler && this.progid.trim().length>0) {
+                let rs = await handler.add(ctx);
+                let pager = new KnPageRender(this.progid,ctx);
+                let param = this.buildParams(ctx,rs,pager);
+                this.logger.debug(this.constructor.name+".routeEntry",rs);
+                res.render(this.progid+"/"+this.progid+"_dialog",param);
+            } else {
+                res.render("pages/noservice",{error:"Handler not found"});
+            }
+		} catch(ex) { 
+			this.logger.error(this.constructor.name+".routeEntry",ex);
+			this.sendError(res, ex, "entry", ctx);
 		}
 	}
 
@@ -66,7 +86,7 @@ export class SurveyDXRouter extends SurveyOperateRouter {
             }
 		} catch(ex) { 
 			this.logger.error(this.constructor.name+".routeDataTable",ex);
-			this.sendError(res, ex, "add", ctx);
+			this.sendError(res, ex, "datatable", ctx);
 		}
 	}
 
@@ -74,8 +94,10 @@ export class SurveyDXRouter extends SurveyOperateRouter {
 		super.route(app);
 		this.router.get('/listing', async (req: Request, res: Response) => { this.routeListing(req,res); });
 		this.router.post('/listing', async (req: Request, res: Response) => { this.routeListing(req,res); });
-		this.router.get('/dialog', async (req: Request, res: Response) => { this.routeDialog(req,res); });
-		this.router.post('/dialog', async (req: Request, res: Response) => { this.routeDialog(req,res); });
+		this.router.get('/view', async (req: Request, res: Response) => { this.routeView(req,res); });
+		this.router.post('/view', async (req: Request, res: Response) => { this.routeView(req,res); });
+		this.router.get('/entry', async (req: Request, res: Response) => { this.routeEntry(req,res); });
+		this.router.post('/entry', async (req: Request, res: Response) => { this.routeEntry(req,res); });
 		this.router.get('/datatable', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
 		this.router.post('/datatable', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
 		return this.router;

@@ -128,5 +128,5 @@ function updateSurveyApt(src) {
 }
 function gotoSurveyFormApt(profile_id) {
     $("#dx-modal-dialog").modal("hide");
-    displayDataTable();
+    displaySurveyDXDataTable();
 }

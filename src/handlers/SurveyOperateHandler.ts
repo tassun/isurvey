@@ -137,6 +137,12 @@ export class SurveyOperateHandler extends OperateHandler {
         return dt;
     }
 
+    public override async getDataView(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
+        let dt = await super.getDataView(context,db,rs);
+        dt.dataset.profile_id = context.params.profile_id;
+        return dt;
+    }
+
     public override async getDataListing(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
         let dt = await super.getDataListing(context,db,rs);
         dt.dataset.profile_id = context.params.profile_id;
