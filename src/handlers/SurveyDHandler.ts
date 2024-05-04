@@ -1,4 +1,6 @@
-import { KnModel } from '../models/AssureAlias';
+import { v4 as uuid } from 'uuid';
+import { KnDBConnector, KnRecordSet, KnSQL } from 'will-sql';
+import { KnModel, KnContextInfo, KnDataTable } from '../models/AssureAlias';
 import { SurveyOperateHandler } from './SurveyOperateHandler';
 
 export class SurveyDHandler extends SurveyOperateHandler {
@@ -6,8 +8,8 @@ export class SurveyDHandler extends SurveyOperateHandler {
     public model : KnModel = {
         name: "survey_d",
         fields: {
-            survey_id: { type: "STRING", key: true, created: true, updated: true  },
-            profile_id: { type: "STRING", created: true },
+            survey_id: { type: "STRING", key: true, created: true, updated: false  },
+            profile_id: { type: "STRING", created: true, updated: false },
             SD_1_1: { type: "STRING", created: true, updated: true  },
             SD_1_2: { type: "STRING", created: true, updated: true  },
             SD_1_refer: { type: "STRING", created: true, updated: true  },
@@ -84,5 +86,38 @@ export class SurveyDHandler extends SurveyOperateHandler {
             update_by: { type: "STRING", created: true, updated: true  }
         }
     };
+
+    public override async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
+        let dt = await super.getDataAdd(context);
+        dt.dataset.profile_id = context.params.profile_id;
+        dt.dataset.survey_id = uuid();
+        return dt;
+    }
+
+    public async getDataEdit(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
+        let dt = await super.getDataEdit(context, db, rs);
+        let master_id = dt.dataset.survey_id;
+        let sql = new KnSQL();
+        sql.append("SELECT column_id,COUNT(*) AS counter ");
+        sql.append("FROM survey_dx ");
+        sql.append("WHERE master_id = ?master_id ");
+        sql.append("GROUP BY column_id ");
+        sql.append("ORDER BY column_id ");
+        sql.set("master_id", master_id);
+        let rs2 = await sql.executeQuery(db, context);
+        if(rs2.rows && rs2.rows.length > 0) {
+            for(let row of rs2.rows) {
+                for(let index = 1; index <= 22; index++) {
+                    let key = "SD_"+index;
+                    let counter_key = "SD_"+index+"_counter";
+                    if(row.column_id == key) {
+                        dt.dataset[counter_key] = row.counter;
+                        break;
+                    }
+                }
+            }
+        }
+        return dt;
+    }
 
 }

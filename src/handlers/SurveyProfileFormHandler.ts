@@ -9,8 +9,8 @@ export class SurveyProfileFormHandler extends OperateHandler {
     public model : KnModel = {
         name: "survey_profile_form",
         fields: {
-            profile_id: { type: "STRING", key: true, created: true, updated: true  },
-            form_id: { type: "STRING", key: true, created: true, updated: true  },
+            profile_id: { type: "STRING", key: true, created: true, updated: false  },
+            form_id: { type: "STRING", key: true, created: true, updated: false  },
             survey_id: { type: "STRING", created: true, updated: true  },
             create_date: { type: "DATE", created: true, updated: false  },
             create_time: { type: "TIME", created: true, updated: false  },

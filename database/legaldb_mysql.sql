@@ -377,6 +377,45 @@ CREATE TABLE IF NOT EXISTS `survey_d` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='แบบสำรวจข้อมูลการให้สินบนหรือถูกเรียกรับสินบนจากหน่วยงานของรัฐหรือเจ้าหน้าที่รัฐ (ผนวก ง)';
 
 
+CREATE TABLE IF NOT EXISTS `survey_dx` (
+  `survey_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `profile_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'survey_profile.profile_id',
+  `master_id` varchar(50) NOT NULL COMMENT 'survey_d.survey_id',
+  `column_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'survey_d column name',
+  `survey_state` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'DRAFT,CONFIRM,CANCEL',
+  `SDX_1` varchar(50) DEFAULT NULL COMMENT '3.2.1 รหัสคดี',
+  `SDX_2` varchar(100) DEFAULT NULL COMMENT '3.2.2 หน่วยงานของรัฐที่ติดต่อ',
+  `SDX_3` text COMMENT '3.2.3 พฤติกรรมโดยย่อพอสังเขป',
+  `SDX_4` varchar(2) DEFAULT NULL COMMENT '3.2.4 ประเภทความผิด',
+  `SDX_5` varchar(2) DEFAULT NULL COMMENT '3.2.5 ลักษณะความผิด',
+  `SDX_6` varchar(2) DEFAULT NULL COMMENT '3.2.6 สินบนหรือของกำนัลที่ให้คือสิ่งใด',
+  `SDX_6_text` varchar(100) DEFAULT NULL,
+  `SDX_7` varchar(2) DEFAULT NULL COMMENT '3.2.7 ท่านทราบได้อย่างไรว่าจะต้องมีการจ่ายเงินหรือมอบของขวัญ',
+  `SDX_7_text` varchar(100) DEFAULT NULL,
+  `SDX_8` varchar(2) DEFAULT NULL COMMENT '3.2.8 มูลค่าของสิ่งที่ท่านให้สินบนหรือถูกเรียกสินบนโดยเจ้าหน้าที่ของรัฐ',
+  `SDX_8_text` varchar(100) DEFAULT NULL,
+  `SDX_9` varchar(2) DEFAULT NULL COMMENT '3.2.9 ท่านได้ร้องเรียนหรือรายงานต่อหน่วยงานของรัฐ',
+  `SDX_9_text` varchar(100) DEFAULT NULL,
+  `SDX_10` varchar(2) DEFAULT NULL COMMENT '3.2.10 หากท่านเคยร้องเรียนหรือรายงานเหตุดังกล่าวไปยังหน่วยงานทางการของรัฐ ท่านได้แจ้งไปที่หน่วยงานใด',
+  `SDX_10_text` varchar(100) DEFAULT NULL,
+  `SDX_11` varchar(2) DEFAULT NULL COMMENT '3.2.11 หากท่านเคยร้องเรียนหรือรายงานเหตุการณ์ดังกล่าวไปยังหน่วยงานที่ไม่เป็นทางการ ท่านได้แจ้งไปที่หน่วยงานใด',
+  `SDX_11_text` varchar(100) DEFAULT NULL,
+  `SDX_12` varchar(2) DEFAULT NULL COMMENT '3.2.12 หากท่านไม่ได้ร้องเรียนหรือรายงานถึงเหตุการณ์การให้สินบนหรือถูกเรียกสินบนโดยเจ้าหน้าที่ของรัฐ เหตุใดท่านถึงไม่รายงาน',
+  `SDX_12_text` varchar(100) DEFAULT NULL,
+  `create_date` date DEFAULT NULL,
+  `create_time` time DEFAULT NULL,
+  `create_millis` bigint DEFAULT NULL,
+  `create_by` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `update_date` date DEFAULT NULL,
+  `update_time` time DEFAULT NULL,
+  `update_millis` bigint DEFAULT NULL,
+  `update_by` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  PRIMARY KEY (`survey_id`) USING BTREE,
+  KEY `profile_id` (`profile_id`) USING BTREE,
+  KEY `master_id_column_id` (`master_id`,`column_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='แบบสำรวจข้อมูลการให้สินบนหรือถูกเรียกรับสินบนจากหน่วยงานของรัฐหรือเจ้าหน้าที่รัฐ (ผนวก ง)';
+
+
 CREATE TABLE IF NOT EXISTS `survey_e` (
   `survey_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `profile_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'survey_profile.profile_id',

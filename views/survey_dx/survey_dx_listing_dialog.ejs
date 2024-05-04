@@ -1,0 +1,36 @@
+	<div class="modal fade" id="dx-modal-dialog-listing">
+		<div class="modal-dialog modal-xm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" tabIndex="-1">×</button>
+					<h4 class="modal-title" id="modaltitle">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h4>
+				</div>
+				<div class="body dialog-body">
+					<form class="a form app form-horizontal" id="list-form-data-dialog" method="post">
+						<input type="hidden" id="list_dx_ajax" name="ajax" value="true" />
+						<input type="hidden" id="list_dx_userid" name="userid" value="<%=meta.user?.userid%>" />
+						<input type="hidden" id="list_dx_profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+						<input type="hidden" id="list_dx_master_id" name="master_id" value="<%=data.dataset?.master_id%>" />
+						<input type="hidden" id="list_dx_column_id" name="column_id" value="<%=data.dataset?.column_id%>" />
+						<div id="dx-form-label">
+							<label>แบบสำรวจข้อมูลการให้สินบนหรือถูกเรียกรับสินบนจากหน่วยงานของรัฐหรือเจ้าหน้าที่รัฐ (ผนวก ง) </label>
+							<br/>
+							<label id="dx-topic-title">แบบบันทึกข้อมูลการกระทำผิด</label>
+							<br/>
+						</div>
+						<div class="p-fluid p-formgrid p-grid">
+							<div class="p-field p-col">
+								<div class="row" style="margin-left: 0px;" id="dxdatatablelayer">
+									<%- include('../survey_dx/survey_dx_listing_kit') %>
+								</div>
+							</div>
+						</div>
+					</form>
+					<br/>
+				</div>
+				<div class="modal-footer">
+					<button id="listdxbuttoncancel" class="ui basic red button small" data-dismiss="modal"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+		</div>
+	</div>

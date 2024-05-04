@@ -19,6 +19,9 @@ function setupUI() {
             $("#SF_2_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
+    $("#sf2-layer").find("input[type=checkbox]").change(function() {
+        $("#SF_2_label").removeClass("parsley-error");
+    });
     $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
     $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
 }
@@ -29,7 +32,8 @@ function confirmCancelSurvey(src) {
 }
 function confirmSaveSurvey(src) {
     var $form = $('#form-data-validate');
-    if (validBlank() && $form.parsley().validate()) {
+    let valid2 = validateSF2();
+    if (validBlank() && $form.parsley().validate() && valid2) {
         confirmSaveMessage(function() { saveSurvey(src); });
     } else {
         warningMessage();
@@ -37,7 +41,8 @@ function confirmSaveSurvey(src) {
 }
 function confirmUpdateSurvey(src) {
     var $form = $('#form-data-validate');
-    if (validBlank() && $form.parsley().validate()) {
+    let valid2 = validateSF2();
+    if (validBlank() && $form.parsley().validate() && valid2) {
         confirmUpdateMessage(function() { updateSurvey(src); });
     } else {
         warningMessage();
@@ -91,4 +96,12 @@ function updateSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function validateSF2() {
+    let checked = $("#sf2-layer").find("input[type=checkbox]:checked").length;
+    if (checked == 0) {
+        $("#SF_2_label").addClass("parsley-error");
+        return false;
+    }
+    return true;
 }

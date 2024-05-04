@@ -19,6 +19,12 @@ function setupUI() {
             $("#SG_3_1_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
+    $("#sg31-layer").find("input[type=checkbox]").change(function() {
+        $("#SG_3_1_label").removeClass("parsley-error");
+    });
+    $("#sg32-layer").find("input[type=checkbox]").change(function() {
+        $("#SG_3_2_label").removeClass("parsley-error");
+    });
     $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
     $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
 }
@@ -28,16 +34,20 @@ function confirmCancelSurvey(src) {
     });
 }
 function confirmSaveSurvey(src) {
+    let valid1 = validateSG31();
+    let valid2 = validateSG32();
     var $form = $('#form-data-validate');
-    if (validBlank() && $form.parsley().validate()) {
+    if (validBlank() && $form.parsley().validate() && valid1 && valid2) {
         confirmSaveMessage(function() { saveSurvey(src); });
     } else {
         warningMessage();
     }
 }
 function confirmUpdateSurvey(src) {
+    let valid1 = validateSG31();
+    let valid2 = validateSG32();
     var $form = $('#form-data-validate');
-    if (validBlank() && $form.parsley().validate()) {
+    if (validBlank() && $form.parsley().validate() && valid1 && valid2) {
         confirmUpdateMessage(function() { updateSurvey(src); });
     } else {
         warningMessage();
@@ -91,4 +101,20 @@ function updateSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function validateSG31() {
+    let checked = $("#sg31-layer").find("input[type=checkbox]:checked").length;
+    if (checked == 0) {
+        $("#SG_3_1_label").addClass("parsley-error");
+        return false;
+    }
+    return true;
+}
+function validateSG32() {
+    let checked = $("#sg32-layer").find("input[type=checkbox]:checked").length;
+    if (checked == 0) {
+        $("#SG_3_2_label").addClass("parsley-error");
+        return false;
+    }
+    return true;
 }

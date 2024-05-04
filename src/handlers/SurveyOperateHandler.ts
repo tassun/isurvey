@@ -8,6 +8,7 @@ import { HTTP } from '../api/HTTP';
 
 export class SurveyOperateHandler extends OperateHandler {
     public form_id : string = "";
+    public alwaysSaveProfileForm : boolean = true;
 
     public async saveProfileForm(context: KnContextInfo, db: KnDBConnector, data: any) : Promise<KnRecordSet> {
         let former = new SurveyProfileFormHandler(this.logger);
@@ -34,18 +35,6 @@ export class SurveyOperateHandler extends OperateHandler {
         return Promise.resolve(this.createRecordSet(rs));
     }
 
-    public override async insert(context: KnContextInfo) : Promise<KnRecordSet> {
-        let vi = this.validateParameters(context.params,"profile_id");
-        if(!vi.valid) {
-            return Promise.reject(new VerifyError("Parameter not found ("+vi.info+")",HTTP.NOT_ACCEPTABLE,-16061));
-        }
-        vi = this.validateCreator(context);
-        if(!vi.valid) {
-            return Promise.reject(new VerifyError("Not found ("+vi.info+")",HTTP.NOT_ACCEPTABLE,-16062));
-        }
-        return this.doInsert(context);
-	}
-
     protected override validateRequireFields(context: KnContextInfo, throwError: boolean = false) : Promise<KnValidateInfo> {
         let vi = this.validateParameters(context.params,"profile_id","survey_id");
         if(!vi.valid && throwError) {
@@ -53,6 +42,18 @@ export class SurveyOperateHandler extends OperateHandler {
         }
         return Promise.resolve(vi);
     }
+
+    protected override async validateRequireFieldsInsert(context: KnContextInfo, throwError: boolean = false) : Promise<KnValidateInfo> {
+        let vi = this.validateParameters(context.params,"profile_id");
+        if(!vi.valid && throwError) {
+            return Promise.reject(new VerifyError("Parameter not found ("+vi.info+")",HTTP.NOT_ACCEPTABLE,-16061));
+        }
+        vi = this.validateCreator(context);
+        if(!vi.valid && throwError) {
+            return Promise.reject(new VerifyError("Not found ("+vi.info+")",HTTP.NOT_ACCEPTABLE,-16062));
+        }
+        return Promise.resolve(vi);
+	}
 
     protected validateCreator(context: KnContextInfo) : KnValidateInfo {
         let userid = context.meta?.user?.userid;
@@ -72,14 +73,16 @@ export class SurveyOperateHandler extends OperateHandler {
         data.survey_id = uuid();
         if(survey_id && survey_id.trim().length>0) data.survey_id = survey_id;
         this.ensureTimestamp(context, data);
-        this.processCalculate(context, db, data);
+        this.processCalculate(context, db, data, "insert");
         let sql = this.composeQueryInsert(context,this.model,data);
         this.logger.info(this.constructor.name+".processInsert:",sql);
         let rs = await sql.executeUpdate(db,context);
         this.logger.debug(this.constructor.name+".processInsert:",rs);
         if(rs.rows) {
             rs.rows.survey_id = data.survey_id;
-            await this.saveProfileForm(context,db,data);
+            if(this.alwaysSaveProfileForm) {
+                await this.saveProfileForm(context,db,data);
+            }
         }
         return Promise.resolve(this.createRecordSet(rs));
     }
@@ -102,7 +105,7 @@ export class SurveyOperateHandler extends OperateHandler {
         if(!vi.valid) return Promise.resolve(this.createRecordSet());
         let data = this.obtainParameterValues(context, this.model);        
         this.ensureTimestamp(context, data, false);
-        this.processCalculate(context, db, data);
+        this.processCalculate(context, db, data, "update");
         let sql = this.composeQueryUpdate(context,this.model,data);
         this.logger.info(this.constructor.name+".processUpdate:",sql);
         let rs = await sql.executeUpdate(db,context);
@@ -134,7 +137,13 @@ export class SurveyOperateHandler extends OperateHandler {
         return dt;
     }
 
-    protected processCalculate(context: KnContextInfo, db: KnDBConnector, data: KnDataSet) : KnDataSet {
+    public override async getDataListing(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
+        let dt = await super.getDataListing(context,db,rs);
+        dt.dataset.profile_id = context.params.profile_id;
+        return dt;    
+    }
+
+    protected processCalculate(context: KnContextInfo, db: KnDBConnector, data: KnDataSet, action?: string) : KnDataSet {
         return data;
     }
 

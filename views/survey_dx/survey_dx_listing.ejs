@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<%- include('../asset/meta') %>		
+	<%- include('../asset/styles') %>		
+	<%- include('../asset/scripts') %>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_dx/survey_dx_listing.js"></script>
+	<style nonce="YXNzdXJl">
+		#listdxbuttoncancel { float: right; }
+	</style>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body">
+				<form class="a form app form-horizontal" id="list-form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="list_dx_ajax" name="ajax" value="true" />
+					<input type="hidden" id="list_dx_userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="list_dx_profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+					<input type="hidden" id="list_dx_master_id" name="master_id" value="<%=data.dataset?.master_id%>" />
+					<input type="hidden" id="list_dx_column_id" name="column_id" value="<%=data.dataset?.column_id%>" />
+					<label>แบบสำรวจข้อมูลการให้สินบนหรือถูกเรียกรับสินบนจากหน่วยงานของรัฐหรือเจ้าหน้าที่รัฐ (ผนวก ง) </label><br/>
+					<br/>
+					<label id="dx-topic-label">แบบบันทึกข้อมูลการกระทำผิด</label>
+					<br/>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row" style="margin-left: 10px;" id="dxdatatablelayer">
+								<%- include('../survey_dx/survey_dx_listing_kit') %>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg pull-right">
+					<button id="listdxbuttoncancel" class="ui basic red button small"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>

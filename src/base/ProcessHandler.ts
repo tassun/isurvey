@@ -8,6 +8,10 @@ export class ProcessHandler extends SystemHandler {
         return Promise.resolve({valid: true});
     }
 
+    protected async validateRequireFieldsInsert(context: KnContextInfo, throwError: boolean = false) : Promise<KnValidateInfo> {
+        return Promise.resolve({valid: true});
+    }
+
     public async add(context: KnContextInfo) : Promise<KnDataTable> {
         return this.doAdd(context);
     }
@@ -27,6 +31,7 @@ export class ProcessHandler extends SystemHandler {
     }
 
     public async insert(context: KnContextInfo) : Promise<KnRecordSet> {
+        await this.validateRequireFieldsInsert(context, true);
         return this.doInsert(context);
 	}
 
@@ -47,6 +52,10 @@ export class ProcessHandler extends SystemHandler {
 
     public async list(context: KnContextInfo) : Promise<KnRecordSet> {
         return this.doList(context);
+	}
+
+    public async listing(context: KnContextInfo) : Promise<KnDataTable> {
+        return this.doListing(context);
 	}
 
     public async export(context: KnContextInfo) : Promise<KnRecordSet> {
@@ -86,6 +95,10 @@ export class ProcessHandler extends SystemHandler {
     }
 
     protected async doList(context: KnContextInfo) : Promise<KnRecordSet> {
+        return this.notImplementation();
+    }
+
+    protected async doListing(context: KnContextInfo) : Promise<KnDataTable> {
         return this.notImplementation();
     }
     

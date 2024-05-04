@@ -6,8 +6,8 @@ export class SurveyFHandler extends SurveyOperateHandler {
     public model : KnModel = {
         name: "survey_f",
         fields: {
-            survey_id: { type: "STRING", key: true, created: true, updated: true  },
-            profile_id: { type: "STRING", created: true },
+            survey_id: { type: "STRING", key: true, created: true, updated: false  },
+            profile_id: { type: "STRING", created: true, updated: false },
             SF_1: { type: "STRING", created: true, updated: true  },
             SF_2_1: { type: "STRING", created: true, updated: true  },
             SF_2_2: { type: "STRING", created: true, updated: true  },

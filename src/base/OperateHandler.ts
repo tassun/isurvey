@@ -91,6 +91,17 @@ export class OperateHandler extends ProcessHandler {
         }
     }
 
+    protected override async doListing(context: KnContextInfo) : Promise<KnDataTable> {
+        let db = this.getPrivateConnector();
+        try {
+            return await this.processListing(context, db);
+        } catch(ex: any) {
+            return Promise.reject(this.getDBError(ex));
+        } finally {
+            if(db) db.close();
+        }
+    }
+
     protected override async doEdit(context: KnContextInfo) : Promise<KnDataTable> {
         let db = this.getPrivateConnector();
         try {
@@ -147,6 +158,11 @@ export class OperateHandler extends ProcessHandler {
         } 
         return this.notImplementation();
     }
+
+    public async processListing(context: KnContextInfo, db: KnDBConnector) : Promise<KnDataTable> {
+        let rs = await this.processList(context,db);
+        return await this.getDataListing(context, db, rs);
+    }
     
     public async processEdit(context: KnContextInfo, db: KnDBConnector) : Promise<KnDataTable> {
         let rs = await this.processRetrieve(context,db);
@@ -156,6 +172,13 @@ export class OperateHandler extends ProcessHandler {
     public async processView(context: KnContextInfo, db: KnDBConnector) : Promise<KnDataTable> {
         let rs = await this.processRetrieve(context,db);
         return await this.getDataView(context, db, rs);
+    }
+
+    public async getDataListing(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
+        if(rs.rows && rs.rows.length>0) {
+            return this.createDataTable("listing", rs);
+        }
+        return this.createDataTable("listing");
     }
 
     public async getDataEdit(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {

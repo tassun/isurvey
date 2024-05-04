@@ -6,8 +6,8 @@ export class SurveyGHandler extends SurveyOperateHandler {
     public model : KnModel = {
         name: "survey_g",
         fields: {
-            survey_id: { type: "STRING", key: true, created: true, updated: true  },
-            profile_id: { type: "STRING", created: true },
+            survey_id: { type: "STRING", key: true, created: true, updated: false  },
+            profile_id: { type: "STRING", created: true, updated: false },
             SG_1: { type: "STRING", created: true, updated: true  },
             SG_2: { type: "INTEGER", created: true, updated: true  },
             SG_3_1_1: { type: "STRING", created: true, updated: true  },

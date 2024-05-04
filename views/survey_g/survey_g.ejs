@@ -19,7 +19,7 @@
 					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
-					<label>แบบสำรวจข้อมูลความรุนแรงและการทรมานทุกรูปแบบที่มีต่อเด็ก (ผนวก ช) </label></br>
+					<label>แบบสำรวจข้อมูลความรุนแรงและการทรมานทุกรูปแบบที่มีต่อเด็ก (ผนวก ช) </label><br/>
 					<div class="row">
 						<label class="col-form-label">1. ท่านเคยถูกกระทำความรุนแรงทางเพศหรือมีกิจกรรมทางเพศ โดยตกเป็นเหยื่ออาชญากรรมก่อนอายุ 18 ปี<span class="star"> *</span></label>
 						<div class="col-lg-12">
@@ -43,9 +43,9 @@
 					<div class="row">
 						<label class="col-form-label">3. เหตุที่เกิดขึ้นเป็นเรื่องอะไร (ตอบได้มากกว่าหนึ่งข้อ)</span></label>
 						<label class="col-form-label">3.1 ความรุนแรงทางเพศ (ในที่นี้หมายถึง การข่มเหง การแสวงหาประโยชน์อย่างไม่ถูกต้อง การค้ามนุษย์ และความรุนแรงและการทรมานทุกรูปแบบที่มีต่อเด็ก)<span class="star"> *</span></label>
-						<div class="col-lg-12">
-							<label class="checkbox-inline col-form-label  col-lg-3" style="margin-left: 10px;">
-								<input type="checkbox" id="SG_3_1_1" name="SG_3_1_1" value="1" <%=page.checked("1",data.dataset?.SG_3_1_1)%> /> การบังคับ ชักจูงเด็ก ให้มีกิจกรรมทางเพศโดยไม่ยิมยอม
+						<div class="col-lg-12" id="sg31-layer">
+							<label class="checkbox-inline col-form-label  col-lg-3" style="margin-left: 10px;" id="SG_3_1_label">
+								<input type="checkbox" id="SG_3_1_1" name="SG_3_1_1" value="1" <%=page.checked("1",data.dataset?.SG_3_1_1)%> data-parsley-required="true" /> การบังคับ ชักจูงเด็ก ให้มีกิจกรรมทางเพศโดยไม่ยิมยอม
 							</label>
 							<label class="checkbox-inline col-form-label  col-lg-3">
 								<input type="checkbox" id="SG_3_1_2" name="SG_3_1_2" value="2" <%=page.checked("2",data.dataset?.SG_3_1_2)%> /> การผลิตหรือจำหน่ายสื่อลามกโดยใช้เด็กเป็นเครื่องมือ
@@ -73,9 +73,9 @@
 						</div>
 					</div>
 					<label class="col-form-label">3.2 กิจกรรมทางเพศ ในที่นี้หมายถึง การมีเพศสัมพันธ์ทั้งที่มีการร่วมประเวณีและไม่มีการร่วมประเวณี ไม่ว่าเด็กจะยินยอมหรือไม่ยินยอมก็ตาม<span class="star"> *</span></label>
-					<div class="col-lg-12">
-						<label class="checkbox-inline col-form-label  col-lg-3" style="margin-left: 10px;">
-							<input type="checkbox" id="SG_3_2_1" name="SG_3_2_1" value="1" <%=page.checked("1",data.dataset?.SG_3_2_1)%> /> ร่วมประเวณีด้วยความยินยอม
+					<div class="col-lg-12" id="sg32-layer">
+						<label class="checkbox-inline col-form-label  col-lg-3" style="margin-left: 10px;" id="SG_3_2_label">
+							<input type="checkbox" id="SG_3_2_1" name="SG_3_2_1" value="1" <%=page.checked("1",data.dataset?.SG_3_2_1)%> data-parsley-required="true" /> ร่วมประเวณีด้วยความยินยอม
 						</label>
 						<label class="checkbox-inline col-form-label  col-lg-3">
 							<input type="checkbox" id="SG_3_2_2" name="SG_3_2_2" value="2" <%=page.checked("2",data.dataset?.SG_3_2_2)%> /> ร่วมประเวณีโดยไม่ยินยอม

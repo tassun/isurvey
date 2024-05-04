@@ -8,8 +8,8 @@ export class MeasureCHandler extends SurveyOperateHandler {
     public model : KnModel = {
         name: "measure_c",
         fields: {
-            survey_id: { type: "STRING", key: true, created: true, updated: true  },
-            profile_id: { type: "STRING", created: true },
+            survey_id: { type: "STRING", key: true, created: true, updated: false  },
+            profile_id: { type: "STRING", created: true, updated: false },
             MC_1_1: { type: "STRING", created: true, updated: true  },
             MC_1_2: { type: "STRING", created: true, updated: true  },
             MC_1_3: { type: "STRING", created: true, updated: true  },
