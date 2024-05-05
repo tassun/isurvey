@@ -11,23 +11,6 @@ function setupComponents() {
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
 }
-function setupUI() {
-    $("#SG_3_1_6").change(function() {
-        if($(this).is(":checked")) {
-            $("#SG_3_1_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SG_3_1_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $("#sg31-layer").find("input[type=checkbox]").change(function() {
-        $("#SG_3_1_label").removeClass("parsley-error");
-    });
-    $("#sg32-layer").find("input[type=checkbox]").change(function() {
-        $("#SG_3_2_label").removeClass("parsley-error");
-    });
-    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
-    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
-}
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
         window.history.back();
@@ -101,6 +84,23 @@ function updateSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function setupUI() {
+    $("#SG_3_1_6").change(function() {
+        if($(this).is(":checked")) {
+            $("#SG_3_1_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SG_3_1_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $("#sg31-layer").find("input[type=checkbox]").change(function() {
+        $("#SG_3_1_label").removeClass("parsley-error");
+    });
+    $("#sg32-layer").find("input[type=checkbox]").change(function() {
+        $("#SG_3_2_label").removeClass("parsley-error");
+    });
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
+    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
 }
 function validateSG31() {
     let checked = $("#sg31-layer").find("input[type=checkbox]:checked").length;

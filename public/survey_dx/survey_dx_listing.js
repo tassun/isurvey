@@ -9,8 +9,8 @@ $(function() {
 function setupComponentsAptList() {
     $("#dxbuttoncancel").click(function() { confirmCancelSurveyAptList(this); return false; });
 }
-function setupUIAptList() {
-}
 function gotoSurveyFormAptList(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function setupUIAptList() {
 }

@@ -11,59 +11,6 @@ function setupComponentsApt() {
     $("#dxbuttoncancel").click(function() { confirmCancelSurveyApt(this); return false; });
     $("#dxbuttonupdate").click(function() { confirmUpdateSurveyApt(this); return false; });
 }
-function setupUIApt() {
-    $('input[name="SDX_6"]').on('change', function() {
-        if ($(this).val() == '5') {
-            $("#SDX_6_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SDX_6_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $('input[name="SDX_7"]').on('change', function() {
-        if ($(this).val() == '5') {
-            $("#SDX_7_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SDX_7_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $('input[name="SDX_8"]').on('change', function() {
-        if ($(this).val() == '2') {
-            $("#SDX_8_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SDX_8_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $('input[name="SDX_9"]').on('change', function() {
-        if ($(this).val() == '3') {
-            $("#SDX_9_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SDX_9_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $('input[name="SDX_10"]').on('change', function() {
-        if ($(this).val() == '7') {
-            $("#SDX_10_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SDX_10_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $('input[name="SDX_11"]').on('change', function() {
-        if ($(this).val() == '5') {
-            $("#SDX_11_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SDX_11_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $('input[name="SDX_12"]').on('change', function() {
-        if ($(this).val() == '6') {
-            $("#SDX_12_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SDX_12_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $("input[type=radio]:checked",$("#dx-form-data-layer")).trigger("change");
-    $("input[type=checkbox]:checked",$("#dx-form-data-layer")).trigger("change");
-}
 function confirmCancelSurveyApt(src) {
     confirmCancelMessage(function() {
         window.history.back();
@@ -133,4 +80,57 @@ function updateSurveyApt(src) {
 }
 function gotoSurveyFormApt(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function setupUIApt() {
+    $('input[name="SDX_6"]').on('change', function() {
+        if ($(this).val() == '5') {
+            $("#SDX_6_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SDX_6_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $('input[name="SDX_7"]').on('change', function() {
+        if ($(this).val() == '5') {
+            $("#SDX_7_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SDX_7_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $('input[name="SDX_8"]').on('change', function() {
+        if ($(this).val() == '2') {
+            $("#SDX_8_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SDX_8_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $('input[name="SDX_9"]').on('change', function() {
+        if ($(this).val() == '3') {
+            $("#SDX_9_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SDX_9_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $('input[name="SDX_10"]').on('change', function() {
+        if ($(this).val() == '7') {
+            $("#SDX_10_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SDX_10_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $('input[name="SDX_11"]').on('change', function() {
+        if ($(this).val() == '5') {
+            $("#SDX_11_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SDX_11_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $('input[name="SDX_12"]').on('change', function() {
+        if ($(this).val() == '6') {
+            $("#SDX_12_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SDX_12_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $("input[type=radio]:checked",$("#dx-form-data-layer")).trigger("change");
+    $("input[type=checkbox]:checked",$("#dx-form-data-layer")).trigger("change");
 }

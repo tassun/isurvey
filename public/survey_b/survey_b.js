@@ -2,7 +2,7 @@ var mouseX = 0;
 var mouseY = 0;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
-	try { startApplication("survey_c"); }catch(ex) { }
+	try { startApplication("survey_b"); }catch(ex) { }
     setupComponents();
     setupUI();
 });
@@ -35,7 +35,7 @@ function confirmUpdateSurvey(src) {
 function saveSurvey(src) {
     startWaiting();
     $.ajax({
-        url: BASE_URL+"/survey_c/insert",
+        url: BASE_URL+"/survey_b/insert",
         data: $('#form-data-validate').serialize(),
         type: "POST",
         dataType: "json",
@@ -59,7 +59,7 @@ function updateSurvey(src) {
     let profile_id = $("#profile_id").val();
     startWaiting();
     $.ajax({
-        url: BASE_URL+"/survey_c/update",
+        url: BASE_URL+"/survey_b/update",
         data: $('#form-data-validate').serialize(),
         type: "POST",
         dataType: "json",

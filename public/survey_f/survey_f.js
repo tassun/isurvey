@@ -11,20 +11,6 @@ function setupComponents() {
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
 }
-function setupUI() {
-    $("#SF_2_12").change(function() {
-        if($(this).is(":checked")) {
-            $("#SF_2_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SF_2_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $("#sf2-layer").find("input[type=checkbox]").change(function() {
-        $("#SF_2_label").removeClass("parsley-error");
-    });
-    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
-    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
-}
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
         window.history.back();
@@ -96,6 +82,20 @@ function updateSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function setupUI() {
+    $("#SF_2_12").change(function() {
+        if($(this).is(":checked")) {
+            $("#SF_2_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SF_2_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $("#sf2-layer").find("input[type=checkbox]").change(function() {
+        $("#SF_2_label").removeClass("parsley-error");
+    });
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
+    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
 }
 function validateSF2() {
     let checked = $("#sf2-layer").find("input[type=checkbox]:checked").length;

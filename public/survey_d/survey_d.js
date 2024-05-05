@@ -12,38 +12,6 @@ function setupComponents() {
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
     $("#dx-modal-dialog-listing").find(".modal-dialog").draggable();    
 }
-function setupUI() {
-    $("a.sd-linker").click(function() {
-        if($(this).hasClass("disabled")) return false;
-        let column_id = $(this).attr("data-column");
-        let refer_id = $(this).attr("data-refer");
-        let profile_id = $("#profile_id").val();
-        let survey_id = $("#survey_id").val();
-        console.log("profile_id: " + profile_id + ", master_id: " + survey_id+", column_id: "+column_id+", survey_id: "+refer_id);
-        let tr = $(this).closest("tr");
-        $("#dx-modal-dialog-listing").modal("show");
-        $("#listdxbuttonok").unbind("click").bind("click",() => { 
-            let rowlen = $("#listdxdatatablebody").find("tr").length; 
-            $("#"+column_id+"_counter").text(rowlen);
-            $("#dx-modal-dialog-listing").modal("hide"); 
-            console.log("rowlen: "+rowlen+", column_id: "+column_id);
-        });
-        let title = tr.find("td").eq(0).text();
-        $("#dx-topic-title").text(title);
-        $("#list_dx_profile_id").val(profile_id);
-        $("#list_dx_master_id").val(survey_id);
-        $("#list_dx_column_id").val(column_id);    
-        searchSurveyDXDataTable(profile_id,survey_id,column_id);
-    });
-    $("input.sd-radio").change(function() {
-        if ($(this).val() == '1') {
-            $(this).closest("tr").find("a.sd-linker").prop('disabled', false).removeClass("disabled");
-        } else {
-            $(this).closest("tr").find("a.sd-linker").prop('disabled', true).addClass("disabled");
-        }
-    });
-    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
-}
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
         window.history.back();
@@ -113,6 +81,38 @@ function updateSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function setupUI() {
+    $("a.sd-linker").click(function() {
+        if($(this).hasClass("disabled")) return false;
+        let column_id = $(this).attr("data-column");
+        let refer_id = $(this).attr("data-refer");
+        let profile_id = $("#profile_id").val();
+        let survey_id = $("#survey_id").val();
+        console.log("profile_id: " + profile_id + ", master_id: " + survey_id+", column_id: "+column_id+", survey_id: "+refer_id);
+        let tr = $(this).closest("tr");
+        $("#dx-modal-dialog-listing").modal("show");
+        $("#listdxbuttonok").unbind("click").bind("click",() => { 
+            let rowlen = $("#listdxdatatablebody").find("tr").length; 
+            $("#"+column_id+"_counter").text(rowlen);
+            $("#dx-modal-dialog-listing").modal("hide"); 
+            console.log("rowlen: "+rowlen+", column_id: "+column_id);
+        });
+        let title = tr.find("td").eq(0).text();
+        $("#dx-topic-title").text(title);
+        $("#list_dx_profile_id").val(profile_id);
+        $("#list_dx_master_id").val(survey_id);
+        $("#list_dx_column_id").val(column_id);    
+        searchSurveyDXDataTable(profile_id,survey_id,column_id);
+    });
+    $("input.sd-radio").change(function() {
+        if ($(this).val() == '1') {
+            $(this).closest("tr").find("a.sd-linker").prop('disabled', false).removeClass("disabled");
+        } else {
+            $(this).closest("tr").find("a.sd-linker").prop('disabled', true).addClass("disabled");
+        }
+    });
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
 }
 function displaySurveyDXDataTable() {
     let profile_id = $("#list_dx_profile_id").val();

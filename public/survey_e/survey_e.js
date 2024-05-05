@@ -11,44 +11,6 @@ function setupComponents() {
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
 }
-function setupUI() {
-    $("input.se-radio").change(function() {
-        if ($(this).val() == '1') {
-            $(this).closest("tr").find("input[type=number]").prop('readonly', false);
-        } else {
-            $(this).closest("tr").find("input[type=number]").prop('readonly', true).val('');
-        }
-    });
-    $('input[name="SE_5"]').on('change', function() {
-        if ($(this).val() == '3') {
-            $("#SE_5_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SE_5_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $("#SE_6_5").change(function() {
-        if($(this).is(":checked")) {
-            $("#SE_6_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SE_6_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $("#SE_7_13").change(function() {
-        if($(this).is(":checked")) {
-            $("#SE_7_text").attr('data-parsley-required', 'true').prop('readonly', false);
-        } else {
-            $("#SE_7_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
-        }
-    });
-    $("#se6-layer").find("input[type=checkbox]").change(function() {
-        $("#SE_6_1_label").removeClass("parsley-error");
-    });
-    $("#se7-layer").find("input[type=checkbox]").change(function() {
-        $("#SE_7_1_label").removeClass("parsley-error");
-    });
-    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
-    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
-}
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
         window.history.back();
@@ -122,6 +84,44 @@ function updateSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function setupUI() {
+    $("input.se-radio").change(function() {
+        if ($(this).val() == '1') {
+            $(this).closest("tr").find("input[type=number]").prop('readonly', false);
+        } else {
+            $(this).closest("tr").find("input[type=number]").prop('readonly', true).val('');
+        }
+    });
+    $('input[name="SE_5"]').on('change', function() {
+        if ($(this).val() == '3') {
+            $("#SE_5_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SE_5_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $("#SE_6_5").change(function() {
+        if($(this).is(":checked")) {
+            $("#SE_6_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SE_6_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $("#SE_7_13").change(function() {
+        if($(this).is(":checked")) {
+            $("#SE_7_text").attr('data-parsley-required', 'true').prop('readonly', false);
+        } else {
+            $("#SE_7_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+        }
+    });
+    $("#se6-layer").find("input[type=checkbox]").change(function() {
+        $("#SE_6_1_label").removeClass("parsley-error");
+    });
+    $("#se7-layer").find("input[type=checkbox]").change(function() {
+        $("#SE_7_1_label").removeClass("parsley-error");
+    });
+    $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
+    $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
 }
 function validateSE6() {
     let checked = $("#se6-layer").find("input[type=checkbox]:checked").length;

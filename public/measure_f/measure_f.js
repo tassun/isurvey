@@ -11,8 +11,6 @@ function setupComponents() {
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
 }
-function setupUI() {
-}
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
         window.history.back();
@@ -82,4 +80,6 @@ function updateSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+}
+function setupUI() {
 }
