@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<%- include('../asset/meta') %>		
+	<%- include('../asset/styles') %>		
+	<%- include('../asset/scripts') %>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/js/functions-min.js"></script>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_b/survey_b.js"></script>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_b/survey_by.js"></script>
+	<style nonce="YXNzdXJl">
+		.ctrl-label { font-weight: 100; cursor: pointer; }
+		.seqno-label { font-weight: 100; }
+	</style>
+</head>
+<body>
+	<%- include('../partials/page_waiting') %>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<%- include('../partials/page_header') %>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body" id="form-data-layer">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
+					<label>แบบแจงนับข้อมูลสถิติอาชญากรรม (ผนวก ข) </label>
+					<br/>
+					<label>จำนวนสมาชิกในครัวเรือนที่อยู่อาศัยในห้วง พ.ศ. 2565 มากกว่า 6 เดือนขึ้นไป รวมทั้งสิ้น</label>
+					<label class="radio-inline col-form-label  col-lg-1">
+						<input type="text" class="form-control" id="SB_family_counter" value="<%=data.dataset?.SB_family_counter%>" readonly />
+					</label>
+					<label>คน</label>
+					<br/>
+					<label>(นับรวมผู้ตอบและสมาชิกทุกคน (ทุกช่วงอายุ) ในรอบ 1 ปีที่ผ่านมา)</label> 
+					<br/>
+					<a href="javascript:void(0)" id="bx-add-button" class="ui green button"><i class="plus icon small"></i> เพิ่มสมาชิกในครัวเรือน</a>
+					<br/> <br/>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row" style="margin-left: 10px;">
+								<table class="tg data-table" id="familytable">
+									<thead>
+										<tr>
+											<th>ลำดับที่สมาชิก<br/>ในครัวเรือน</th>
+											<th>เพศ<span class="star"> *</span></th>
+											<th>อายุ<span class="star"> *</span></th>
+											<th>การตกเป็นเหยื่อ<br/>อาชญากรรม<br/>(1 ม.ค. – 31 ธ.ค. 65)<span class="star"> *</span></th>
+											<th><u>หมายเหตุ</u><br/>(กรณีไม่ระบุคำตอบ)</th>
+											<th>กรอกข้อมูลและรายละเอียด<br/>การตกเป็นเหยื่ออาชญากรรม</th>
+										</tr>
+									</thead>
+									<tbody id="familytablebody">
+										<%	let rows = data.dataset?.rows;
+										if(rows && rows.length>0) { 
+											for(let index=0; index < rows.length; index++) { 
+												let item = rows[index]; %>
+										<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>">
+											<td>												
+												<label class="seqno-label"><%=index+1%></label><%=(item?.survey_type == "A" ? ". (ตัวผู้ตอบ)" : "")%>
+												<input type="hidden" id="survey_type_<%=index%>" name="survey_type" value="<%=item?.survey_type%>" />
+												<input type="hidden" id="parent_id_<%=index%>" name="parent_id" value="<%=item?.survey_id%>" />
+											</td>
+											<td class="nowrap"><%=item?.SBX_gender%></td>
+											<td class="nowrap"><%=item?.SBX_age%></td>
+											<td class="nowrap">
+												<input type="radio" class="sb-radio" id="SBX_crime_1_<%=index%>" name="SBX_crime" value="1" <%=page.checked("1",item?.SBX_crime)%> />
+												<label class="ctrl-label" for="SBX_crime_1_<%=index%>">&nbsp;เคย&nbsp;&nbsp;</label>
+												<input type="radio" class="sb-radio" id="SBX_crime_2_<%=index%>" name="SBX_crime" value="0" data-parsley-required="true" <%=page.checked("0",item?.SBX_crime)%> />
+												<label class="ctrl-label" for="SBX_crime_2_<%=index%>">&nbsp;ไม่เคย&nbsp;</label>
+											</td>
+											<td><input type="text" class="form-control" id="SBX_remark_<%=index%>" name="SBX_remark" value="<%=item?.SBX_remark%>" /></td>
+											<td class="text-center">
+												<a href="javascript:void(0)" class="sb-edit-linker ui basic black button disabled" disabled><i class="edit icon large"></i></a>
+												<% if(item?.survey_type != "A") {%>
+												<a href="javascript:void(0)" class="sb-delete-linker ui basic red button"><i class="trash icon large"></i></a>
+												<% } %>
+											</td>
+										</tr>
+											<%} 
+										} %>							
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<% if(!page.isUpdateMode(data.action)) {%>
+						<button id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</button>
+					<% } %>
+					<% if(page.isUpdateMode(data.action)) {%>
+						<button id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.survey_id%>"><i class="save icon large button"></i> ปรับปรุง</button>
+					<% } %>
+				</div>
+				<div class="col-lg-1.5">
+					<button id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>

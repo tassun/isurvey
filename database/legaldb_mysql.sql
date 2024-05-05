@@ -257,9 +257,17 @@ CREATE TABLE IF NOT EXISTS `measure_f` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='ส่วนที่ 6 ระดับการเคารพกฎหมายของประชาชน';
 
 
-CREATE TABLE IF NOT EXISTS `survey_b` (
+CREATE TABLE IF NOT EXISTS `measure_g` (
   `survey_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `profile_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'survey_profile.profile_id',
+  `MG_1_1` varchar(2) DEFAULT NULL COMMENT 'ท่านได้รับบริการหรือได้รับความช่วยเหลือจากเจ้าหน้าที่อย่างครบถ้วนตรงกับความต้องการ',
+  `MG_1_2` varchar(2) DEFAULT NULL COMMENT 'หน่วยงานมีการจัดทำข้อมูลเผยแพร่หรือจัดเจ้าหน้าที่ผู้ให้ความช่วยเหลือในการแนะนำข้อกฎหมาย ขั้นตอนการปฏิบัติ ให้คำแนะนำ หรือตอบข้อสงสัยได้อย่างเพียงพอและเข้าใจได้อย่างชัดเจน',
+  `MG_1_3` varchar(2) DEFAULT NULL COMMENT 'เจ้าหน้าที่มีความรู้ความสามารถเพียงพอต่อการให้บริการ',
+  `MG_1_4` varchar(2) DEFAULT NULL COMMENT 'เจ้าหน้าที่ให้ดูแลต้อนรับเป็นอย่างดี กริยาวาจาของเจ้าหน้าที่ ความสุภาพอ่อนโยน เป็นมิตรต่อประชาชน',
+  `MG_1_5` varchar(2) DEFAULT NULL COMMENT 'ระยะเวลาในการให้บริการมีความเหมาะสม',
+  `MG_C_mark` int DEFAULT NULL COMMENT 'calculate(MG_1): summary',
+  `MG_C_total` int DEFAULT NULL COMMENT 'calculate(MG_1): จำนวนข้อทั้งหมด',
+  `MG_C_avg` decimal(20,6) DEFAULT NULL COMMENT 'calculate(MG_1): average=mark/total',
   `create_date` date DEFAULT NULL,
   `create_time` time DEFAULT NULL,
   `create_millis` bigint DEFAULT NULL,
@@ -270,7 +278,25 @@ CREATE TABLE IF NOT EXISTS `survey_b` (
   `update_by` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`survey_id`) USING BTREE,
   KEY `profile_id` (`profile_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='ส่วนที่ 3 ความพึงพอใจของประชาชนต่อการดำเนินงานของหน่วยงานในกระบวนการยุติธรรม (ตอบเฉพาะผู้เข้ารับบริการ)';
+
+
+CREATE TABLE IF NOT EXISTS `survey_b` (
+  `survey_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `profile_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'survey_profile.profile_id',
+  `SB_1` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'รหัสครัวเรือน',
+  `SB_2` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'รหัสผู้เก็บ',
+  `create_date` date DEFAULT NULL,
+  `create_time` time DEFAULT NULL,
+  `create_millis` bigint DEFAULT NULL,
+  `create_by` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `update_date` date DEFAULT NULL,
+  `update_time` time DEFAULT NULL,
+  `update_millis` bigint DEFAULT NULL,
+  `update_by` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  PRIMARY KEY (`survey_id`) USING BTREE,
+  KEY `profile_id` (`profile_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='แบบแจงนับข้อมูลสถิติอาชญากรรม (ผนวก ข)';
 
 
 CREATE TABLE IF NOT EXISTS `survey_c` (
@@ -382,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `survey_dx` (
   `profile_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'survey_profile.profile_id',
   `master_id` varchar(50) NOT NULL COMMENT 'survey_d.survey_id',
   `column_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'survey_d column name',
-  `survey_state` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'DRAFT,CONFIRM,CANCEL',
+  `survey_state` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'DRAFT' COMMENT 'DRAFT,CONFIRM,CANCEL',
   `SDX_1` varchar(50) DEFAULT NULL COMMENT '3.2.1 รหัสคดี',
   `SDX_2` varchar(100) DEFAULT NULL COMMENT '3.2.2 หน่วยงานของรัฐที่ติดต่อ',
   `SDX_3` text COMMENT '3.2.3 พฤติกรรมโดยย่อพอสังเขป',
@@ -551,23 +577,24 @@ CREATE TABLE IF NOT EXISTS `survey_form` (
   `form_title` varchar(100) NOT NULL,
   `form_url` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `form_table` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `inactive` varchar(1) DEFAULT '0',
+  `inactive` varchar(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0' COMMENT '1=Inactive (do not survey)',
   `seqno` int DEFAULT '0',
   PRIMARY KEY (`form_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='table keep survey form info';
 
 INSERT INTO `survey_form` (`form_id`, `form_type`, `form_title`, `form_url`, `form_table`, `inactive`, `seqno`) VALUES
-	('MEASURE_B', 'MEASURE', 'ความรู้และความเข้าใจสิทธิพื้นฐาน', '/measure_b/open', NULL, '0', 7),
-	('MEASURE_C', 'MEASURE', 'ระดับการรับรู้ความเข้าใจกฏหมาย', '/measure_c/open', NULL, '0', 8),
-	('MEASURE_D', 'MEASURE', 'ระดับการเข้าถึงและความเชื่อมั่นต่อกระบวนการยุติธรรม', '/measure_d/open', NULL, '0', 9),
-	('MEASURE_E', 'MEASURE', 'กระบวนการยุติธรรมทางเลือกและการระงับข้อพิพาท', '/measure_e/open', NULL, '0', 10),
-	('MEASURE_F', 'MEASURE', 'ระดับการเคารพกฏหมาย', '/measure_f/open', NULL, '0', 11),
-	('SURVEY_B', 'SURVEY', 'การเก็บข้อมูลอาชญากรรม', '/survey_b/open', NULL, '0', 1),
-	('SURVEY_C', 'SURVEY', 'ความหวาดกลัวภัยอาชญากรรม', '/survey_c/open', NULL, '0', 2),
-	('SURVEY_D', 'SURVEY', 'การสำรวจการเรียกรับสินบน', '/survey_d/open', NULL, '0', 3),
-	('SURVEY_E', 'SURVEY', 'การสำรวจการค้ามนุษย์บังคับแรงงาน', '/survey_e/open', NULL, '0', 4),
-	('SURVEY_F', 'SURVEY', 'การสำรวจการทำร้ายรังแกทางจิตใจ', '/survey_f/open', NULL, '0', 5),
-	('SURVEY_G', 'SURVEY', 'การสำรวจการถูกกระทำรุนแรงทางเพศ', '/survey_g/open', NULL, '0', 6);
+	('MEASURE_B', 'MEASURE', 'ความรู้และความเข้าใจสิทธิพื้นฐาน', '/measure_b/open', 'measure_b', '0', 7),
+	('MEASURE_C', 'MEASURE', 'ระดับการรับรู้ความเข้าใจกฏหมาย', '/measure_c/open', 'measure_c', '0', 8),
+	('MEASURE_D', 'MEASURE', 'ระดับการเข้าถึงและความเชื่อมั่นต่อกระบวนการยุติธรรม', '/measure_d/open', 'measure_d', '0', 9),
+	('MEASURE_E', 'MEASURE', 'กระบวนการยุติธรรมทางเลือกและการระงับข้อพิพาท', '/measure_e/open', 'measure_e', '0', 10),
+	('MEASURE_F', 'MEASURE', 'ระดับการเคารพกฏหมาย', '/measure_f/open', 'measure_f', '0', 11),
+	('MEASURE_G', 'MEASURE', 'ความพึงพอใจของประชาชนต่อการดำเนินงาน', '/measure_g/open', 'measure_g', '0', 12),
+	('SURVEY_B', 'SURVEY', 'การเก็บข้อมูลอาชญากรรม', '/survey_b/open', 'survey_b', '0', 1),
+	('SURVEY_C', 'SURVEY', 'ความหวาดกลัวภัยอาชญากรรม', '/survey_c/open', 'survey_c', '0', 2),
+	('SURVEY_D', 'SURVEY', 'การสำรวจการเรียกรับสินบน', '/survey_d/open', 'survey_d', '0', 3),
+	('SURVEY_E', 'SURVEY', 'การสำรวจการค้ามนุษย์บังคับแรงงาน', '/survey_e/open', 'survey_e', '0', 4),
+	('SURVEY_F', 'SURVEY', 'การสำรวจการทำร้ายรังแกทางจิตใจ', '/survey_f/open', 'survey_f', '0', 5),
+	('SURVEY_G', 'SURVEY', 'การสำรวจการถูกกระทำรุนแรงทางเพศ', '/survey_g/open', 'survey_g', '0', 6);
 
 CREATE TABLE IF NOT EXISTS `survey_form_type` (
   `type_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
@@ -635,7 +662,7 @@ CREATE TABLE IF NOT EXISTS `survey_profile` (
   `A4_2_4` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'เขตสถานีตำรวจ',
   `A4_2_5` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'อบต./ท.ตำบล/ท.เมือง/ท.นคร',
   `A_01` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '1. เพศ',
-  `A_02` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '2. อายุ',
+  `A_02` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '2. อายุ',
   `A_02_text` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `A_02_1` varchar(2) DEFAULT NULL COMMENT '0-17 ปี',
   `A_02_2` varchar(2) DEFAULT NULL COMMENT '18-19 ปี',

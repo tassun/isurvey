@@ -73,11 +73,17 @@ export class SurveyOperateHandler extends OperateHandler {
         data.survey_id = uuid();
         if(survey_id && survey_id.trim().length>0) data.survey_id = survey_id;
         this.ensureTimestamp(context, data);
+        let rs = await this.performInsert(context, db, data);
+        return Promise.resolve(rs);
+    }
+
+    public async performInsert(context: KnContextInfo, db: KnDBConnector, data: any) : Promise<KnRecordSet> {
+        if(!this.model) return Promise.reject(new VerifyError("Model not defined",HTTP.NOT_IMPLEMENTED,-16064));
         this.processCalculate(context, db, data, "insert");
         let sql = this.composeQueryInsert(context,this.model,data);
-        this.logger.info(this.constructor.name+".processInsert:",sql);
+        this.logger.info(this.constructor.name+".performInsert:",sql);
         let rs = await sql.executeUpdate(db,context);
-        this.logger.debug(this.constructor.name+".processInsert:",rs);
+        this.logger.debug(this.constructor.name+".performInsert:",rs);
         if(rs.rows) {
             rs.rows.survey_id = data.survey_id;
             if(this.alwaysSaveProfileForm) {
@@ -105,11 +111,17 @@ export class SurveyOperateHandler extends OperateHandler {
         if(!vi.valid) return Promise.resolve(this.createRecordSet());
         let data = this.obtainParameterValues(context, this.model);        
         this.ensureTimestamp(context, data, false);
+        let rs = await this.performUpdate(context, db, data);
+        return Promise.resolve(rs);
+    }
+
+    public async performUpdate(context: KnContextInfo, db: KnDBConnector, data: any) : Promise<KnRecordSet> {
+        if(!this.model) return Promise.reject(new VerifyError("Model not found",HTTP.NOT_IMPLEMENTED,-16064));
         this.processCalculate(context, db, data, "update");
         let sql = this.composeQueryUpdate(context,this.model,data);
-        this.logger.info(this.constructor.name+".processUpdate:",sql);
+        this.logger.info(this.constructor.name+".performUpdate:",sql);
         let rs = await sql.executeUpdate(db,context);
-        this.logger.debug(this.constructor.name+".processUpdate:",rs);
+        this.logger.debug(this.constructor.name+".performUpdate:",rs);
         return Promise.resolve(this.createRecordSet(rs));
     }
 

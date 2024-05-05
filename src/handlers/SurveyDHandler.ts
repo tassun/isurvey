@@ -89,7 +89,6 @@ export class SurveyDHandler extends SurveyOperateHandler {
 
     public override async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
         let dt = await super.getDataAdd(context);
-        dt.dataset.profile_id = context.params.profile_id;
         dt.dataset.survey_id = uuid();
         return dt;
     }

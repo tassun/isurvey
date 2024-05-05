@@ -1,8 +1,8 @@
 function isEmpty(value) {
 	return $.trim(value)=="";
 }
-function computeAge(dob,today) {
-	let today = today || new Date();
+function computeAge(dob,nowaday) {
+	let today = nowaday || new Date();
 	let result = { 
           years: 0, 
           months: 0, 
@@ -40,7 +40,7 @@ function createUUID() {
     let s = [];
     let hexDigits = "0123456789abcdef";
     for (let i = 0; i < 36; i++) {
-        s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+        s[i] = hexDigits.substring(Math.floor(Math.random() * 0x10), 2);
     }
     s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
     s[19] = hexDigits.substring((s[19] & 0x3) | 0x8, 2);  // bits 6-7 of the clock_seq_hi_and_reserved to 01

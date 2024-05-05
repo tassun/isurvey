@@ -6,7 +6,7 @@ import { HTTP } from '../api/HTTP';
 
 export class SurveyDXHandler extends SurveyOperateHandler {
     public readonly form_id : string = "SURVEY_DX";
-    public alwaysSaveProfileForm : boolean = false;
+    public readonly alwaysSaveProfileForm : boolean = false;
     public model : KnModel = {
         name: "survey_dx",
         fields: {
