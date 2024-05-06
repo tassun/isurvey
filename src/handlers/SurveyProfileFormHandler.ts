@@ -67,8 +67,6 @@ export class SurveyProfileFormHandler extends OperateHandler {
     }
 
     public override async processUpdate(context: KnContextInfo, db: KnDBConnector, data?: any) : Promise<KnRecordSet> {
-        let vi = await this.validateRequireFields(context);
-        if(!vi.valid) return Promise.resolve(this.createRecordSet());
         if(!data) data = this.obtainParameterValues(context, this.model);
         this.ensureTimestamp(context, data, false);
         let sql = this.composeQueryUpdate(context,this.model,data);
@@ -79,8 +77,6 @@ export class SurveyProfileFormHandler extends OperateHandler {
     }
 
     public override async processRemove(context: KnContextInfo, db: KnDBConnector, data?: any) : Promise<KnRecordSet> {
-        let vi = await this.validateRequireFields(context);
-        if(!vi.valid) return Promise.resolve(this.createRecordSet());
         let sql = this.composeQueryDelete(context,this.model,data);
         this.logger.info(this.constructor.name+".processRemove:",sql);
         let rs = await sql.executeUpdate(db,context);

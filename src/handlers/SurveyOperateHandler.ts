@@ -13,6 +13,7 @@ export class SurveyOperateHandler extends OperateHandler {
     public async saveProfileForm(context: KnContextInfo, db: KnDBConnector, data: any) : Promise<KnRecordSet> {
         let former = new SurveyProfileFormHandler(this.logger);
         let frs = await former.processUpdate(context,db,data);
+        this.logger.debug(this.constructor.name+".saveProfileForm:",frs);
         if(frs.records==0) {
             frs = await former.processInsert(context,db,data);
         }
@@ -133,7 +134,9 @@ export class SurveyOperateHandler extends OperateHandler {
         this.logger.info(this.constructor.name+".processRemove:",sql);
         let rs = await sql.executeUpdate(db,context);
         this.logger.debug(this.constructor.name+".processRemove:",rs);
-        await this.removeProfileFormBySurvey(context,db,context.params.survey_id);
+        if(this.alwaysSaveProfileForm) {
+            await this.removeProfileFormBySurvey(context,db,context.params.survey_id);
+        }
         return Promise.resolve(this.createRecordSet(rs));
     }
 

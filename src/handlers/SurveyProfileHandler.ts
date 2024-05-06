@@ -124,13 +124,6 @@ export class SurveyProfileHandler extends OperateHandler {
         return Promise.resolve(vi);
     }
 
-    protected ensureDataSet(data: KnDataSet) {
-        if(data.A4=="2") {
-            data.A4_1_1 = undefined;
-            data.A4_1_1_text = '';
-        }
-    }
-
     public override async processInsert(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         let data = this.obtainParameterValues(context, this.model);
         let profile_id = data.profile_id;
@@ -139,7 +132,6 @@ export class SurveyProfileHandler extends OperateHandler {
         let profile_code = data.profile_code;
         data.profile_code = Utilities.serializeTimestamp(Utilities.now());
         if(profile_code && profile_code.trim().length>0) data.profile_code = profile_code;
-        this.ensureDataSet(data);
         this.ensureTimestamp(context, data);
         this.processCalculate(context, db, data);
         let sql = this.composeQueryInsert(context,this.model,data);
@@ -170,7 +162,6 @@ export class SurveyProfileHandler extends OperateHandler {
         if(!vi.valid) return Promise.resolve(this.createRecordSet());
         let data = this.obtainParameterValues(context, this.model);
         if(!data.profile_code || data.profile_code.trim().length==0) data.profile_code = Utilities.serializeTimestamp(Utilities.now());
-        this.ensureDataSet(data);
         this.ensureTimestamp(context, data, false);
         this.processCalculate(context, db, data);
         let sql = this.composeQueryUpdate(context,this.model,data);
@@ -207,13 +198,14 @@ export class SurveyProfileHandler extends OperateHandler {
         return Promise.resolve(this.createRecordSet(rs));
     }
 
-    protected async getDataCategory(context: KnContextInfo, db: KnDBConnector) : Promise<KnDataCategory> {
+    public async getDataCategory(context: KnContextInfo, db: KnDBConnector) : Promise<KnDataCategory> {
         let handler = new DataHandler(this.logger);
         return await handler.getCategory(context,db,"tprovinces","tamphures","tdistricts");
     }
 
     public override async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
         let dt = await super.getDataAdd(context);
+        dt.dataset.master_id = context.params.master_id;
         dt.dataset.creator_name = "";
         if(context.meta?.user?.name) dt.dataset.creator_name = context.meta?.user?.name+" "+(context.meta?.user?.surname?context.meta?.user?.surname:"");
         dt.dataset.profile_code = Utilities.serializeTimestamp(Utilities.now());
@@ -237,6 +229,11 @@ export class SurveyProfileHandler extends OperateHandler {
     }
 
     protected processCalculate(context: KnContextInfo, db: KnDBConnector, data: KnDataSet) : KnDataSet {
+        if(data.master_id=="") data.master_id = null;
+        if(data.A4=="2") {
+            data.A4_1_1 = undefined;
+            data.A4_1_1_text = '';
+        }
         let ageflag = data.A_02;
         let agetext = data.A_02_text;
         if(ageflag && ageflag=="0" && agetext && agetext.trim().length>0) {

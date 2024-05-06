@@ -1,64 +1,68 @@
-import { v4 as uuid } from 'uuid';
 import { KnDBConnector, KnRecordSet, KnSQL } from 'will-sql';
-import { KnModel, KnContextInfo, KnDataTable } from '../models/AssureAlias';
+import { KnModel, KnContextInfo, KnDataTable, KnValidateInfo } from '../models/AssureAlias';
 import { SurveyOperateHandler } from './SurveyOperateHandler';
+import { VerifyError } from '../models/VerifyError';
+import { HTTP } from '../api/HTTP';
 
 export class SurveyBXHandler extends SurveyOperateHandler {
     public readonly form_id : string = "SURVEY_BX";
     public readonly alwaysSaveProfileForm : boolean = false;
+    public readonly TABLE_NAMES : string[] = ["survey_b1","survey_b2","survey_b3","survey_b4","survey_b5","survey_b6","survey_b7"];
     public model : KnModel = {
         name: "survey_bx",
         fields: {
-            survey_id: { type: "STRING", key: true, created: true, updated: false  },
-            profile_id: { type: "STRING", created: true, updated: false },
-            master_id: { type: "STRING", created: true, updated: false },
-            survey_state: { type: "STRING", created: true, updated: false },
-            survey_type: { type: "STRING", created: true, updated: false },
-            SBX_name: { type: "STRING", created: true, updated: false },
-            SBX_gender: { type: "STRING", created: true, updated: false },
-            SBX_age: { type: "STRING", created: true, updated: false },
-            SBX_crime: { type: "STRING", created: true, updated: false },
-            SBX_remark: { type: "STRING", created: true, updated: false },
-            create_date: { type: "DATE", created: true, updated: false  },
-            create_time: { type: "TIME", created: true, updated: false  },
-            create_millis: { type: "BIGINT", created: true, updated: false  },
-            create_by: { type: "STRING", created: true, updated: false  },
-            update_date: { type: "DATE", created: true, updated: true  },
-            update_time: { type: "TIME", created: true, updated: true  },
-            update_millis: { type: "BIGINT", created: true, updated: true  },
-            update_by: { type: "STRING", created: true, updated: true  }
+            survey_id: { type: "STRING", key: true, calculated: true  },
+            profile_id: { type: "STRING", calculated: true },
+            master_id: { type: "STRING", calculated: true }
         }
     };
 
-    public override async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
-        let dt = await super.getDataAdd(context);
-        dt.dataset.survey_id = context.params.survey_id;
-        dt.dataset.master_id = context.params.master_id;
-        if(!dt.dataset.survey_id || dt.dataset.survey_id.trim().length==0) dt.dataset.survey_id = uuid();
-        return dt;
+    protected async validateRequireFieldsList(context: KnContextInfo, throwError: boolean = false) : Promise<KnValidateInfo> {
+        let vi = this.validateParameters(context.params,"survey_id");
+        if(!vi.valid && throwError) {
+            return Promise.reject(new VerifyError("Parameter not found ("+vi.info+")",HTTP.NOT_ACCEPTABLE,-16061));
+        }
+        return Promise.resolve(vi);
     }
 
-    public override async performInsert(context: KnContextInfo, db: KnDBConnector, data: any) : Promise<KnRecordSet> {
-        let rs = await super.performInsert(context, db, data);        
-        await this.processUpdateState(context, db, rs.rows.survey_id);
-        return Promise.resolve(rs);
-    }
-
-    public override async performUpdate(context: KnContextInfo, db: KnDBConnector, data: any) : Promise<KnRecordSet> {
+    public override async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        await this.validateRequireFieldsList(context,true);
         let survey_id = context.params.survey_id;
-        let rs = await super.performUpdate(context, db, data);
-        await this.processUpdateState(context, db, survey_id);
-        return Promise.resolve(rs);
+        let sql = new KnSQL();
+        sql.append("select * from survey_b where survey_id = ?survey_id ");
+        sql.set("survey_id",survey_id);
+        this.logger.info(this.constructor.name+".processList:",sql);
+        let rs = await sql.executeQuery(db,context);
+        let rs2 = this.createRecordSet(rs);
+        if(rs2.records==0) {
+            return this.recordNotFound();
+        }        
+        return Promise.resolve(rs2);
     }
 
-    public async processUpdateState(context: KnContextInfo, db: KnDBConnector, parent_id: string) : Promise<KnRecordSet> {
+    public override async getDataListing(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
+        let dt = await super.getDataListing(context,db,rs);
+        let survey_id = context.params.survey_id;
+        dt.dataset.survey_id = survey_id;
         let sql = new KnSQL();
-        sql.append("UPDATE survey_by set survey_state = 'CONFIRM' ");
-        sql.append("WHERE parent_id = ?parent_id ");
-        sql.set("parent_id", parent_id);
-        this.logger.info(this.constructor.name+".processUpdateState:",sql);
-        let rs = await sql.executeUpdate(db,context);
-        return Promise.resolve(this.createRecordSet(rs));
+        for(let table of this.TABLE_NAMES) {
+            sql.clear();
+            sql.append("SELECT successed,COUNT(*) as counter from ").append(table);
+            sql.append(" where master_id = ?master_id ");
+            sql.append("GROUP BY successed ");
+            sql.set("master_id",survey_id);
+            let rs = await sql.executeQuery(db,context);
+            if(rs.rows && rs.rows.length>0) {
+                for(let row of rs.rows) {
+                    if(row.successed=="1") {
+                        dt.dataset[table+"_success"] = row.counter;
+                    } else {
+                        dt.dataset[table+"_unsuccess"] = row.counter;
+                    }
+                }
+            }
+        }
+        return Promise.resolve(dt);    
     }
 
 }

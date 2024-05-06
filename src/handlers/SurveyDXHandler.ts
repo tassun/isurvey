@@ -11,10 +11,10 @@ export class SurveyDXHandler extends SurveyOperateHandler {
         name: "survey_dx",
         fields: {
             survey_id: { type: "STRING", key: true, created: true, updated: false  },
-            profile_id: { type: "STRING", created: true, updated: false },
-            master_id: { type: "STRING", created: true, updated: false },
-            column_id: { type: "STRING", created: true, updated: false },
-            survey_state: { type: "STRING", created: true, updated: false },
+            profile_id: { type: "STRING", created: true, updated: false, remark: "survey_profile.profile_id" },
+            master_id: { type: "STRING", created: true, updated: false, remark: "survey_d.survey_id" },
+            column_id: { type: "STRING", created: true, updated: false, remark: "survey_d column name" },
+            survey_state: { type: "STRING", created: true, updated: false, remark: "DRAFT,CONFIRM,CANCEL" },
             SDX_1: { type: "STRING", created: true, updated: true  },
             SDX_2: { type: "STRING", created: true, updated: true  },
             SDX_3: { type: "STRING", created: true, updated: true  },
@@ -67,7 +67,7 @@ export class SurveyDXHandler extends SurveyOperateHandler {
         return Promise.resolve(dt);
     }
 
-    public async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+    public override async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         await this.validateRequireFieldsList(context,true);
         let master_id = context.params.master_id;
         let column_id = context.params.column_id;

@@ -7,7 +7,7 @@ export class SurveyFHandler extends SurveyOperateHandler {
         name: "survey_f",
         fields: {
             survey_id: { type: "STRING", key: true, created: true, updated: false  },
-            profile_id: { type: "STRING", created: true, updated: false },
+            profile_id: { type: "STRING", created: true, updated: false, remark: "survey_profile.profile_id" },
             SF_1: { type: "STRING", created: true, updated: true  },
             SF_2_1: { type: "STRING", created: true, updated: true  },
             SF_2_2: { type: "STRING", created: true, updated: true  },

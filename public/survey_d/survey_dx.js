@@ -4,11 +4,12 @@ $(function() {
 });
 function setupComponentsApt() {
     $("#dxbuttonsave").click(function() { confirmSaveSurveyApt(this); return false; });
+    $("#dxbuttoncancel").click(function() { confirmCancelSurveyApt(this); return false; });
     $("#dxbuttonupdate").click(function() { confirmUpdateSurveyApt(this); return false; });
 }
 function confirmCancelSurveyApt(src) {
     confirmCancelMessage(function() {
-        window.history.back();
+        $("#dx-modal-dialog").modal("hide");
     });
 }
 function confirmSaveSurveyApt(src) {

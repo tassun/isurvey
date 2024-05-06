@@ -8,7 +8,7 @@ export class MeasureBHandler extends SurveyOperateHandler {
         name: "measure_b",
         fields: {
             survey_id: { type: "STRING", key: true, created: true, updated: false  },
-            profile_id: { type: "STRING", created: true, updated: false  },
+            profile_id: { type: "STRING", created: true, updated: false, remark: "survey_profile.profile_id"  },
             MB_1_1: { type: "STRING", created: true, updated: true  },
             MB_1_2: { type: "STRING", created: true, updated: true  },
             MB_1_3: { type: "STRING", created: true, updated: true  },

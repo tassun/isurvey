@@ -186,7 +186,7 @@ export class OperateHandler extends ProcessHandler {
             let row = this.transformData(rs.rows[0]);
             return this.createDataTable("edit", row);
         }
-        return this.recordNotFound();    
+        return this.recordNotFound();
     }
 
     public async getDataView(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {

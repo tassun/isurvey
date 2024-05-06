@@ -10,6 +10,14 @@ function setupComponents() {
     $("#buttonsave").click(function() { confirmSaveSurvey(this); return false; });
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
+    $("#sb-add-button").unbind("click").bind("click",function() {
+        let profile_id = $("#profile_id").val();
+        let survey_id = $("#survey_id").val();
+        startAddProfile(profile_id,survey_id,function() { 
+            refreshSurveyDataTable(profile_id,survey_id);
+            //submitWindow({url: BASE_URL+"/survey_b/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
+        });
+    });
 }
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
@@ -90,99 +98,46 @@ function setupUI() {
         }
     });
     $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
-    $("#by-add-button").unbind("click").bind("click",function() {
-        //create new row into table
-        let parent_id = createUUID();
-        addNewTableRow($("#profile_id").val(),$("#survey_id").val(),parent_id,parent_id);
-    });
-    setupSurveyBYDataTable($("#profile_id").val(),$("#survey_id").val());
+    setupSurveyDataTable($("#profile_id").val(),$("#survey_id").val());
 }
-function setupSurveyBYDataTable(profile_id,survey_id) {
-    $("a.by-edit-linker",$("#dxdatatablelayer")).click(function() { 
+function setupSurveyDataTable(profile_id,survey_id) {
+    $("a.sb-edit-linker",$("#familytablebody")).click(function() { 
         let tr = $(this).closest("tr");
-        let parent_id = tr.attr("data-survey");
-        let master_id = tr.attr("data-master");
-        openSurveyBYView(profile_id,parent_id,master_id);
+        let sb_survey = tr.attr("data-survey");
+        let sb_profile = tr.attr("data-profile");
+        openSurveyCategory(profile_id,sb_survey,sb_profile);
     });
-    $("a.by-delete-linker",$("#dxdatatablelayer")).click(function() { 
+    $("a.sb-delete-linker",$("#familytablebody")).click(function() { 
         let tr = $(this).closest("tr");
-        let parent_id = tr.attr("data-survey");
-        let master_id = tr.attr("data-master");
-        confirmSurveyBYDelete(profile_id,parent_id,master_id,parent_id,function() {
+        let sb_survey = tr.attr("data-survey");
+        let sb_profile = tr.attr("data-profile");
+        confirmSurveyDelete(profile_id,sb_survey,sb_profile,function() {
             tr.remove();
+            refreshSurveyDataTable(profile_id,survey_id);
         });
     });
-}
-function openSurveyBYEntry(profile_id,master_id,parent_id,survey_id) {
-    console.log("openSurveyBYEntry: profile_id: " + profile_id + ", master_id: " + master_id+", parent_id: "+parent_id+", survey_id: "+survey_id);
-    startWaiting();
-    $.ajax({
-        url: BASE_URL+"/survey_by/entry",
-        data: {
-            ajax: true,
-            profile_id: profile_id,
-            master_id: master_id,
-            parent_id: parent_id,
-            survey_id: survey_id
-        },
-        type: "POST",
-        dataType: "html",
-        contentType: defaultContentType,
-        error : function(transport,status,errorThrown) {
-            stopWaiting();
-            submitFailure(transport,status,errorThrown);
-        },
-        success: function(data,status,xhr){ 
-            stopWaiting();
-            $("#dialogpanel").html(data);
-            setupDialogComponents();
-        }
+    $("a.sb-profile-linker",$("#familytablebody")).click(function() { 
+        let tr = $(this).closest("tr");
+        let sb_profile = tr.attr("data-profile");
+        startEditProfile(sb_profile,function() { });
     });
 }
-function openSurveyBYView(profile_id,survey_id,master_id) {
-    console.log("openSurveyBYView: profile_id: " + profile_id + ", survey_id: " + survey_id+", master_id: "+master_id);
+function openSurveyCategory(profile_id,survey_id,survey_profile) {
+    console.log("openSurveyCategory: profile_id: " + profile_id + ", survey_id: " + survey_id+", survey_profile: "+survey_profile);
+    submitWindow({url: BASE_URL+"/survey_bx/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
+}
+function confirmSurveyDelete(profile_id,survey_id,sb_profile,callback) {
+    confirmDeleteMessage(function() { deleteSurvey(profile_id,survey_id,sb_profile,callback); });
+}
+function deleteSurvey(profile_id,survey_id,sb_profile,callback) {
     startWaiting();
     $.ajax({
-        url: BASE_URL+"/survey_by/view",
-        data: {
-            ajax: true,
-            profile_id: profile_id,
-            survey_id: survey_id,
-            master_id: master_id
-        },
-        type: "POST",
-        dataType: "html",
-        contentType: defaultContentType,
-        error : function(transport,status,errorThrown) {
-            stopWaiting();
-            submitFailure(transport,status,errorThrown);
-        },
-        success: function(data,status,xhr){ 
-            stopWaiting();
-            $("#dialogpanel").html(data);
-            setupDialogComponents();
-        }
-    });
-}
-function setupDialogComponents() {
-	$("#dialogpanel").find(".modal-dialog").draggable();
-    $("#by-modal-dialog").modal("show");
-    setupComponentsApt();
-    setupUIApt();
-}
-function confirmSurveyBYDelete(profile_id,survey_id,master_id,parent_id,callback) {
-    confirmDeleteMessage(function() { deleteBYForm(profile_id,survey_id,master_id,parent_id,callback); });
-}
-function deleteBYForm(profile_id,survey_id,master_id,parent_id,callback) {
-    startWaiting();
-    $.ajax({
-        url: BASE_URL+"/survey_by/remove",
+        url: BASE_URL+"/survey_b/remove",
         data: { 
             ajax: true,
             profile_id: profile_id, 
             survey_id: survey_id,
-            master_id: master_id,
-            parent_id: parent_id
+            SB_profile: sb_profile
         },
         type: "POST",
         dataType: "json",
@@ -201,7 +156,82 @@ function deleteBYForm(profile_id,survey_id,master_id,parent_id,callback) {
         }
     });
 }
-function addNewTableRow(profile_id,master_id,parent_id,survey_id) {
-    console.log("addNewTableRow: profile_id: " + profile_id + ", master_id: " + master_id + ", parent_id: " + parent_id+", survey_id: "+survey_id);    
-    openSurveyBYEntry(profile_id,master_id,parent_id,survey_id);
+function setupDialogComponents(callback) {
+	$("#dialogpanel").find(".modal-dialog").draggable();
+    $("#profile-modal-dialog").modal("show");
+    setupComponentsProfile(callback);
+    setupDataControlsProfile();
+    setupUIProfile();
+}
+function startAddProfile(profile_id,survey_id,callback) {
+    console.log("startAddProfile: profile_id: " + profile_id + ", survey_id: "+survey_id);    
+    startWaiting();
+    $.ajax({
+        url: BASE_URL+"/survey_b/profile/add",
+        data: { 
+            ajax: true,
+            master_id: profile_id, 
+        },
+        type: "POST",
+        dataType: "html",
+        contentType: defaultContentType,
+        error : function(transport,status,errorThrown) {
+            stopWaiting();
+            submitFailure(transport,status,errorThrown);
+        },
+        success: function(data,status,xhr){ 
+            console.log(data);
+            stopWaiting();
+            $("#dialogpanel").html(data);
+            setupDialogComponents(callback);
+        }
+    });
+}
+function startEditProfile(profile_id,callback) {
+    console.log("startEditProfile: profile_id: " + profile_id);    
+    startWaiting();
+    $.ajax({
+        url: BASE_URL+"/survey_b/profile/edit",
+        data: { 
+            ajax: true,
+            profile_id: profile_id, 
+        },
+        type: "POST",
+        dataType: "html",
+        contentType: defaultContentType,
+        error : function(transport,status,errorThrown) {
+            stopWaiting();
+            submitFailure(transport,status,errorThrown);
+        },
+        success: function(data,status,xhr){ 
+            console.log(data);
+            stopWaiting();
+            $("#dialogpanel").html(data);
+            setupDialogComponents(callback);
+        }
+    });
+}
+function refreshSurveyDataTable(profile_id,survey_id) {
+    console.log("refreshSurveyDataTable: profile_id: " + profile_id+", survey_id: "+survey_id);    
+    startWaiting();
+    $.ajax({
+        url: BASE_URL+"/survey_b/datatable",
+        data: { 
+            ajax: true,
+            profile_id: profile_id, 
+            survey_id: survey_id,
+        },
+        type: "POST",
+        dataType: "html",
+        contentType: defaultContentType,
+        error : function(transport,status,errorThrown) {
+            stopWaiting();
+            submitFailure(transport,status,errorThrown);
+        },
+        success: function(data,status,xhr){ 
+            stopWaiting();
+            $("#familytablelayer").html(data);
+            setupUI();
+        }
+    });
 }

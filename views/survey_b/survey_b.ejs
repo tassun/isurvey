@@ -5,13 +5,12 @@
 	<%- include('../asset/meta') %>		
 	<%- include('../asset/styles') %>		
 	<%- include('../asset/scripts') %>
-	<script type="text/javascript" src="<%=meta.cdn_url%>/js/functions-min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=meta.cdn_url%>/survey_b/survey_b.css" />
 	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_b/survey_b.js"></script>
-	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_b/survey_by.js"></script>
-	<style nonce="YXNzdXJl">
-		.ctrl-label { font-weight: 100; cursor: pointer; }
-		.seqno-label { font-weight: 100; }
-	</style>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_b/survey_b_profile.js"></script>
+	<script type="text/javascript" nonce="YXNzdXJl">
+		var data_category = <%-JSON.stringify(data.entity)%>;
+	</script>
 </head>
 <body>
 	<%- include('../partials/page_waiting') %>
@@ -29,59 +28,18 @@
 					<br/>
 					<label>จำนวนสมาชิกในครัวเรือนที่อยู่อาศัยในห้วง พ.ศ. 2565 มากกว่า 6 เดือนขึ้นไป รวมทั้งสิ้น</label>
 					<label class="radio-inline col-form-label  col-lg-1">
-						<input type="text" class="form-control" id="SB_family_counter" value="<%=data.dataset?.SB_family_counter%>" readonly />
+						<input type="text" class="form-control" id="SB_counter" value="<%=data.dataset?.SB_counter%>" readonly />
 					</label>
 					<label>คน</label>
 					<br/>
 					<label>(นับรวมผู้ตอบและสมาชิกทุกคน (ทุกช่วงอายุ) ในรอบ 1 ปีที่ผ่านมา)</label> 
 					<br/>
-					<a href="javascript:void(0)" id="bx-add-button" class="ui green button"><i class="plus icon small"></i> เพิ่มสมาชิกในครัวเรือน</a>
+					<a href="javascript:void(0)" id="sb-add-button" class="ui green button"><i class="plus icon small"></i> เพิ่มสมาชิกในครัวเรือน</a>
 					<br/> <br/>
 					<div class="p-fluid p-formgrid p-grid">
 						<div class="p-field p-col">
-							<div class="row" style="margin-left: 10px;">
-								<table class="tg data-table" id="familytable">
-									<thead>
-										<tr>
-											<th>ลำดับที่สมาชิก<br/>ในครัวเรือน</th>
-											<th>เพศ<span class="star"> *</span></th>
-											<th>อายุ<span class="star"> *</span></th>
-											<th>การตกเป็นเหยื่อ<br/>อาชญากรรม<br/>(1 ม.ค. – 31 ธ.ค. 65)<span class="star"> *</span></th>
-											<th><u>หมายเหตุ</u><br/>(กรณีไม่ระบุคำตอบ)</th>
-											<th>กรอกข้อมูลและรายละเอียด<br/>การตกเป็นเหยื่ออาชญากรรม</th>
-										</tr>
-									</thead>
-									<tbody id="familytablebody">
-										<%	let rows = data.dataset?.rows;
-										if(rows && rows.length>0) { 
-											for(let index=0; index < rows.length; index++) { 
-												let item = rows[index]; %>
-										<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>">
-											<td>												
-												<label class="seqno-label"><%=index+1%></label><%=(item?.survey_type == "A" ? ". (ตัวผู้ตอบ)" : "")%>
-												<input type="hidden" id="survey_type_<%=index%>" name="survey_type" value="<%=item?.survey_type%>" />
-												<input type="hidden" id="parent_id_<%=index%>" name="parent_id" value="<%=item?.survey_id%>" />
-											</td>
-											<td class="nowrap"><%=item?.SBX_gender%></td>
-											<td class="nowrap"><%=item?.SBX_age%></td>
-											<td class="nowrap">
-												<input type="radio" class="sb-radio" id="SBX_crime_1_<%=index%>" name="SBX_crime" value="1" <%=page.checked("1",item?.SBX_crime)%> />
-												<label class="ctrl-label" for="SBX_crime_1_<%=index%>">&nbsp;เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="sb-radio" id="SBX_crime_2_<%=index%>" name="SBX_crime" value="0" data-parsley-required="true" <%=page.checked("0",item?.SBX_crime)%> />
-												<label class="ctrl-label" for="SBX_crime_2_<%=index%>">&nbsp;ไม่เคย&nbsp;</label>
-											</td>
-											<td><input type="text" class="form-control" id="SBX_remark_<%=index%>" name="SBX_remark" value="<%=item?.SBX_remark%>" /></td>
-											<td class="text-center">
-												<a href="javascript:void(0)" class="sb-edit-linker ui basic black button disabled" disabled><i class="edit icon large"></i></a>
-												<% if(item?.survey_type != "A") {%>
-												<a href="javascript:void(0)" class="sb-delete-linker ui basic red button"><i class="trash icon large"></i></a>
-												<% } %>
-											</td>
-										</tr>
-											<%} 
-										} %>							
-									</tbody>
-								</table>
+							<div class="row" style="margin-left: 10px;" id="familytablelayer">
+								<%- include('./survey_b_kit') %>
 							</div>
 						</div>
 					</div>
@@ -104,5 +62,6 @@
 			<br/>
 		</div>
 	</div>
+	<div id="dialogpanel"></div>
 </body>
 </html>

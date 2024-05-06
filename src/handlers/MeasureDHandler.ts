@@ -9,7 +9,7 @@ export class MeasureDHandler extends SurveyOperateHandler {
         name: "measure_d",
         fields: {
             survey_id: { type: "STRING", key: true, created: true, updated: false  },
-            profile_id: { type: "STRING", created: true, updated: false },
+            profile_id: { type: "STRING", created: true, updated: false, remark: "survey_profile.profile_id" },
             MD_1_1: { type: "STRING", created: true, updated: true  },
             MD_1_2: { type: "STRING", created: true, updated: true  },
             MD_1_3: { type: "STRING", created: true, updated: true  },

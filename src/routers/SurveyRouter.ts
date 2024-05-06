@@ -21,7 +21,7 @@ export class SurveyRouter extends OperateRouter {
 		}
 	}
 
-	public async routeAdd(req: Request, res: Response) {
+	public async routeAdd(req: Request, res: Response, renderFile: string = "survey_profile") {
 		let ctx = await this.createContext(req);
 		this.logger.debug(this.constructor.name+".routeAdd",ctx);
 		try {
@@ -30,14 +30,14 @@ export class SurveyRouter extends OperateRouter {
 			let pager = new KnPageRender("profile",ctx);
 			let param = this.buildParams(ctx,rs,pager);
 			this.logger.debug(this.constructor.name+".routeAdd",rs);
-			res.render("survey/survey_profile",param);
+			res.render("survey/"+renderFile,param);
 		} catch(ex) { 
 			this.logger.error(this.constructor.name+".routeAdd",ex);
 			this.sendError(res, ex, "add", ctx);
 		}
 	}
 
-	public async routeEdit(req: Request, res: Response) {
+	public async routeEdit(req: Request, res: Response, renderFile: string = "survey_profile") {
 		let ctx = await this.createContext(req);
 		this.logger.debug(this.constructor.name+".routeEdit",ctx);
 		try {
@@ -46,7 +46,7 @@ export class SurveyRouter extends OperateRouter {
 			let pager = new KnPageRender("profile",ctx);
 			let param = this.buildParams(ctx,rs,pager);
 			this.logger.debug(this.constructor.name+".routeEdit",rs);
-			res.render("survey/survey_profile",param);
+			res.render("survey/"+renderFile,param);
 		} catch(ex) { 
 			this.logger.error(this.constructor.name+".routeEdit",ex);
 			this.sendError(res, ex, "edit", ctx);
@@ -79,6 +79,11 @@ export class SurveyRouter extends OperateRouter {
 		this.router.get('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
 		this.router.post('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
 		this.router.get('/edit/:profile_id', async (req: Request, res: Response) => { this.routeEdit(req,res); });
+		this.router.get('/add/dialog', async (req: Request, res: Response) => { this.routeAdd(req,res,"survey_profile_dialog"); });
+		this.router.post('/add/dialog', async (req: Request, res: Response) => { this.routeAdd(req,res,"survey_profile_dialog"); });
+		this.router.get('/edit/dialog', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
+		this.router.post('/edit/dialog', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
+		this.router.get('/edit/dialog/:profile_id', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
 		this.router.get('/form', async (req: Request, res: Response) => { this.routeForm(req,res); });
 		this.router.post('/form', async (req: Request, res: Response) => { this.routeForm(req,res); });
 		this.router.get('/form/:profile_id', async (req: Request, res: Response) => { this.routeForm(req,res); });

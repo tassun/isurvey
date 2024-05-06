@@ -7,7 +7,7 @@ export class SurveyCHandler extends SurveyOperateHandler {
         name: "survey_c",
         fields: {
             survey_id: { type: "STRING", key: true, created: true, updated: false  },
-            profile_id: { type: "STRING", created: true, updated: false },
+            profile_id: { type: "STRING", created: true, updated: false, remark: "survey_profile.profile_id" },
             SC_1_1: { type: "STRING", created: true, updated: true  },
             SC_1_2: { type: "STRING", created: true, updated: true  },
             SC_1_3: { type: "STRING", created: true, updated: true  },
