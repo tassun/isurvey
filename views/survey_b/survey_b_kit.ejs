@@ -13,14 +13,20 @@
 										<%	let rows = data.dataset?.rows;
 										if(rows && rows.length>0) { 
 											for(let index=0; index < rows.length; index++) { 
-												let item = rows[index]; %>
+												let item = rows[index]; 
+												let SB_age = item?.SB_age;
+												if(item?.age_code == "1") {
+													SB_age = "ไม่ทราบ";
+												} else if(item?.age_code == "2") {
+													SB_age = "ไม่ตอบ";
+												} %>												
 										<tr data-survey="<%=item?.survey_id%>" data-profile="<%=item?.SB_profile%>">
 											<td>												
 												<input type="hidden" id="SB_survey_<%=index%>" name="SB_survey" value="<%=item?.survey_id%>" />
 												<label class="seqno-label"><%=index+1%></label><%=(item?.SB_type == "A" ? ". (ตัวผู้ตอบ)" : ".")%>
 											</td>
 											<td class="nowrap"><%=item?.SB_gender%></td>
-											<td class="nowrap"><%=item?.SB_age%></td>
+											<td class="nowrap"><%=SB_age%></td>
 											<td class="nowrap">
 												<input type="radio" class="sb-radio" id="SB_crime_1_<%=index%>" name="SB_crime_<%=index%>" value="1" <%=page.checked("1",item?.SB_crime)%> />
 												<label class="ctrl-label" for="SB_crime_1_<%=index%>">&nbsp;เคย&nbsp;&nbsp;</label>

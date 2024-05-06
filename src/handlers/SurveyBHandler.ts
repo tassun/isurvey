@@ -167,6 +167,7 @@ export class SurveyBHandler extends SurveyOperateHandler {
         let SB_remarks = context.params["SB_remark"];
         if(SB_surveys && !Array.isArray(SB_surveys)) SB_surveys = [context.params.SB_survey];
         if(SB_remarks && !Array.isArray(SB_remarks)) SB_remarks = [context.params.SB_remark];
+        if(!SB_surveys || SB_surveys.length==0) return Promise.resolve(rs);
         for(let index = 0; index < SB_surveys.length; index++) {
             let item = SB_surveys[index];
             let sb_crime = context.params["SB_crime_"+index];
