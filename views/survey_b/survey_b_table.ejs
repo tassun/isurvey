@@ -1,0 +1,48 @@
+								<table class="tg data-table" id="familytable">
+									<thead>
+										<tr>
+											<th>ลำดับที่สมาชิก<br/>ในครัวเรือน</th>
+											<th>เพศ<span class="star"> *</span></th>
+											<th>อายุ<span class="star"> *</span></th>
+											<th>การตกเป็นเหยื่อ<br/>อาชญากรรม<br/>(1 ม.ค. – 31 ธ.ค. 65)<span class="star"> *</span></th>
+											<th><u>หมายเหตุ</u><br/>(กรณีไม่ระบุคำตอบ)</th>
+											<th>กรอกข้อมูลและรายละเอียด<br/>การตกเป็นเหยื่ออาชญากรรม</th>
+										</tr>
+									</thead>
+									<tbody id="familytablebody">
+										<%	let rows = data.dataset?.rows;
+										if(rows && rows.length>0) { 
+											for(let index=0; index < rows.length; index++) { 
+												let item = rows[index]; 
+												let SB_age = item?.SB_age;
+												if(item?.age_code == "1") {
+													SB_age = "ไม่ทราบ";
+												} else if(item?.age_code == "2") {
+													SB_age = "ไม่ตอบ";
+												} %>												
+										<tr data-survey="<%=item?.survey_id%>" data-profile="<%=item?.SB_profile%>">
+											<td>												
+												<input type="hidden" id="SB_survey_<%=index%>" name="SB_survey" value="<%=item?.survey_id%>" />
+												<label class="seqno-label"><%=index+1%></label><%=(item?.SB_type == "A" ? ". (ตัวผู้ตอบ)" : ".")%>
+											</td>
+											<td class="nowrap"><%=item?.SB_gender%></td>
+											<td class="nowrap"><%=SB_age%></td>
+											<td class="nowrap">
+												<input type="radio" class="sb-radio" id="SB_crime_1_<%=index%>" name="SB_crime_<%=index%>" value="1" <%=page.checked("1",item?.SB_crime)%> />
+												<label class="ctrl-label" for="SB_crime_1_<%=index%>">&nbsp;เคย&nbsp;&nbsp;</label>
+												<input type="radio" class="sb-radio" id="SB_crime_2_<%=index%>" name="SB_crime_<%=index%>" value="0" data-parsley-required="true" <%=page.checked("0",item?.SB_crime)%> />
+												<label class="ctrl-label" for="SB_crime_2_<%=index%>">&nbsp;ไม่เคย&nbsp;</label>
+											</td>
+											<td><input type="text" class="form-control" id="SB_remark_<%=index%>" name="SB_remark" value="<%=item?.SB_remark%>" /></td>
+											<td class="text-center">
+												<a href="javascript:void(0)" tabIndex="-1" class="sb-edit-linker ui basic black button tiny disabled" disabled><i class="edit icon large"></i></a>
+												<a href="javascript:void(0)" tabIndex="-1" class="sb-profile-linker ui basic orange button tiny"><i class="user icon large"></i></a>
+												<% if(item?.SB_type != "A") {%>
+												<a href="javascript:void(0)" tabIndex="-1" class="sb-delete-linker ui basic red button tiny"><i class="trash icon large"></i></a>
+												<% } %>
+											</td>
+										</tr>
+											<%} 
+										} %>							
+									</tbody>
+								</table>

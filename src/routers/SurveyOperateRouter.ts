@@ -75,6 +75,46 @@ export class SurveyOperateRouter extends OperateRouter {
 		}
 	}
 
+	public async routeListing(req: Request, res: Response) {
+		let ctx = await this.createContext(req);
+		this.logger.debug(this.constructor.name+".routeListing",ctx);
+		try {
+			let handler = this.getHandler();
+            if(handler && this.progid.trim().length>0) {
+                let rs = await handler.listing(ctx);
+                let pager = new KnPageRender(this.progid,ctx);
+                let param = this.buildParams(ctx,rs,pager);
+                this.logger.debug(this.constructor.name+".routeListing",rs);
+                res.render(this.progid+"/"+this.progid+"_listing",param);
+            } else {
+                res.render("pages/noservice",{error:"Handler not found"});
+            }
+		} catch(ex) { 
+			this.logger.error(this.constructor.name+".routeListing",ex);
+			this.sendError(res, ex, "listing", ctx);
+		}
+	}
+
+	public async routeDataTable(req: Request, res: Response) {
+		let ctx = await this.createContext(req);
+		this.logger.debug(this.constructor.name+".routeDataTable",ctx);
+		try {
+			let handler = this.getHandler();
+            if(handler && this.progid.trim().length>0) {
+                let rs = await handler.listing(ctx);
+                let pager = new KnPageRender(this.progid,ctx);
+                let param = this.buildParams(ctx,rs,pager);
+                this.logger.debug(this.constructor.name+".routeDataTable",rs);
+                res.render(this.progid+"/"+this.progid+"_table",param);
+            } else {
+                res.render("pages/noservice",{error:"Handler not found"});
+            }
+		} catch(ex) { 
+			this.logger.error(this.constructor.name+".routeDataTable",ex);
+			this.sendError(res, ex, "datatable", ctx);
+		}
+	}
+
 	public override route(app: Application) : Router {
 		super.route(app);
 		//gui can post or get
@@ -84,6 +124,11 @@ export class SurveyOperateRouter extends OperateRouter {
 		this.router.post('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
 		this.router.get('/open', async (req: Request, res: Response) => { this.routeOpen(req,res); });
 		this.router.post('/open', async (req: Request, res: Response) => { this.routeOpen(req,res); });
+		this.router.get('/listing', async (req: Request, res: Response) => { this.routeListing(req,res); });
+		this.router.post('/listing', async (req: Request, res: Response) => { this.routeListing(req,res); });
+		this.router.get('/datatable', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
+		this.router.post('/datatable', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
 		return this.router;
 	}
+	
 }

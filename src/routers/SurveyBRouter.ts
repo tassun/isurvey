@@ -43,7 +43,7 @@ export class SurveyBRouter extends SurveyOperateRouter {
 		}
 	}
 
-	public async routeDataTable(req: Request, res: Response) {
+	public override async routeDataTable(req: Request, res: Response) {
 		let ctx = await this.createContext(req);
 		this.logger.debug(this.constructor.name+".routeDataTable",ctx);
 		try {
@@ -53,7 +53,7 @@ export class SurveyBRouter extends SurveyOperateRouter {
                 let pager = new KnPageRender(this.progid,ctx);
                 let param = this.buildParams(ctx,rs,pager);
                 this.logger.debug(this.constructor.name+".routeDataTable",rs);
-                res.render(this.progid+"/"+this.progid+"_kit",param);
+                res.render(this.progid+"/"+this.progid+"_table",param);
             } else {
                 res.render("pages/noservice",{error:"Handler not found"});
             }
@@ -69,8 +69,6 @@ export class SurveyBRouter extends SurveyOperateRouter {
 		this.router.post('/profile/add', async (req: Request, res: Response) => { this.routeAddProfile(req,res); });
 		this.router.get('/profile/edit', async (req: Request, res: Response) => { this.routeEditProfile(req,res); });
 		this.router.post('/profile/edit', async (req: Request, res: Response) => { this.routeEditProfile(req,res); });
-		this.router.get('/datatable', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
-		this.router.post('/datatable', async (req: Request, res: Response) => { this.routeDataTable(req,res); });		
 		return this.router;
 	}
 

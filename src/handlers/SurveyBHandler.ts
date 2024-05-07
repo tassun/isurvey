@@ -41,6 +41,7 @@ export class SurveyBHandler extends SurveyOperateHandler {
         dt.dataset.rows = [row];
         dt.dataset.SB_counter = dt.dataset.rows.length;
         dt.entity = ds;
+        dt.action = "edit";
         return dt;
     }
 

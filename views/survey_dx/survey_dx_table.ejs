@@ -1,0 +1,27 @@
+<table class="tg data-table" id="listdxdatatable">
+	<thead>
+		<tr>
+			<th>ลำดับที่</th>
+			<th>รหัสคดี</th>
+			<th>หน่วยงานของรัฐที่ติดต่อ</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody id="listdxdatatablebody">
+		<%	let rows = data.dataset?.rows;
+			if(rows && rows.length>0) { 
+				for(let index=0; index < rows.length; index++) { 
+					let item = rows[index]; %>
+		<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>" data-column="<%=item?.column_id%>">
+			<td class="text-center"><%=index+1%></td>
+			<td><%=item?.SDX_1%></td>
+			<td><%=item?.SDX_2%></td>
+			<td class="text-center">
+				<a href="javascript:void(0)" class="dx-edit-linker ui basic black button tiny"><i class="edit icon large"></i></a>
+				<a href="javascript:void(0)" class="dx-delete-linker ui basic red button tiny"><i class="trash icon large"></i></a>
+			</td>
+		</tr>
+	<% 		} 
+		} %>
+	</tbody>
+</table>
