@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<%- include('../asset/meta') %>		
+	<%- include('../asset/styles') %>		
+	<%- include('../asset/scripts') %>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_b7/survey_b7_listing.js"></script>
+</head>
+<body>
+	<%- include('../partials/page_waiting') %>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<%- include('../partials/page_header') %>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<div class="body" id="form-data-layer">
+				<form class="a form app form-horizontal" id="listing-form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="list_bx_ajax" name="ajax" value="true" />
+					<input type="hidden" id="list_bx_userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="list_bx_profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+					<input type="hidden" id="list_bx_survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
+					<input type="hidden" id="list_bx_master_id" name="master_id" value="<%=data.dataset?.master_id%>" />
+					<input type="hidden" id="list_bx_column_id" name="column_id" value="survey_b7" />
+					<label>แบบแจงนับข้อมูลสถิติอาชญากรรม (ผนวก ข) </label> <br/>
+					<label id="bx-topic-label">1. ชีวิตร่างกาย </label> <br/>
+					<a href="javascript:void(0)" id="bx-add-button" class="btn btn-default ui green button"><i class="plus icon small"></i> สำรวจข้อมูลใหม่</a> <br/> <br/>
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<div class="row" id="bxdatatablelayer">
+								<%- include('../survey_b7/survey_b7_table') %>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;"></div>
+				<div class="col-lg-1.5 pull-right">
+					<button id="listbuttoncancel" class="ui basic red button pull-right"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>

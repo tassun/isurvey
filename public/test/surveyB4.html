@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/bootstrap-4.1.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/base_style.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/jquery-confirm/css/jquery-confirm.css" />
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/form.css" />
+	<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/bootstrap/bootstrap-4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootbox-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.maskedinput-min.js"></script>
+	<script type="text/javascript" src="/jquery/js/jquery.ui.waiting-min.js"></script>
+	<script type="text/javascript" src="/js/calendar/calendar-min.js" defer></script>
+	<script type="text/javascript" src="/plugins/jquery-confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript" src="/js/libs.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<script type="text/javascript" src="/js/header.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parsley/dist/parsley.js"></script>
+	<style>
+		.data-table { width: 100%; }
+		.nowrap { white-space: nowrap; }
+		input[type="number"] { min-width: 100px; }
+	</style>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="hidden-xs">Tester</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="/user/listalls" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+							<li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout">ออกจากระบบ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<label class="col-form-label">แบบเก็บข้อมูลรายละเอียดอาชญากรรมการฉ้อโกงหลอกลวง</label>
+			<div class="body">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<label>ส่วนที่ 1 แบบบันทึกรายละเอียดความผิด</label></br>
+					<div class="row">
+						<label class="col-form-label">1. พฤติกรรมโดยย่อพอสังเขป<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<textarea rows="5" class="form-control" id="1_111" name="1_B4_1_1_1"></textarea>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<label class="col-form-label">2. ประเภทความผิด<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_121" name="1_B4_1_2_1" value="1" data-parsley-required="true" /> (1) แอบอ้างใช้ข้อมูล/เอกสารส่วนตัว
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_122" name="1_B4_1_2_1" value="2"/> (2) ถูกหลอกลวงด้วยการใช้เงินปลอม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_123" name="1_B4_1_2_1" value="3" /> (3) แชร์ลูกโซ่
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_124" name="1_B4_1_2_1" value="4" /> (4) หลอกลวงฉ้อโกง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_125" name="1_B4_1_2_1" value="5" /> (5) ยักยอกทรัพย์
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_126" name="1_B4_1_2_1" value="6" /> (6) เงินกู้นอกระบบ 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_127" name="1_B4_1_2_1" value="7" /> (7) เรียกเก็บค่าคุ้มครอง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_128" name="1_B4_1_2_1" value="8" /> (8) หลอกให้เปิดบัญชีธนาคาร
+							</label>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<label class="col-form-label">สถานะของการก่อเหตุ<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_129" name="1_ฺB4_1_2_2" value="0" data-parsley-required="true" /> ก่อเหตุไม่สำเร็จ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_1210" name="1_ฺB4_1_2_2" value="1" data-parsley-required="true" /> ก่อเหตุสำเร็จ
+							</label>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<label class="col-form-label">3. ลักษณะความผิด<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-5" style="margin-left: 10px;">
+								<input type="radio" id="1_1311" name="1_B4_1_3_1_1" value="1" data-parsley-required="true" />(1) แอบอ้างใช้ข้อมูล/เอกสารส่วนตัวไปใช้ในทางมิชอบ เช่น ลักลอบเอาข้อมูลบัตรเครดิตไปซื้อสินค้า   นำสำเนาบัตรประชาชนไปเปิดโทรศัพท์หรือบัญชีธนาคารนำไปขอกู้เงิน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_1312" name="1_B4_1_3_1_1" value="2" /> (2) ตกเป็นเหยื่อ มีผู้ใช้เงินปลอมมาชำระหนี้/ซื้อขายสินค้า
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_1313" name="1_B4_1_3_1_1" value="3" /> (3) ถูกหลอกลวงทำธุรกิจที่มีผลตอบแทนจำนวนมากที่ไม่มีอยู่จริง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_1314" name="1_B4_1_3_1_1" value="4" /> (4) หลอกลวงให้ร่วมลงทุน ซื้อหุ้น/หน่วยลงทุน หรือซื้อขายสินค้าในธุรกิจที่ไม่มีอยู่จริง
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_1315" name="1_B4_1_3_1_1" value="5" /> (5) หลอกลวงให้จ่ายเงินเป็นสมาชิกธุรกิจโดยให้ช่วยหาสมาชิกธุรกิจแล้วปิดบริษัทหลบหนีไป (แชร์ลูกโซ่)							
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_1316" name="1_B4_1_3_1_1" value="6" /> (6) ถูกหลอกไปทำงานต่างประเทศโดยเรียกเก็บค่าบริการแล้วเอาเงินหนีไปโดยไม่ส่งไปทำงาน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_1317" name="1_B4_1_3_1_1" value="7" /> (7) ถูกหลอกลวง ด้วยกลฉ้อฉลหรือคนร้ายล่อหลอกให้โอนเงินเข้าบัญชีคนร้าย เช่น แก๊ง Call Center 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_1318" name="1_B4_1_3_1_1" value="8" /> (8) หลอกลวงโดยส่งลิงค์ให้เข้าบัญชีการเงินหรือส่งรหัสผ่านเพื่อถอนเงินจากบัญชี หรือลักลอบเบิกเงินสดจากบัญชีธนาคารโดยที่เจ้าของบัญชีไม่ทราบ/ไม่ยินยอม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_1319" name="1_B4_1_3_1_1" value="9" /> (9) หลอกลวงว่าถูกรางวัลโดยขอเก็บค่าดำเนินการล่วงหน้า
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13110" name="1_B4_1_3_1_1" value="10" /> (10) หลอกลวงโดยแสดงตนเป็นบุคคลอื่น สร้างความชอบพอ และหลอกลวงว่าจะส่งทรัพย์สินมาให้หรือกระทำการอื่นใดในลักษณะเดียวโดยจะต้องเสียค่าใช้จ่ายในการดำเนินการ เช่น แก๊งโรแมนซ์สแกม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13111" name="1_B4_1_3_1_1" value="11" /> (11) หลอกขายสินค้าปลอม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13112" name="1_B4_1_3_1_1" value="12" /> (12) หลอกประกาศขายสินค้าแต่ไม่จัดส่งสินค้าให้ หรือส่งให้แต่ไม่ตรงกับที่โฆษณา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13113" name="1_B4_1_3_1_1" value="13" /> (13) หลอกลวงให้สูญเสียทรัพย์สินให้คนร้าย โดยมีการแสดงเอกสารเท็จให้หลงเชื่อ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13114" name="1_B4_1_3_1_1" value="14" /> (14) หลอกเข้าร่วมโครงการรัฐ หรือสวัสดิการของรัฐ แล้วโกงเงินหรือเรียกเก็บค่าบริการ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13115" name="1_B4_1_3_1_1" value="15" /> (15) หลอกลวงให้สูญเสียทรัพย์สิน เช่น ตกทอง หลอกขายสลากกินแบ่งถูกรางวัลปลอม
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13116" name="1_B4_1_3_1_1" value="16" /> (16) หลอกลวงให้ทำงานให้หรือให้ส่งสินค้าให้โดยเจตนาไม่จ่ายค่าจ้างหรือชำระเงิน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13117" name="1_B4_1_3_1_1" value="17" /> (17) แอบอ้างเป็นหน่วยงานหรือองค์กรการกุศล มาเรี่ยไรเงินบริจาค
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13118" name="1_B4_1_3_1_1" value="18" /> (18) โกงแชร์วงใหญ่เกินกฎหมายกำหนด
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13119" name="1_B4_1_3_1_1" value="19" /> (19) เชิญชวนเล่นการพนั
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13120" name="1_B4_1_3_1_1" value="20" /> (20) หลอกลวงว่าเป็นเจ้าหน้าที่แล้วมาข่มขู่เรียกร้องเงิน หรือเรี่ยไรเงิน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13121" name="1_B4_1_3_1_1" value="21" /> (21) แอบอ้างเป็นบุคคลที่รู้จักเพื่อขอยืมเงิน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13122" name="1_B4_1_3_1_1" value="22" /> (22) หลอกลวงว่าจะช่วยให้เข้าทำงานได้/สอบเข้าได้
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13123" name="1_B4_1_3_1_1" value="23" /> (23) หลอกลวงให้จ่ายเงินเพื่อแลกกับการอำนวยความสะดวกหรือได้รับสิทธิพิเศษ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13124" name="1_B4_1_3_1_1" value="24" /> (24) มีผู้เบียดบังเอาทรัพย์สินที่อนุญาตให้อยู่ในครอบครองไปโดยมิชอบ เช่น ลูกจ้างยักยอกอุปกรณ์/เครื่องมือ/พาหนะ ที่ใช้ในการทำงาน ลูกจ้างยักยอกเงินที่ได้จากการค้าขายหรือเก็บเงินจากลูกค้า เอาของที่ให้ยืมไปขายหรือไปจำนำ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13125" name="1_B4_1_3_1_1" value="25" /> (25) ถูกขูดรีดโดยแก๊งเงินกู้นอกระบบให้กู้เงินโดยคิดดอกเบี้ยในราคาสูงมาก (เกินกว่าร้อยละ 3 ต่อเดือน) หลอกให้ทำสัญญาเงินกู้เกินจริง โดยข่มขู่หรือทำอันตรายจากการทวงหนี้
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13126" name="1_B4_1_3_1_1" value="26" /> (26) ถูกเรียกเก็บเงินหรือทรัพย์สินเป็นค่าคุ้มครองโดยขู่ว่าหากไม่ให้จะทำอันตราย หรือไม่ให้ประกอบการค้าขายหรือประกอบอาชีพ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13127" name="1_B4_1_3_1_1" value="27" /> (27) มีผู้หลอกลวงหรือว่าจ้างให้เปิดบัญชีธนาคารหรือบัญชีทางการเงินแล้วนำไปใช้ในการก่ออาชญากรรมหรือใช้ในทางมิชอบ (บัญชีม้า)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-5">
+								<input type="radio" id="1_13128" name="1_B4_1_3_1_1" value="28" /> (28) หลอกลวงให้สูญเสียทรัพย์สินให้คนร้ายด้วยวิธีการอื่น ๆ นอกจากที่กล่าวไว้
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="1_13128_text" name="1_B4_1_3_1_1_text" data-parsley-required="true" readonly />
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<label class="col-form-label">4. ความสัมพันธ์ระหว่างเหยื่อกับผู้ก่อเหตุ<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_141" name="1_B4_1_4_1" value="1" data-parsley-required="true" /> (1) บิดา/มารดา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_142" name="1_B4_1_4_1" value="2" /> (2) ผู้ปกครอง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_143" name="1_B4_1_4_1" value="3" /> (3) สามี
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_144" name="1_B4_1_4_1" value="4" /> (4) ภรรยา
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_145" name="1_B4_1_4_1" value="5" /> (5) คู่ชีวิตรูปแบบอื่น
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_146" name="1_B4_1_4_1" value="6" /> (6) คู่รักที่ยังไม่ได้แต่งงานหรือใช้ชีวิตอยู่ร่วมกัน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_147" name="1_B4_1_4_1" value="7" /> (7) ลูกหลาน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_148" name="1_B4_1_4_1" value="8" /> (8) พี่น้อง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_149" name="1_B4_1_4_1" value="9" /> (9) เครือญาติ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_1410" name="1_B4_1_4_1" value="10" /> (10) เพื่อนบ้านหรือผู้อยู่ในชุมชนใกล้เคียง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_1411" name="1_B4_1_4_1" value="11" /> (11) เพื่อน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_1412" name="1_B4_1_4_1" value="12" /> (12) หัวหน้างานหรือผู้บังคับบัญชาในที่ทำงาน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_1413" name="1_B4_1_4_1" value="13" /> (13) เพื่อนร่วมงาน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_1414" name="1_B4_1_4_1" value="14" /> (14) ความสัมพันธ์อื่น ๆ 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_1415" name="1_B4_1_4_1" value="15" /> (15) ไม่รู้จัก/ไม่เกี่ยวข้อง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_1416" name="1_B4_1_4_1" value="16" /> (16) ไม่รู้ตัวผู้กระทำผิด (ขณะเกิดเหตุไม่ได้พบเจอหรือพบเห็นผู้กระทำผิด)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_1417" name="1_B4_1_4_1" value="17" /> (17) ไม่ประสงค์จะตอบ
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="1_1414_text" name="1_B4_1_4_1_text" data-parsley-required="true" readonly />
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">หมายเหตุ: สามี/ภรรยา หมายความรวมถึงทั้งคู่สมรสที่จดทะเบียนและไม่จดทะเบียนสมรส</label>
+					</div>
+					<br/>
+					<div class="row">
+						<label class="col-form-label">5. สถานที่เกิดเหตุ<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_151" name="1_B4_1_5_1" value="1" data-parsley-required="true" /> (1) บ้าน/ที่อยู่อาศัยส่วนตัว
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_152" name="1_B4_1_5_1" value="2" /> (2) สถานที่เชิงพาณิชย์ เช่น ร้านอาหาร ห้างสรรพสินค้า ร้านค้า ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_153" name="1_B4_1_5_1" value="3" /> (3) สถานที่ประกอบธุรกิจที่สงวนเฉพาะบุคคล เช่น อาคารสำนักงาน โรงงาน โกดัง ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_154" name="1_B4_1_5_1" value="4" /> (4) สถานศึกษา เช่น โรงเรียน มหาวิทยาลัย ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_155" name="1_B4_1_5_1" value="5" /> (5) สถานดูแล เช่น โรงพยาบาล คลินิก บ้านพักคนชรา ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_156" name="1_B4_1_5_1" value="6" /> (6) สถานที่สาธารณะ เช่น ถนน ตลาด สวนสาธารณะ ขนส่งสาธารณะ ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_157" name="1_B4_1_5_1" value="7" /> (7) ช่องทางออนไลน์/อุปกรณ์โทรศัพท์เคลื่อนที่
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3">
+								<input type="radio" id="1_158" name="1_B4_1_5_1" value="8" /> (8) สถานที่อื่น ๆ
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="1_158_text" name="1_B4_1_5_1_text" data-parsley-required="true" readonly />
+						</div>
+					</div>
+					<br/>
+					<br/>
+
+					<label>ส่วนที่ 2 การติดต่อและบริการจากหน่วยงานในกระบวนการยุติธรรม</label>
+					</br>
+					<div class="row">
+						<label class="col-form-label">2.1 มีการแจ้งต่อเจ้าหน้าที่หรือไม่<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_211" name="1_B4_2_1_1" value="1" data-parsley-required="true" /> (1) ไม่มี
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_212" name="1_B4_2_1_1" value="2" /> (2) มี
+							</label>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<label class="col-form-label">2.2 กรณีมีการแจ้งต่อเจ้าหน้าที่แจ้งต่อเจ้าหน้าที่ใดบ้าง (ตอบได้มากกว่าหนึ่งข้อ)</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_221" name="1_B4_2_2_1" value="1"> (1) แจ้งต่อเจ้าหน้าที่ตำรวจ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_222" name="1_B4_2_2_2" value="1"> (2) แจ้งต่อผู้แทนชุมชน เช่น ผู้ใหญ่บ้าน กำนัน ผู้นำชุมชน หรือบุคคลที่ตนนับถือ แต่ไม่ได้แจ้งต่อเจ้าหน้าที่ตำรวจ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_223" name="1_B4_2_2_3" value="1"> (3) แจ้งต่อเจ้าหน้าที่หรือหน่วยงานภาครัฐอื่น ที่ไม่ใช่หน่วยงานตำรวจ เช่น สำนักงานพัฒนาสังคมและความมั่นคงของมนุษย์, ยุติธรรมชุมชน, ยุติธรรมจังหวัด, ศูนย์ดำรงธรรม, ศูนย์บริการข้อมูลภาครัฐเพื่อประชาชน สายด่วน 1111 หรือศูนย์รับเรื่องราวร้องทุกข์
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_224" name="1_B4_2_2_4" value="1"> (4) อื่น ๆ
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="1_224_text" name="1_B4_2_2_4_text" data-parsley-required="true" readonly />
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<label class="col-form-label">2.3 กรณีไม่มีการแจ้งต่อเจ้าหน้าที่ เนื่องจาก (ตอบได้มากกว่าหนึ่งข้อ)</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_231" name="1_B4_2_3_1" value="1"> (1) ไม่เกิดความเสียหาย
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_232" name="1_B4_2_3_2" value="1"> (2) เห็นว่าเป็นเรื่องเล็กน้อยหรือความเสียหายที่เกิดขึ้นเล็กน้อย
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_233" name="1_B4_2_3_3" value="1"> (3) เป็นเรื่องส่วนตัว ได้จัดการกับเหตุที่เกิดขึ้นด้วยตนเอง เช่น ตกลงกับผู้กระทำผิด
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_234" name="1_B4_2_3_4" value="1"> (4) ได้แจ้งเหตุต่อผู้มีหน้าที่รับผิดชอบที่เกี่ยวข้องแล้ว เช่น ฝ่ายรักษาความปลอดภัย หัวหน้างาน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_235" name="1_B4_2_3_5" value="1"> (5) มีเจ้าหน้าที่หรือบุคคลอื่นมาให้การช่วยเหลือไกล่เกลี่ยสามารถตกลงกับผู้กระทำผิดได้
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_236" name="1_B4_2_3_6" value="1"> (6) ถูกข่มขู่จากผู้กระทำผิดหรือผู้เกี่ยวข้อง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_237" name="1_B4_2_3_7" value="1"> (7) กลัวว่าจะถูกแก้แค้น หรือถูกทำร้ายจากผู้กระทำผิดหรือผู้เกี่ยวข้อง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_238" name="1_B4_2_3_8" value="1"> (8) เป็นคนกันเอง/สนิทสนมคุ้นเคยกับผู้กระทำผิด
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_239" name="1_B4_2_3_9" value="1"> (9) เป็นเหตุการณ์ที่น่าอับอาย กลัวว่าจะเสื่อมเสียชื่อเสียง
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2310" name="1_B4_2_3_10" value="1"> (10) สงสาร/เห็นใจผู้กระทำผิด (เนื่องจากผู้กระทำผิดเป็นเด็ก/พิการ/ยากจน เป็นต้น)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2311" name="1_B4_2_3_11" value="1"> (11) ยุ่งยาก ไม่อยากเป็นคดีความ ไม่อยากขึ้นโรงขึ้นศาล
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2312" name="1_B4_2_3_12" value="1"> (12) ไม่สะดวก ไม่มีเวลาแจ้งเหตุกับเจ้าหน้าที่
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2313" name="1_B4_2_3_13" value="1"> (13) ขาดพยานหลักฐาน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2314" name="1_B4_2_3_14" value="1"> (14) คิดว่าเจ้าหน้าที่ตำรวจไม่สามารถติดตามผู้กระทำผิดมาดำเนินคดีได้
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2315" name="1_B4_2_3_15" value="1"> (15) มีความรู้สึกไม่ดีกับเจ้าหน้าที่ตำรวจหรือไม่ไว้วางใจเจ้าหน้าที่
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2316" name="1_B4_2_3_16" value="1"> (16) ไม่เชื่อมั่นในประสิทธิภาพการปฏิบัติงานของเจ้าหน้าที่
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2317" name="1_B4_2_3_17" value="1"> (17) ผู้กระทำผิดเป็นเจ้าหน้าที่รัฐหรือผู้มีอิทธิพล (รวมถึงลูกหลาน/ญาติ/คนใกล้ชิด)
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_2318" name="1_B4_2_3_18" value="1"> (18) อื่น ๆ
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="1_2318_text" name="1_B4_2_3_18_text" data-parsley-required="true" readonly />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">2.4 (เฉพาะกรณีที่แจ้งต่อเจ้าหน้าที่) ท่านมีความพึงพอใจต่อการดำเนินงานของเจ้าหน้าที่ต่อการรับแจ้งเหตุของท่านมากน้อยเพียงใด</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_241" name="1_B4_2_4_1" value="4" value="1" data-parsley-required="true"> (4) พอใจมาก	
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_242" name="1_B4_2_4_1" value="3"> (3) พอใจค่อนข้างมาก
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_243" name="1_B4_2_4_1" value="2"> (2) พอใจค่อนข้างน้อย 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_244" name="1_B4_2_4_1" value="1"> (1) พอใจน้อย
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุเหตุผล
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="1_244_text" name="1_B4_2_4_1_text" data-parsley-required="true" readonly />
+							</div>
+						</div>
+					</div>
+					<br/>
+					<label>ส่วนที่ 3 ความเสียหายต่อชีวิตร่างกาย ทรัพย์สิน</label>
+					</br>
+					<div class="row">
+						<label class="col-form-label">3.1 กรณีเหตุที่เกิดขึ้นได้ก่อให้เกิดอันตรายต่อชีวิต ร่างกาย จิตใจ หรือทรัพย์สิน กับเหยื่ออาชญากรรมหรือไม่<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_311" name="1_B4_3_1_1" value="1" data-parsley-required="true" /> (1) ใช่
+							</label>
+							<label class="radio-inline col-form-label  col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="1_312" name="1_B4_3_1_1" value="2" /> (2) ไม่ใช่
+							</label>
+						</div>
+					</div>
+					<label>3.2 แบบบันทึกความเสียหาย</label>
+					<div class="row">
+						<label class="col-form-label">3.2.1 ความเสียหายหรืออันตรายต่อชีวิต ร่างกาย (เลือกตอบกรณีที่หนักที่สุดตัวเลือกเดียว)</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3211" name="1_B4_3_2_1_1" value="1" value="1" data-parsley-required="true"> (1) ไม่มี
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3212" name="1_B4_3_2_1_1" value="2"> (2) ไม่ได้รับบาดเจ็บ
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3213" name="1_B4_3_2_1_1" value="3"> (3) ได้รับบาดเจ็บเล็กน้อย ไม่ถึงกับต้องรักษาตัว 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3214" name="1_B4_3_2_1_1" value="4"> (4) รักษาตัวไม่เกิน 7 วัน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3215" name="1_B4_3_2_1_1" value="5"> (5) รักษาตัว 8-20 วัน
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3216" name="1_B4_3_2_1_1" value="6"> (6) รักษาตัวเกินกว่า 20 วัน (สาหัส) 
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3217" name="1_B4_3_2_1_1" value="7"> (7) เสียโฉม พิการ หรือทุพลภาพเป็นการถาวร
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3218" name="1_B4_3_2_1_1" value="8"> (8) ได้รับอันตรายต่อสุขภาพ เจ็บป่วย
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3219" name="1_B4_3_2_1_1" value="9"> (9) เสียชีวิต
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">3.2.2 ความเสียหายหรืออันตรายทางจิตใจ</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3221" name="1_B4_3_2_2_1" value="1" value="1" data-parsley-required="true"> (1) ไม่มี
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3222" name="1_B4_3_2_2_1" value="2"> (2) ได้รับอันตรายทางจิตใจจนถึงขั้นเข้ารับการบำบัดทางจิต
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">3.2.3 ความเสียหายต่อทรัพย์</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3231" name="1_B4_3_2_3_1" value="1" value="1" data-parsley-required="true"> (1) ไม่มี
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="1_3232" name="1_B4_3_2_3_1" value="2"> (2) มี
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								เป็นมูลค่า
+							</div>
+							<div class="col-lg-12">
+								<input type="number" class="form-control" id="1_3232_text" name="1_B4_3_2_3_1_text" data-parsley-required="true" readonly /> บาท
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">3.2.4 ความเสียหายอื่น ๆ (ตอบได้มากกว่าหนึ่งข้อ)</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_3241" name="1_B4_3_2_4_1" value="1"> (1) ค่ารักษาพยาบาล
+								<input type="number" class="form-control" id="1_3241_text" name="1_B4_3_2_4_1_text" data-parsley-required="true" readonly /> บาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_3242" name="1_B4_3_2_4_2" value="1"> (2) ต้องหยุดงานหรือขาดรายได้ (จำนวนวันที่หยุดงาน x รายได้เฉลี่ยโดยประมาณ) 
+								<input type="number" class="form-control" id="1_3242_text" name="1_B4_3_2_4_2_text" data-parsley-required="true" readonly /> บาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_3243" name="1_ฺB7_3_2_4_3" value="1"> (3) ค่าใช้จ่ายในการติดต่อหน่วยงานราชการหรือหน่วยงานกระบวนการยุติธรรม (เช่น ตำรวจ อัยการ ศาล ศูนย์ดำรงธรรม ฯลฯ)  จำนวน
+								<input type="number" class="form-control" id="1_3243_text" name="1_ฺB7_3_2_4_3_text" data-parsley-required="true" readonly /> บาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_3244" name="1_B4_3_2_4_4" value="1"> (4) ค่าใช้จ่ายในการติดต่อทนายความ จำนวน
+								<input type="number" class="form-control" id="1_3244_text" name="1_B4_3_2_4_4_text" data-parsley-required="true" readonly /> บาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_3245" name="1_B4_3_2_4_5" value="1"> (5) ค่าใช้จ่ายในการติดต่อหน่วยงานเอกชน (เช่น บริษัทประกันภัย NGOs) จำนวน
+								<input type="number" class="form-control" id="1_3245_text" name="1_B4_3_2_4_5_text" data-parsley-required="true" readonly /> บาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_3246" name="1_B4_3_2_4_6" value="1"> (6) ค่าใช้จ่ายในการแสวงหาพยานหลักฐาน จำนวน
+								<input type="number" class="form-control" id="1_3246_text" name="1_B4_3_2_4_6_text" data-parsley-required="true" readonly /> บาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_3247" name="1_B4_3_2_4_7" value="1"> (7) ค่าใช้จ่ายด้านค่าเดินทาง ที่พักและอื่น ๆในการติดต่อทางคดี จำนวน
+								<input type="number" class="form-control" id="1_3247_text" name="1_B4_3_2_4_7_text" data-parsley-required="true" readonly /> บาท
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="1_3248" name="1_B4_3_2_4_8" value="1"> (8) ไม่มีความสูญเสีย/ค่าเสียหายดังที่กล่าวมาแล้วข้างต้น
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<a href="javascript:void(0)" id='buttonsave' class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</a>
+				</div>
+				<div class="col-lg-1.5">
+					<a href="javascript:void(0)" class="ui basic red button "><i class="cancel icon large button"></i> ยกเลิก</a>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>

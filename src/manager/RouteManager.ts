@@ -23,6 +23,7 @@ import { SurveyDXRouter } from '../routers/SurveyDXRouter';
 import { SurveyERouter } from '../routers/SurveyERouter';
 import { SurveyFRouter } from '../routers/SurveyFRouter';
 import { SurveyGRouter } from '../routers/SurveyGRouter';
+import { SurveyB7Router } from '../routers/SurveyB7Router';
 
 const errorHandler = require('express-error-handler');
 export class RouteManager extends BaseRouter {
@@ -103,6 +104,7 @@ export class RouteManager extends BaseRouter {
         let survey_e = new SurveyERouter(this.dir,this.logger);
         let survey_f = new SurveyFRouter(this.dir,this.logger);
         let survey_g = new SurveyGRouter(this.dir,this.logger);
+        let survey_b7 = new SurveyB7Router(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
             try {
@@ -144,6 +146,7 @@ export class RouteManager extends BaseRouter {
         app.use("/survey_e", survey_e.route(app));
         app.use("/survey_f", survey_f.route(app));
         app.use("/survey_g", survey_g.route(app));
+        app.use("/survey_b7", survey_b7.route(app));
 
         this.handleErrors(app);
     }

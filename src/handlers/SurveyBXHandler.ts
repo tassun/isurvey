@@ -29,7 +29,7 @@ export class SurveyBXHandler extends SurveyOperateHandler {
         await this.validateRequireFieldsList(context,true);
         let survey_id = context.params.survey_id;
         let sql = new KnSQL();
-        sql.append("select * from survey_b where survey_id = ?survey_id ");
+        sql.append("select * from survey_b where survey_id = ?survey_id order by create_millis ");
         sql.set("survey_id",survey_id);
         this.logger.info(this.constructor.name+".processList:",sql);
         let rs = await sql.executeQuery(db,context);
@@ -47,19 +47,22 @@ export class SurveyBXHandler extends SurveyOperateHandler {
         let sql = new KnSQL();
         for(let table of this.TABLE_NAMES) {
             sql.clear();
-            sql.append("SELECT successed,COUNT(*) as counter from ").append(table);
+            sql.append("SELECT fault_status,COUNT(*) as counter from ").append(table);
             sql.append(" where master_id = ?master_id ");
-            sql.append("GROUP BY successed ");
+            sql.append("GROUP BY fault_status ");
             sql.set("master_id",survey_id);
             let rs = await sql.executeQuery(db,context);
             if(rs.rows && rs.rows.length>0) {
+                let total = 0;
                 for(let row of rs.rows) {
-                    if(row.successed=="1") {
+                    if(row.fault_status=="1") {
                         dt.dataset[table+"_success"] = row.counter;
                     } else {
                         dt.dataset[table+"_unsuccess"] = row.counter;
                     }
+                    total += row.counter;
                 }
+                dt.dataset[table+"_total"] = total;
             }
         }
         return Promise.resolve(dt);    
