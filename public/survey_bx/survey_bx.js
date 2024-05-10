@@ -16,6 +16,7 @@ function confirmCancelSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     if(!profile_id) profile_id = $("#profile_id").val();
+    startWaiting();
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
 }
 function setupUI() {
@@ -28,10 +29,12 @@ function setupUI() {
 }
 function openSurveyBX(profile_id,survey_id,master_id,column_id) {
     console.log("openSurveyBX: profile_id = "+profile_id+", survey_id = "+survey_id+", master_id = "+master_id+", column_id = "+column_id);
+    startWaiting();
     submitWindow({url: BASE_URL+"/"+column_id+"/listing", params: {profile_id: profile_id, survey_id: survey_id, master_id: master_id, column_id: column_id}, windowName: "_self"});
 }
 function gotoAppendix() {
     let profile_id = $("#profile_id").val();
     let survey_id = $("#survey_id").val();
+    startWaiting();
     submitWindow({url: BASE_URL+"/survey_b/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
 }

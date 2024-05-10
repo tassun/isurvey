@@ -52,6 +52,7 @@ function confirmEditSurvey(element) {
     let tr = button.closest("tr");
     let userdata = tr.data("userdata");
     if(userdata) {
+        startWaiting();
         submitWindow({url: BASE_URL+"/survey/edit", params: {profile_id: userdata.profile_id}, windowName: "_self"});
     }
 }

@@ -225,6 +225,7 @@ function updateSurvey(src) {
     });
 }
 function gotoSurveyForm(profile_id) {
+    startWaiting();
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
 }
 function setupDistrict(src,amphurCode,districtCode,defaultCaption="เลือกตำบล") {

@@ -88,6 +88,7 @@ function updateSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     if(!profile_id) profile_id = $("#profile_id").val();
+    startWaiting();
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
 }
 function setupUI() {
@@ -125,6 +126,7 @@ function setupSurveyDataTable(profile_id,survey_id) {
 }
 function openSurveyCategory(profile_id,survey_id,survey_profile) {
     console.log("openSurveyCategory: profile_id: " + profile_id + ", survey_id: " + survey_id+", survey_profile: "+survey_profile);
+    startWaiting();
     submitWindow({url: BASE_URL+"/survey_bx/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
 }
 function confirmSurveyDelete(profile_id,survey_id,sb_profile,callback) {

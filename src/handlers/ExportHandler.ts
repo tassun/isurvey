@@ -29,7 +29,7 @@ export class ExportHandler extends ProcessHandler {
         {table:"survey_b4",file:"survey_b4.csv"},
         {table:"survey_b5",file:"survey_b5.csv"},
         {table:"survey_b6",file:"survey_b6.csv"},
-        {table:"survey_b7",file:"survey_b7.csv"},
+        {table:"survey_b7",file:"survey_b7.csv"}
     ];
 
     protected override async doExport(context: KnContextInfo) : Promise<KnRecordSet> {
@@ -66,16 +66,19 @@ export class ExportHandler extends ProcessHandler {
         let filePath = path.join(this.exportDir,fileName);
         this.logger.info(this.constructor.name+".writeDataFile:",filePath);
         let writer = fs.createWriteStream(filePath,"utf-8");
-        if(rs.rows && rs.rows.length>0) {
-            let header = Object.keys(rs.rows[0]).join(",");
-            writer.write(header+"\n");
-            for(let row of rs.rows) {
-                row = this.transformData(row);
-                let values = Object.values(row).map(function(value){ return value?"\""+value+"\"":value}) .join(",");
-                writer.write(values+"\n");
+        try {
+            if(rs.rows && rs.rows.length>0) {
+                let header = Object.keys(rs.rows[0]).join(",");
+                writer.write(header+"\n");
+                for(let row of rs.rows) {
+                    row = this.transformData(row);
+                    let values = Object.values(row).map(function(value){ return value?"\""+value+"\"":value}) .join(",");
+                    writer.write(values+"\n");
+                }
             }
+        } finally {
+            writer.close();
         }
-        writer.end();
     }
 
     public override formatData(info: KnFormatInfo) : any {
