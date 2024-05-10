@@ -30,10 +30,9 @@ export class SurveyMasterHandler extends SurveyOperateHandler {
 
     public override async getDataListing(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
         let dt = await super.getDataListing(context,db,rs);
-        let survey_id = context.params.survey_id;
-        let master_id = context.params.master_id;
-        dt.dataset.survey_id = survey_id;
-        dt.dataset.master_id = master_id;
+        dt.dataset.survey_id = context.params.survey_id;
+        dt.dataset.master_id = context.params.master_id;
+        dt.dataset.main_id = context.params.main_id;
         return Promise.resolve(dt);    
     }
 
@@ -41,7 +40,14 @@ export class SurveyMasterHandler extends SurveyOperateHandler {
         let dt = await super.getDataAdd(context);
         dt.dataset.survey_id = context.params.survey_id;
         dt.dataset.master_id = context.params.master_id;
+        dt.dataset.main_id = context.params.main_id;
         return Promise.resolve(dt);
+    }
+
+    public override async getDataEdit(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
+        let dt = await super.getDataEdit(context,db,rs);
+        dt.dataset.main_id = context.params.main_id;
+        return dt;
     }
 
 }

@@ -8,6 +8,9 @@ $(function() {
     setupUI();
 });
 function setupComponents() {
+    //$("#master_bread_form_linker").click(function() { gotoAppendix(); return false; });
+    //$("#table_bread_form_linker").click(function() { gotoSurveyCategory(); return false; });
+    $("#data_table_bread_form_linker").click(function() { gotoListingForm(); return false; });
     $("#buttonsave").click(function() { confirmSaveSurvey(this); return false; });
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
@@ -82,6 +85,7 @@ function updateSurvey(src) {
     });
 }
 function gotoSurveyForm(profile_id) {
+    if(!profile_id) profile_id = $("#profile_id").val();
     startWaiting();
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
 }
@@ -261,5 +265,6 @@ function gotoListingForm() {
     let profile_id = $("#profile_id").val();
     let master_id = $("#master_id").val();
     let column_id = $("#column_id").val();
-    submitWindow({url: BASE_URL+"/survey_b1/listing", params: {profile_id: profile_id, survey_id: master_id, master_id: master_id, column_id: column_id}, windowName: "_self"});
+    let main_id = $("#main_id").val();
+    submitWindow({url: BASE_URL+"/survey_b1/listing", params: {profile_id: profile_id, survey_id: master_id, master_id: master_id, column_id: column_id, main_id: main_id}, windowName: "_self"});
 }

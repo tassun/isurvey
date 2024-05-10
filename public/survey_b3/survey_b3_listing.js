@@ -18,10 +18,11 @@ function setupComponents() {
 }
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
-        gotoSurveyCategory();
+        gotoSurveyBCategory();
     });
 }
 function gotoSurveyForm(profile_id) {
+    if(!profile_id) profile_id = $("#list_bx_profile_id").val();
     startWaiting();
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
 }
@@ -114,13 +115,20 @@ function searchSurveyBXDataTable(profile_id,survey_id,master_id,column_id) {
         }
     });
 }
-function gotoSurveyCategory() {
+function gotoSurveyBCategory() {
     let profile_id = $("#list_bx_profile_id").val();
     let survey_id = $("#list_bx_survey_id").val();    
     openSurveyCategory(profile_id,survey_id);
 }
 function openSurveyCategory(profile_id,survey_id) {
     console.log("openSurveyCategory: profile_id: " + profile_id + ", survey_id: " + survey_id);
+    let main_id = $("#list_bx_main_id").val();
     startWaiting();
-    submitWindow({url: BASE_URL+"/survey_bx/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
+    submitWindow({url: BASE_URL+"/survey_bx/open", params: {profile_id: profile_id, survey_id: survey_id, main_id: main_id}, windowName: "_self"});
+}
+function gotoSurveyBAppendix() {
+    let profile_id = $("#list_bx_profile_id").val();
+    let survey_id = $("#list_bx_main_id").val();
+    startWaiting();
+    submitWindow({url: BASE_URL+"/survey_b/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
 }

@@ -13,7 +13,7 @@ export class SurveyBXHandler extends SurveyOperateHandler {
         fields: {
             survey_id: { type: "STRING", key: true, calculated: true  },
             profile_id: { type: "STRING", calculated: true },
-            master_id: { type: "STRING", calculated: true }
+            main_id: { type: "STRING", calculated: true, remark: "survey_b.survey_id of answerer" }
         }
     };
 
@@ -44,6 +44,7 @@ export class SurveyBXHandler extends SurveyOperateHandler {
         let dt = await super.getDataListing(context,db,rs);
         let survey_id = context.params.survey_id;
         dt.dataset.survey_id = survey_id;
+        dt.dataset.main_id = context.params.main_id;
         let sql = new KnSQL();
         for(let table of this.TABLE_NAMES) {
             sql.clear();

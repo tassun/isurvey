@@ -8,6 +8,7 @@ $(function() {
     setupUI();
 });
 function setupComponents() {
+    $("#data_table_bread_form_linker").click(function() { gotoListingForm(); return false; });
     $("#buttonsave").click(function() { confirmSaveSurvey(this); return false; });
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });
@@ -82,6 +83,7 @@ function updateSurvey(src) {
     });
 }
 function gotoSurveyForm(profile_id) {
+    if(!profile_id) profile_id = $("#profile_id").val();
     startWaiting();
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
 }

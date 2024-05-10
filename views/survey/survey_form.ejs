@@ -11,6 +11,12 @@
 <body>
 	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
 		<%- include('../partials/page_header') %>
+		<nav id="breadnavigator" aria-label="breadcrumb" style="margin-left: 5px;">
+			<ol class="breadcrumb">
+			  <li class="breadcrumb-item"><a href="/index" id="bread_home_linker"><i class="home icon"></i>หน้าหลัก</a></li>
+			  <li class="breadcrumb-item active" aria-current="page">แบบสำรวจข้อมูล</li>
+			</ol>
+		</nav>
 		<div class="panel container panel-container">
 			<div class="page-header row">
 				<div class="col-md"><h3>แบบสำรวจข้อมูล</h3></div>

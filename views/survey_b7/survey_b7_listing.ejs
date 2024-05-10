@@ -11,6 +11,7 @@
 	<%- include('../partials/page_waiting') %>
 	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
 		<%- include('../partials/page_header') %>
+		<%- include('../partials/page_survey_listing') %>
 		<div class="panel container" style="margin-top : 10px;">
 			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
 			<div class="body" id="form-data-layer">
@@ -20,6 +21,7 @@
 					<input type="hidden" id="list_bx_profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<input type="hidden" id="list_bx_survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
 					<input type="hidden" id="list_bx_master_id" name="master_id" value="<%=data.dataset?.master_id%>" />
+					<input type="hidden" id="list_bx_main_id" name="main_id" value="<%=data.dataset?.main_id%>" />
 					<input type="hidden" id="list_bx_column_id" name="column_id" value="survey_b7" />
 					<label>แบบแจงนับข้อมูลสถิติอาชญากรรม (ผนวก ข) </label> <br/>
 					<label id="bx-topic-label">6.2. การเลือกปฏิบัติ</label> <br/>

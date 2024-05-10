@@ -1,5 +1,8 @@
 $(function() {
     $("#logoutlinker").click(function() { confirmLogout(); return false; });
+    $("#bread_form_linker").click(function() { gotoSurveyForm(); return false; });
+    $("#master_bread_form_linker").click(function() { gotoSurveyBAppendix(); return false; });
+    $("#table_bread_form_linker").click(function() { gotoSurveyBCategory(); return false; });
 });
 function confirmLogout() {
     $.confirm({
@@ -31,4 +34,17 @@ function doLogout() {
     $("#password").val("");
     $("#username").focus();
     window.open("/login", "_self");
+}
+function gotoSurveyBAppendix() {
+    let profile_id = $("#profile_id").val();
+    let survey_id = $("#main_id").val();
+    startWaiting();
+    submitWindow({url: BASE_URL+"/survey_b/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
+}
+function gotoSurveyBCategory() {
+    let profile_id = $("#profile_id").val();
+    let survey_id = $("#master_id").val();
+    let main_id = $("#main_id").val();
+    startWaiting();
+    submitWindow({url: BASE_URL+"/survey_bx/open", params: {profile_id: profile_id, survey_id: survey_id, main_id: main_id}, windowName: "_self"});
 }
