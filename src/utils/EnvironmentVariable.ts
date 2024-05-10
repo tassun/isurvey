@@ -13,4 +13,4 @@ export const HTTP_PORT: number = parseInt(config.env("HTTP_PORT","8080")) || 808
 export const HTTPS_PORT: number = parseInt(config.env("HTTPS_PORT","8843")) || 8843;
 export const SECRET_KEY: string = config.env("SECRET_KEY","ASSURE_OF_SECRET_KEY");
 export const DB_SECTION: string = config.env("DB_SECTION","MYSQL");
-export const APP_INSTANCES: string = config.env("APP_INSTANCES","CPU");
+export const APP_INSTANCES: string = config.env("APP_INSTANCES","1");

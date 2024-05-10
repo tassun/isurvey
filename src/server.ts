@@ -1,6 +1,27 @@
 import { KnExpress } from "./runner/KnExpress";
 import { RouteManager } from './manager/RouteManager';
+import { APP_INSTANCES } from './utils/EnvironmentVariable';
+import { Worker } from 'cluster';
 
-let app = KnExpress.createApplication();
-console.log("working directory",__dirname);
-new RouteManager(__dirname).route(app);
+import os from 'os';
+import cluster from "cluster";
+
+const numOfCPUs = os.cpus().length;
+console.log("number of CPU",numOfCPUs);
+let numOfInstances = numOfCPUs;
+if(APP_INSTANCES != "CPU" && APP_INSTANCES != "MAX") {
+    numOfInstances = parseInt(APP_INSTANCES);
+}
+console.log("number of instances",numOfInstances);
+if (numOfInstances > 1 && cluster.isPrimary) {
+    for (let i = 0; i < numOfInstances; i++) {
+        cluster.fork();
+    }        
+    cluster.on('exit', (worker: Worker, code: number, signal: string) => {
+        console.log(`worker ${worker.process.pid} died`);
+    });
+} else {
+    let app = KnExpress.createApplication();
+    console.log("working directory",__dirname);
+    new RouteManager(__dirname).route(app);
+}
