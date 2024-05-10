@@ -1,5 +1,6 @@
 var mouseX = 0;
 var mouseY = 0;
+var canFocused = false;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("measure_d"); }catch(ex) { }
@@ -86,10 +87,12 @@ function setupUI() {
     $("#MD_3_8").change(function() {
         if($(this).is(":checked")) {
             $("#MD_3_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#MD_3_text").focus();
         } else {
             $("#MD_3_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
     $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
     $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
+    canFocused = true;
 }

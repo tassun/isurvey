@@ -1,0 +1,82 @@
+								<table class="tg data-table" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-c3oa bg">ลำดับที่</th>
+											<th class="tg-9wq8 bg">ลักษณะความผิด<br></th>
+											<th class="tg-c3oa bg">ประเภทความผิด</th>
+											<th class="tg-c3oa bg nowrap">สถานะ</th>
+											<th class="tg-c3oa bg">สถานที่เกิดเหตุ</th>
+											<th class="tg-c3oa bg"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<%	let rows = data.dataset?.rows;
+										if(rows && rows.length>0) { 
+											for(let index=0; index < rows.length; index++) { 
+												let item = rows[index];
+												let fault_status = item?.fault_status=="1"?"สำเร็จ":"ไม่สำเร็จ";
+												let fault_type = "";
+												let fault_nature = item?.fault_nature_text; 
+												let fault_location = item?.fault_location_text;
+												if(item?.fault_type=="1") fault_type = "แอบอ้างใช้ข้อมูล/เอกสารส่วนตัว";
+												else if(item?.fault_type=="2") fault_type = "ถูกหลอกลวงด้วยการใช้เงินปลอม";
+												else if(item?.fault_type=="3") fault_type = "แชร์ลูกโซ่";
+												else if(item?.fault_type=="4") fault_type = "หลอกลวงฉ้อโกง";
+												else if(item?.fault_type=="5") fault_type = "ยักยอกทรัพย์";
+												else if(item?.fault_type=="6") fault_type = "เงินกู้นอกระบบ";
+												else if(item?.fault_type=="7") fault_type = "เรียกเก็บค่าคุ้มครอง";
+												else if(item?.fault_type=="8") fault_type = "หลอกให้เปิดบัญชีธนาคาร";												
+												if(item?.fault_nature=="1") fault_nature = "แอบอ้างใช้ข้อมูล/เอกสารส่วนตัวไปใช้ในทางมิชอบ เช่น ลักลอบเอาข้อมูลบัตรเครดิตไปซื้อสินค้า นำสำเนาบัตรประชาชนไปเปิดโทรศัพท์หรือบัญชีธนาคารนำไปขอกู้เงิน";
+												else if(item?.fault_nature=="2") fault_nature = "ตกเป็นเหยื่อ มีผู้ใช้เงินปลอมมาชำระหนี้/ซื้อขายสินค้า";
+												else if(item?.fault_nature=="3") fault_nature = "ถูกหลอกลวงทำธุรกิจที่มีผลตอบแทนจำนวนมากที่ไม่มีอยู่จริง";
+												else if(item?.fault_nature=="4") fault_nature = "หลอกลวงให้ร่วมลงทุน ซื้อหุ้น/หน่วยลงทุน หรือซื้อขายสินค้าในธุรกิจที่ไม่มีอยู่จริง";
+												else if(item?.fault_nature=="5") fault_nature = "หลอกลวงให้จ่ายเงินเป็นสมาชิกธุรกิจโดยให้ช่วยหาสมาชิกธุรกิจแล้วปิดบริษัทหลบหนีไป (แชร์ลูกโซ่)";
+												else if(item?.fault_nature=="6") fault_nature = "ถูกหลอกไปทำงานต่างประเทศโดยเรียกเก็บค่าบริการแล้วเอาเงินหนีไปโดยไม่ส่งไปทำงาน";
+												else if(item?.fault_nature=="7") fault_nature = "ถูกหลอกลวง ด้วยกลฉ้อฉลหรือคนร้ายล่อหลอกให้โอนเงินเข้าบัญชีคนร้าย เช่น แก๊ง Call Center";
+												else if(item?.fault_nature=="8") fault_nature = "หลอกลวงโดยส่งลิงค์ให้เข้าบัญชีการเงินหรือส่งรหัสผ่านเพื่อถอนเงินจากบัญชี หรือลักลอบเบิกเงินสดจากบัญชีธนาคารโดยที่เจ้าของบัญชีไม่ทราบ/ไม่ยินยอม";
+												else if(item?.fault_nature=="9") fault_nature = "หลอกลวงว่าถูกรางวัลโดยขอเก็บค่าดำเนินการล่วงหน้า";
+												else if(item?.fault_nature=="10") fault_nature = "หลอกลวงโดยแสดงตนเป็นบุคคลอื่น สร้างความชอบพอ และหลอกลวงว่าจะส่งทรัพย์สินมาให้หรือกระทำการอื่นใดในลักษณะเดียวโดยจะต้องเสียค่าใช้จ่ายในการดำเนินการ เช่น แก๊งโรแมนซ์สแกม";
+												else if(item?.fault_nature=="11") fault_nature = "หลอกขายสินค้าปลอม";
+												else if(item?.fault_nature=="12") fault_nature = "หลอกประกาศขายสินค้าแต่ไม่จัดส่งสินค้าให้ หรือส่งให้แต่ไม่ตรงกับที่โฆษณา";
+												else if(item?.fault_nature=="13") fault_nature = "หลอกลวงให้สูญเสียทรัพย์สินให้คนร้าย โดยมีการแสดงเอกสารเท็จให้หลงเชื่อ";
+												else if(item?.fault_nature=="14") fault_nature = "หลอกเข้าร่วมโครงการรัฐ หรือสวัสดิการของรัฐ แล้วโกงเงินหรือเรียกเก็บค่าบริการ";
+												else if(item?.fault_nature=="15") fault_nature = "หลอกลวงให้สูญเสียทรัพย์สิน เช่น ตกทอง หลอกขายสลากกินแบ่งถูกรางวัลปลอม";
+												else if(item?.fault_nature=="16") fault_nature = "หลอกลวงให้ทำงานให้หรือให้ส่งสินค้าให้โดยเจตนาไม่จ่ายค่าจ้างหรือชำระเงิน";
+												else if(item?.fault_nature=="17") fault_nature = "แอบอ้างเป็นหน่วยงานหรือองค์กรการกุศล มาเรี่ยไรเงินบริจาค";
+												else if(item?.fault_nature=="18") fault_nature = "โกงแชร์วงใหญ่เกินกฎหมายกำหนด";
+												else if(item?.fault_nature=="19") fault_nature = "เชิญชวนเล่นการพนัน";
+												else if(item?.fault_nature=="20") fault_nature = "หลอกลวงว่าเป็นเจ้าหน้าที่แล้วมาข่มขู่เรียกร้องเงิน หรือเรี่ยไรเงิน";
+												else if(item?.fault_nature=="21") fault_nature = "แอบอ้างเป็นบุคคลที่รู้จักเพื่อขอยืมเงิน";
+												else if(item?.fault_nature=="22") fault_nature = "หลอกลวงว่าจะช่วยให้เข้าทำงานได้/สอบเข้าได้";
+												else if(item?.fault_nature=="23") fault_nature = "หลอกลวงให้จ่ายเงินเพื่อแลกกับการอำนวยความสะดวกหรือได้รับสิทธิพิเศษ";
+												else if(item?.fault_nature=="24") fault_nature = "มีผู้เบียดบังเอาทรัพย์สินที่อนุญาตให้อยู่ในครอบครองไปโดยมิชอบ เช่น ลูกจ้างยักยอกอุปกรณ์/เครื่องมือ/พาหนะ ที่ใช้ในการทำงาน ลูกจ้างยักยอกเงินที่ได้จากการค้าขายหรือเก็บเงินจากลูกค้า เอาของที่ให้ยืมไปขายหรือไปจำนำ";
+												else if(item?.fault_nature=="25") fault_nature = "ถูกขูดรีดโดยแก๊งเงินกู้นอกระบบให้กู้เงินโดยคิดดอกเบี้ยในราคาสูงมาก (เกินกว่าร้อยละ 3 ต่อเดือน) หลอกให้ทำสัญญาเงินกู้เกินจริง โดยข่มขู่หรือทำอันตรายจากการทวงหนี้";
+												else if(item?.fault_nature=="26") fault_nature = "ถูกเรียกเก็บเงินหรือทรัพย์สินเป็นค่าคุ้มครองโดยขู่ว่าหากไม่ให้จะทำอันตราย หรือไม่ให้ประกอบการค้าขายหรือประกอบอาชีพ";
+												else if(item?.fault_nature=="27") fault_nature = "มีผู้หลอกลวงหรือว่าจ้างให้เปิดบัญชีธนาคารหรือบัญชีทางการเงินแล้วนำไปใช้ในการก่ออาชญากรรมหรือใช้ในทางมิชอบ (บัญชีม้า)";												
+												if(item?.fault_location=="1") fault_location = "บ้าน/ที่อยู่อาศัยส่วนตัว";
+												else if(item?.fault_location=="2") fault_location = "สถานที่เชิงพาณิชย์ เช่น ร้านอาหาร ห้างสรรพสินค้า ร้านค้า ฯลฯ";
+												else if(item?.fault_location=="3") fault_location = "สถานที่ประกอบธุรกิจที่สงวนเฉพาะบุคคล เช่น อาคารสำนักงาน โรงงาน โกดัง ฯลฯ";
+												else if(item?.fault_location=="4") fault_location = "สถานศึกษา เช่น โรงเรียน มหาวิทยาลัย ฯลฯ";
+												else if(item?.fault_location=="5") fault_location = "สถานดูแล เช่น โรงพยาบาล คลินิก บ้านพักคนชรา ฯลฯ";
+												else if(item?.fault_location=="6") fault_location = "สถานที่สาธารณะ เช่น ถนน ตลาด สวนสาธารณะ ขนส่งสาธารณะ ฯลฯ";
+												else if(item?.fault_location=="7") fault_location = "ช่องทางออนไลน์/อุปกรณ์โทรศัพท์เคลื่อนที่";
+												%>
+										<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>">
+											<td class="tg-0lax text-center"><%=index+1%></td>
+											<td class="tg-0laa text-left"><%=fault_nature%></td>
+											<td class="tg-0laa text-left"><%=fault_type%></td>
+											<td class="tg-0laa"><%=fault_status%></td>
+											<td class="tg-0laa text-left"><%=fault_location%></td>
+											<td class="tg-0laa nowrap">
+												<a href="javascript:void(0)" class="bx-edit-linker ui basic black button tiny"><i class="edit icon large"></i></a>
+												<a href="javascript:void(0)" class="bx-delete-linker ui basic red button tiny"><i class="trash icon large"></i></a>								
+											</td>
+										</tr>
+										<% 	} 
+										} else {%>
+										<tr>
+											<td colspan="6" class="tg-0lax text-center">ไม่พบข้อมูล</td>
+										</tr>
+										<%}%>
+									</tbody>
+								</table>

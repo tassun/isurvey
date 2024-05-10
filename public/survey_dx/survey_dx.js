@@ -1,5 +1,6 @@
 var mouseX = 0;
 var mouseY = 0;
+var canFocused = false;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("survey_dx"); }catch(ex) { }
@@ -82,9 +83,11 @@ function gotoSurveyFormApt(profile_id) {
     submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
 }
 function setupUIApt() {
+    canFocused = false;
     $('input[name="SDX_6"]').on('change', function() {
         if ($(this).val() == '5') {
             $("#SDX_6_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SDX_6_text").focus();
         } else {
             $("#SDX_6_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -92,6 +95,7 @@ function setupUIApt() {
     $('input[name="SDX_7"]').on('change', function() {
         if ($(this).val() == '5') {
             $("#SDX_7_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SDX_7_text").focus();
         } else {
             $("#SDX_7_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -99,6 +103,7 @@ function setupUIApt() {
     $('input[name="SDX_8"]').on('change', function() {
         if ($(this).val() == '2') {
             $("#SDX_8_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SDX_8_text").focus();
         } else {
             $("#SDX_8_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -106,6 +111,7 @@ function setupUIApt() {
     $('input[name="SDX_9"]').on('change', function() {
         if ($(this).val() == '3') {
             $("#SDX_9_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SDX_9_text").focus();
         } else {
             $("#SDX_9_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -113,6 +119,7 @@ function setupUIApt() {
     $('input[name="SDX_10"]').on('change', function() {
         if ($(this).val() == '7') {
             $("#SDX_10_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SDX_10_text").focus();
         } else {
             $("#SDX_10_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -120,6 +127,7 @@ function setupUIApt() {
     $('input[name="SDX_11"]').on('change', function() {
         if ($(this).val() == '5') {
             $("#SDX_11_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SDX_11_text").focus();
         } else {
             $("#SDX_11_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -127,10 +135,12 @@ function setupUIApt() {
     $('input[name="SDX_12"]').on('change', function() {
         if ($(this).val() == '6') {
             $("#SDX_12_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SDX_12_text").focus();
         } else {
             $("#SDX_12_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
     $("input[type=radio]:checked",$("#dx-form-data-layer")).trigger("change");
     $("input[type=checkbox]:checked",$("#dx-form-data-layer")).trigger("change");
+    canFocused = true;
 }

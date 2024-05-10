@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<%- include('../asset/meta') %>		
+	<%- include('../asset/styles') %>		
+	<%- include('../asset/scripts') %>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_b4/survey_b4.js"></script>
+	<style nonce="YXNzdXJl">
+		.suffix { margin-left: 5px; margin-top: 10px;}
+		.number-grouper { margin-left: 30px; width: 350px;}
+		input[type="number"] { text-align: right; }
+	</style>
+</head>
+<body>
+	<%- include('../partials/page_waiting') %>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<%- include('../partials/page_header') %>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
+			<label class="col-form-label">4. ฉ้อโกง หลอกลวง</label> <br/>
+			<label class="col-form-label">แบบเก็บข้อมูลรายละเอียดอาชญากรรมการฉ้อโกงหลอกลวง</label>
+			<div class="body" id="bx-form-data-layer">
+				<%- include('../survey_b4/survey_b4_kit') %>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<% if(!page.isUpdateMode(data.action)) {%>
+						<button id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</button>
+					<% } %>
+					<% if(page.isUpdateMode(data.action)) {%>
+						<button id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.survey_id%>"><i class="save icon large button"></i> ปรับปรุง</button>
+					<% } %>
+				</div>
+				<div class="col-lg-1.5">
+					<button id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>

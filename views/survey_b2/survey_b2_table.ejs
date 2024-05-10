@@ -1,0 +1,70 @@
+								<table class="tg data-table" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-c3oa bg">ลำดับที่</th>
+											<th class="tg-9wq8 bg">ลักษณะความผิด<br></th>
+											<th class="tg-c3oa bg">ประเภทความผิด</th>
+											<th class="tg-c3oa bg nowrap">สถานะ</th>
+											<th class="tg-c3oa bg">สถานที่เกิดเหตุ</th>
+											<th class="tg-c3oa bg"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<%	let rows = data.dataset?.rows;
+										if(rows && rows.length>0) { 
+											for(let index=0; index < rows.length; index++) { 
+												let item = rows[index];
+												let fault_status = item?.fault_status=="1"?"สำเร็จ":"ไม่สำเร็จ";
+												let fault_type = "";
+												let fault_nature = item?.fault_nature_text; 
+												let fault_location = item?.fault_location_text;
+												if(item?.fault_type=="1") fault_type = "ปล้น จี้ ชิงทรัพย์";
+												else if(item?.fault_type=="2") fault_type = "วิ่งราวทรัพย์";
+												else if(item?.fault_type=="3") fault_type = "ลักทรัพย์";
+												else if(item?.fault_type=="4") fault_type = "รีดเอาทรัพย์";
+												else if(item?.fault_type=="5") fault_type = "กรรโชกทรัพย์";
+												else if(item?.fault_type=="6") fault_type = "ทำให้เสียทรัพย์";
+												else if(item?.fault_type=="7") fault_type = "บุกรุก";
+												if(item?.fault_nature=="1") fault_nature = "ปล้น จี้ ชิงทรัพย์ในที่สาธารณะ";
+												else if(item?.fault_nature=="2") fault_nature = "ปล้น จี้ ชิงทรัพย์ในพื้นที่ส่วนบุคคล";
+												else if(item?.fault_nature=="3") fault_nature = "ปล้นชิงสินค้า";
+												else if(item?.fault_nature=="4") fault_nature = "ปล้นชิงรถยนต์/รถจักรยานยนต์";
+												else if(item?.fault_nature=="5") fault_nature = "ปล้นชิงโคกระบือหรือเครื่องมือเกษตร";
+												else if(item?.fault_nature=="6") fault_nature = "วิ่งราวทรัพย์";
+												else if(item?.fault_nature=="7") fault_nature = "ล้วงกระเป๋า";
+												else if(item?.fault_nature=="8") fault_nature = "ลักทรัพย์สถานประกอบการ";
+												else if(item?.fault_nature=="9") fault_nature = "ลักพาหนะ (รวมถึงทรัพย์สินในพาหนะ)";
+												else if(item?.fault_nature=="10") fault_nature = "ลักโคกระบือหรือเครื่องมือการเกษตร";
+												else if(item?.fault_nature=="11") fault_nature = "ลักทรัพย์สินในบ้าน/ที่พักอาศัย";
+												else if(item?.fault_nature=="12") fault_nature = "ลักทรัพย์รูปแบบอื่น ๆ";
+												else if(item?.fault_nature=="13") fault_nature = "ข่มขู่ว่าจะเปิดเผยความลับ เช่น แบล็กเมล์ ภาพลับ/คลิปลับ เป็นต้น";
+												else if(item?.fault_nature=="14") fault_nature = "กรรโชกทรัพย์ (ขู่เข็ญว่าจะทำอันตรายต่อชีวิต/ร่างกายทรัพย์สินเพื่อแลกกับการเอาทรัพย์)";
+												else if(item?.fault_nature=="15") fault_nature = "ทำให้เสียทรัพย์ (เช่น ทำลายทรัพย์สิน ยานพาหนะ)";
+												else if(item?.fault_nature=="16") fault_nature = "บุกรุกทรัพย์สิน เช่น บ้าน ที่ดิน";												
+												if(item?.fault_location=="1") fault_location = "บ้าน/ที่อยู่อาศัยส่วนตัว";
+												else if(item?.fault_location=="2") fault_location = "สถานที่เชิงพาณิชย์ เช่น ร้านอาหาร ห้างสรรพสินค้า ร้านค้า ฯลฯ";
+												else if(item?.fault_location=="3") fault_location = "สถานที่ประกอบธุรกิจที่สงวนเฉพาะบุคคล เช่น อาคารสำนักงาน โรงงาน โกดัง ฯลฯ";
+												else if(item?.fault_location=="4") fault_location = "สถานศึกษา เช่น โรงเรียน มหาวิทยาลัย ฯลฯ";
+												else if(item?.fault_location=="5") fault_location = "สถานดูแล เช่น โรงพยาบาล คลินิก บ้านพักคนชรา ฯลฯ";
+												else if(item?.fault_location=="6") fault_location = "สถานที่สาธารณะ เช่น ถนน ตลาด สวนสาธารณะ ขนส่งสาธารณะ ฯลฯ";
+												else if(item?.fault_location=="7") fault_location = "ช่องทางออนไลน์/อุปกรณ์โทรศัพท์เคลื่อนที่";
+												%>
+										<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>">
+											<td class="tg-0lax text-center"><%=index+1%></td>
+											<td class="tg-0laa text-left"><%=fault_nature%></td>
+											<td class="tg-0laa text-left"><%=fault_type%></td>
+											<td class="tg-0laa"><%=fault_status%></td>
+											<td class="tg-0laa text-left"><%=fault_location%></td>
+											<td class="tg-0laa nowrap">
+												<a href="javascript:void(0)" class="bx-edit-linker ui basic black button tiny"><i class="edit icon large"></i></a>
+												<a href="javascript:void(0)" class="bx-delete-linker ui basic red button tiny"><i class="trash icon large"></i></a>								
+											</td>
+										</tr>
+										<% 	} 
+										} else {%>
+										<tr>
+											<td colspan="6" class="tg-0lax text-center">ไม่พบข้อมูล</td>
+										</tr>
+										<%}%>
+									</tbody>
+								</table>

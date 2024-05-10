@@ -1,0 +1,56 @@
+								<table class="tg data-table" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-c3oa bg">ลำดับที่</th>
+											<th class="tg-9wq8 bg">ลักษณะความผิด<br></th>
+											<th class="tg-c3oa bg">ประเภทความผิด</th>
+											<th class="tg-c3oa bg nowrap">สถานะ</th>
+											<th class="tg-c3oa bg">สถานที่เกิดเหตุ</th>
+											<th class="tg-c3oa bg"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<%	let rows = data.dataset?.rows;
+										if(rows && rows.length>0) { 
+											for(let index=0; index < rows.length; index++) { 
+												let item = rows[index];
+												let fault_status = item?.fault_status=="1"?"สำเร็จ":"ไม่สำเร็จ";
+												let fault_type = item?.fault_type_text;
+												let fault_nature = ""; 
+												let fault_location = item?.fault_location_text;
+												if(item?.fault_type=="1") fault_type = "ถูกลักลอบเข้าสู่ระบบคอมพิวเตอร์";
+												else if(item?.fault_type=="2") fault_type = "ถูกล่วงรู้พาสเวิร์ดสำหรับระบบคอมพิวเตอร์ และนำไปก่อให้เกิดความเสียหาย";
+												else if(item?.fault_type=="3") fault_type = "ถูกล้วงข้อมูลในระบบคอมพิวเตอร์";												
+												if(item?.fault_nature=="1") fault_nature = "เป็นเจ้าของบริษัท ห้างร้าน องค์กร หรือผู้รับผิดชอบระบบข้อมูลคอมพิวเตอร์ แล้วมีผู้ลักลอบแอบเข้าระบบโดยมิชอบ";
+												else if(item?.fault_nature=="2") fault_nature = "ถูกขโมยพาสเวิร์ดหรือมีผู้ล่วงรู้พาสเวิร์ดสำหรับเข้าบัญชีเครือข่ายสังคมออนไลน์ (เช่น Facebook Line X-Twitter) แล้วนำไปใช้ก่ออาชญากรรมอื่น เช่น ไปหลอกลวงคนรู้จัก นำข้อมูลความรับมารีดทรัพย์ หลอกลวงไปเล่นพนัน";
+												else if(item?.fault_nature=="3") fault_nature = "ถูกขโมยพาสเวิร์ดหรือมีผู้ล่วงรู้พาสเวิร์ดสำหรับเข้าบัญชีทางการเงิน (เช่น บัญชีหุ้น บัญชีธนาคาร) แล้วถอนหรือโอนทรัพย์สินออกจากบัญชี";
+												else if(item?.fault_nature=="4") fault_nature = "เป็นเจ้าของบริษัท ห้างร้าน องค์กร หรือผู้รับผิดชอบระบบข้อมูลคอมพิวเตอร์ หรือเป็นบุคคลผู้มีบัญชีข้อมูลคอมพิวเตอร์แล้วถูกผู้อื่นลักลอบเจาะข้อมูลเข้าระบบ (Hacker) เข้ามานำข้อมูลสำคัญไปใช้ให้เกิดความเสียหาย";
+												else if(item?.fault_nature=="5") fault_nature = "ถูกเรียกค่าไถ่ข้อมูล";
+												else if(item?.fault_nature=="6") fault_nature = "ถูกเข้าถึงข้อมูลคอมพิวเตอร์โดยมิชอบ หรือถูกทำให้เสียหายจากการนำข้อมูลทางคอมพิวเตอร์มาเผยแพร่หรือใช้ประโยชน์โดยมิชอบในกรณีอื่น ๆ";												
+												if(item?.fault_location=="1") fault_location = "บ้าน/ที่อยู่อาศัยส่วนตัว";
+												else if(item?.fault_location=="2") fault_location = "สถานที่เชิงพาณิชย์ เช่น ร้านอาหาร ห้างสรรพสินค้า ร้านค้า ฯลฯ";
+												else if(item?.fault_location=="3") fault_location = "สถานที่ประกอบธุรกิจที่สงวนเฉพาะบุคคล เช่น อาคารสำนักงาน โรงงาน โกดัง ฯลฯ";
+												else if(item?.fault_location=="4") fault_location = "สถานศึกษา เช่น โรงเรียน มหาวิทยาลัย ฯลฯ";
+												else if(item?.fault_location=="5") fault_location = "สถานดูแล เช่น โรงพยาบาล คลินิก บ้านพักคนชรา ฯลฯ";
+												else if(item?.fault_location=="6") fault_location = "สถานที่สาธารณะ เช่น ถนน ตลาด สวนสาธารณะ ขนส่งสาธารณะ ฯลฯ";
+												else if(item?.fault_location=="7") fault_location = "ช่องทางออนไลน์/อุปกรณ์โทรศัพท์เคลื่อนที่";
+												%>
+										<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>">
+											<td class="tg-0lax text-center"><%=index+1%></td>
+											<td class="tg-0laa text-left"><%=fault_nature%></td>
+											<td class="tg-0laa text-left"><%=fault_type%></td>
+											<td class="tg-0laa"><%=fault_status%></td>
+											<td class="tg-0laa text-left"><%=fault_location%></td>
+											<td class="tg-0laa nowrap">
+												<a href="javascript:void(0)" class="bx-edit-linker ui basic black button tiny"><i class="edit icon large"></i></a>
+												<a href="javascript:void(0)" class="bx-delete-linker ui basic red button tiny"><i class="trash icon large"></i></a>								
+											</td>
+										</tr>
+										<% 	} 
+										} else {%>
+										<tr>
+											<td colspan="6" class="tg-0lax text-center">ไม่พบข้อมูล</td>
+										</tr>
+										<%}%>
+									</tbody>
+								</table>

@@ -1,5 +1,6 @@
 var mouseX = 0;
 var mouseY = 0;
+var canFocused = false;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("survey_e"); }catch(ex) { }
@@ -97,6 +98,7 @@ function setupUI() {
     $('input[name="SE_5"]').on('change', function() {
         if ($(this).val() == '3') {
             $("#SE_5_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SE_5_text").focus();
         } else {
             $("#SE_5_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -104,6 +106,7 @@ function setupUI() {
     $("#SE_6_5").change(function() {
         if($(this).is(":checked")) {
             $("#SE_6_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SE_6_text").focus();
         } else {
             $("#SE_6_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -111,6 +114,7 @@ function setupUI() {
     $("#SE_7_13").change(function() {
         if($(this).is(":checked")) {
             $("#SE_7_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SE_7_text").focus();
         } else {
             $("#SE_7_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -123,6 +127,7 @@ function setupUI() {
     });
     $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
     $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
+    canFocused = true;
 }
 function validateSE6() {
     let checked = $("#se6-layer").find("input[type=checkbox]:checked").length;

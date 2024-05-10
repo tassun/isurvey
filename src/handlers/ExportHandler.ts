@@ -15,13 +15,21 @@ export class ExportHandler extends ProcessHandler {
         {table:"measure_d",file:"measure_d.csv"},
         {table:"measure_e",file:"measure_e.csv"},
         {table:"measure_f",file:"measure_f.csv"},
+        {table:"measure_g",file:"measure_g.csv"},
         {table:"survey_b",file:"survey_b.csv"},
         {table:"survey_c",file:"survey_c.csv"},
         {table:"survey_d",file:"survey_d.csv"},
         {table:"survey_dx",file:"survey_dx.csv"},
         {table:"survey_e",file:"survey_e.csv"},
         {table:"survey_f",file:"survey_f.csv"},
-        {table:"survey_g",file:"survey_g.csv"}
+        {table:"survey_g",file:"survey_g.csv"},
+        {table:"survey_b1",file:"survey_b1.csv"},
+        {table:"survey_b2",file:"survey_b2.csv"},
+        {table:"survey_b3",file:"survey_b3.csv"},
+        {table:"survey_b4",file:"survey_b4.csv"},
+        {table:"survey_b5",file:"survey_b5.csv"},
+        {table:"survey_b6",file:"survey_b6.csv"},
+        {table:"survey_b7",file:"survey_b7.csv"},
     ];
 
     protected override async doExport(context: KnContextInfo) : Promise<KnRecordSet> {

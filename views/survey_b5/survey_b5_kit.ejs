@@ -1,0 +1,446 @@
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
+					<input type="hidden" id="master_id" name="master_id" value="<%=data.dataset?.master_id%>" />
+					<input type="hidden" id="column_id" name="column_id" value="survey_b5" />
+					<label>ส่วนที่ 1 แบบบันทึกรายละเอียดความผิด</label></br>
+					<div class="row">
+						<label class="col-form-label">1. พฤติกรรมโดยย่อพอสังเขป<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<textarea rows="5" class="form-control" id="fault_behavior" name="fault_behavior" data-parsley-required="true"><%=data.dataset?.fault_behavior%></textarea>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<label class="col-form-label">2. ประเภทความผิด<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="fault_type_1" name="fault_type" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_type)%> /> (1) ถูกลักลอบเข้าสู่ระบบคอมพิวเตอร์
+							</label>
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="fault_type_2" name="fault_type" value="2" <%=page.checked("2",data.dataset?.fault_type)%> /> (2) ถูกล่วงรู้พาสเวิร์ดสำหรับระบบคอมพิวเตอร์ และนำไปก่อให้เกิดความเสียหาย
+							</label>
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="fault_type_3" name="fault_type" value="3" <%=page.checked("3",data.dataset?.fault_type)%> /> (3) ถูกล้วงข้อมูลในระบบคอมพิวเตอร์
+							</label>
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="fault_type_4" name="fault_type" value="4" <%=page.checked("4",data.dataset?.fault_type)%> /> (4) ตกเป็นเหยื่ออาชญากรรมทางคอมพิวเตอร์กรณีอื่น ๆ  
+							</label>							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="fault_type_text" name="fault_type_text" value="<%=data.dataset?.fault_type_text%>" maxlength="100" readonly />
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<label class="col-form-label">สถานะของการก่อเหตุ<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="fault_status_0" name="fault_status" value="0" data-parsley-required="true" <%=page.checked("0",data.dataset?.fault_status)%> /> ก่อเหตุไม่สำเร็จ
+							</label>
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="fault_status_1" name="fault_status" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_status)%> /> ก่อเหตุสำเร็จ
+							</label>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<label class="col-form-label">3. ลักษณะความผิด<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-5" style="margin-left: 10px;">
+								<input type="radio" id="fault_nature_1" name="fault_nature" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_nature)%> /> (1) เป็นเจ้าของบริษัท ห้างร้าน องค์กร หรือผู้รับผิดชอบระบบข้อมูลคอมพิวเตอร์ แล้วมีผู้ลักลอบแอบเข้าระบบโดยมิชอบ
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="fault_nature_2" name="fault_nature" value="2" <%=page.checked("2",data.dataset?.fault_nature)%> /> (2) ถูกขโมยพาสเวิร์ดหรือมีผู้ล่วงรู้พาสเวิร์ดสำหรับเข้าบัญชีเครือข่ายสังคมออนไลน์ (เช่น Facebook Line X-Twitter) แล้วนำไปใช้ก่ออาชญากรรมอื่น เช่น ไปหลอกลวงคนรู้จัก นำข้อมูลความรับมารีดทรัพย์ หลอกลวงไปเล่นพนัน
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="fault_nature_3" name="fault_nature" value="3" <%=page.checked("3",data.dataset?.fault_nature)%> /> (3) ถูกขโมยพาสเวิร์ดหรือมีผู้ล่วงรู้พาสเวิร์ดสำหรับเข้าบัญชีทางการเงิน (เช่น บัญชีหุ้น บัญชีธนาคาร) แล้วถอนหรือโอนทรัพย์สินออกจากบัญชี
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="fault_nature_4" name="fault_nature" value="4" <%=page.checked("4",data.dataset?.fault_nature)%> /> (4) เป็นเจ้าของบริษัท ห้างร้าน องค์กร หรือผู้รับผิดชอบระบบข้อมูลคอมพิวเตอร์ หรือเป็นบุคคลผู้มีบัญชีข้อมูลคอมพิวเตอร์แล้วถูกผู้อื่นลักลอบเจาะข้อมูลเข้าระบบ (Hacker) เข้ามานำข้อมูลสำคัญไปใช้ให้เกิดความเสียหาย
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="fault_nature_5" name="fault_nature" value="5" <%=page.checked("5",data.dataset?.fault_nature)%> /> (5) ถูกเรียกค่าไถ่ข้อมูล
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="fault_nature_6" name="fault_nature" value="6" <%=page.checked("6",data.dataset?.fault_nature)%> /> (6) ถูกเข้าถึงข้อมูลคอมพิวเตอร์โดยมิชอบ หรือถูกทำให้เสียหายจากการนำข้อมูลทางคอมพิวเตอร์มาเผยแพร่หรือใช้ประโยชน์โดยมิชอบในกรณีอื่น ๆ
+							</label>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<label class="col-form-label">4. ความสัมพันธ์ระหว่างเหยื่อกับผู้ก่อเหตุ<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="fault_relation_1" name="fault_relation" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_relation)%> /> (1) บิดา/มารดา
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_2" name="fault_relation" value="2" <%=page.checked("2",data.dataset?.fault_relation)%> /> (2) ผู้ปกครอง
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_3" name="fault_relation" value="3" <%=page.checked("3",data.dataset?.fault_relation)%> /> (3) สามี
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_4" name="fault_relation" value="4" <%=page.checked("4",data.dataset?.fault_relation)%> /> (4) ภรรยา
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_5" name="fault_relation" value="5" <%=page.checked("5",data.dataset?.fault_relation)%> /> (5) คู่ชีวิตรูปแบบอื่น
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_6" name="fault_relation" value="6" <%=page.checked("6",data.dataset?.fault_relation)%> /> (6) คู่รักที่ยังไม่ได้แต่งงานหรือใช้ชีวิตอยู่ร่วมกัน
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_7" name="fault_relation" value="7" <%=page.checked("7",data.dataset?.fault_relation)%> /> (7) ลูกหลาน
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_8" name="fault_relation" value="8" <%=page.checked("8",data.dataset?.fault_relation)%> /> (8) พี่น้อง
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_9" name="fault_relation" value="9" <%=page.checked("9",data.dataset?.fault_relation)%> /> (9) เครือญาติ
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_10" name="fault_relation" value="10" <%=page.checked("10",data.dataset?.fault_relation)%> /> (10) เพื่อนบ้านหรือผู้อยู่ในชุมชนใกล้เคียง
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_11" name="fault_relation" value="11" <%=page.checked("11",data.dataset?.fault_relation)%> /> (11) เพื่อน
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_12" name="fault_relation" value="12" <%=page.checked("12",data.dataset?.fault_relation)%> /> (12) หัวหน้างานหรือผู้บังคับบัญชาในที่ทำงาน
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_13" name="fault_relation" value="13" <%=page.checked("13",data.dataset?.fault_relation)%> /> (13) เพื่อนร่วมงาน
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_14" name="fault_relation" value="14" <%=page.checked("14",data.dataset?.fault_relation)%> /> (14) ความสัมพันธ์อื่น ๆ 
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_15" name="fault_relation" value="15" <%=page.checked("15",data.dataset?.fault_relation)%> /> (15) ไม่รู้จัก/ไม่เกี่ยวข้อง
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_16" name="fault_relation" value="16" <%=page.checked("16",data.dataset?.fault_relation)%> /> (16) ไม่รู้ตัวผู้กระทำผิด (ขณะเกิดเหตุไม่ได้พบเจอหรือพบเห็นผู้กระทำผิด)
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_relation_17" name="fault_relation" value="17" <%=page.checked("17",data.dataset?.fault_relation)%> /> (17) ไม่ประสงค์จะตอบ
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="fault_relation_text" name="fault_relation_text" value="<%=data.dataset?.fault_relation_text%>" maxlength="100" readonly />
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">หมายเหตุ: สามี/ภรรยา หมายความรวมถึงทั้งคู่สมรสที่จดทะเบียนและไม่จดทะเบียนสมรส</label>
+					</div>
+					<br/>
+					<div class="row">
+						<label class="col-form-label">5. สถานที่เกิดเหตุ<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="fault_location_1" name="fault_location" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_location)%> /> (1) บ้าน/ที่อยู่อาศัยส่วนตัว
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_location_2" name="fault_location" value="2" <%=page.checked("2",data.dataset?.fault_location)%> /> (2) สถานที่เชิงพาณิชย์ เช่น ร้านอาหาร ห้างสรรพสินค้า ร้านค้า ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_location_3" name="fault_location" value="3" <%=page.checked("3",data.dataset?.fault_location)%> /> (3) สถานที่ประกอบธุรกิจที่สงวนเฉพาะบุคคล เช่น อาคารสำนักงาน โรงงาน โกดัง ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_location_4" name="fault_location" value="4" <%=page.checked("4",data.dataset?.fault_location)%> /> (4) สถานศึกษา เช่น โรงเรียน มหาวิทยาลัย ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_location_5" name="fault_location" value="5" <%=page.checked("5",data.dataset?.fault_location)%> /> (5) สถานดูแล เช่น โรงพยาบาล คลินิก บ้านพักคนชรา ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_location_6" name="fault_location" value="6" <%=page.checked("6",data.dataset?.fault_location)%> /> (6) สถานที่สาธารณะ เช่น ถนน ตลาด สวนสาธารณะ ขนส่งสาธารณะ ฯลฯ
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_location_7" name="fault_location" value="7" <%=page.checked("7",data.dataset?.fault_location)%> /> (7) ช่องทางออนไลน์/อุปกรณ์โทรศัพท์เคลื่อนที่
+							</label>
+							<label class="radio-inline col-form-label col-lg-3">
+								<input type="radio" id="fault_location_8" name="fault_location" value="8" <%=page.checked("8",data.dataset?.fault_location)%> /> (8) สถานที่อื่น ๆ
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="fault_location_text" name="fault_location_text" value="<%=data.dataset?.fault_location_text%>" maxlength="100" readonly />
+						</div>
+					</div>
+					<br/>
+					<br/>
+					<label>ส่วนที่ 2 การติดต่อและบริการจากหน่วยงานในกระบวนการยุติธรรม</label>
+					</br>
+					<div class="row">
+						<label class="col-form-label">2.1 มีการแจ้งต่อเจ้าหน้าที่หรือไม่<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="SB5_2_1_1" name="SB5_2_1" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB5_2_1)%> /> (1) ไม่มี
+							</label>
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="SB5_2_1_2" name="SB5_2_1" value="2" <%=page.checked("2",data.dataset?.SB5_2_1)%> /> (2) มี
+							</label>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<label class="col-form-label">2.2 กรณีมีการแจ้งต่อเจ้าหน้าที่แจ้งต่อเจ้าหน้าที่ใดบ้าง (ตอบได้มากกว่าหนึ่งข้อ)</label>
+						<div class="col-lg-12" id="SB5_2_2_layer">
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;" id="SB5_2_2_label">
+								<input type="checkbox" id="SB5_2_2_1" name="SB5_2_2_1" value="1" <%=page.checked("1",data.dataset?.SB5_2_2_1)%> /> (1) แจ้งต่อเจ้าหน้าที่ตำรวจ
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_2_2" name="SB5_2_2_2" value="1" <%=page.checked("1",data.dataset?.SB5_2_2_2)%> /> (2) แจ้งต่อผู้แทนชุมชน เช่น ผู้ใหญ่บ้าน กำนัน ผู้นำชุมชน หรือบุคคลที่ตนนับถือ แต่ไม่ได้แจ้งต่อเจ้าหน้าที่ตำรวจ
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_2_3" name="SB5_2_2_3" value="1" <%=page.checked("1",data.dataset?.SB5_2_2_3)%> /> (3) แจ้งต่อเจ้าหน้าที่หรือหน่วยงานภาครัฐอื่น ที่ไม่ใช่หน่วยงานตำรวจ เช่น สำนักงานพัฒนาสังคมและความมั่นคงของมนุษย์, ยุติธรรมชุมชน, ยุติธรรมจังหวัด, ศูนย์ดำรงธรรม, ศูนย์บริการข้อมูลภาครัฐเพื่อประชาชน สายด่วน 1111 หรือศูนย์รับเรื่องราวร้องทุกข์
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_2_4" name="SB5_2_2_4" value="1" <%=page.checked("1",data.dataset?.SB5_2_2_4)%> /> (4) อื่น ๆ
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="SB5_2_2_text" name="SB5_2_2_text" value="<%=data.dataset?.SB5_2_2_text%>" maxlength="100" readonly />
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<label class="col-form-label">2.3 กรณีไม่มีการแจ้งต่อเจ้าหน้าที่ เนื่องจาก (ตอบได้มากกว่าหนึ่งข้อ)</label>
+						<div class="col-lg-12" id="SB5_2_3_layer">
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;" id="SB5_2_3_label">
+								<input type="checkbox" id="SB5_2_3_1" name="SB5_2_3_1" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_1)%> /> (1) ไม่เกิดความเสียหาย
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_2" name="SB5_2_3_2" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_2)%> /> (2) เห็นว่าเป็นเรื่องเล็กน้อยหรือความเสียหายที่เกิดขึ้นเล็กน้อย
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_3" name="SB5_2_3_3" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_3)%> /> (3) เป็นเรื่องส่วนตัว ได้จัดการกับเหตุที่เกิดขึ้นด้วยตนเอง เช่น ตกลงกับผู้กระทำผิด
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_4" name="SB5_2_3_4" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_4)%> /> (4) ได้แจ้งเหตุต่อผู้มีหน้าที่รับผิดชอบที่เกี่ยวข้องแล้ว เช่น ฝ่ายรักษาความปลอดภัย หัวหน้างาน
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_5" name="SB5_2_3_5" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_5)%> /> (5) มีเจ้าหน้าที่หรือบุคคลอื่นมาให้การช่วยเหลือไกล่เกลี่ยสามารถตกลงกับผู้กระทำผิดได้
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_6" name="SB5_2_3_6" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_6)%> /> (6) ถูกข่มขู่จากผู้กระทำผิดหรือผู้เกี่ยวข้อง
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_7" name="SB5_2_3_7" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_7)%> /> (7) กลัวว่าจะถูกแก้แค้น หรือถูกทำร้ายจากผู้กระทำผิดหรือผู้เกี่ยวข้อง
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_8" name="SB5_2_3_8" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_8)%> /> (8) เป็นคนกันเอง/สนิทสนมคุ้นเคยกับผู้กระทำผิด
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_9" name="SB5_2_3_9" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_9)%> /> (9) เป็นเหตุการณ์ที่น่าอับอาย กลัวว่าจะเสื่อมเสียชื่อเสียง
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_10" name="SB5_2_3_10" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_10)%> /> (10) สงสาร/เห็นใจผู้กระทำผิด (เนื่องจากผู้กระทำผิดเป็นเด็ก/พิการ/ยากจน เป็นต้น)
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_11" name="SB5_2_3_11" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_11)%> /> (11) ยุ่งยาก ไม่อยากเป็นคดีความ ไม่อยากขึ้นโรงขึ้นศาล
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_12" name="SB5_2_3_12" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_12)%> /> (12) ไม่สะดวก ไม่มีเวลาแจ้งเหตุกับเจ้าหน้าที่
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_13" name="SB5_2_3_13" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_13)%> /> (13) ขาดพยานหลักฐาน
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_14" name="SB5_2_3_14" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_14)%> /> (14) คิดว่าเจ้าหน้าที่ตำรวจไม่สามารถติดตามผู้กระทำผิดมาดำเนินคดีได้
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_15" name="SB5_2_3_15" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_15)%> /> (15) มีความรู้สึกไม่ดีกับเจ้าหน้าที่ตำรวจหรือไม่ไว้วางใจเจ้าหน้าที่
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_16" name="SB5_2_3_16" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_16)%> /> (16) ไม่เชื่อมั่นในประสิทธิภาพการปฏิบัติงานของเจ้าหน้าที่
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_17" name="SB5_2_3_17" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_17)%> /> (17) ผู้กระทำผิดเป็นเจ้าหน้าที่รัฐหรือผู้มีอิทธิพล (รวมถึงลูกหลาน/ญาติ/คนใกล้ชิด)
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_2_3_18" name="SB5_2_3_18" value="1" <%=page.checked("1",data.dataset?.SB5_2_3_18)%> /> (18) อื่น ๆ
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุ
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="SB5_2_3_text" name="SB5_2_3_text" value="<%=data.dataset?.SB5_2_3_text%>" maxlength="100" readonly />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">2.4 (เฉพาะกรณีที่แจ้งต่อเจ้าหน้าที่) ท่านมีความพึงพอใจต่อการดำเนินงานของเจ้าหน้าที่ต่อการรับแจ้งเหตุของท่านมากน้อยเพียงใด</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_2_4_4" name="SB5_2_4" value="4" data-parsley-required="true" <%=page.checked("4",data.dataset?.SB5_2_4)%> /> (4) พอใจมาก	
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_2_4_3" name="SB5_2_4" value="3" <%=page.checked("3",data.dataset?.SB5_2_4)%> /> (3) พอใจค่อนข้างมาก
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_2_4_2" name="SB5_2_4" value="2" <%=page.checked("2",data.dataset?.SB5_2_4)%> /> (2) พอใจค่อนข้างน้อย 
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_2_4_1" name="SB5_2_4" value="1" <%=page.checked("1",data.dataset?.SB5_2_4)%> /> (1) พอใจน้อย
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								โปรดระบุเหตุผล
+							</div>
+							<div class="col-lg-12">
+								<input type="text" class="form-control" id="SB5_2_4_text" name="SB5_2_4_text" value="<%=data.dataset?.SB5_2_4_text%>" maxlength="100" readonly />
+							</div>
+						</div>
+					</div>
+					<br/>
+					<label>ส่วนที่ 3 ความเสียหายต่อชีวิตร่างกาย ทรัพย์สิน</label>
+					</br>
+					<div class="row">
+						<label class="col-form-label">3.1 กรณีเหตุที่เกิดขึ้นได้ก่อให้เกิดอันตรายต่อชีวิต ร่างกาย จิตใจ หรือทรัพย์สิน กับเหยื่ออาชญากรรมหรือไม่<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_1_1" name="SB5_3_1" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB5_3_1)%> /> (1) ใช่
+							</label>
+							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_1_2" name="SB5_3_1" value="2" <%=page.checked("2",data.dataset?.SB5_3_1)%> /> (2) ไม่ใช่
+							</label>
+						</div>
+					</div>
+					<label>3.2 แบบบันทึกความเสียหาย</label>
+					<div class="row">
+						<label class="col-form-label">3.2.1 ความเสียหายหรืออันตรายต่อชีวิต ร่างกาย (เลือกตอบกรณีที่หนักที่สุดตัวเลือกเดียว)</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_1" name="SB5_3_2_1" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB5_3_2_1)%> /> (1) ไม่มี
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_2" name="SB5_3_2_1" value="2" <%=page.checked("2",data.dataset?.SB5_3_2_1)%> /> (2) ไม่ได้รับบาดเจ็บ
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_3" name="SB5_3_2_1" value="3" <%=page.checked("3",data.dataset?.SB5_3_2_1)%> /> (3) ได้รับบาดเจ็บเล็กน้อย ไม่ถึงกับต้องรักษาตัว 
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_4" name="SB5_3_2_1" value="4" <%=page.checked("4",data.dataset?.SB5_3_2_1)%> /> (4) รักษาตัวไม่เกิน 7 วัน
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_5" name="SB5_3_2_1" value="5" <%=page.checked("5",data.dataset?.SB5_3_2_1)%> /> (5) รักษาตัว 8-20 วัน
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_6" name="SB5_3_2_1" value="6" <%=page.checked("6",data.dataset?.SB5_3_2_1)%> /> (6) รักษาตัวเกินกว่า 20 วัน (สาหัส) 
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_7" name="SB5_3_2_1" value="7" <%=page.checked("7",data.dataset?.SB5_3_2_1)%> /> (7) เสียโฉม พิการ หรือทุพลภาพเป็นการถาวร
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_8" name="SB5_3_2_1" value="8" <%=page.checked("8",data.dataset?.SB5_3_2_1)%> /> (8) ได้รับอันตรายต่อสุขภาพ เจ็บป่วย
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_1_9" name="SB5_3_2_1" value="9" <%=page.checked("9",data.dataset?.SB5_3_2_1)%> /> (9) เสียชีวิต
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">3.2.2 ความเสียหายหรืออันตรายทางจิตใจ</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_2_1" name="SB5_3_2_2" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB5_3_2_2)%> /> (1) ไม่มี
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_2_2" name="SB5_3_2_2" value="2" <%=page.checked("2",data.dataset?.SB5_3_2_2)%> /> (2) ได้รับอันตรายทางจิตใจจนถึงขั้นเข้ารับการบำบัดทางจิต
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">3.2.3 ความเสียหายต่อทรัพย์</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_3_1" name="SB5_3_2_3" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB5_3_2_3)%> /> (1) ไม่มี
+							</label>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="SB5_3_2_3_2" name="SB5_3_2_3" value="2" <%=page.checked("2",data.dataset?.SB5_3_2_3)%> /> (2) มี
+							</label>
+						</div>
+						<div class="row indent">
+							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
+								เป็นมูลค่า
+							</div>
+							<div class="col-lg-12">
+								<div class="input-group">
+									<input type="number" class="form-control iint" id="SB5_3_2_3_text" name="SB5_3_2_3_text" min="0" maxlength="50" value="<%=data.dataset?.SB5_3_2_3_text%>" readonly /><span class="suffix">บาท</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-form-label">3.2.4 ความเสียหายอื่น ๆ (ตอบได้มากกว่าหนึ่งข้อ)</label>
+						<div class="col-lg-12">
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_3_2_4_1" name="SB5_3_2_4_1" value="1" <%=page.checked("1",data.dataset?.SB5_3_2_4_1)%> /> (1) ค่ารักษาพยาบาล
+							</label>
+							<div class="input-group number-grouper">
+								<input type="number" class="form-control iint" id="SB5_3_2_4_1_text" name="SB5_3_2_4_1_text" min="0" maxlength="50" value="<%=data.dataset?.SB5_3_2_4_1_text%>" readonly /><span class="suffix">บาท</span>
+							</div>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_3_2_4_2" name="SB5_3_2_4_2" value="1" <%=page.checked("1",data.dataset?.SB5_3_2_4_2)%> /> (2) ต้องหยุดงานหรือขาดรายได้ (จำนวนวันที่หยุดงาน x รายได้เฉลี่ยโดยประมาณ) 
+							</label>
+							<div class="input-group number-grouper">
+								<input type="number" class="form-control iint" id="SB5_3_2_4_2_text" name="SB5_3_2_4_2_text" min="0" maxlength="50" value="<%=data.dataset?.SB5_3_2_4_2_text%>" readonly /><span class="suffix">บาท</span>
+							</div>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_3_2_4_3" name="SB5_3_2_4_3" value="1" <%=page.checked("1",data.dataset?.SB5_3_2_4_3)%> /> (3) ค่าใช้จ่ายในการติดต่อหน่วยงานราชการหรือหน่วยงานกระบวนการยุติธรรม (เช่น ตำรวจ อัยการ ศาล ศูนย์ดำรงธรรม ฯลฯ)  จำนวน
+							</label>
+							<div class="input-group number-grouper">
+								<input type="number" class="form-control iint" id="SB5_3_2_4_3_text" name="SB5_3_2_4_3_text" min="0" maxlength="50" value="<%=data.dataset?.SB5_3_2_4_3_text%>" readonly /><span class="suffix">บาท</span>
+							</div>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_3_2_4_4" name="SB5_3_2_4_4" value="1" <%=page.checked("1",data.dataset?.SB5_3_2_4_4)%> /> (4) ค่าใช้จ่ายในการติดต่อทนายความ จำนวน
+							</label>
+							<div class="input-group number-grouper">
+								<input type="number" class="form-control iint" id="SB5_3_2_4_4_text" name="SB5_3_2_4_4_text" min="0" maxlength="50" value="<%=data.dataset?.SB5_3_2_4_4_text%>" readonly /><span class="suffix">บาท</span>
+							</div>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_3_2_4_5" name="SB5_3_2_4_5" value="1" <%=page.checked("1",data.dataset?.SB5_3_2_4_5)%> /> (5) ค่าใช้จ่ายในการติดต่อหน่วยงานเอกชน (เช่น บริษัทประกันภัย NGOs) จำนวน
+							</label>
+							<div class="input-group number-grouper">
+								<input type="number" class="form-control iint" id="SB5_3_2_4_5_text" name="SB5_3_2_4_5_text" min="0" maxlength="50" value="<%=data.dataset?.SB5_3_2_4_5_text%>" readonly /><span class="suffix">บาท</span>
+							</div>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_3_2_4_6" name="SB5_3_2_4_6" value="1" <%=page.checked("1",data.dataset?.SB5_3_2_4_6)%> /> (6) ค่าใช้จ่ายในการแสวงหาพยานหลักฐาน จำนวน
+							</label>
+							<div class="input-group number-grouper">
+								<input type="number" class="form-control iint" id="SB5_3_2_4_6_text" name="SB5_3_2_4_6_text" min="0" maxlength="50" value="<%=data.dataset?.SB5_3_2_4_6_text%>" readonly /><span class="suffix">บาท</span>
+							</div>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_3_2_4_7" name="SB5_3_2_4_7" value="1" <%=page.checked("1",data.dataset?.SB5_3_2_4_7)%> /> (7) ค่าใช้จ่ายด้านค่าเดินทาง ที่พักและอื่น ๆในการติดต่อทางคดี จำนวน
+							</label>
+							<div class="input-group number-grouper">
+								<input type="number" class="form-control iint" id="SB5_3_2_4_7_text" name="SB5_3_2_4_7_text" min="0" maxlength="50" value="<%=data.dataset?.SB5_3_2_4_7_text%>" readonly /><span class="suffix">บาท</span>
+							</div>
+							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
+								<input type="checkbox" id="SB5_3_2_4_8" name="SB5_3_2_4_8" value="1" <%=page.checked("1",data.dataset?.SB5_3_2_4_8)%> /> (8) ไม่มีความสูญเสีย/ค่าเสียหายดังที่กล่าวมาแล้วข้างต้น
+							</label>
+						</div>
+					</div>
+				</form>

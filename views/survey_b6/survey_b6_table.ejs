@@ -1,0 +1,76 @@
+								<table class="tg data-table" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-c3oa bg">ลำดับที่</th>
+											<th class="tg-9wq8 bg">ลักษณะความผิด<br></th>
+											<th class="tg-c3oa bg">ประเภทความผิด</th>
+											<th class="tg-c3oa bg nowrap">สถานะ</th>
+											<th class="tg-c3oa bg">สถานที่เกิดเหตุ</th>
+											<th class="tg-c3oa bg"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<%	let rows = data.dataset?.rows;
+										if(rows && rows.length>0) { 
+											for(let index=0; index < rows.length; index++) { 
+												let item = rows[index];
+												let fault_status = item?.fault_status=="1"?"สำเร็จ":"ไม่สำเร็จ";
+												let fault_type = "";
+												let fault_nature = ""; 
+												let fault_location = item?.fault_location_text;
+												if(item?.fault_type=="1") fault_type = "ถูกเรียกสินบนโดยเจ้าหน้าที่ของรัฐ";
+												else if(item?.fault_type=="2") fault_type = "ถูกเรียกรับสินบนโดยภาคธุรกิจ";
+												else if(item?.fault_type=="3") fault_type = "ได้รับความเสียหายจากเจ้าหน้าที่รัฐที่ใช้อำนาจโดยมิชอบ";
+												else if(item?.fault_type=="4") fault_type = "ตกเป็นเหยื่อในกระบวนการยุติธรรม";
+												else if(item?.fault_type=="5") fault_type = "ได้รับอันตรายจากการปล่อยมลภาวะตามเขตที่พักอาศัย";
+												else if(item?.fault_type=="6") fault_type = "ถูกล่วงละเมิดความเป็นส่วนตัว";
+												if(item?.fault_nature=="1") fault_nature = "ถูกเจ้าหน้าที่รัฐเรียกรับสินบนเพื่อแลกกับการไม่จับกุมคดีหรือกวดขันการกระทำผิด";
+												else if(item?.fault_nature=="2") fault_nature = "ถูกเจ้าหน้าที่รัฐเรียกรับสินบนเพื่อแลกกับการพ้นผิดหรือเป็นการตอบแทนเพื่อไม่ให้มีการฟ้องร้อง";
+												else if(item?.fault_nature=="3") fault_nature = "ถูกเจ้าหน้าที่รัฐเรียกรับสินบน หากขัดขืนจะหาเรื่องให้ถูกลงโทษ";
+												else if(item?.fault_nature=="4") fault_nature = "ถูกเจ้าหน้าที่รัฐเรียกรับสินบนเพื่อแลกกับการอำนวยประโยชน์";
+												else if(item?.fault_nature=="5") fault_nature = "ถูกเจ้าหน้าที่รัฐเรียกรับสินบนเพื่ออำนวยความสะดวกหรือเร่งรัดการพิจารณา";
+												else if(item?.fault_nature=="6") fault_nature = "ถูกเรียกสินบนโดยพนักงานธุรกิจแลกกับการซื้อสินค้าหรือบริการของเหยื่อ หรือได้รับการจัดซื้อจัดจ้างทางธุรกิจ";
+												else if(item?.fault_nature=="7") fault_nature = "การเรียกรับสินบนในภาคธุรกิจ";
+												else if(item?.fault_nature=="8") fault_nature = "ถูกกลั่นแกล้งโดยใช้อำนาจอันไม่เป็นธรรมจากเจ้าหน้าที่ของรัฐ";
+												else if(item?.fault_nature=="9") fault_nature = "ถูกเจ้าหน้าที่รัฐบังคับให้ยอมตาม หากขัดขืนจะหาเรื่องให้ถูกลงโทษ (โดยไม่ได้เรียกรับสินบน)";
+												else if(item?.fault_nature=="10") fault_nature = "เจ้าหน้าที่ของรัฐใช้อำนาจเกินขอบเขตหรือเกินจำเป็นในการบังคับใช้กฎหมายหรือปฏิบัติการตามอำนาจหน้าที่";
+												else if(item?.fault_nature=="11") fault_nature = "ตกเป็นเหยื่อการใช้ความรุนแรงหรือถูกทำร้ายจากเจ้าหน้าที่ในการปฏิบัติหน้าที่ (เว้นแต่การป้องกันโดยชอบตามกฎหมาย)";
+												else if(item?.fault_nature=="12") fault_nature = "ตกเป็นแพะรับบาปในคดีที่ตนไม่ใช่ผู้กระทำความผิด";
+												else if(item?.fault_nature=="13") fault_nature = "ถูกเจ้าหน้าที่ในกระบวนการยุติธรรมกระทำเกินกว่าเหตุในการตรวจค้น จับกุม หรือบังคับใช้กฎหมาย";
+												else if(item?.fault_nature=="14") fault_nature = "ถูกเจ้าหน้าที่ในกระบวนการยุติธรรมละเมิดสิทธิ หรือกีดกันไม่ให้เข้าถึงสิทธิตามกฎหมาย";
+												else if(item?.fault_nature=="15") fault_nature = "โรงงานในละแวกที่พักอาศัยปล่อยมลภาวะ";
+												else if(item?.fault_nature=="16") fault_nature = "การเผาในที่โล่ง เผาวัสดุเหลือทิ้งทางการเกษตร";
+												else if(item?.fault_nature=="17") fault_nature = "ธุรกิจการค้าที่ก่อให้เกิดอันตรายแก่สุขอนามัย";
+												else if(item?.fault_nature=="18") fault_nature = "ปัญหามลภาวะจากการก่อสร้าง";
+												else if(item?.fault_nature=="19") fault_nature = "ปัญหาธุรกิจการค้าที่ก่อความเดือดร้อนหรือก่ออันตรายต่อชุมชน";
+												else if(item?.fault_nature=="20") fault_nature = "มลภาวะที่เกิดจากหน่วยงานของรัฐ";
+												else if(item?.fault_nature=="21") fault_nature = "แอบเข้าถึงข้อมูลส่วนบุคคล (อาทิ เบอร์โทรศัพท์ อีเมล์) ";
+												else if(item?.fault_nature=="22") fault_nature = "แอบนำภาพถ่าย ข้อความ ส่วนบุคคลไปใช้โดยไม่ขออนุญาต";
+												else if(item?.fault_nature=="23") fault_nature = "ถูกล่วงละเมิดความเป็นส่วนตัวในลักษณะอื่น ๆ";												
+												if(item?.fault_location=="1") fault_location = "บ้าน/ที่อยู่อาศัยส่วนตัว";
+												else if(item?.fault_location=="2") fault_location = "สถานที่เชิงพาณิชย์ เช่น ร้านอาหาร ห้างสรรพสินค้า ร้านค้า ฯลฯ";
+												else if(item?.fault_location=="3") fault_location = "สถานที่ประกอบธุรกิจที่สงวนเฉพาะบุคคล เช่น อาคารสำนักงาน โรงงาน โกดัง ฯลฯ";
+												else if(item?.fault_location=="4") fault_location = "สถานศึกษา เช่น โรงเรียน มหาวิทยาลัย ฯลฯ";
+												else if(item?.fault_location=="5") fault_location = "สถานดูแล เช่น โรงพยาบาล คลินิก บ้านพักคนชรา ฯลฯ";
+												else if(item?.fault_location=="6") fault_location = "สถานที่สาธารณะ เช่น ถนน ตลาด สวนสาธารณะ ขนส่งสาธารณะ ฯลฯ";
+												else if(item?.fault_location=="7") fault_location = "ช่องทางออนไลน์/อุปกรณ์โทรศัพท์เคลื่อนที่";
+												%>
+										<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>">
+											<td class="tg-0lax text-center"><%=index+1%></td>
+											<td class="tg-0laa text-left"><%=fault_nature%></td>
+											<td class="tg-0laa text-left"><%=fault_type%></td>
+											<td class="tg-0laa"><%=fault_status%></td>
+											<td class="tg-0laa text-left"><%=fault_location%></td>
+											<td class="tg-0laa nowrap">
+												<a href="javascript:void(0)" class="bx-edit-linker ui basic black button tiny"><i class="edit icon large"></i></a>
+												<a href="javascript:void(0)" class="bx-delete-linker ui basic red button tiny"><i class="trash icon large"></i></a>								
+											</td>
+										</tr>
+										<% 	} 
+										} else {%>
+										<tr>
+											<td colspan="6" class="tg-0lax text-center">ไม่พบข้อมูล</td>
+										</tr>
+										<%}%>
+									</tbody>
+								</table>

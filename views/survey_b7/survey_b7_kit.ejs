@@ -1,4 +1,4 @@
-				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input, textarea, select" method="post">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
 					<input type="hidden" id="ajax" name="ajax" value="true" />
 					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
@@ -98,7 +98,7 @@
 							โปรดระบุ
 						</div>
 						<div class="col-lg-4">
-							<input type="text" class="form-control" id="fault_character_text" name="fault_character_text" value="<%=data.dataset?.fault_character_text%>" readonly />
+							<input type="text" class="form-control" id="fault_character_text" name="fault_character_text" value="<%=data.dataset?.fault_character_text%>" maxlength="100" readonly />
 						</div>
 					</div>
 					<br/>
@@ -145,7 +145,7 @@
 							โปรดระบุ
 						</div>
 						<div class="col-lg-4">
-							<input type="text" class="form-control" id="fault_event_text" name="fault_event_text" value="<%=data.dataset?.fault_event_text%>" readonly />
+							<input type="text" class="form-control" id="fault_event_text" name="fault_event_text" value="<%=data.dataset?.fault_event_text%>" maxlength="100" readonly />
 						</div>
 					</div>
 					<br/>
@@ -167,7 +167,7 @@
 							<label class="radio-inline col-form-label col-lg-3">
 								<input type="radio" id="fault_relation_5" name="fault_relation" value="5" <%=page.checked("5",data.dataset?.fault_relation)%> /> (5) คู่ชีวิตรูปแบบอื่น
 							</label>
-							<label class="radio-inline col-form-label  col-lg-3">
+							<label class="radio-inline col-form-label col-lg-3">
 								<input type="radio" id="fault_relation_6" name="fault_relation" value="6" <%=page.checked("6",data.dataset?.fault_relation)%> /> (6) คู่รักที่ยังไม่ได้แต่งงานหรือใช้ชีวิตอยู่ร่วมกัน
 							</label>
 							<label class="radio-inline col-form-label col-lg-3">
@@ -210,7 +210,7 @@
 							โปรดระบุ
 						</div>
 						<div class="col-lg-4">
-							<input type="text" class="form-control" id="fault_relation_text" name="fault_relation_text" value="<%=data.dataset?.fault_relation_text%>" readonly />
+							<input type="text" class="form-control" id="fault_relation_text" name="fault_relation_text" value="<%=data.dataset?.fault_relation_text%>" maxlength="100" readonly />
 						</div>
 					</div>
 					<div class="row">
@@ -250,7 +250,7 @@
 							โปรดระบุ
 						</div>
 						<div class="col-lg-4">
-							<input type="text" class="form-control" id="fault_location_text" name="fault_location_text" value="<%=data.dataset?.fault_location_text%>" readonly />
+							<input type="text" class="form-control" id="fault_location_text" name="fault_location_text" value="<%=data.dataset?.fault_location_text%>" maxlength="100" readonly />
 						</div>
 					</div>
 					<br/>
@@ -289,7 +289,7 @@
 								โปรดระบุ
 							</div>
 							<div class="col-lg-12">
-								<input type="text" class="form-control" id="SB7_2_2_text" name="SB7_2_2_text" value="<%=data.dataset?.SB7_2_2_text%>" readonly />
+								<input type="text" class="form-control" id="SB7_2_2_text" name="SB7_2_2_text" value="<%=data.dataset?.SB7_2_2_text%>" maxlength="100" readonly />
 							</div>
 						</div>
 					</div>
@@ -297,7 +297,7 @@
 					<div class="row">
 						<label class="col-form-label">2.3 กรณีไม่มีการแจ้งต่อเจ้าหน้าที่ เนื่องจาก (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
 						<div class="col-lg-12" id="SB7_2_3_layer">
-							<label class="checkbox-inline col-form-label col-lg-12" style="margin-left: 10px;" id="SB_2_3_label">
+							<label class="checkbox-inline col-form-label col-lg-12" style="margin-left: 10px;" id="SB7_2_3_label">
 								<input type="checkbox" id="SB7_2_3_1" name="SB7_2_3_1" value="1" <%=page.checked("1",data.dataset?.SB7_2_3_1)%> /> (1) ไม่เกิดความเสียหาย
 							</label>
 							<label class="checkbox-inline col-form-label col-lg-12" style="margin-left: 10px;">
@@ -357,7 +357,7 @@
 								โปรดระบุ
 							</div>
 							<div class="col-lg-12">
-								<input type="text" class="form-control" id="SB7_2_3_text" name="SB7_2_3_text" value="<%=data.dataset?.SB7_2_3_text%>" readonly />
+								<input type="text" class="form-control" id="SB7_2_3_text" name="SB7_2_3_text" value="<%=data.dataset?.SB7_2_3_text%>" maxlength="100" readonly />
 							</div>
 						</div>
 					</div>
@@ -382,7 +382,7 @@
 								โปรดระบุเหตุผล
 							</div>
 							<div class="col-lg-12">
-								<input type="text" class="form-control" id="SB7_2_4_text" name="SB7_2_4_text" value="<%=data.dataset?.SB7_2_4_text%>" readonly />
+								<input type="text" class="form-control" id="SB7_2_4_text" name="SB7_2_4_text" value="<%=data.dataset?.SB7_2_4_text%>" maxlength="100" readonly />
 							</div>
 						</div>
 					</div>

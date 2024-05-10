@@ -1,0 +1,87 @@
+								<table class="tg data-table" style="margin-left : 10px;">
+									<thead>
+										<tr>
+											<th class="tg-c3oa bg">ลำดับที่</th>
+											<th class="tg-9wq8 bg">ลักษณะความผิด<br></th>
+											<th class="tg-c3oa bg">ประเภทความผิด</th>
+											<th class="tg-c3oa bg nowrap">สถานะ</th>
+											<th class="tg-c3oa bg">สถานที่เกิดเหตุ</th>
+											<th class="tg-c3oa bg"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<%	let rows = data.dataset?.rows;
+										if(rows && rows.length>0) { 
+											for(let index=0; index < rows.length; index++) { 
+												let item = rows[index];
+												let fault_status = item?.fault_status=="1"?"สำเร็จ":"ไม่สำเร็จ";
+												let fault_type = "";
+												let fault_nature = item?.fault_nature_text; 
+												let fault_location = item?.fault_location_text;
+												if(item?.fault_type=="1") fault_type = "ฆ่า";
+												else if(item?.fault_type=="2") fault_type = "พยายามฆ่า";
+												else if(item?.fault_type=="3") fault_type = "ก่อการร้าย";
+												else if(item?.fault_type=="4") fault_type = "วางเพลิง";
+												else if(item?.fault_type=="5") fault_type = "วางระเบิด";
+												else if(item?.fault_type=="6") fault_type = "ชุลมุนต่อสู้";
+												else if(item?.fault_type=="7") fault_type = "ทะเลาะวิวาท";
+												else if(item?.fault_type=="8") fault_type = "ความรุนแรงในครอบครัว";
+												else if(item?.fault_type=="9") fault_type = "ทำแท้งผิดกฎหมาย";
+												else if(item?.fault_type=="10") fault_type = "ปลอมปนอาหาร";
+												else if(item?.fault_type=="11") fault_type = "ปล่อยสารพิษ";
+												else if(item?.fault_type=="12") fault_type = "ลักพาตัว";
+												else if(item?.fault_type=="13") fault_type = "หน่วงเหนี่ยวกักขัง";
+												else if(item?.fault_type=="14") fault_type = "อุบัติเหตุจราจร";
+												else if(item?.fault_type=="15") fault_type = "อุบัติเหตุอื่น ๆ";
+												else if(item?.fault_type=="16") fault_type = "ข่มขู่คุกคามว่าจะทำอันตรายต่อชีวิตร่างกาย";
+												else if(item?.fault_type=="17") fault_type = "ข่มขู่คุกคามให้ตกใจกลัว";
+												else if(item?.fault_type=="18") fault_type = "ความผิดต่อเสรีภาพ";
+												else if(item?.fault_type=="19") fault_type = "ข่มเหงรังแกให้ได้รับความอับอาย";
+												if(item?.fault_nature=="1") fault_nature = "ผลักอย่างรุนแรง";
+												else if(item?.fault_nature=="2") fault_nature = "ตบหรือต่อย";
+												else if(item?.fault_nature=="3") fault_nature = "ขว้างปาของแข็งใส่";
+												else if(item?.fault_nature=="4") fault_nature = "ดึง ลากหรือ กระชากผม";
+												else if(item?.fault_nature=="5") fault_nature = "ทุบตีด้วย หมัด ของแข็งหรือถูกเตะ";
+												else if(item?.fault_nature=="6") fault_nature = "ทำร้ายโดยการจุดไฟเผาหรือวางเพลิง";
+												else if(item?.fault_nature=="7") fault_nature = "บีบคอ รัดคอ หรือทำให้หายใจไม่ออก ";
+												else if(item?.fault_nature=="8") fault_nature = "จับหัวกระแทกกับบางสิ่ง";
+												else if(item?.fault_nature=="9") fault_nature = "ถูกแทง";
+												else if(item?.fault_nature=="10") fault_nature = "ถูกยิง";
+												else if(item?.fault_nature=="11") fault_nature = "วางระเบิด";
+												else if(item?.fault_nature=="12") fault_nature = "วางยาพิษ";
+												else if(item?.fault_nature=="13") fault_nature = "ปล่อยมลภาวะหรือสารพิษจนเป็นอันตรายต่อชุมชน";
+												else if(item?.fault_nature=="14") fault_nature = "ขู่ทำร้ายร่างกายด้วยอาวุธ (เศษไม้, มีด, อาวุธปืน ฯลฯ)";
+												else if(item?.fault_nature=="15") fault_nature = "ขู่ทำร้ายร่างกายโดยปราศจากอาวุธ แต่ในลักษณะที่ทำให้ท่านรู้สึกหวาดกลัว";
+												else if(item?.fault_nature=="16") fault_nature = "ข่มขู่ในลักษณะของความรุนแรงในครอบครัวหรือความรุนแรงจากความสัมพันธ์ของคู่รัก/คู่ชีวิตในรูปแบบอื่นแต่ไม่ถึงกับมีการทำร้ายร่างกาย";
+												else if(item?.fault_nature=="17") fault_nature = "ส่งข้อความ อีเมล์ โทรศัพท์ อันมีลักษณะคุกคาม ก้าวร้าว หรือทำให้ได้รับความอับอาย แต่ไม่ได้มีการทำร้ายร่างกายและไม่ใช่ลักษณะคุกคามทางเพศ";
+												else if(item?.fault_nature=="18") fault_nature = "แสดงท่าทางที่ทำให้ขุ่นเคือง คุกคาม ก้าวร้าว ด่าทอ หรือทำให้ได้รับความอับอายโดยเป็นการกระทำต่อหน้าโดยตรง";
+												else if(item?.fault_nature=="19") fault_nature = "มีการแสดงความคิดเห็นทั้งต่อส่วนตัวหรือช่องทางสาธารณะที่ทำให้ขุ่นเคือง คุกคาม หรือทำให้ อับอาย เช่น ดูถูก เรียกด้วยคำหยาบคาย";
+												else if(item?.fault_nature=="20") fault_nature = "การเผยแพร่ข้อความ รูปภาพ วิดีโอของท่านที่ทำให้ขุ่นเคือง คุกคาม หรือทำให้อับอาย ผ่านทางอินเทอร์เน็ต";
+												else if(item?.fault_nature=="21") fault_nature = "ลอบติดตามจนทำให้เกิดความไม่สบายใจหรือหวาดกลัวภัยทั้งการลอบติดตามโดยตรงหรือลอบติดตามความเคลื่อนไหวในช่องทางออนไลน์ แต่ไม่ถึงกับทำร้ายร่างกายและไม่ใช่ลักษณะคุกคามทางเพศ";												
+												if(item?.fault_location=="1") fault_location = "บ้าน/ที่อยู่อาศัยส่วนตัว";
+												else if(item?.fault_location=="2") fault_location = "สถานที่เชิงพาณิชย์ เช่น ร้านอาหาร ห้างสรรพสินค้า ร้านค้า ฯลฯ";
+												else if(item?.fault_location=="3") fault_location = "สถานที่ประกอบธุรกิจที่สงวนเฉพาะบุคคล เช่น อาคารสำนักงาน โรงงาน โกดัง ฯลฯ";
+												else if(item?.fault_location=="4") fault_location = "สถานศึกษา เช่น โรงเรียน มหาวิทยาลัย ฯลฯ";
+												else if(item?.fault_location=="5") fault_location = "สถานดูแล เช่น โรงพยาบาล คลินิก บ้านพักคนชรา ฯลฯ";
+												else if(item?.fault_location=="6") fault_location = "สถานที่สาธารณะ เช่น ถนน ตลาด สวนสาธารณะ ขนส่งสาธารณะ ฯลฯ";
+												else if(item?.fault_location=="7") fault_location = "ช่องทางออนไลน์/อุปกรณ์โทรศัพท์เคลื่อนที่";
+												%>
+										<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>">
+											<td class="tg-0lax text-center"><%=index+1%></td>
+											<td class="tg-0laa text-left"><%=fault_nature%></td>
+											<td class="tg-0laa text-left"><%=fault_type%></td>
+											<td class="tg-0laa"><%=fault_status%></td>
+											<td class="tg-0laa text-left"><%=fault_location%></td>
+											<td class="tg-0laa nowrap">
+												<a href="javascript:void(0)" class="bx-edit-linker ui basic black button tiny"><i class="edit icon large"></i></a>
+												<a href="javascript:void(0)" class="bx-delete-linker ui basic red button tiny"><i class="trash icon large"></i></a>								
+											</td>
+										</tr>
+										<% 	} 
+										} else {%>
+										<tr>
+											<td colspan="6" class="tg-0lax text-center">ไม่พบข้อมูล</td>
+										</tr>
+										<%}%>
+									</tbody>
+								</table>

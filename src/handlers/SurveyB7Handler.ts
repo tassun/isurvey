@@ -1,10 +1,10 @@
 import { KnDBConnector, KnRecordSet, KnSQL } from 'will-sql';
 import { KnModel, KnContextInfo, KnDataTable, KnValidateInfo } from '../models/AssureAlias';
-import { SurveyOperateHandler } from './SurveyOperateHandler';
+import { SurveyMasterHandler } from './SurveyMasterHandler';
 import { VerifyError } from '../models/VerifyError';
 import { HTTP } from '../api/HTTP';
 
-export class SurveyB7Handler extends SurveyOperateHandler {
+export class SurveyB7Handler extends SurveyMasterHandler {
     public readonly form_id : string = "SURVEY_B7";
     public readonly alwaysSaveProfileForm : boolean = false;
     public model : KnModel = {
@@ -83,6 +83,7 @@ export class SurveyB7Handler extends SurveyOperateHandler {
         }
     };
 
+    /*
     protected async validateRequireFieldsList(context: KnContextInfo, throwError: boolean = false) : Promise<KnValidateInfo> {
         let vi = this.validateParameters(context.params,"master_id");
         if(!vi.valid && throwError) {
@@ -117,5 +118,5 @@ export class SurveyB7Handler extends SurveyOperateHandler {
         dt.dataset.master_id = context.params.master_id;
         return Promise.resolve(dt);
     }
-
+    */
 }

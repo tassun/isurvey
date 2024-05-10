@@ -23,6 +23,12 @@ import { SurveyDXRouter } from '../routers/SurveyDXRouter';
 import { SurveyERouter } from '../routers/SurveyERouter';
 import { SurveyFRouter } from '../routers/SurveyFRouter';
 import { SurveyGRouter } from '../routers/SurveyGRouter';
+import { SurveyB1Router } from '../routers/SurveyB1Router';
+import { SurveyB2Router } from '../routers/SurveyB2Router';
+import { SurveyB3Router } from '../routers/SurveyB3Router';
+import { SurveyB4Router } from '../routers/SurveyB4Router';
+import { SurveyB5Router } from '../routers/SurveyB5Router';
+import { SurveyB6Router } from '../routers/SurveyB6Router';
 import { SurveyB7Router } from '../routers/SurveyB7Router';
 
 const errorHandler = require('express-error-handler');
@@ -104,6 +110,12 @@ export class RouteManager extends BaseRouter {
         let survey_e = new SurveyERouter(this.dir,this.logger);
         let survey_f = new SurveyFRouter(this.dir,this.logger);
         let survey_g = new SurveyGRouter(this.dir,this.logger);
+        let survey_b1 = new SurveyB1Router(this.dir,this.logger);
+        let survey_b2 = new SurveyB2Router(this.dir,this.logger);
+        let survey_b3 = new SurveyB3Router(this.dir,this.logger);
+        let survey_b4 = new SurveyB4Router(this.dir,this.logger);
+        let survey_b5 = new SurveyB5Router(this.dir,this.logger);
+        let survey_b6 = new SurveyB6Router(this.dir,this.logger);
         let survey_b7 = new SurveyB7Router(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
@@ -146,6 +158,12 @@ export class RouteManager extends BaseRouter {
         app.use("/survey_e", survey_e.route(app));
         app.use("/survey_f", survey_f.route(app));
         app.use("/survey_g", survey_g.route(app));
+        app.use("/survey_b1", survey_b1.route(app));
+        app.use("/survey_b2", survey_b2.route(app));
+        app.use("/survey_b3", survey_b3.route(app));
+        app.use("/survey_b4", survey_b4.route(app));
+        app.use("/survey_b5", survey_b5.route(app));
+        app.use("/survey_b6", survey_b6.route(app));
         app.use("/survey_b7", survey_b7.route(app));
 
         this.handleErrors(app);

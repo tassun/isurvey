@@ -1,5 +1,6 @@
 var mouseX = 0;
 var mouseY = 0;
+var canFocused = false;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("survey_f"); }catch(ex) { }
@@ -88,6 +89,7 @@ function setupUI() {
     $("#SF_2_12").change(function() {
         if($(this).is(":checked")) {
             $("#SF_2_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#SF_2_text").focus();
         } else {
             $("#SF_2_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -97,6 +99,7 @@ function setupUI() {
     });
     $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
     $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
+    canFocused = true;
 }
 function validateSF2() {
     let checked = $("#sf2-layer").find("input[type=checkbox]:checked").length;
