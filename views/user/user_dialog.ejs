@@ -6,6 +6,7 @@
 					<h4 class="modal-title">แก้ไขผู้ใช้งาน</h4>
 				</div>
 				<form class="b form app" data-parsley-validate="true" id="form-data-edit" method="post">
+					<input type="hidden" id="e_token_key" name="token_key" value="<%=meta.token_key%>" />
 					<input type="hidden" id="e_userid" name="userid"/>
 					<div class="ui form">
 						<div class="modal-body">
@@ -79,6 +80,7 @@
 					<h4 class="modal-title">เพิ่มผู้ใช้งานใหม่</h4>
 				</div>
 				<form class="a form app" data-parsley-validate="true" id="form-data-add" method="post">
+					<input type="hidden" id="a_token_key" name="token_key" value="<%=meta.token_key%>" />
 					<input type="hidden" id="a_userid" name="userid"/>
 					<div class="ui form">
 						<div class="modal-body">

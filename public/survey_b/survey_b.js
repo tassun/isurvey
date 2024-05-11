@@ -86,11 +86,6 @@ function updateSurvey(src) {
         }
     });
 }
-function gotoSurveyForm(profile_id) {
-    if(!profile_id) profile_id = $("#profile_id").val();
-    startWaiting();
-    submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
-}
 function setupUI() {
     $("input.sb-radio").change(function() {
         if ($(this).val() == '1') {
@@ -126,19 +121,22 @@ function setupSurveyDataTable(profile_id,survey_id) {
 }
 function openSurveyCategory(profile_id,survey_id,survey_profile) {
     console.log("openSurveyCategory: profile_id: " + profile_id + ", survey_id: " + survey_id+", survey_profile: "+survey_profile);
+    let token_key = $("#token_key").val();
     let main_id = $("#survey_id").val();
     startWaiting();
-    submitWindow({url: BASE_URL+"/survey_bx/open", params: {profile_id: profile_id, survey_id: survey_id, main_id: main_id}, windowName: "_self"});
+    submitWindow({url: BASE_URL+"/survey_bx/open", params: {token_key: token_key, profile_id: profile_id, survey_id: survey_id, main_id: main_id}, windowName: "_self"});
 }
 function confirmSurveyDelete(profile_id,survey_id,sb_profile,callback) {
     confirmDeleteMessage(function() { deleteSurvey(profile_id,survey_id,sb_profile,callback); });
 }
 function deleteSurvey(profile_id,survey_id,sb_profile,callback) {
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_b/remove",
         data: { 
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id, 
             survey_id: survey_id,
             SB_profile: sb_profile
@@ -169,11 +167,13 @@ function setupDialogComponents(callback) {
 }
 function startAddProfile(profile_id,survey_id,callback) {
     console.log("startAddProfile: profile_id: " + profile_id + ", survey_id: "+survey_id);    
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_b/profile/add",
         data: { 
             ajax: true,
+            token_key: token_key,
             master_id: profile_id, 
         },
         type: "POST",
@@ -193,11 +193,13 @@ function startAddProfile(profile_id,survey_id,callback) {
 }
 function startEditProfile(profile_id,callback) {
     console.log("startEditProfile: profile_id: " + profile_id);    
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_b/profile/edit",
         data: { 
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id, 
         },
         type: "POST",
@@ -217,11 +219,13 @@ function startEditProfile(profile_id,callback) {
 }
 function refreshSurveyDataTable(profile_id,survey_id) {
     console.log("refreshSurveyDataTable: profile_id: " + profile_id+", survey_id: "+survey_id);    
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_b/datatable",
         data: { 
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id, 
             survey_id: survey_id,
         },

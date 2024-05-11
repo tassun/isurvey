@@ -14,7 +14,7 @@ function setupComponentsApt() {
 }
 function confirmCancelSurveyApt(src) {
     confirmCancelMessage(function() {
-        window.history.back();
+        gotoSurveyFormApt();
     });
 }
 function confirmSaveSurveyApt(src) {
@@ -80,7 +80,10 @@ function updateSurveyApt(src) {
     });
 }
 function gotoSurveyFormApt(profile_id) {
-    submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+    let token_key = $("#dx_token_key").val();
+    let profile_id = $("#dx_profile_id").val();
+    startWaiting();
+    submitWindow({url: BASE_URL+"/survey/form", params: {token_key: token_key, profile_id: profile_id}, windowName: "_self"});
 }
 function setupUIApt() {
     canFocused = false;

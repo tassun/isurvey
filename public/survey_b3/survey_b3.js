@@ -82,11 +82,6 @@ function updateSurvey(src) {
         }
     });
 }
-function gotoSurveyForm(profile_id) {
-    if(!profile_id) profile_id = $("#profile_id").val();
-    startWaiting();
-    submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
-}
 function setupUI() {
     $('input[name="fault_type"]').on('change', function() {
         if ($(this).val() == '11') {
@@ -252,8 +247,10 @@ function validateSB23() {
     return true;
 }
 function gotoListingForm() {
+    let token_key = $("#token_key").val();
     let profile_id = $("#profile_id").val();
     let master_id = $("#master_id").val();
     let column_id = $("#column_id").val();
-    submitWindow({url: BASE_URL+"/survey_b3/listing", params: {profile_id: profile_id, survey_id: master_id, master_id: master_id, column_id: column_id}, windowName: "_self"});
+    startWaiting();
+    submitWindow({url: BASE_URL+"/survey_b3/listing", params: {token_key: token_key, profile_id: profile_id, survey_id: master_id, master_id: master_id, column_id: column_id}, windowName: "_self"});
 }

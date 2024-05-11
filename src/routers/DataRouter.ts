@@ -45,12 +45,12 @@ export class DataRouter extends OperateRouter {
 	}
 
     public override route(app: Application) : Router {
-		this.router.post('/category', async (req: Request, res: Response) => { this.routeCategory(req,res); });
-		this.router.get('/category', async (req: Request, res: Response) => { this.routeCategory(req,res); });
-		this.router.post('/categories', async (req: Request, res: Response) => { this.routeCategories(req,res); });
-		this.router.get('/categories', async (req: Request, res: Response) => { this.routeCategories(req,res); });
-		this.router.post('/categorize', async (req: Request, res: Response) => { this.routeCategorize(req,res); });
-		this.router.get('/categorize', async (req: Request, res: Response) => { this.routeCategorize(req,res); });
+		this.router.post('/category/:token_key?', async (req: Request, res: Response) => { this.routeCategory(req,res); });
+		this.router.get('/category/:token_key?', async (req: Request, res: Response) => { this.routeCategory(req,res); });
+		this.router.post('/categories/:token_key?', async (req: Request, res: Response) => { this.routeCategories(req,res); });
+		this.router.get('/categories/:token_key?', async (req: Request, res: Response) => { this.routeCategories(req,res); });
+		this.router.post('/categorize/:token_key?', async (req: Request, res: Response) => { this.routeCategorize(req,res); });
+		this.router.get('/categorize/:token_key?', async (req: Request, res: Response) => { this.routeCategorize(req,res); });
         return this.router;
     }
 

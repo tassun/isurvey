@@ -81,11 +81,6 @@ function updateSurvey(src) {
         }
     });
 }
-function gotoSurveyForm(profile_id) {
-    if(!profile_id) profile_id = $("#profile_id").val();
-    startWaiting();
-    submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
-}
 function setupUI() {
     $("#SF_2_12").change(function() {
         if($(this).is(":checked")) {

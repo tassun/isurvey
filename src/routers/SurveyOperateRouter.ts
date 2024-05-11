@@ -118,16 +118,16 @@ export class SurveyOperateRouter extends OperateRouter {
 	public override route(app: Application) : Router {
 		super.route(app);
 		//gui can post or get
-		this.router.get('/add', async (req: Request, res: Response) => { this.routeAdd(req,res); });
-		this.router.post('/add', async (req: Request, res: Response) => { this.routeAdd(req,res); });
-		this.router.get('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
-		this.router.post('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
-		this.router.get('/open', async (req: Request, res: Response) => { this.routeOpen(req,res); });
-		this.router.post('/open', async (req: Request, res: Response) => { this.routeOpen(req,res); });
-		this.router.get('/listing', async (req: Request, res: Response) => { this.routeListing(req,res); });
-		this.router.post('/listing', async (req: Request, res: Response) => { this.routeListing(req,res); });
-		this.router.get('/datatable', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
-		this.router.post('/datatable', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
+		this.router.get('/add/:token_key?', async (req: Request, res: Response) => { this.routeAdd(req,res); });
+		this.router.post('/add/:token_key?', async (req: Request, res: Response) => { this.routeAdd(req,res); });
+		this.router.get('/edit/:token_key?', async (req: Request, res: Response) => { this.routeEdit(req,res); });
+		this.router.post('/edit/:token_key?', async (req: Request, res: Response) => { this.routeEdit(req,res); });
+		this.router.get('/open/:token_key?', async (req: Request, res: Response) => { this.routeOpen(req,res); });
+		this.router.post('/open/:token_key?', async (req: Request, res: Response) => { this.routeOpen(req,res); });
+		this.router.get('/listing/:token_key?', async (req: Request, res: Response) => { this.routeListing(req,res); });
+		this.router.post('/listing/:token_key?', async (req: Request, res: Response) => { this.routeListing(req,res); });
+		this.router.get('/datatable/:token_key?', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
+		this.router.post('/datatable/:token_key?', async (req: Request, res: Response) => { this.routeDataTable(req,res); });
 		return this.router;
 	}
 	

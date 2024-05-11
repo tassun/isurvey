@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc --project ./",
     "dev": "ts-node-dev src/server.ts",
+    "app": "ts-node-dev src/worker.ts",
     "start": "node dist/server.js",
+    "serve": "node dist/worker.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -26,6 +28,7 @@
     "@types/express": "^4.17.21",
     "@types/express-session": "^1.18.0",
     "@types/helmet": "^4.0.0",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/jszip": "^3.4.1",
     "@types/node": "^20.12.7",
     "ts-node": "^10.9.2",
@@ -41,12 +44,13 @@
     "express-error-handler": "^1.1.0",
     "express-session": "^1.18.0",
     "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
     "jszip": "^3.10.1",
     "mysql2": "^3.9.4",
     "path": "^0.12.7",
     "uuidv4": "^6.2.13",
     "will-sql": "^1.0.26",
-    "will-util": "^1.0.8"
+    "will-util": "^1.0.9"
   },
   "engines": {
     "node": ">=20"

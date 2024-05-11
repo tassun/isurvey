@@ -11,6 +11,7 @@ $(function() {
     });
 });
 function initDataTable() {
+    let token_key = $("#token_key").val();
     datatable = $('#data-table').DataTable({
         bAutoWidth: false,
         responsive: true,
@@ -31,6 +32,7 @@ function initDataTable() {
             dataSrc: 'body.rows',
             url: '/survey/list',
             type: 'POST',
+            data: { ajax: true, token_key: token_key },
         },
         fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $(nRow).data("userdata", aData);
@@ -52,8 +54,9 @@ function confirmEditSurvey(element) {
     let tr = button.closest("tr");
     let userdata = tr.data("userdata");
     if(userdata) {
+        let token_key = $("#token_key").val();
         startWaiting();
-        submitWindow({url: BASE_URL+"/survey/edit", params: {profile_id: userdata.profile_id}, windowName: "_self"});
+        submitWindow({url: BASE_URL+"/survey/edit", params: {token_key: token_key, profile_id: userdata.profile_id}, windowName: "_self"});
     }
 }
 function confirmDeleteSurvey(element) {
@@ -62,10 +65,11 @@ function confirmDeleteSurvey(element) {
     confirmDeleteMessage(function() { deleteSurvey(userdata); },userdata.profile_code);
 }
 function deleteSurvey(userdata) {
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey/remove",
-        data: { ajax: true, profile_id: userdata.profile_id },
+        data: { ajax: true, profile_id: userdata.profile_id, token_key: token_key },
         type: "POST",
         dataType: "json",
         contentType: defaultContentType,

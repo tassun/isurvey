@@ -79,11 +79,6 @@ function updateSurvey(src) {
         }
     });
 }
-function gotoSurveyForm(profile_id) {
-    if(!profile_id) profile_id = $("#profile_id").val();
-    startWaiting();
-    submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
-}
 function setupUI() {
     $("a.sd-linker").click(function() {
         if($(this).hasClass("disabled")) return false;
@@ -124,11 +119,13 @@ function displaySurveyDXDataTable() {
 }
 function searchSurveyDXDataTable(profile_id,master_id,column_id) {
     console.log("searchDataTable: profile_id: " + profile_id + ", master_id: " + master_id+", column_id: "+column_id);
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_dx/datatable",
         data: {
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id,
             master_id: master_id,
             column_id: column_id
@@ -166,11 +163,13 @@ function setupSurveyDXDataTable(profile_id,master_id,column_id) {
 }
 function openSurveyDXEntry(profile_id,master_id,column_id) {
     console.log("openSurveyDXEntry: profile_id: " + profile_id + ", master_id: " + master_id+", column_id: "+column_id);
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_dx/entry",
         data: {
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id,
             master_id: master_id,
             column_id: column_id
@@ -191,11 +190,13 @@ function openSurveyDXEntry(profile_id,master_id,column_id) {
 }
 function openSurveyDXView(profile_id,survey_id) {
     console.log("openSurveyDXView: profile_id: " + profile_id + ", survey_id: " + survey_id);
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_dx/view",
         data: {
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id,
             survey_id: survey_id
         },
@@ -223,11 +224,13 @@ function confirmSurveyDXDelete(profile_id,survey_id,text,text2) {
     confirmDeleteMessage(function() { deleteDXForm(profile_id,survey_id); }, text+"<br/>"+text2);
 }
 function deleteDXForm(profile_id,survey_id) {
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_dx/remove",
         data: { 
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id, 
             survey_id: survey_id 
         },

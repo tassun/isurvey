@@ -102,11 +102,11 @@ export class OperateRouter extends BaseRouter {
 
 	public route(app: Application) : Router {
 		//api accept only post
-		this.router.post('/insert', async (req: Request, res: Response) => { this.routeInsert(req,res); });
-		this.router.post('/retrieve', async (req: Request, res: Response) => { this.routeRetrieve(req,res); });
-		this.router.post('/update', async (req: Request, res: Response) => { this.routeUpdate(req,res); });
-		this.router.post('/remove', async (req: Request, res: Response) => { this.routeRemove(req,res); });
-		this.router.post('/list', async (req: Request, res: Response) => { this.routeList(req,res); });
+		this.router.post('/insert/:token_key?', async (req: Request, res: Response) => { this.routeInsert(req,res); });
+		this.router.post('/retrieve/:token_key?', async (req: Request, res: Response) => { this.routeRetrieve(req,res); });
+		this.router.post('/update/:token_key?', async (req: Request, res: Response) => { this.routeUpdate(req,res); });
+		this.router.post('/remove/:token_key?', async (req: Request, res: Response) => { this.routeRemove(req,res); });
+		this.router.post('/list/:token_key?', async (req: Request, res: Response) => { this.routeList(req,res); });
 		return this.router;
 	}
 

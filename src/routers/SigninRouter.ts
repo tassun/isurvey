@@ -57,15 +57,17 @@ export class SigninRouter extends BaseRouter {
 	public async routeLogin(req: Request, res: Response) {
 		let ctx = await this.createContext(req);
 		try {
+			let token = this.getUserToken(req);
 			let reply = await this.getHandler().signin(ctx);
 			if(reply.head.errorflag=="N") {
-				let userInfo = { ...reply.body };
-				this.bindUser(req,userInfo as KnUserInfo);
+				let userInfo = { ...reply.body } as KnUserInfo;
+				this.bindUser(req,userInfo);
+				token = userInfo.token;
 			} else {
 				let errmsg = reply.head.errordesc;
 				throw new AuthenError(errmsg,HTTP.UNAUTHORIZED,Number(reply.head.errorcode));
 			}
-			res.redirect('/index');
+			res.redirect('/index'+(token?"/"+token:""));
 		} catch(ex) { 
 			res.redirect('/login');
 		}

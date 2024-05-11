@@ -18,7 +18,7 @@
 			<div class="body" id="form-data-layer">
 				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
 					<input type="hidden" id="ajax" name="ajax" value="true" />
-					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
 					<label>ส่วนที่ 6 ระดับการเคารพกฎหมายของประชาชน</label><br/>

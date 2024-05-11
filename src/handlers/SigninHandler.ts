@@ -2,6 +2,7 @@ import { KnDBConnector, KnSQL } from 'will-sql';
 import { JSONReply } from '../api/JSONReply';
 import { KnContextInfo, KnSigninInfo, KnUserInfo } from '../models/AssureAlias';
 import { BaseHandler } from '../base/BaseHandler';
+import { AuthenToken } from '../libs/AuthenToken';
 
 export class SigninHandler extends BaseHandler {
 
@@ -14,7 +15,8 @@ export class SigninHandler extends BaseHandler {
             let rs = await sql.executeQuery(conn);
             if(rs.rows && rs.rows.length>0) {
                 let row = rs.rows[0];
-                return Promise.resolve({ userid: row.userid, username: row.username, password: row.password, level: row.level, name: row.name, surname: row.surname, email: row.email, mobile: row.mobile });
+                let token = AuthenToken.createToken({ userid: row.userid, username: row.username });
+                return Promise.resolve({ userid: row.userid, username: row.username, password: row.password, level: row.level, name: row.name, surname: row.surname, email: row.email, mobile: row.mobile, token: token });
             }
         }
         return Promise.resolve(undefined);
@@ -29,7 +31,38 @@ export class SigninHandler extends BaseHandler {
             let rs = await sql.executeQuery(conn);
             if(rs.rows && rs.rows.length>0) {
                 let row = rs.rows[0];
-                return Promise.resolve({ userid: row.userid, username: row.username, password: row.password, level: row.level, name: row.name, surname: row.surname, email: row.email, mobile: row.mobile });
+                let token = AuthenToken.createToken({ userid: row.userid, username: row.username });
+                return Promise.resolve({ userid: row.userid, username: row.username, password: row.password, level: row.level, name: row.name, surname: row.surname, email: row.email, mobile: row.mobile, token: token });
+            }
+        }
+        return Promise.resolve(undefined);
+    }
+
+    public async getUserById(userid: string) : Promise<KnUserInfo | undefined> {
+        if(userid && userid.trim().length>0) {
+            let db = this.getPrivateConnector();
+            try {
+                return await this.getUserInfoById(db, userid);
+            } catch(ex: any) {
+                this.logger.error(this.constructor.name,ex);
+                return Promise.reject(this.getDBError(ex));
+            } finally {
+                if(db) db.close();
+            }
+        }
+        return Promise.resolve(undefined);
+    }
+
+    public async getUserByName(username: string) : Promise<KnUserInfo | undefined> {
+        if(username && username.trim().length>0) {
+            let db = this.getPrivateConnector();
+            try {
+                return await this.getUserInfo(db, username);
+            } catch(ex: any) {
+                this.logger.error(this.constructor.name,ex);
+                return Promise.reject(this.getDBError(ex));
+            } finally {
+                if(db) db.close();
             }
         }
         return Promise.resolve(undefined);

@@ -19,6 +19,7 @@
 		<%- include('../partials/page_header') %>
 		<div class="panel container panel-container">
 			<h1 class="page-header">จัดการผู้ใช้งาน (User)</h1>
+			<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
 			<div class="body">
 				<div id="buttoncontrolpanel">
 					<a href="javascript:void(0)" id="newuserbutton" data-toggle="modal" data-target="#modal-add" class="btn btn-success ui green button "><i class="plus icon small"></i> เพิ่มผู้ใช้งานใหม่</a>

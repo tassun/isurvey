@@ -65,10 +65,10 @@ export class SurveyBRouter extends SurveyOperateRouter {
 
 	public override route(app: Application) : Router {
 		super.route(app);
-		this.router.get('/profile/add', async (req: Request, res: Response) => { this.routeAddProfile(req,res); });
-		this.router.post('/profile/add', async (req: Request, res: Response) => { this.routeAddProfile(req,res); });
-		this.router.get('/profile/edit', async (req: Request, res: Response) => { this.routeEditProfile(req,res); });
-		this.router.post('/profile/edit', async (req: Request, res: Response) => { this.routeEditProfile(req,res); });
+		this.router.get('/profile/add/:token_key?', async (req: Request, res: Response) => { this.routeAddProfile(req,res); });
+		this.router.post('/profile/add/:token_key?', async (req: Request, res: Response) => { this.routeAddProfile(req,res); });
+		this.router.get('/profile/edit/:token_key?', async (req: Request, res: Response) => { this.routeEditProfile(req,res); });
+		this.router.post('/profile/edit/:token_key?', async (req: Request, res: Response) => { this.routeEditProfile(req,res); });
 		return this.router;
 	}
 

@@ -171,6 +171,7 @@ export interface KnMetaInfo {
     language: string;
     version: string;
     storage?: string;
+    token_key?: string;
     info?: any;
     user?: KnUserInfo;
 }
@@ -196,6 +197,7 @@ export interface KnUserInfo {
     surname: string;
     email?: string;
     mobile?: string;
+    token?: string;
     info?: any;
 }
 

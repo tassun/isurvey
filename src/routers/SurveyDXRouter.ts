@@ -52,10 +52,10 @@ export class SurveyDXRouter extends SurveyOperateRouter {
 
 	public override route(app: Application) : Router {
 		super.route(app);
-		this.router.get('/view', async (req: Request, res: Response) => { this.routeView(req,res); });
-		this.router.post('/view', async (req: Request, res: Response) => { this.routeView(req,res); });
-		this.router.get('/entry', async (req: Request, res: Response) => { this.routeEntry(req,res); });
-		this.router.post('/entry', async (req: Request, res: Response) => { this.routeEntry(req,res); });
+		this.router.get('/view/:token_key?', async (req: Request, res: Response) => { this.routeView(req,res); });
+		this.router.post('/view/:token_key?', async (req: Request, res: Response) => { this.routeView(req,res); });
+		this.router.get('/entry/:token_key?', async (req: Request, res: Response) => { this.routeEntry(req,res); });
+		this.router.post('/entry/:token_key?', async (req: Request, res: Response) => { this.routeEntry(req,res); });
 		return this.router;
 	}
 

@@ -16,7 +16,7 @@
 		<%- include('../partials/page_header') %>
 		<nav id="breadnavigator" aria-label="breadcrumb" style="margin-left: 5px;">
 			<ol class="breadcrumb">
-			  <li class="breadcrumb-item"><a href="/index" id="bread_home_linker"><i class="home icon"></i>หน้าหลัก</a></li>
+			  <li class="breadcrumb-item"><a href="/index/<%=meta.token_key%>" id="bread_home_linker"><i class="home icon"></i>หน้าหลัก</a></li>
 			  <li class="breadcrumb-item"><a href="่่javascript:void(0)" id="bread_form_linker">แบบสำรวจข้อมูล</a></li>
 			  <li class="breadcrumb-item"><a href="่่javascript:void(0)" id="master_bread_form_linker"></a>แบบสำรวจอาชญากรรม</a></li>
 			  <li class="breadcrumb-item active" aria-current="page">แบบแจงนับข้อมูลสถิติ</li>
@@ -27,7 +27,7 @@
 			<div class="body" id="form-data-layer">
 				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
 					<input type="hidden" id="ajax" name="ajax" value="true" />
-					<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
+					<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
 					<input type="hidden" id="main_id" name="main_id" value="<%=data.dataset?.main_id%>" />

@@ -26,8 +26,8 @@ export class FormRouter extends OperateRouter {
 	}
 
     public override route(app: Application) : Router {
-		this.router.post('/list', async (req: Request, res: Response) => { this.routeList(req,res); });
-		this.router.post('/catalog', async (req: Request, res: Response) => { this.routeCatalog(req,res); });
+		this.router.post('/list/:token_key?', async (req: Request, res: Response) => { this.routeList(req,res); });
+		this.router.post('/catalog/:token_key?', async (req: Request, res: Response) => { this.routeCatalog(req,res); });
 		return this.router;
 	}
 

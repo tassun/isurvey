@@ -35,16 +35,23 @@ function doLogout() {
     $("#username").focus();
     window.open("/login", "_self");
 }
+function gotoSurveyForm(profile_id) {
+    if(!profile_id) profile_id = $("#profile_id").val();
+    let token_key = $("#token_key").val();
+    submitWindow({url: BASE_URL+"/survey/form", params: {token_key: token_key, profile_id: profile_id}, windowName: "_self"});
+}
 function gotoSurveyBAppendix() {
+    let token_key = $("#token_key").val();
     let profile_id = $("#profile_id").val();
     let survey_id = $("#main_id").val();
     startWaiting();
-    submitWindow({url: BASE_URL+"/survey_b/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
+    submitWindow({url: BASE_URL+"/survey_b/open", params: {token_key: token_key, profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
 }
 function gotoSurveyBCategory() {
+    let token_key = $("#token_key").val();
     let profile_id = $("#profile_id").val();
     let survey_id = $("#master_id").val();
     let main_id = $("#main_id").val();
     startWaiting();
-    submitWindow({url: BASE_URL+"/survey_bx/open", params: {profile_id: profile_id, survey_id: survey_id, main_id: main_id}, windowName: "_self"});
+    submitWindow({url: BASE_URL+"/survey_bx/open", params: {token_key: token_key, profile_id: profile_id, survey_id: survey_id, main_id: main_id}, windowName: "_self"});
 }

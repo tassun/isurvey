@@ -7,6 +7,8 @@ import { HTTP } from '../api/HTTP';
 import { BaseSystem } from "./BaseSystem";
 import { Responser } from '../utils/Responser';
 import { VerifyError } from '../models/VerifyError';
+import { AuthenToken } from '../libs/AuthenToken';
+import { SigninHandler } from '../handlers/SigninHandler';
 
 export class BaseRouter extends BaseSystem {
     public dir: string = process.cwd();
@@ -60,6 +62,7 @@ export class BaseRouter extends BaseSystem {
             cdn_url: CDN_URL, 
             language: KnUtility.getDefaultLanguage(context),
             version: RELEASE_VERSION,
+            token_key: this.getTokenKey(context),
             info: META_INFO,
             user: context?.meta?.user
         };
@@ -96,10 +99,46 @@ export class BaseRouter extends BaseSystem {
         return true;
     }
 
+    protected getTokenFromUrl(originalUrl: string) : string {
+        let token = "";
+        const URL_LIST = ["/index/","/survey/add/","/survey/edit/"];
+        for(let url of URL_LIST) {
+            let index = originalUrl.indexOf(url);
+            if(index>=0) {
+                token = originalUrl.substring(index+url.length);
+            }
+        }
+        return token;
+    }   
+
     public async validateUser(req: Request, res: Response) : Promise<KnUserInfo | undefined> {
         let userInfo = this.getCurrentUserInfo(req);
         if(userInfo) {
             return Promise.resolve(userInfo);
+        }
+        let ctx = await this.createContext(req);
+        let token = this.getTokenKey(ctx);
+        this.logger.debug(this.constructor.name+".validateUser: token",token);
+        if(!token) {
+            token = this.getTokenFromUrl(req.originalUrl);
+            this.logger.debug(this.constructor.name+".validateUser: getTokenFromUrl",token);
+        }
+        if(token && token.trim().length>0) {
+            try {
+                let tokenInfo = AuthenToken.verifyToken(token);
+                this.logger.debug(this.constructor.name+".validateUser: tokenInfo",tokenInfo);
+                if(tokenInfo) {
+                    let handler = new SigninHandler(this.logger);
+                    let user = await handler.getUserById(tokenInfo.userid);
+                    if(user) {
+                        this.bindUser(req,user);
+                        return Promise.resolve(user);
+                    }
+                }
+            } catch(ex) {
+                this.logger.error(this.constructor.name+".validateUser: error",ex);
+                return Promise.reject(new AuthenError("Unauthorized access or session expired",HTTP.UNAUTHORIZED,-11300));
+            }
         }
         if(VALID_ACCESSOR) {
             return Promise.reject(new AuthenError("Unauthorized access or session expired",HTTP.UNAUTHORIZED,-11200));
@@ -151,6 +190,10 @@ export class BaseRouter extends BaseSystem {
     public unbindUser(req: Request) {
         let session = (req as any).session;
         if(session && session.hasOwnProperty('user')) delete session.user;
+    }
+
+    protected getUserToken(req: Request) : string | undefined {
+        return req.headers["auth_token"] as string || req.headers["token_key"] as string;
     }
 
 }

@@ -63,8 +63,8 @@ export class ExportRouter extends OperateRouter {
     
     public override route(app: Application) : Router {
 		//gui can post or get
-		this.router.get('/csv', async (req: Request, res: Response) => { this.routeExport(req,res); });
-		this.router.post('/csv', async (req: Request, res: Response) => { this.routeExport(req,res); });
+		this.router.get('/csv/:token_key?', async (req: Request, res: Response) => { this.routeExport(req,res); });
+		this.router.post('/csv/:token_key?', async (req: Request, res: Response) => { this.routeExport(req,res); });
         return this.router
     }
 

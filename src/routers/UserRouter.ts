@@ -23,8 +23,8 @@ export class UserRouter extends OperateRouter {
 	public override route(app: Application) : Router {
 		super.route(app);
 		//gui can post or get
-		this.router.get('/listalls', async (req: Request, res: Response) => { this.routeListAlls(req,res); });
-		this.router.post('/listalls', async (req: Request, res: Response) => { this.routeListAlls(req,res); });
+		this.router.get('/listalls/:token_key?', async (req: Request, res: Response) => { this.routeListAlls(req,res); });
+		this.router.post('/listalls/:token_key?', async (req: Request, res: Response) => { this.routeListAlls(req,res); });
 		return this.router;
 	}
 	

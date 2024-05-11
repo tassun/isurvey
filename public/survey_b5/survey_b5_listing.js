@@ -23,8 +23,9 @@ function confirmCancelSurvey(src) {
 }
 function gotoSurveyForm(profile_id) {
     if(!profile_id) profile_id = $("#list_bx_profile_id").val();
+    let token_key = $("#list_bx_token_key").val();
     startWaiting();
-    submitWindow({url: BASE_URL+"/survey/form", params: {profile_id: profile_id}, windowName: "_self"});
+    submitWindow({url: BASE_URL+"/survey/form", params: {token_key: token_key, profile_id: profile_id}, windowName: "_self"});
 }
 function setupUI() {
     $("a.bx-edit-linker",$("#bxdatatablelayer")).click(function() {
@@ -48,18 +49,22 @@ function setupUI() {
 }
 function openSurveyBX(profile_id,survey_id,master_id,column_id) {
     console.log("openSurveyBX: profile_id = "+profile_id+", survey_id = "+survey_id+", master_id = "+master_id+", column_id = "+column_id);
+    let token_key = $("#list_bx_token_key").val();
+    let main_id = $("#list_bx_main_id").val();
     startWaiting();
-    submitWindow({url: BASE_URL+"/survey_b5/open", params: {profile_id: profile_id, survey_id: survey_id, master_id: master_id, column_id: column_id}, windowName: "_self"});
+    submitWindow({url: BASE_URL+"/survey_b5/open", params: {token_key: token_key, profile_id: profile_id, survey_id: survey_id, master_id: master_id, column_id: column_id, main_id: main_id}, windowName: "_self"});
 }
 function confirmSurveyBXDelete(profile_id,survey_id,master_id,column_id,text,text2) {
     confirmDeleteMessage(function() { deleteBXForm(profile_id,survey_id,master_id,column_id); }, text+"<br/>"+text2);
 }
 function deleteBXForm(profile_id,survey_id,master_id,column_id) {
+    let token_key = $("#list_bx_token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_b5/remove",
         data: { 
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id, 
             survey_id: survey_id,
             master_id: master_id,
@@ -91,11 +96,13 @@ function displaySurveyBXDataTable() {
 }
 function searchSurveyBXDataTable(profile_id,survey_id,master_id,column_id) {
     console.log("searchDataTable: profile_id: " + profile_id + ", survey_id = "+survey_id+", master_id: " + master_id+", column_id: "+column_id);
+    let token_key = $("#list_bx_token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_b5/datatable",
         data: {
             ajax: true,
+            token_key: token_key,
             profile_id: profile_id,
             survey_id: survey_id,
             master_id: master_id,
@@ -122,13 +129,15 @@ function gotoSurveyBCategory() {
 }
 function openSurveyCategory(profile_id,survey_id) {
     console.log("openSurveyCategory: profile_id: " + profile_id + ", survey_id: " + survey_id);
+    let token_key = $("#list_bx_token_key").val();
     let main_id = $("#list_bx_main_id").val();
     startWaiting();
-    submitWindow({url: BASE_URL+"/survey_bx/open", params: {profile_id: profile_id, survey_id: survey_id, main_id: main_id}, windowName: "_self"});
+    submitWindow({url: BASE_URL+"/survey_bx/open", params: {token_key: token_key, profile_id: profile_id, survey_id: survey_id, main_id: main_id}, windowName: "_self"});
 }
 function gotoSurveyBAppendix() {
+    let token_key = $("#list_bx_token_key").val();
     let profile_id = $("#list_bx_profile_id").val();
     let survey_id = $("#list_bx_main_id").val();
     startWaiting();
-    submitWindow({url: BASE_URL+"/survey_b/open", params: {profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
+    submitWindow({url: BASE_URL+"/survey_b/open", params: {token_key: token_key, profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
 }

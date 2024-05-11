@@ -138,7 +138,8 @@ export class RouteManager extends BaseRouter {
         app.use(async (req: Request, res: Response, next: Function) => { this.doValidate(req,res,next); });
 
         //app.get('/index', (req: Request, res: Response) => { render.doIndex(req,res); });
-        app.get('/index', (req: Request, res: Response) => { survey.routeListAlls(req,res); });
+        app.get('/index/:token_key?', (req: Request, res: Response) => { survey.routeListAlls(req,res); });
+        app.post('/index/:token_key?', (req: Request, res: Response) => { survey.routeListAlls(req,res); });
         app.use("/user", user.route(app));
         app.use("/export", exporter.route(app));
         app.use("/data", data.route(app));

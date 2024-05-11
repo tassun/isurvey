@@ -7,11 +7,24 @@ import { HTTP } from "../api/HTTP";
 import { DB_SECTION } from "../utils/EnvironmentVariable";
 import { Utilities } from "will-util";
 import { BaseSystem } from "./BaseSystem";
-import e from "express";
+import { UserTokenInfo } from "../libs/AuthenToken";
+import { AuthenToken } from "../libs/AuthenToken";
 
 export class BaseHandler extends BaseSystem {
     public section: string = DB_SECTION;
     
+    protected getTokenInfo(context: KnContextInfo) : UserTokenInfo | undefined {
+        let token = this.getTokenKey(context);
+        if(token) {
+            try {
+                return AuthenToken.verifyToken(token, false);
+            } catch(ex) {
+                this.logger.error(this.constructor.name+".getTokenInfo",ex);            
+            }
+        }
+        return undefined;
+    }
+
     protected getHeaderParameter(context: KnContextInfo, parameterName: string) : string | undefined {
         let result = undefined;
         if(context) {     

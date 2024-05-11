@@ -70,7 +70,8 @@ function loginSuccess(data) {
             alertbox(msg);
             return;
         }
-        window.open("/index", "_self");
+        let token = json.body.token;
+        window.open("/index"+(token?"/"+token:""), "_self");
     } catch(ex) { 
         console.error(ex);
     }

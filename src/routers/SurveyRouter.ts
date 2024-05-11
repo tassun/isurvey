@@ -72,21 +72,21 @@ export class SurveyRouter extends OperateRouter {
 	public override route(app: Application) : Router {
 		super.route(app);
 		//gui can post or get
-		this.router.get('/listalls', async (req: Request, res: Response) => { this.routeListAlls(req,res); });
-		this.router.post('/listalls', async (req: Request, res: Response) => { this.routeListAlls(req,res); });
-		this.router.get('/add', async (req: Request, res: Response) => { this.routeAdd(req,res); });
-		this.router.post('/add', async (req: Request, res: Response) => { this.routeAdd(req,res); });
-		this.router.get('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
-		this.router.post('/edit', async (req: Request, res: Response) => { this.routeEdit(req,res); });
-		this.router.get('/edit/:profile_id', async (req: Request, res: Response) => { this.routeEdit(req,res); });
-		this.router.get('/add/dialog', async (req: Request, res: Response) => { this.routeAdd(req,res,"survey_profile_dialog"); });
-		this.router.post('/add/dialog', async (req: Request, res: Response) => { this.routeAdd(req,res,"survey_profile_dialog"); });
-		this.router.get('/edit/dialog', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
-		this.router.post('/edit/dialog', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
-		this.router.get('/edit/dialog/:profile_id', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
-		this.router.get('/form', async (req: Request, res: Response) => { this.routeForm(req,res); });
-		this.router.post('/form', async (req: Request, res: Response) => { this.routeForm(req,res); });
-		this.router.get('/form/:profile_id', async (req: Request, res: Response) => { this.routeForm(req,res); });
+		this.router.get('/listalls/:token_key?', async (req: Request, res: Response) => { this.routeListAlls(req,res); });
+		this.router.post('/listalls/:token_key?', async (req: Request, res: Response) => { this.routeListAlls(req,res); });
+		this.router.get('/add/:token_key?', async (req: Request, res: Response) => { this.routeAdd(req,res); });
+		this.router.post('/add/:token_key?', async (req: Request, res: Response) => { this.routeAdd(req,res); });
+		this.router.get('/edit/:token_key?', async (req: Request, res: Response) => { this.routeEdit(req,res); });
+		this.router.post('/edit/:token_key?', async (req: Request, res: Response) => { this.routeEdit(req,res); });
+		this.router.get('/edit/:profile_id/:token_key?', async (req: Request, res: Response) => { this.routeEdit(req,res); });
+		this.router.get('/add/dialog/:token_key?', async (req: Request, res: Response) => { this.routeAdd(req,res,"survey_profile_dialog"); });
+		this.router.post('/add/dialog/:token_key?', async (req: Request, res: Response) => { this.routeAdd(req,res,"survey_profile_dialog"); });
+		this.router.get('/edit/dialog/:token_key?', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
+		this.router.post('/edit/dialog/:token_key?', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
+		this.router.get('/edit/dialog/:profile_id/:token_key?', async (req: Request, res: Response) => { this.routeEdit(req,res,"survey_profile_dialog"); });
+		this.router.get('/form/:token_key?', async (req: Request, res: Response) => { this.routeForm(req,res); });
+		this.router.post('/form/:token_key?', async (req: Request, res: Response) => { this.routeForm(req,res); });
+		this.router.get('/form/:profile_id/:token_key?', async (req: Request, res: Response) => { this.routeForm(req,res); });
 		return this.router;
 	}
 	

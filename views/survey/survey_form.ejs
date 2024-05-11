@@ -13,7 +13,7 @@
 		<%- include('../partials/page_header') %>
 		<nav id="breadnavigator" aria-label="breadcrumb" style="margin-left: 5px;">
 			<ol class="breadcrumb">
-			  <li class="breadcrumb-item"><a href="/index" id="bread_home_linker"><i class="home icon"></i>หน้าหลัก</a></li>
+			  <li class="breadcrumb-item"><a href="/index/<%=meta.token_key%>" id="bread_home_linker"><i class="home icon"></i>หน้าหลัก</a></li>
 			  <li class="breadcrumb-item active" aria-current="page">แบบสำรวจข้อมูล</li>
 			</ol>
 		</nav>
@@ -21,11 +21,11 @@
 			<div class="page-header row">
 				<div class="col-md"><h3>แบบสำรวจข้อมูล</h3></div>
 				<div class="col-md-2">
-					<a href="/index" id="homelinker" class="ui blue button pull-right nowrap"><i class="home icon"></i> หน้าหลัก</a>
+					<a href="/index/<%=meta.token_key%>" id="homelinker" class="ui blue button pull-right nowrap"><i class="home icon"></i> หน้าหลัก</a>
 				</div>
 			</div>
 			<div class="body">
-				<input type="hidden" id="userid" name="userid" value="<%=meta.user?.userid%>" />
+				<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
 				<input type="hidden" id="profile_id" value="<%=data.dataset?.profile_id %>">
 				<div class="row">
 				<%

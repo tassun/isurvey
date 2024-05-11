@@ -9,6 +9,10 @@ export class OperateHandler extends ProcessHandler {
         let now = Utilities.now();
         let userid = context.meta?.user?.userid;
         if(!userid) userid = context.params?.userid;
+        if(!userid) {
+            let tokenInfo = this.getTokenInfo(context);
+            if(tokenInfo) userid = tokenInfo.userid;
+        }
         if(created) {
             data.create_date = now;
             data.create_time = now;
