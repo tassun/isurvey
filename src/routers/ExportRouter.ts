@@ -22,15 +22,17 @@ export class ExportRouter extends OperateRouter {
             if(directoryContents.length>0) {
                 //zip all files in folder
                 if(this.zipFolder) {
-                    directoryContents.forEach(({ name }) => {
-                        const filePath = path.join(zipPath, name);            
+                    for(let dir of directoryContents) {
+                        const filePath = path.join(zipPath, dir.name); 
+                        this.logger.debug(this.constructor.name+".doExport: filePath",filePath);           
                         if(fs.statSync(filePath).isFile()) {
-                            zipper.file(name, fs.readFileSync(filePath, "utf-8"));
+                            zipper.file(dir.name, fs.readFileSync(filePath, "utf-8"));
                         }
-                    });
+                    }
                 } else {
                     for(let name of rs.rows) {
                         const filePath = path.join(zipPath, name);            
+                        this.logger.debug(this.constructor.name+".doExport: filePath",filePath);           
                         if(fs.statSync(filePath).isFile()) {
                             zipper.file(name, fs.readFileSync(filePath, "utf-8"));
                         }
@@ -50,13 +52,14 @@ export class ExportRouter extends OperateRouter {
 		let ctx = await this.createContext(req);
 		try {
 			let filename = await this.doExport(ctx);
-			this.logger.debug("export file",filename);
+			this.logger.debug(this.constructor.name+".routExport: export file",filename);
             if(filename) {
 			    res.download(filename,this.exportFile);
             } else {
                 res.render("pages/none");
             }
 		} catch(ex) { 
+            this.logger.error(this.constructor.name+".routExport: error",ex);
 			this.sendError(res, ex, "export", ctx);
 		}
 	}

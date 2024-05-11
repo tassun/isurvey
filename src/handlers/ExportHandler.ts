@@ -48,7 +48,7 @@ export class ExportHandler extends ProcessHandler {
         for(let info of this.exportInfo) {
             let rs = await this.getResultSet(context, db, info.table);
             if(rs) {
-                this.writeDataFile(info.file,rs)
+                await this.writeDataFile(info.file,rs)
                 result.records++;
                 result.rows.push(info.file);
             }
@@ -65,20 +65,30 @@ export class ExportHandler extends ProcessHandler {
     public async writeDataFile(fileName: string, rs: KnResultSet) : Promise<void> {
         let filePath = path.join(this.exportDir,fileName);
         this.logger.info(this.constructor.name+".writeDataFile:",filePath);
-        let writer = fs.createWriteStream(filePath,"utf-8");
-        try {
-            if(rs.rows && rs.rows.length>0) {
-                let header = Object.keys(rs.rows[0]).join(",");
-                writer.write(header+"\n");
-                for(let row of rs.rows) {
-                    row = this.transformData(row);
-                    let values = Object.values(row).map(function(value){ return value?"\""+value+"\"":value}) .join(",");
-                    writer.write(values+"\n");
+        return new Promise<void>((resolve, reject) => {
+            let writer = fs.createWriteStream(filePath,"utf-8");
+            writer.on('finish', () => {
+                this.logger.info(this.constructor.name+" finish writing: ",filePath);
+                resolve();
+            });
+            writer.on('error', (err) => {
+                this.logger.info(this.constructor.name+" writing error: "+filePath,err);
+                reject(err);
+            });            
+            try {
+                if(rs.rows && rs.rows.length>0) {
+                    let header = Object.keys(rs.rows[0]).join(",");
+                    writer.write(header+"\n");
+                    for(let row of rs.rows) {
+                        row = this.transformData(row);
+                        let values = Object.values(row).map(function(value){ return value?"\""+value+"\"":value}) .join(",");
+                        writer.write(values+"\n");
+                    }
                 }
+            } finally {
+                writer.end();
             }
-        } finally {
-            writer.close();
-        }
+        });
     }
 
     public override formatData(info: KnFormatInfo) : any {
