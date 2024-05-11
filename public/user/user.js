@@ -36,6 +36,7 @@ $(function() {
     });
 });
 function initDataTable() {
+    let token_key = $("#token_key").val();
     datatable = $('#data-table').DataTable({
         bAutoWidth: false,
         responsive: true,
@@ -61,6 +62,7 @@ function initDataTable() {
             dataSrc: 'body.rows',
             url: '/user/list',
             type: 'POST',
+            data: { ajax: true, token_key: token_key },
         },
         fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $(nRow).data("userdata", aData);
@@ -81,8 +83,10 @@ function confirmAddUser() {
     }
 }
 function addNewUser() {
+    let token_key = $("#token_key").val();
     let userdata = {
         ajax: true,
+        token_key: token_key,
         name: $("#a_name").val(),
         surname: $("#a_surname").val(),
         email: $("#a_email").val(),
@@ -152,8 +156,10 @@ function confirmUpdateUser(row,datarow) {
     }
 }
 function updateUser(row,datarow) {
+    let token_key = $("#token_key").val();
     let userdata = {
         ajax: true,
+        token_key: token_key,
         userid: $('#e_userid').val(),
         name: $('#e_name').val(),
         surname: $('#e_surname').val(),
@@ -193,10 +199,11 @@ function confirmDeleteUser(element) {
     confirmDeleteMessage(function() { deleteUser(userdata); });
 }
 function deleteUser(userdata) {
+    let token_key = $("#token_key").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/user/remove",
-        data: { ajax: true, userid: userdata.userid },
+        data: { ajax: true, token_key: token_key, userid: userdata.userid },
         type: "POST",
         dataType: "json",
         contentType: defaultContentType,

@@ -101,7 +101,7 @@ export class BaseRouter extends BaseSystem {
 
     protected getTokenFromUrl(originalUrl: string) : string {
         let token = "";
-        const URL_LIST = ["/index/","/survey/add/","/survey/edit/"];
+        const URL_LIST = ["/index/","/user/listalls/","/survey/add/","/survey/edit/"];
         for(let url of URL_LIST) {
             let index = originalUrl.indexOf(url);
             if(index>=0) {
