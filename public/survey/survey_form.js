@@ -3,10 +3,9 @@ var mouseY = 0;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("form"); }catch(ex) { }
-    $("a.topic-linker").click(function() {
-        openSurveyForm(this);
-        return false;
-    });
+    $("a.topic-linker").click(function() { openSurveyForm(this); return false; });
+    $("#homebuttonlinker").click(function() { gotoHomerForm(); return false; });
+    $("#breadhomelinker").click(function() { gotoHomerForm(); return false; });
 });
 function openSurveyForm(src) {
     let link = $(src);

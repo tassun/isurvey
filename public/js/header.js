@@ -1,5 +1,8 @@
 $(function() {
+    $("#homerlinker").click(function() { gotoHomerForm(); return false; });
+    $("#memberlinker").click(function() { gotoMemberForm(); return false; });
     $("#logoutlinker").click(function() { confirmLogout(); return false; });
+    $("#bread_home_linker").click(function() { gotoHomerForm(); return false; });
     $("#bread_form_linker").click(function() { gotoSurveyForm(); return false; });
     $("#master_bread_form_linker").click(function() { gotoSurveyBAppendix(); return false; });
     $("#table_bread_form_linker").click(function() { gotoSurveyBCategory(); return false; });
@@ -34,6 +37,14 @@ function doLogout() {
     $("#password").val("");
     $("#username").focus();
     window.open("/login", "_self");
+}
+function gotoHomerForm() {
+    let token_key = $("#token_key").val();
+    submitWindow({url: BASE_URL+"/index", params: {token_key: token_key}, windowName: "_self"});
+}
+function gotoMemberForm() {
+    let token_key = $("#token_key").val();
+    submitWindow({url: BASE_URL+"/user/listalls", params: {token_key: token_key}, windowName: "_self"});
 }
 function gotoSurveyForm(profile_id) {
     if(!profile_id) profile_id = $("#profile_id").val();

@@ -5,6 +5,7 @@ $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("member"); }catch(ex) { }
     initDataTable();
+    $("#breadhomelinker").click(function() { gotoHomerForm(); return false; });
     $("#refreshuserutton").on('click', function () {
         refreshDataTable();
     });

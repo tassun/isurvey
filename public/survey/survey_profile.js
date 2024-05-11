@@ -8,6 +8,7 @@ $(function() {
     setupUI();
 });
 function setupComponents() {
+    $("#breadhomelinker").click(function() { gotoHomerForm(); return false; });
     $("#buttonsave").click(function() { confirmSaveSurvey(this); return false; });
     $("#buttoncancel").click(function() { confirmCancelSurvey(this); return false; });
     $("#buttonupdate").click(function() { confirmUpdateSurvey(this); return false; });

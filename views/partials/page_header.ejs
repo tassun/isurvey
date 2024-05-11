@@ -1,7 +1,7 @@
 <div id="header" class="header navbar navbar-default navbar-fixed-top ">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="/index/<%=meta.token_key%>" class="navbar-brand"><img src="<%=meta.cdn_url%>/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+            <a href="javascript:void(0)" id="homerlinker" class="navbar-brand"><img src="<%=meta.cdn_url%>/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown navbar-user">
@@ -10,7 +10,7 @@
                 </a>
                 <ul class="dropdown-menu pull-right">
                     <%if(meta.user?.level=='ADMIN') {%>
-                    <li><a href="/user/listalls/<%=meta.token_key%>" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
+                    <li><a href="javascript:void(0)" id="memberlinker">จัดการผู้ใช้งาน (User)</a></li>
                     <%}%>
                     <li><a href="javascript:void(0)" id="logoutlinker" class="item btn-form-logout logout-linker">ออกจากระบบ</a></li>
                 </ul>

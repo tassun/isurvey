@@ -4,12 +4,23 @@ var datatable;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("survey"); }catch(ex) { }
+    $("#addsurveylinker").click(function() { gotoAddSurvey(); return false; });
+    $("#export-linker").click(function() { gotoExportSurvey(); return false; });
     initDataTable();
     $("#refreshuserutton").on('click', function () {
         refreshDataTable();
         return false;
     });
 });
+function gotoAddSurvey() {
+    let token_key = $("#token_key").val();
+    startWaiting();
+    submitWindow({url: BASE_URL+"/survey/add", params: {token_key: token_key}, windowName: "_self"});
+}
+function gotoExportSurvey() {
+    let token_key = $("#token_key").val();
+    submitWindow({url: BASE_URL+"/export/csv", params: {token_key: token_key}, windowName: "_self"});
+}
 function initDataTable() {
     let token_key = $("#token_key").val();
     datatable = $('#data-table').DataTable({
