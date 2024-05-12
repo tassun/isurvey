@@ -1,5 +1,6 @@
 var mouseX = 0;
 var mouseY = 0;
+var canFocused = false;
 $(function() {
 	$(this).mousedown(function(e) { mouseX = e.pageX; mouseY = e.pageY; });
 	try { startApplication("profile"); }catch(ex) { }
@@ -25,6 +26,7 @@ function setupDataControls() {
     $("#amphure_2").change(function() { setupDistrict("district_2",$(this).val()); });
 }
 function setupUI() {
+    canFocused = false;
     $('input[name="A4"]').on('change', function() {
         if ($(this).val() == '1') {
             $(".A4-1-set").removeAttr('disabled');
@@ -47,6 +49,7 @@ function setupUI() {
     $('input[name="A_02"]').on('change', function() {
         if ($(this).val() == '0') {
             $("#A_02_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_02_text").focus();
         } else {
             $("#A_02_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -54,6 +57,7 @@ function setupUI() {
     $('input[name="A_05"]').on('change', function() {
         if ($(this).val() == '8') {
             $("#A_05_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_05_text").focus();
         } else {
             $("#A_05_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -61,6 +65,7 @@ function setupUI() {
     $('input[name="A_06"]').on('change', function() {
         if ($(this).val() == '11') {
             $("#A_06_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_06_text").focus();
         } else {
             $("#A_06_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -68,6 +73,7 @@ function setupUI() {
     $('input[name="A_07"]').on('change', function() {
         if ($(this).val() == '7') {
             $("#A_07_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_07_text").focus();
         } else {
             $("#A_07_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -75,27 +81,28 @@ function setupUI() {
     $('input[name="A_08"]').on('change', function() {
         if ($(this).val() == '2') {
             $("#A_08_text").attr('data-parsley-required', 'true').prop('readonly', false);
-            $('input[name="A_08_N"]').prop('checked', false).prop('disabled', true);
-            $("#A_08_N_text").attr('data-parsley-required', 'false').prop('readonly', true);
-            $("#A_08_N_1").attr('data-parsley-required', 'false');
-        } else {
-            $("#A_08_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
             $('input[name="A_08_N"]').prop('disabled', false);
             $("#A_08_N_1").attr('data-parsley-required', 'true');
+            if(canFocused) $("#A_08_text").focus();
+        } else {
+            $("#A_08_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+            $('input[name="A_08_N"]').prop('checked', false).prop('disabled', true);
+            $("#A_08_N_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
+            $("#A_08_N_1").attr('data-parsley-required', 'false');
         }
     });
     $('input[name="A_08_N"]').on('change', function() {
         if ($(this).val() === '10') {
             $("#A_08_N_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_08_N_text").focus();
         } else {
             $("#A_08_N_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
     $('input[name="A_09"]').on('change', function() {
         if ($(this).val() == '2') {
-            $("#A_09_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            //$("#A_09_text").attr('data-parsley-required', 'true').prop('readonly', false);
             $('input.A_09_2').prop('disabled', false);
-            $("#A_09_09").trigger("change");
         } else {
             $("#A_09_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
             $('input.A_09_2').prop('checked', false).prop('disabled', true);
@@ -104,6 +111,7 @@ function setupUI() {
     $("#A_09_09").change(function() {
         if($(this).is(":checked")) {
             $("#A_09_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_09_text").focus();
         } else {
             $("#A_09_text").attr('data-parsley-required', 'false').prop('readonly', true);
         }
@@ -111,6 +119,7 @@ function setupUI() {
     $('input[name="A_10"]').on('change', function() {
         if ($(this).val() == '6') {
             $("#A_10_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_10_text").focus();
         } else {
             $("#A_10_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -118,6 +127,7 @@ function setupUI() {
     $('input[name="A_12"]').on('change', function() {
         if ($(this).val() == '9') {
             $("#A_12_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_12_text").focus();
         } else {
             $("#A_12_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -125,6 +135,7 @@ function setupUI() {
     $('input[name="A_13"]').on('change', function() {
         if ($(this).val() === '6') {
             $("#A_13_text").attr('data-parsley-required', 'true').prop('readonly', false);
+            if(canFocused) $("#A_13_text").focus();
         } else {
             $("#A_13_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
@@ -138,6 +149,7 @@ function setupUI() {
     });
     $("input[type=radio]:checked",$("#profile-form-data-layer")).trigger("change");
     $("input[type=checkbox]:checked",$("#profile-form-data-layer")).trigger("change");
+    canFocused = true;
 }
 function assignSelctedValues() {
     $("#A4_1_2_text").val("");
