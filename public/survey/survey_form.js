@@ -12,6 +12,7 @@ function openSurveyForm(src) {
     let url = link.attr("data-url");
     let survey_id = link.attr("data-survey");
     let token_key = $("#token_key").val();
+    console.log("openSurveyForm: url="+url+",  survey_id="+survey_id+", token_key="+token_key);
     startWaiting();
     submitWindow({url: BASE_URL+url, params: {token_key: token_key, profile_id: $("#profile_id").val(), survey_id: survey_id}, windowName: "_self"});
 }

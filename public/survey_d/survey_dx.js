@@ -1,5 +1,3 @@
-const c = require("config");
-
 var canFocused = false;
 $(function() {
     setupComponentsApt();
