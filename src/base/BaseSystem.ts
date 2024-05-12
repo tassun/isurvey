@@ -28,12 +28,12 @@ export abstract class BaseSystem {
                 token = context.params.req.headers.auth_token || context.params.req.headers.token_key;
                 if(token) return token;
             }
-            if(context.params) {
-                token = context.params.auth_token || context.params.token_key;
-                if(token) return token;
-            }
             if(context.meta.user) {
                 token = context.meta.user.token;
+                if(token) return token;
+            }
+            if(context.params) {
+                token = context.params.auth_token || context.params.token_key;
                 if(token) return token;
             }
         }
