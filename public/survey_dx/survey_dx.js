@@ -34,6 +34,7 @@ function confirmUpdateSurveyApt(src) {
     }
 }
 function saveSurveyApt(src) {
+    let profile_id = $("#dx_profile_id").val();
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey_dx/insert",
@@ -50,8 +51,7 @@ function saveSurveyApt(src) {
             if(data.head.errorflag=="Y") {
                 alertmsg(data.head.errordesc);
             } else {
-                let profile_id = $("#dx_profile_id").val();
-                successMessage(function() { gotoSurveyFormApt(profile_id); });
+                successMessage(function() { gotoSurveyForm(profile_id); });
             }
         }
     });
@@ -74,16 +74,27 @@ function updateSurveyApt(src) {
             if(data.head.errorflag=="Y") {
                 alertmsg(data.head.errordesc);
             } else {
-                successMessage(function() { gotoSurveyFormApt(profile_id); }); 
+                successMessage(function() { gotoSurveyForm(profile_id); }); 
             }
         }
     });
 }
-function gotoSurveyFormApt(profile_id) {
+function gotoHomerForm() {
     let token_key = $("#dx_token_key").val();
-    let profile_id = $("#dx_profile_id").val();
+    submitWindow({url: BASE_URL+"/index", params: {token_key: token_key}, windowName: "_self"});
+}
+function gotoSurveyForm(profile_id) {
+    if(!profile_id) profile_id = $("#dx_profile_id").val();
+    let token_key = $("#dx_token_key").val();
     startWaiting();
     submitWindow({url: BASE_URL+"/survey/form", params: {token_key: token_key, profile_id: profile_id}, windowName: "_self"});
+}
+function gotoSurveyBAppendix() {
+    let token_key = $("#dx_token_key").val();
+    let profile_id = $("#dx_profile_id").val();
+    let survey_id = $("#dx_master_id").val();
+    startWaiting();
+    submitWindow({url: BASE_URL+"/survey_d/open", params: {token_key: token_key, profile_id: profile_id, survey_id: survey_id}, windowName: "_self"});
 }
 function setupUIApt() {
     canFocused = false;

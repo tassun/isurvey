@@ -9,7 +9,11 @@ $(function() {
 function setupComponentsAptList() {
     $("#dxbuttoncancel").click(function() { confirmCancelSurveyAptList(this); return false; });
 }
-function gotoSurveyFormAptList(profile_id) {
+function gotoHomerForm() {
+    let token_key = $("#list_dx_token_key").val();
+    submitWindow({url: BASE_URL+"/index", params: {token_key: token_key}, windowName: "_self"});
+}
+function gotoSurveyForm(profile_id) {
     if(!profile_id) profile_id = $("#list_dx_profile_id").val();
     let token_key = $("#list_dx_token_key").val();
     startWaiting();

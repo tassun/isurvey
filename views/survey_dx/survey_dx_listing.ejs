@@ -11,7 +11,16 @@
 	</style>
 </head>
 <body>
+	<%- include('../partials/page_waiting') %>
 	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<%- include('../partials/page_header') %>
+		<nav id="breadnavigator" aria-label="breadcrumb" style="margin-left: 5px;">
+			<ol class="breadcrumb">
+			  <li class="breadcrumb-item"><a href="่javascript:void(0);" id="bread_home_linker"><i class="home icon"></i>หน้าหลัก</a></li>
+			  <li class="breadcrumb-item"><a href="่่javascript:void(0);" id="bread_form_linker">แบบสำรวจข้อมูล</a></li>
+			  <li class="breadcrumb-item active" aria-current="page">แบบสำรวจ</li>
+			</ol>
+		</nav>		
 		<div class="panel container" style="margin-top : 10px;">
 			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจข้อมูลสถิติอาชญากรรมภาคประชาชน</h1>
 			<div class="body">
