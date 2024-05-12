@@ -52,6 +52,10 @@ export class RouteManager extends BaseRouter {
         res.sendFile(parent + '/public/welcome.html');
     }    
 
+    private doHealth(req: Request, res: Response) {
+        res.json({status: "OK"});
+    }    
+
     private async doValidate(req: Request, res: Response, next: Function) {
         try {
             await this.validateUser(req,res);
@@ -125,7 +129,9 @@ export class RouteManager extends BaseRouter {
             } catch(ex) { }
             next();
         });
-        new TestRouter(this.dir,this.logger).route(app);        
+        app.get("/health", (req: Request, res: Response) => { this.doHealth(req,res); });
+        app.post("/health", (req: Request, res: Response) => { this.doHealth(req,res); });
+        new TestRouter(this.dir,this.logger).route(app);
 
         app.get("/", (req: Request, res: Response) => { this.doHome(req,res); });
         app.get('/home', (req: Request, res: Response) => { this.doHome(req,res); });  

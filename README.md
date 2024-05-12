@@ -57,3 +57,9 @@ To generate SSL certificates, use OpenSSL. Follow the steps below to create a se
 
     openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
 
+
+## Health Check
+
+This project contains health check API that it can invoke by [curl](https://curl.se/download.html):
+
+* curl http://localhost:8080/health 
