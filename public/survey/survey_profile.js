@@ -165,7 +165,7 @@ function assignSelctedValues() {
 }
 function confirmCancelSurvey(src) {
     confirmCancelMessage(function() {
-        window.history.back();
+        gotoHomerForm();
     });
 }
 function confirmSaveSurvey(src) {
