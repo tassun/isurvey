@@ -534,6 +534,7 @@ function startApplication(pid,unbind,aform) {
 	} catch(ex) { }
 	initialComponents();
 	try { requestAccessorInfo(); }catch(ex) { }
+	window.onbeforeunload = function () { try { stopWaiting(); } catch(ex) { } }
 }
 function initialAjax() {
 	$.ajaxPrefilter(function( options, originalOptions, xhr ) {
