@@ -2,3 +2,5 @@
 .page-title { margin-top : 10px; }
 .remark-layer { margin-left: 10px; }
 .btn-container { margin-left: auto; margin-right: 0; }
+.gmap-layer { display: none; width: 100%; }
+.gmap-layer > .gmap{ height: 400px; width: 100%; }

@@ -8,6 +8,7 @@ function setupComponentsProfile(callback) {
     $("#profilebuttonsave").click(function() { confirmSaveSurveyProfile(this,callback); return false; });
     $("#profilebuttoncancel").click(function() { confirmCancelSurveyProfile(this,callback); return false; });
     $("#profilebuttonupdate").click(function() { confirmUpdateSurveyProfile(this,callback); return false; });
+    setupGmap();
 }
 function setupDataControlsProfile() {
     setupProvince("province_2",$("#province_2").attr("data-value"),$("#province_1").val());

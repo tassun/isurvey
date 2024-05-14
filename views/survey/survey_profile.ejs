@@ -5,7 +5,9 @@
 		<%- include('../asset/meta') %>		
 		<%- include('../asset/styles') %>		
 		<%- include('../asset/scripts') %>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOwyUEHanTogKv_ckLp8NlgNEGlydyu1s"></script>
 		<link rel="stylesheet" type="text/css" href="<%=meta.cdn_url%>/survey/survey_profile.css" />
+		<script type="text/javascript" src="<%=meta.cdn_url%>/survey/survey_gmap.js"></script>
 		<script type="text/javascript" src="<%=meta.cdn_url%>/survey/survey_profile.js"></script>
 		<script type="text/javascript" nonce="YXNzdXJl">
 			var data_category = <%-JSON.stringify(data.entity)%>;

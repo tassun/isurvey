@@ -32,11 +32,24 @@
 							</div>
 							<div class="row indent">
 								<label class="col-form-label nText col-lg-3">A3 พิกัดบ้าน (NS) (EW)<span class="star"> *</span></label>
-								<div class="col-lg-4">
-									<input type="text" class="form-control" id="A3" name="A3" data-parsley-required="true" value="<%=data.dataset?.A3%>" />
+								<div class="col-lg-5">
+									<div class="input-group">
+										<input type="text" class="form-control" id="A3" name="A3" data-parsley-required="true" value="<%=data.dataset?.A3%>" />
+										<input type="button" id="gmapbutton" class="btn btn-dark btn-sm" value="Pin Location" />
+									</div>
 								</div>
 							</div>
-							<div class="row">
+							<div id="gmap-layer" class="row gmap-layer">
+								<div id="gmap" class="gmap">
+								</div>
+								<div class="row row-heighter modal-footer pull-right">
+									<div class="col-md-12 col-height pull-right">
+										<input type="button" id="choosemapbutton" class="btn btn-dark btn-sm" value="Choose"/>
+										<input type="button" id="cancelmapbutton" class="btn btn-dark btn-sm" value="Cancel"/>
+									</div>
+								</div>
+							</div>
+							<div class="row indent">
 								<label class="nText">หมายเหตุ : ข้อมูลที่จัดเก็บจากการสำรวจครั้งนี้จะถูกเก็บไว้เป็นความลับ และถูกนำมาใช้วิเคราะห์ในภาพรวมเพื่อประโยชน์สำหรับการดำเนินงานของสำนักงานกิจการยุติธรรม กระทรวงยุติธรรม เท่านั้น</label></br>
 							</div>
 							<div class="row">

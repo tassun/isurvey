@@ -6,3 +6,5 @@
 .seqno-label { font-weight: 100; }
 #profilebuttoncancel { margin-left: 15px; }
 .dialog-body { margin-left: 15px; margin-right: 15px; }
+.gmap-layer { display: none; width: 100%; }
+.gmap-layer > .gmap{ height: 400px; width: 100%; }
