@@ -25,10 +25,21 @@ function initDataTable() {
     let token_key = $("#token_key").val();
     datatable = $('#data-table').DataTable({
         bAutoWidth: false,
-        responsive: false,
+        responsive: true,
         columnDefs: [
             { orderable: false, targets: [6] },
             { className: "text-left", targets: [2,5] },
+            { targets: 6, 
+                render: function(data, type, row, meta) {
+                    let buf = '<a href="javascript:void(0)" class="btn-form-edit" data-profile="'+row.profile_id+'" data-code="'+row.profile_code+'"><i class="edit icon large enable-color"></i></a>';
+                    if(row.ownered == "1") {
+                        buf += '<a href="javascript:void(0)" class="btn-form-delete" data-profile="'+row.profile_id+'" data-code="'+row.profile_code+'"><i class="trash icon large alert-color"></i></a>';
+                    } else {
+                        buf += '<a href="javascript:void(0)" class="btn-form-disable"><i class="trash icon large disable-color"></i></a>';
+                    }
+                    return buf;
+                }
+            },
         ],
         columns: [
             { data: 'profile_code' },
@@ -45,6 +56,7 @@ function initDataTable() {
             type: 'POST',
             data: { ajax: true, token_key: token_key },
         },        
+        /*
         fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $(nRow).data("userdata", aData);            
             let editbtn = $('<a href="javascript:void(0)" class="btn-form-edit"><i class="edit icon large enable-color"></i></a>');
@@ -57,22 +69,42 @@ function initDataTable() {
             editbtn.click(function() { confirmEditSurvey(this); });
             let td = $('td:last', nRow).empty();
             td.append(editbtn).append(delbtn);            
-        }
+        }*/
+    });
+    datatable.on('click', 'a.btn-form-edit', function(e) {
+        //e.target is i tag
+        let pr = $(e.target).parent();
+        let profile_id = pr.attr("data-profile");
+        let profile_code = pr.attr("data-code");
+        let adata = {profile_id: profile_id, profile_code: profile_code};
+        let data = datatable.row(e.target.closest('tr')).data();
+        console.log("click data edit: adata", adata,", data", data);
+        confirmEditSurvey(this,data || adata);
+    });
+    datatable.on('click', 'a.btn-form-delete', function(e) {
+        //e.target is i tag
+        let pr = $(e.target).parent();
+        let profile_id = pr.attr("data-profile");
+        let profile_code = pr.attr("data-code");
+        let adata = {profile_id: profile_id, profile_code: profile_code};
+        let data = datatable.row(e.target.closest('tr')).data();
+        console.log("click data delete: adata", adata,", data", data);
+        confirmDeleteSurvey(this,data || adata);
     });
 }
-function confirmEditSurvey(element) {
+function confirmEditSurvey(element,data) {
     let button = $(element); 
     let tr = button.closest("tr");
-    let userdata = tr.data("userdata");
+    let userdata = tr.data("userdata") || data;
     if(userdata) {
         let token_key = $("#token_key").val();
         startWaiting();
         submitWindow({url: BASE_URL+"/survey/edit", params: {token_key: token_key, profile_id: userdata.profile_id}, windowName: "_self"});
     }
 }
-function confirmDeleteSurvey(element) {
+function confirmDeleteSurvey(element,data) {
     let tr = $(element).closest("tr");
-    let userdata = tr.data("userdata");
+    let userdata = tr.data("userdata") || data;
     confirmDeleteMessage(function() { deleteSurvey(userdata); },userdata.profile_code);
 }
 function deleteSurvey(userdata) {
