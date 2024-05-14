@@ -6,6 +6,9 @@
 	<%- include('../asset/styles') %>		
 	<%- include('../asset/scripts') %>
 	<script type="text/javascript" src="<%=meta.cdn_url%>/measure_g/measure_g.js"></script>
+	<style nonce="YXNzdXJl">
+		.fix-width { min-width: 90px; }
+	</style>
 </head>
 <body>
 	<%- include('../partials/page_waiting') %>
@@ -33,11 +36,11 @@
 											<th class="tg-c3oa bg" colspan="5">ระดับความเชื่อมั่น</th>
 										</tr>
 										<tr>
-											<th class="tg-9wq8 bg nowrap">มาก</th>
-											<th class="tg-c3ow bg nowrap">ค่อนข้างมาก</th>
-											<th class="tg-c3ow bg nowrap">ปานกลาง</th>
-											<th class="tg-c3ow bg nowrap">ค่อนข้างน้อย</th>
-											<th class="tg-c3ow bg nowrap">น้อย</th>
+											<th class="tg-9wq8 bg nowrap fix-width">มาก</th>
+											<th class="tg-c3ow bg nowrap fix-width">ค่อนข้างมาก</th>
+											<th class="tg-c3ow bg nowrap fix-width">ปานกลาง</th>
+											<th class="tg-c3ow bg nowrap fix-width">ค่อนข้างน้อย</th>
+											<th class="tg-c3ow bg nowrap fix-width">น้อย</th>
 										</tr>
 										<tr>
 											<th class="tg-9wq8 bg">(5)</th>

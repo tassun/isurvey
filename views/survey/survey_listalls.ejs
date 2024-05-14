@@ -25,21 +25,23 @@
 				<a href="javascript:void(0);" id="export-linker" class="btn btn-default ui blue button"><i class="download icon small"></i> นำออกข้อมูลแบบสำรวจ</a>
 				<div class="page-title"><h1 class="page-header">รายการแบบสำรวจ</h1></div>
 				<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
-				<table id="data-table" class="table table-bordered table-hover table-striped table-td-valign-middle">
-					<thead>
-						<tr class="inverse">
-							<th class="text-center">แบบสำรวจลำดับที่</th>
-							<th class="text-center">บ้านเลขที่</th>
-							<th class="text-center">จังหวัด</th>
-							<th class="text-center">เพศ</th>
-							<th class="text-center">อายุ</th>
-							<th class="text-center">ผู้สำรวจ</th>
-							<th class="text-center">แก้ไข</th>
-						</tr>
-					</thead>
-					<tbody id="data-table-body">
-					</tbody>
-				</table>
+				<div id="listtablepanel" class="table-responsive">
+					<table id="data-table" class="table table-bordered table-hover table-striped table-td-valign-middle">
+						<thead>
+							<tr class="inverse">
+								<th class="text-center">แบบสำรวจลำดับที่</th>
+								<th class="text-center">บ้านเลขที่</th>
+								<th class="text-center">จังหวัด</th>
+								<th class="text-center">เพศ</th>
+								<th class="text-center">อายุ</th>
+								<th class="text-center">ผู้สำรวจ</th>
+								<th class="text-center">แก้ไข</th>
+							</tr>
+						</thead>
+						<tbody id="data-table-body">
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

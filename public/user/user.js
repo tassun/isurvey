@@ -40,7 +40,7 @@ function initDataTable() {
     let token_key = $("#token_key").val();
     datatable = $('#data-table').DataTable({
         bAutoWidth: false,
-        responsive: true,
+        responsive: false,
         columnDefs: [
             { orderable: false, targets: [0,7] },
             { className: "text-left", targets: [2,3,5] }

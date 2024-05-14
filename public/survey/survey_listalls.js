@@ -25,10 +25,10 @@ function initDataTable() {
     let token_key = $("#token_key").val();
     datatable = $('#data-table').DataTable({
         bAutoWidth: false,
-        responsive: true,
+        responsive: false,
         columnDefs: [
             { orderable: false, targets: [6] },
-            { className: "text-left", targets: [2,5] }
+            { className: "text-left", targets: [2,5] },
         ],
         columns: [
             { data: 'profile_code' },
@@ -44,9 +44,9 @@ function initDataTable() {
             url: '/survey/list',
             type: 'POST',
             data: { ajax: true, token_key: token_key },
-        },
+        },        
         fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-            $(nRow).data("userdata", aData);
+            $(nRow).data("userdata", aData);            
             let editbtn = $('<a href="javascript:void(0)" class="btn-form-edit"><i class="edit icon large enable-color"></i></a>');
             let delbtn = $('<a href="javascript:void(0)" class="btn-form-delete"><i class="trash icon large alert-color"></i></a>');
             if(aData.ownered == "1") {
@@ -56,7 +56,7 @@ function initDataTable() {
             }
             editbtn.click(function() { confirmEditSurvey(this); });
             let td = $('td:last', nRow).empty();
-            td.append(editbtn).append(delbtn);
+            td.append(editbtn).append(delbtn);            
         }
     });
 }

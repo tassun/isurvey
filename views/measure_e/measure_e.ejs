@@ -6,6 +6,9 @@
 	<%- include('../asset/styles') %>		
 	<%- include('../asset/scripts') %>
 	<script type="text/javascript" src="<%=meta.cdn_url%>/measure_e/measure_e.js"></script>
+	<style nonce="YXNzdXJl">
+		.fix-width { min-width: 125px; }
+	</style>
 </head>
 <body>
 	<%- include('../partials/page_waiting') %>
@@ -21,7 +24,7 @@
 					<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
 					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
 					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
-					<label>ส่วนที่ 5 ระดับการรับรู้และความเข้าใจเกี่ยวกับกระบวนการยุติธรรมทางเลือก</label><br/>
+					<label>ส่วนที่ 5 ผนวก ค-2 ระดับการรับรู้และความเข้าใจเกี่ยวกับกระบวนการยุติธรรมทางเลือก</label><br/>
 					<div class="p-fluid p-formgrid p-grid">
 						<div class="p-field p-col">
 							<div class="row">
@@ -29,44 +32,44 @@
 									<thead>
 										<tr>
 											<th class="tg-9wq8 bg nowrap">ข้อคำถาม</th>
-											<th class="tg-c3ow bg nowrap">ทราบ</th>
-											<th class="tg-c3ow bg nowrap">ไม่ทราบ</th>
-											<th class="tg-c3ow bg nowrap">ไม่ประสงค์จะตอบ</th>
+											<th class="tg-c3ow bg nowrap fix-width">ทราบ</th>
+											<th class="tg-c3ow bg nowrap fix-width">ไม่ทราบ</th>
+											<th class="tg-c3ow bg nowrap fix-width">ไม่ประสงค์จะตอบ</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td class="tg-0lax">2.1 ประเทศไทยมีระบบการยุติข้อพิพาทโดยไม่ต้องนำคดีขึ้นสู่ศาลด้วยการใช้วิธีการไกล่เกลี่ย หรือประนีประนอมยอมความ หรือระบบอนุญาโตตุลาการนอกศาล<span class="star"> *</span></td>
+											<td class="tg-0lax">1. ประเทศไทยมีระบบการยุติข้อพิพาทโดยไม่ต้องนำคดีขึ้นสู่ศาลด้วยการใช้วิธีการไกล่เกลี่ย หรือประนีประนอมยอมความ หรือระบบอนุญาโตตุลาการนอกศาล<span class="star"> *</span></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_1_1" name="ME_1_1" value="1" <%=page.checked("1",data.dataset?.ME_1_1)%> data-parsley-required="true" /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_1_2" name="ME_1_1" value="2" <%=page.checked("2",data.dataset?.ME_1_1)%> /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_1_3" name="ME_1_1" value="3" <%=page.checked("3",data.dataset?.ME_1_1)%> /></td>
 										</tr>
 										<tr>
-											<td class="tg-0lax">2.2 นอกจากการไกล่เกลี่ยระงับข้อพิพาทกระบวนการยุติธรรมทางเลือกยังรวมถึงทางเลือกในการปฏิบัติต่อผู้กระทำผิด เช่น มาตรการพิเศษแทนการดำเนินคดีในคดีเด็กและเยาวชน การไกล่เกลี่ยคดีอาญาแทนการดำเนินคดีโดยตำรวจและศาล การบำบัดฟื้นฟู ผู้ติดยาเสพติดแทนการลงโทษจำคุก<span class="star"> *</span></td>
+											<td class="tg-0lax">2. นอกจากการไกล่เกลี่ยระงับข้อพิพาทกระบวนการยุติธรรมทางเลือกยังรวมถึงทางเลือกในการปฏิบัติต่อผู้กระทำผิด เช่น มาตรการพิเศษแทนการดำเนินคดีในคดีเด็กและเยาวชน การไกล่เกลี่ยคดีอาญาแทนการดำเนินคดีโดยตำรวจและศาล การบำบัดฟื้นฟู ผู้ติดยาเสพติดแทนการลงโทษจำคุก<span class="star"> *</span></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_2_1" name="ME_1_2" value="1" <%=page.checked("1",data.dataset?.ME_1_2)%> data-parsley-required="true" /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_2_2" name="ME_1_2" value="2" <%=page.checked("2",data.dataset?.ME_1_2)%> /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_2_3" name="ME_1_2" value="3" <%=page.checked("3",data.dataset?.ME_1_2)%> /></td>
 										</tr>
 										<tr>
-											<td class="tg-0lax">2.3 ช่องทางในการติดต่อขอรับบริการยุติธรรมทางเลือกมีทั้งในคดีแพ่งโดยขอรับบริการจากศาลหรือสถาบันอนุญาโตตุลาการ และในคดีอาญาทั้งในขั้นตอนของตำรวจ อัยการ ศาล รวมถึงยุติธรรมจังหวัด ยุติธรรมชุมชน ด้วย<span class="star"> *</span></td>
+											<td class="tg-0lax">3. ช่องทางในการติดต่อขอรับบริการยุติธรรมทางเลือกมีทั้งในคดีแพ่งโดยขอรับบริการจากศาลหรือสถาบันอนุญาโตตุลาการ และในคดีอาญาทั้งในขั้นตอนของตำรวจ อัยการ ศาล รวมถึงยุติธรรมจังหวัด ยุติธรรมชุมชน ด้วย<span class="star"> *</span></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_3_1" name="ME_1_3" value="1" <%=page.checked("1",data.dataset?.ME_1_3)%> data-parsley-required="true" /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_3_2" name="ME_1_3" value="2" <%=page.checked("2",data.dataset?.ME_1_3)%> /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_3_3" name="ME_1_3" value="3" <%=page.checked("3",data.dataset?.ME_1_3)%> /></td>
 										</tr>
 										<tr>
-											<td class="tg-0lax">2.4 กระบวนการยุติธรรมทางเลือกเป็นมาตรการเสริมเพื่อช่วยให้คู่กรณีปรับความเข้าใจกัน ผู้กระทำผิดสำนึกผิด และยินยอมเข้ารับการช่วยเหลือฟื้นฟูพฤติกรรม พร้อมทั้งเยียวยาความเสียหายแก่ผู้เสียหาย โดยมิใช่การทดแทนกระบวนการยุติธรรมเดิม <span class="star"> *</span></td>
+											<td class="tg-0lax">4. กระบวนการยุติธรรมทางเลือกเป็นมาตรการเสริมเพื่อช่วยให้คู่กรณีปรับความเข้าใจกัน ผู้กระทำผิดสำนึกผิด และยินยอมเข้ารับการช่วยเหลือฟื้นฟูพฤติกรรม พร้อมทั้งเยียวยาความเสียหายแก่ผู้เสียหาย โดยมิใช่การทดแทนกระบวนการยุติธรรมเดิม <span class="star"> *</span></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_4_1" name="ME_1_4" value="1" <%=page.checked("1",data.dataset?.ME_1_4)%> data-parsley-required="true" /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_4_2" name="ME_1_4" value="2" <%=page.checked("2",data.dataset?.ME_1_4)%> /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_4_3" name="ME_1_4" value="3" <%=page.checked("3",data.dataset?.ME_1_4)%> /></td>
 										</tr>
 										<tr>
-											<td class="tg-0lax">2.5 วัตถุประสงค์ของกระบวนการยุติธรรมทางเลือกนอกเหนือจากลดขั้นตอนและระยะเวลาการดำเนินคดีคือการช่วยฟื้นฟูความสัมพันธ์ระหว่างคู่กรณี<span class="star"> *</span></td>
+											<td class="tg-0lax">5. วัตถุประสงค์ของกระบวนการยุติธรรมทางเลือกนอกเหนือจากลดขั้นตอนและระยะเวลาการดำเนินคดีคือการช่วยฟื้นฟูความสัมพันธ์ระหว่างคู่กรณี<span class="star"> *</span></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_5_1" name="ME_1_5" value="1" <%=page.checked("1",data.dataset?.ME_1_5)%> data-parsley-required="true" /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_5_2" name="ME_1_5" value="2" <%=page.checked("2",data.dataset?.ME_1_5)%> /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_5_3" name="ME_1_5" value="3" <%=page.checked("3",data.dataset?.ME_1_5)%> /></td>
 										</tr>
 										<tr>
-											<td class="tg-0lax">2.6 วัตถุประสงค์ของกระบวนการยุติธรรมทางเลือกอีกประการหนึ่งคือลดการกระทำผิดซ้ำโดยส่งเสริมให้ผู้กระทำผิดเปลี่ยนแปลงตนเองภายใต้ความร่วมมือของชุมชน หน่วยงานที่เกี่ยวข้อง และผู้เสียหาย<span class="star"> *</span></td>
+											<td class="tg-0lax">6. วัตถุประสงค์ของกระบวนการยุติธรรมทางเลือกอีกประการหนึ่งคือลดการกระทำผิดซ้ำโดยส่งเสริมให้ผู้กระทำผิดเปลี่ยนแปลงตนเองภายใต้ความร่วมมือของชุมชน หน่วยงานที่เกี่ยวข้อง และผู้เสียหาย<span class="star"> *</span></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_6_1" name="ME_1_6" value="1" <%=page.checked("1",data.dataset?.ME_1_6)%> data-parsley-required="true" /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_6_2" name="ME_1_6" value="2" <%=page.checked("2",data.dataset?.ME_1_6)%> /></td>
 											<td class="tg-0laa"><input type="radio" id="ME_1_6_3" name="ME_1_6" value="3" <%=page.checked("3",data.dataset?.ME_1_6)%> /></td>
@@ -77,13 +80,19 @@
 						</div>
 					</div>				
 					<br>
-					<label for="wight">ส่วนที่ 3 ข้อพิพาทและการจัดการข้อพิพาทที่พบ</label><br/>
+					<label for="wight">ส่วนที่ 6 ผนวก ค-3 ข้อพิพาทและการจัดการข้อพิพาทที่พบ</label><br/>
 					<div class="row">
-						<label class="col-form-label">3.1 ในรอบปีที่ผ่านมา (1 มกราคม 2566 – 31 ธันวาคม 2566) ท่านเคยประสบกับข้อพิพาทต่าง ๆ เหล่านี้หรือไม่ (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
+						<label class="col-form-label">1. ในรอบปีที่ผ่านมา (1 มกราคม 2566 – 31 ธันวาคม 2566) ท่านเคยประสบกับข้อพิพาทต่าง ๆ เหล่านี้หรือไม่ (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
-								<input type="checkbox" id="ME_2_1" name="ME_2_1" value="1" <%=page.checked("1",data.dataset?.ME_2_1)%> /> (1) ไม่เคย
+								<input type="radio" id="ME_2_1_1" name="ME_2_1" value="1" <%=page.checked("1",data.dataset?.ME_2_1)%> data-parsley-required="true" /> ไม่เคย
 							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="ME_2_1_2" name="ME_2_1" value="2" <%=page.checked("2",data.dataset?.ME_2_1)%> /> เคย (ตอบได้มากกว่า 1 ข้อ)
+							</label>
+						</div>
+						<div class="row" style="margin-left: 10px;">
+						<div class="col-lg-12" id="ME_2_1_layer">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="checkbox" id="ME_2_2" name="ME_2_2" value="1" <%=page.checked("1",data.dataset?.ME_2_2)%> /> (2) ข้อพิพาทเกี่ยวกับที่ดินหรือการซื้อและขายสินทรัพย์ (เช่น ข้อพิพาทเรื่องกรรมสิทธิ์ในทรัพย์สิน หรือการครอบครองที่ดินโดยมิชอบ)
 							</label>
@@ -143,9 +152,10 @@
 							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
 								โปรดระบุ
 							</div>
-							<div class="col-lg-12">
+							<div class="col-lg-12" style="margin-left: 10px;">
 								<input type="text" class="form-control" id="ME_2_19_text" name="ME_2_19_text" value="<%=data.dataset?.ME_2_19_text%>" maxlength="50" readonly />
 							</div>
+						</div>
 						</div>
 					</div>
 					<div class="row indent">
@@ -155,10 +165,10 @@
 						</div>
 					<br>
 					<div class="row">
-						<label class="col-form-label">3.2 กรณีที่ท่านเคยประสบกับข้อพิพาทตามข้อ 3.1 ท่านได้ใช้บริการกับหน่วยงานใดบ้างในการระงับข้อพิพาท (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
+						<label class="col-form-label">2. กรณีที่ท่านเคยประสบกับข้อพิพาทตามข้อ 3.1 ท่านได้ใช้บริการกับหน่วยงานใดบ้างในการระงับข้อพิพาท (ตอบได้มากกว่าหนึ่งข้อ)<span class="star"> *</span></label>
 					</div>
 					<div class="row indent">
-						<label class="col-form-label">3.2.1 การระงับข้อพิพาทอย่างเป็นทางการ</label>
+						<label class="col-form-label">2.1 การระงับข้อพิพาทอย่างเป็นทางการ</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="checkbox" id="ME_3_1" name="ME_3_1" value="1" <%=page.checked("1",data.dataset?.ME_3_1)%> /> (1) ศาลยุติธรรม (ทั้งคดีแพ่งและคดีปกครอง)
@@ -167,7 +177,7 @@
 								<input type="checkbox" id="ME_3_2" name="ME_3_2" value="1" <%=page.checked("1",data.dataset?.ME_3_2)%> /> (2) ศาลปกครอง
 							</label>
 						</div>
-						<label class="col-form-label">3.2.2 การระงับข้อพิพาททางเลือก</label>
+						<label class="col-form-label">2.2 การระงับข้อพิพาททางเลือก</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="checkbox" id="ME_3_3" name="ME_3_3" value="1" <%=page.checked("1",data.dataset?.ME_3_3)%> /> (3) การไกล่เกลี่ยประนีประนอมยอมความโดยตำรวจ
@@ -225,11 +235,11 @@
 							<div class="col-form-label inputTextFix" style="margin-left: 30px;">
 								โปรดระบุ
 							</div>
-							<div class="col-lg-5">
+							<div class="col-lg-5" style="margin-left: 10px;">
 								<input type="text" class="form-control" id="ME_3_19_text" name="ME_3_19_text" value="<%=data.dataset?.ME_3_19_text%>" maxlength="50"  readonly />
 							</div>
 						</div>
-						<label class="col-form-label">3.2.3 ไม่ได้เข้าสู่การระงับข้อพิพาท</label>
+						<label class="col-form-label">2.3 ไม่ได้เข้าสู่การระงับข้อพิพาท</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="checkbox" id="ME_3_20" name="ME_3_20" value="1" <%=page.checked("1",data.dataset?.ME_3_20)%> /> (20) ไม่ทราบช่องทางหรือวิธีการในการเข้าสู่กระบวนการระงับข้อพิพาท
@@ -269,17 +279,17 @@
 							<div class="col-form-label inputTextFix" style="margin-left: 10px;">
 								โปรดระบุ
 							</div>
-							<div class="col-lg-12">
+							<div class="col-lg-12" style="margin-left: 10px;">
 								<input type="text" class="form-control" id="ME_3_30_text" name="ME_3_30_text" value="<%=data.dataset?.ME_3_30_text%>" maxlength="50"  readonly />
 							</div>
 						</div>
 					</div>
 					<br>
 					<div class="row">
-						<label class="col-form-label">3.3 ในช่วงสองปีที่ผ่านมา (1 มกราคม 2565 – 31 ธันวาคม 2566) ท่านเคยประสบข้อพิพาทและได้เข้ารับการระงับข้อพิพาท ปัญหาของท่านที่ท่านพบได้รับการแก้ไขหรือไม่<span class="star"> *</span></label>
+						<label class="col-form-label">3. ในช่วงสองปีที่ผ่านมา (1 มกราคม 2565 – 31 ธันวาคม 2566) ท่านเคยประสบข้อพิพาทและได้เข้ารับการระงับข้อพิพาท ปัญหาของท่านที่ท่านพบได้รับการแก้ไขหรือไม่</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
-								<input type="radio" id="ME_4_1_1" name="ME_4_1" value="1" <%=page.checked("1",data.dataset?.ME_4_1)%> data-parsley-required="true" /> (1) ปัญหาทั้งหมดไม่ได้รับการแก้ไขเลย
+								<input type="radio" id="ME_4_1_1" name="ME_4_1" value="1" <%=page.checked("1",data.dataset?.ME_4_1)%> /> (1) ปัญหาทั้งหมดไม่ได้รับการแก้ไขเลย
 							</label>
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="ME_4_1_2" name="ME_4_1" value="2" <%=page.checked("2",data.dataset?.ME_4_1)%> /> (2) ปัญหาส่วนใหญ่ไม่ได้รับการแก้ไข
@@ -292,6 +302,9 @@
 							</label>
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="ME_4_1_5" name="ME_4_1" value="5" <%=page.checked("5",data.dataset?.ME_4_1)%> /> (5) ปัญหาทั้งหมดได้รับการแก้ไข
+							</label>
+							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
+								<input type="radio" id="ME_4_1_6" name="ME_4_1" value="6" <%=page.checked("6",data.dataset?.ME_4_1)%> /> (6) ไม่เคยประสบข้อพิพาทในช่วงเวลาดังกล่าว
 							</label>
 						</div>
 					</div>

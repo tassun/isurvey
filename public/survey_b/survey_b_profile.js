@@ -86,7 +86,7 @@ function setupUIProfile() {
         }
     });
     $('input[name="A_08_N"]').on('change', function() {
-        if ($(this).val() === '10') {
+        if ($(this).val() == '10') {
             $("#A_08_N_text").attr('data-parsley-required', 'true').prop('readonly', false);
             if(canFocused) $("#A_08_N_text").focus();
         } else {
@@ -127,7 +127,7 @@ function setupUIProfile() {
         }
     });
     $('input[name="A_13"]').on('change', function() {
-        if ($(this).val() === '6') {
+        if ($(this).val() == '6') {
             $("#A_13_text").attr('data-parsley-required', 'true').prop('readonly', false);
             if(canFocused) $("#A_13_text").focus();
         } else {
@@ -135,7 +135,7 @@ function setupUIProfile() {
         }
     });
     $('input[name="A_14"]').on('change', function() {
-        if ($(this).val() === '1') {
+        if ($(this).val() == '1') {
             $('input.A_14_2').prop('disabled', false);
         } else {
             $('input.A_14_2').prop('disabled', true);
