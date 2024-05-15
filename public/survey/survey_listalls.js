@@ -73,22 +73,40 @@ function initDataTable() {
     });
     datatable.on('click', 'a.btn-form-edit', function(e) {
         //e.target is i tag
+        e.preventDefault();
+        let tr = $(this).closest("tr");
         let pr = $(e.target).parent();
         let profile_id = pr.attr("data-profile");
         let profile_code = pr.attr("data-code");
         let adata = {profile_id: profile_id, profile_code: profile_code};
-        let data = datatable.row(e.target.closest('tr')).data();
+        let data = datatable.row(tr).data();
         console.log("click data edit: adata", adata,", data", data);
+        if(data == undefined) {
+            if(tr.hasClass("child")) {
+                tr = tr.prev();
+                data = datatable.row(tr).data();            
+                console.log("click data edit: data", data);
+            }
+        }
         confirmEditSurvey(this,data || adata);
     });
     datatable.on('click', 'a.btn-form-delete', function(e) {
         //e.target is i tag
+        e.preventDefault();
+        let tr = $(this).closest("tr");
         let pr = $(e.target).parent();
         let profile_id = pr.attr("data-profile");
         let profile_code = pr.attr("data-code");
         let adata = {profile_id: profile_id, profile_code: profile_code};
-        let data = datatable.row(e.target.closest('tr')).data();
+        let data = datatable.row(tr).data();
         console.log("click data delete: adata", adata,", data", data);
+        if(data == undefined) {
+            if(tr.hasClass("child")) {
+                tr = tr.prev();
+                data = datatable.row(tr).data();            
+                console.log("click data delete: data", data);
+            }
+        }
         confirmDeleteSurvey(this,data || adata);
     });
 }
