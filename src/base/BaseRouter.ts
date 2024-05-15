@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { KnMetaInfo, KnContextInfo, KnLoggerInterface, KnUserInfo } from "../models/AssureAlias";
-import { API_URL, BASE_URL, CDN_URL, META_INFO, RELEASE_VERSION, EXCEPT_LAUNCH_PATH, VALID_ACCESSOR } from "../utils/EnvironmentVariable";
+import { API_URL, BASE_URL, CDN_URL, META_INFO, META_DATA, RELEASE_VERSION, EXCEPT_LAUNCH_PATH, VALID_ACCESSOR } from "../utils/EnvironmentVariable";
 import { KnUtility } from '../utils/KnUtility';
 import { AuthenError } from '../models/AuthenError';
 import { HTTP } from '../api/HTTP';
@@ -64,6 +64,7 @@ export class BaseRouter extends BaseSystem {
             version: RELEASE_VERSION,
             token_key: this.getTokenKey(context),
             info: META_INFO,
+            data: META_DATA,
             user: context?.meta?.user
         };
     }

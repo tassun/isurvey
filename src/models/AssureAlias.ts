@@ -173,6 +173,7 @@ export interface KnMetaInfo {
     storage?: string;
     token_key?: string;
     info?: any;
+    data?: any;
     user?: KnUserInfo;
 }
 

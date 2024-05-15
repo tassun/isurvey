@@ -1,8 +1,10 @@
 import config from "will-util";
 export const API_URL: string = config.env("API_URL","");
 export const BASE_URL: string = config.env("BASE_URL","");
-export const CDN_URL: string = config.env("CDN_URL",""); 
+export const CDN_URL: string = config.env("CDN_URL","");
+export const MAP_KEY: string = config.env("MAP_KEY","");
 export const META_INFO: any = config.get("META_INFO") || {};
+export const META_DATA: any = config.get("META_DATA") || {map_key: MAP_KEY};
 export const RELEASE_VERSION: string = config.env("RELEASE_VERSION","v1.0.0");
 export const EXCEPT_LAUNCH_PATH: string = config.env("EXCEPT_LAUNCH_PATH","page_forgot");
 export const DEFAULT_LANGUAGE: string = config.env("DEFAULT_LANGUAGE","TH");
