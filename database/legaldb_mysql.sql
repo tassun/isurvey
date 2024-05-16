@@ -1145,8 +1145,6 @@ CREATE TABLE IF NOT EXISTS `survey_profile` (
   `profile_code` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `A2` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'A2 บ้านเลขที่',
   `A3` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'A3 พิกัดบ้าน (NS) (EW)',
-  `A3_lat` varchar(100) DEFAULT NULL,
-  `A3_long` varchar(100) DEFAULT NULL,
   `A4` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'A4 พื้นที่',
   `A4_1_1` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '(A4.1) กรุงเทพมหานคร code',
   `A4_1_1_text` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '(A4.1) กรุงเทพมหานคร',
