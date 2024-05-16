@@ -17,8 +17,6 @@ export class SurveyProfileHandler extends OperateHandler {
             profile_code: { type: "STRING", created: true, updated: true },
             A2: { type: "STRING", created: true, updated: true},
             A3: { type: "STRING", created: true, updated: true },
-            A3_lat: { type: "STRING", created: true, updated: true },
-            A3_long: { type: "STRING", created: true, updated: true },
             A4: { type: "STRING", created: true, updated: true },
             A4_1_1: { type: "STRING", created: true, updated: true },
             A4_1_1_text: { type: "STRING", created: true, updated: true },
@@ -227,15 +225,6 @@ export class SurveyProfileHandler extends OperateHandler {
         let dt = await super.getDataEdit(context,db,rs);
         let ds = await this.getDataCategory(context,db);
         dt.entity = ds;
-        if(dt.dataset.A3 && dt.dataset.A3.trim().length>0) {
-            let latlng = dt.dataset.A3.split(",");
-            if(!dt.dataset.A3_lat && latlng.length>0) {
-                dt.dataset.A3_lat = latlng[0];            
-            }
-            if(!dt.dataset.A3_long && latlng.length>1) {
-                dt.dataset.A3_long = latlng[1];            
-            }
-        }
         return dt;
     }
 
@@ -244,9 +233,6 @@ export class SurveyProfileHandler extends OperateHandler {
         if(data.A4=="2") {
             data.A4_1_1 = undefined;
             data.A4_1_1_text = '';
-        }
-        if(data.A3_lat && data.A3_lat.trim().length>0 && data.A3_long && data.A3_long.trim().length>0) {
-            data.A3 = data.A3_lat+","+data.A3_long;
         }
         let ageflag = data.A_02;
         let agetext = data.A_02_text;
