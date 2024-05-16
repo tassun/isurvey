@@ -161,6 +161,7 @@ function deleteSurvey(profile_id,survey_id,sb_profile,callback) {
 function setupDialogComponents(callback) {
 	$("#dialogpanel").find(".modal-dialog").draggable();
     $("#profile-modal-dialog").modal("show");
+    initialApplicationControls($("#dialogpanel"));
     setupComponentsProfile(callback);
     setupDataControlsProfile();
     setupUIProfile();
