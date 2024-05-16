@@ -19,7 +19,8 @@ function setupGmap(){
 }
 function choosePosition() {
     if(latLng.lat && latLng.lng) {
-        $("#A3").val((latLng.lat || '') + "," + (latLng.lng || ''));
+        $("#A3_lat").val(latLng.lat || '');
+		$("#A3_long").val(latLng.lng || '');
     }
 	$('#gmap-layer').hide();
 	$('#gmapbutton').show();
@@ -53,9 +54,8 @@ function createMap() {
 }
 function initMap(){	
 	createMap();
-    let locate = $("#A3").val().split(",");
-	let lat = locate.length>0?locate[0]:'';
-	let lng = locate.length>1?locate[1]:'';
+	let lat = $("#A3_lat").val();
+	let lng = $("#A3_long").val();
 	if(lat && $.trim(lat)!="" && lng && $.trim(lng)!="") {
 		lat = parseFloat(lat);
 		lng = parseFloat(lng);

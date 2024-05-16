@@ -32,9 +32,10 @@
 							</div>
 							<div class="row indent">
 								<label class="col-form-label nText col-lg-3">A3 พิกัดบ้าน (NS) (EW)<span class="star"> *</span></label>
-								<div class="col-lg-6">
+								<div class="col-lg-7">
 									<div class="input-group">
-										<input type="text" class="form-control" id="A3" name="A3" data-parsley-required="true" value="<%=data.dataset?.A3%>" />
+										<input type="text" class="form-control imoney" decimal="25" id="A3_lat" name="A3_lat" data-parsley-required="true" value="<%=data.dataset?.A3_lat%>" />
+										<input type="text" class="form-control imoney" decimal="25" id="A3_long" name="A3_long" data-parsley-required="true" value="<%=data.dataset?.A3_long%>" />
 										<input type="button" id="gmapbutton" class="btn btn-dark btn-sm" value="Pin Location" />
 									</div>
 								</div>
