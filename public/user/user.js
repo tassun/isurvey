@@ -197,7 +197,7 @@ function updateUser(row,datarow) {
 function confirmDeleteUser(element) {
     let tr = $(element).closest("tr");
     let userdata = tr.data("userdata");
-    confirmDeleteMessage(function() { deleteUser(userdata); });
+    confirmDeleteMessage(function() { deleteUser(userdata); }, userdata.username);
 }
 function deleteUser(userdata) {
     let token_key = $("#token_key").val();
