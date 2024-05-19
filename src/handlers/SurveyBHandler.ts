@@ -5,6 +5,7 @@ import { SurveyOperateHandler } from './SurveyOperateHandler';
 import { VerifyError } from '../models/VerifyError';
 import { HTTP } from '../api/HTTP';
 import { SurveyProfileHandler } from './SurveyProfileHandler';
+import { SurveyFamilyHandler } from './SurveyFamilyHandler';
 
 export class SurveyBHandler extends SurveyOperateHandler {
     public readonly form_id : string = "SURVEY_B";
@@ -19,8 +20,6 @@ export class SurveyBHandler extends SurveyOperateHandler {
             SB_type: { type: "STRING", created: true, updated: false, remark: "A=Answerer,F=Family"  },
             SB_crime: { type: "STRING", created: true, updated: true },
             SB_remark: { type: "STRING", created: true, updated: true },
-            SB_gender: { type: "STRING", created: true, updated: true },
-            SB_age: { type: "STRING", created: true, updated: true },
             create_date: { type: "DATE", created: true, updated: false  },
             create_time: { type: "TIME", created: true, updated: false  },
             create_millis: { type: "BIGINT", created: true, updated: false  },
@@ -57,6 +56,10 @@ export class SurveyBHandler extends SurveyOperateHandler {
             if(rs.records==0) {
                 rs = await this.getProfileInfo(context, db, profile_id);
                 if(rs.records>0) {
+                    let row = rs.rows[0];
+                    data.SB_gender = row.A_01;
+                    data.SB_age = row.age_code;
+                    data.SB_age_text = row.SB_age;
                     await this.doPersist(context, db, data);
                 }
             }
@@ -82,7 +85,7 @@ export class SurveyBHandler extends SurveyOperateHandler {
 
     public async getProfileInfo(context: KnContextInfo, db: KnDBConnector, profile_id: string) : Promise<KnRecordSet> {
         let sql = new KnSQL();
-        sql.append("select sp.A_02 AS age_code,sp.A_02_text AS SB_age,tgender.name_th AS SB_gender ");
+        sql.append("select sp.A_01,sp.A_02 AS age_code,sp.A_02_text AS SB_age,tgender.name_th AS SB_gender ");
         sql.append("from survey_profile sp ");
         sql.append("left join tgender on tgender.key_code = sp.A_01 ");
         sql.append("where sp.profile_id = ?profile_id ");
@@ -112,11 +115,32 @@ export class SurveyBHandler extends SurveyOperateHandler {
         data.SB_remark = null;
         data.form_id = this.form_id;
         this.ensureTimestamp(context, data);
-        let rs = await this.performInsert(context, db, data);
+        let handler = new SurveyFamilyHandler(this.logger);
+        let rs = await handler.performUpdate(context, db, data);
+        if(rs.records==0) {
+            rs = await this.performInsert(context, db, data);
+        }
         return Promise.resolve(rs);
     }
 
     public override async processRetrieve(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        if(!this.model) return Promise.reject(new VerifyError("Model not found",HTTP.NOT_IMPLEMENTED,-16064));
+        let vi = await this.validateRequireFields(context);
+        if(!vi.valid) return Promise.resolve(this.createRecordSet());
+        let sql = new KnSQL();
+        sql.append("select sb.survey_id,sb.profile_id,sb.SB_profile,sb.SB_type,sb.SB_crime,sb.SB_remark,sb.create_millis,");
+        sql.append("sb.SB_age AS age_code,sb.SB_age_text AS SB_age,tgender.name_th AS SB_gender ");
+        sql.append("from ").append(this.model.name).append(" sb ");
+        sql.append("left join tgender on tgender.key_code = sb.SB_gender ");
+        sql.append("where sb.profile_id = ?profile_id ");
+        sql.append("order by SB_type, create_millis ");
+        sql.set("profile_id",context.params.profile_id);
+        this.logger.info(this.constructor.name+".processRetrieve:",sql);
+        let rs = await sql.executeQuery(db,context);
+        return Promise.resolve(this.createRecordSet(rs));
+    }
+
+    public async processRetrieveProfile(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         if(!this.model) return Promise.reject(new VerifyError("Model not found",HTTP.NOT_IMPLEMENTED,-16064));
         let vi = await this.validateRequireFields(context);
         if(!vi.valid) return Promise.resolve(this.createRecordSet());

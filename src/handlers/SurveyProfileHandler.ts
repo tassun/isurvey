@@ -6,6 +6,7 @@ import { VerifyError } from '../models/VerifyError';
 import { HTTP } from '../api/HTTP';
 import { DataHandler } from '../base/DataHandler';
 import { Utilities } from 'will-util';
+import { SurveyFamilyHandler } from './SurveyFamilyHandler';
 
 export class SurveyProfileHandler extends OperateHandler {
 
@@ -124,6 +125,17 @@ export class SurveyProfileHandler extends OperateHandler {
         return Promise.resolve(vi);
     }
 
+    public async updateFamily(context: KnContextInfo, db: KnDBConnector, data: any) : Promise<KnRecordSet> {
+        data.survey_id = context.params.survey_id;
+        data.SB_profile = data.profile_id;
+        data.SB_gender = data.A_01;
+        data.SB_age = data.A_02;
+        data.SB_age_text = data.A_02_text;
+        let handler = new SurveyFamilyHandler(this.logger);
+        let frs = await handler.performUpdate(context,db,data);
+        return Promise.resolve(frs);
+    }
+
     public override async processInsert(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         let data = this.obtainParameterValues(context, this.model);
         let profile_id = data.profile_id;
@@ -141,19 +153,26 @@ export class SurveyProfileHandler extends OperateHandler {
         if(rs.rows) {
             rs.rows.profile_id = data.profile_id;
         }
+        await this.updateFamily(context,db,data);
+        return Promise.resolve(this.createRecordSet(rs));
+    }
+
+    public async getRecordSet(context: KnContextInfo, db: KnDBConnector,profile_id: string = context.params.profile_id) : Promise<KnRecordSet> {
+        if(!profile_id || profile_id.trim().length==0) return Promise.resolve(this.createRecordSet());
+        let sql = new KnSQL();
+        sql.append("select s.*,concat(tusers.name,' ',tusers.surname) AS creator_name from ").append(this.model.name).append(" s ");
+        sql.append("left join tusers on tusers.userid = s.create_by ");
+        sql.append("where s.profile_id = ?profile_id ");
+        sql.set("profile_id",profile_id);
+        this.logger.info(this.constructor.name+".getRecordSet:",sql);
+        let rs = await sql.executeQuery(db,context);
         return Promise.resolve(this.createRecordSet(rs));
     }
 
     public override async processRetrieve(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         let vi = await this.validateRequireFields(context);
         if(!vi.valid) return Promise.resolve(this.createRecordSet());
-        let sql = new KnSQL();
-        sql.append("select s.*,concat(tusers.name,' ',tusers.surname) AS creator_name from ").append(this.model.name).append(" s ");
-        sql.append("left join tusers on tusers.userid = s.create_by ");
-        sql.append("where s.profile_id = ?profile_id ");
-        sql.set("profile_id",context.params.profile_id);
-        this.logger.info(this.constructor.name+".processRetrieve:",sql);
-        let rs = await sql.executeQuery(db,context);
+        let rs = await this.getRecordSet(context,db);
         return Promise.resolve(this.createRecordSet(rs));
     }
 
@@ -168,6 +187,7 @@ export class SurveyProfileHandler extends OperateHandler {
         this.logger.info(this.constructor.name+".processUpdate:",sql);
         let rs = await sql.executeUpdate(db,context);
         this.logger.debug(this.constructor.name+".processUpdate:",rs);
+        await this.updateFamily(context,db,data);
         return Promise.resolve(this.createRecordSet(rs));
     }
 
@@ -203,12 +223,18 @@ export class SurveyProfileHandler extends OperateHandler {
         return await handler.getCategory(context,db,"tprovinces","tamphures","tdistricts");
     }
 
-    public override async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
+    public async createDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
         let dt = await super.getDataAdd(context);
         dt.dataset.master_id = context.params.master_id;
+        dt.dataset.survey_id = context.params.survey_id;
         dt.dataset.creator_name = "";
         if(context.meta?.user?.name) dt.dataset.creator_name = context.meta?.user?.name+" "+(context.meta?.user?.surname?context.meta?.user?.surname:"");
         dt.dataset.profile_code = Utilities.serializeTimestamp(Utilities.now());
+        return dt;
+    }
+
+    public override async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
+        let dt = await this.createDataAdd(context);
         let db = this.getPrivateConnector();
         try {
             let ds = await this.getDataCategory(context,db);
@@ -223,6 +249,7 @@ export class SurveyProfileHandler extends OperateHandler {
 
     public override async getDataEdit(context: KnContextInfo, db: KnDBConnector, rs: KnRecordSet) : Promise<KnDataTable> {
         let dt = await super.getDataEdit(context,db,rs);
+        dt.dataset.survey_id = context.params.survey_id;
         let ds = await this.getDataCategory(context,db);
         dt.entity = ds;
         return dt;

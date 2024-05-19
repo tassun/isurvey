@@ -82,9 +82,10 @@ export class SystemHandler extends BaseHandler {
             for(let fname in model.fields) {
                 if(!this.isInPageSetting(fname, model)) {
                     let dbf = model.fields[fname];
+                    let updated = dbf.updated === undefined || dbf.updated;
                     let fcalc = dbf.calculated !== undefined && dbf.calculated;
                     let fkey = dbf.key !== undefined && dbf.key;
-                    if(!fkey && (!fcalc || dbf.updated)) {
+                    if(!fkey && (!fcalc && updated)) {
                         if(params && params[fname]) {
                             if(found || foundflag) {
                                 knsql.append(", ");

@@ -4,7 +4,7 @@ import { SystemHandler } from './SystemHandler';
 
 export class ProcessHandler extends SystemHandler {
 
-    protected async validateRequireFields(context: KnContextInfo, throwError: boolean = false) : Promise<KnValidateInfo> {
+    protected async validateRequireFields(context: KnContextInfo, throwError: boolean = false, action?: string) : Promise<KnValidateInfo> {
         return Promise.resolve({valid: true});
     }
 
@@ -21,12 +21,12 @@ export class ProcessHandler extends SystemHandler {
     }
 
     public async edit(context: KnContextInfo) : Promise<KnDataTable> {
-        await this.validateRequireFields(context, true);
+        await this.validateRequireFields(context, true, "edit");
         return this.doEdit(context);
     }
 
     public async view(context: KnContextInfo) : Promise<KnDataTable> {
-        await this.validateRequireFields(context, true);
+        await this.validateRequireFields(context, true, "view");
         return this.doView(context);
     }
 
@@ -36,17 +36,17 @@ export class ProcessHandler extends SystemHandler {
 	}
 
     public async retrieve(context: KnContextInfo) : Promise<KnRecordSet> {
-        await this.validateRequireFields(context, true);
+        await this.validateRequireFields(context, true, "retrieve");
         return this.doRetrieve(context);
     }
 
     public async update(context: KnContextInfo) : Promise<KnRecordSet> {
-        await this.validateRequireFields(context, true);
+        await this.validateRequireFields(context, true, "update");
         return this.doUpdate(context);
 	}
 
     public async remove(context: KnContextInfo) : Promise<KnRecordSet> {
-        await this.validateRequireFields(context, true);
+        await this.validateRequireFields(context, true, "remove");
         return this.doRemove(context);
 	}
 

@@ -184,7 +184,9 @@ function confirmUpdateSurveyProfile(src,callback) {
 function saveSurveyProfile(src,callback) {
     startWaiting();
     $.ajax({
-        url: BASE_URL+"/survey_b/insert",
+        url: BASE_URL+"/survey/insert",
+        //url: BASE_URL+"/survey_b/insert",
+        //url: BASE_URL+"/survey_b/family/update",
         data: $('#profile-form-data-validate').serialize(),
         type: "POST",
         dataType: "json",
@@ -209,6 +211,7 @@ function updateSurveyProfile(src,callback) {
     startWaiting();
     $.ajax({
         url: BASE_URL+"/survey/update",
+        //url: BASE_URL+"/survey_b/family/update",
         data: $('#profile-form-data-validate').serialize(),
         type: "POST",
         dataType: "json",

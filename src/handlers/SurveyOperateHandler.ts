@@ -36,7 +36,7 @@ export class SurveyOperateHandler extends OperateHandler {
         return Promise.resolve(this.createRecordSet(rs));
     }
 
-    protected override validateRequireFields(context: KnContextInfo, throwError: boolean = false) : Promise<KnValidateInfo> {
+    protected override validateRequireFields(context: KnContextInfo, throwError: boolean = false, action?: string) : Promise<KnValidateInfo> {
         let vi = this.validateParameters(context.params,"profile_id","survey_id");
         if(!vi.valid && throwError) {
             return Promise.reject(new VerifyError("Parameter not found ("+vi.info+")",HTTP.NOT_ACCEPTABLE,-16061));

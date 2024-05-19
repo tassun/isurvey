@@ -1,0 +1,54 @@
+			<div class="body" id="family-form-data-layer">
+				<form class="a form app form-horizontal" id="family-form-data-validate" name="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
+					<input type="hidden" id="profile_id" name="profile_id" value="<%=data.dataset?.profile_id%>" />
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<label for="wight">ข้อมูลบุคคล</label>
+							<div class="row">
+								<label class="col-form-label">1. เพศ<span class="star"> * </span></label>
+								<div class="col-lg-2">
+									<label class="radio-inline col-form-label">
+										<input type="radio" id="SB_gender_1" name="SB_gender" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB_gender)%> /> (1) ชาย
+									</label>
+								</div>
+								<div class="col-lg-2">
+								<label class="radio-inline col-form-label">
+									<input type="radio" id="SB_gender_2" name="SB_gender" value="2" <%=page.checked("2",data.dataset?.SB_gender)%> /> (2) หญิง
+								</label>
+								</div>
+								<div class="col-lg-4">
+								<label class="radio-inline col-form-label">
+									<input type="radio" id="SB_gender_3" name="SB_gender" value="3" <%=page.checked("3",data.dataset?.SB_gender)%> /> (3) เพศทางเลือก
+								</label>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-form-label">2. อายุ<span class="star"> *</span></label>
+								<div class="col-lg-4">
+									<div class="row">
+										<div class="col-lg-2">
+											<label class="radio-inline col-form-label">
+												<input type="radio" id="SB_age_0" name="SB_age" value="0" data-parsley-required="true" <%=page.checked("0",data.dataset?.SB_age)%> /> ระบุ
+											</label>	
+										</div>
+										<div class="col-lg-4">
+											<input type="number" class="form-control iint" oninput="maxLengthCheck(this)" min="0" max="150" maxlength="3" id="SB_age_text" name="SB_age_text" value="<%=data.dataset?.SB_age_text%>" />
+										</div>
+										<span class="col-form-label lol-lg">
+											ปี (เต็มปีบริบูรณ์)
+										</span>
+									</div>
+								</div>
+								<label class="radio-inline col-form-label  col-lg-2">
+									<input type="radio" id="SB_age_1" name="SB_age" value="1" <%=page.checked("1",data.dataset?.SB_age)%> />(1) ไม่ทราบ
+								</label>
+								<label class="radio-inline col-form-label  col-lg-2">
+									<input type="radio" id="SB_age_2" name="SB_age" value="2" <%=page.checked("2",data.dataset?.SB_age)%> />(2) ไม่ประสงค์จะตอบ
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
