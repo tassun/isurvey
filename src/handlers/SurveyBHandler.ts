@@ -19,6 +19,8 @@ export class SurveyBHandler extends SurveyOperateHandler {
             SB_type: { type: "STRING", created: true, updated: false, remark: "A=Answerer,F=Family"  },
             SB_crime: { type: "STRING", created: true, updated: true },
             SB_remark: { type: "STRING", created: true, updated: true },
+            SB_gender: { type: "STRING", created: true, updated: true },
+            SB_age: { type: "STRING", created: true, updated: true },
             create_date: { type: "DATE", created: true, updated: false  },
             create_time: { type: "TIME", created: true, updated: false  },
             create_millis: { type: "BIGINT", created: true, updated: false  },

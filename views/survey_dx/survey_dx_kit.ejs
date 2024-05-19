@@ -8,25 +8,13 @@
 					<label>แบบสำรวจข้อมูลการให้สินบนหรือถูกเรียกรับสินบนจากหน่วยงานของรัฐหรือเจ้าหน้าที่รัฐ (ผนวก ง) </label><br/>
 					<label>3.2 แบบบันทึกข้อมูลการกระทำผิด</label>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-3"><span id="SDX_1_label">3.2.1 รหัสคดี</span><span class="star"> *</span></label>
-						<div class="col-lg-3 space-between">
-							<input type="text" class="form-control" id="SDX_1" name="SDX_1" data-parsley-required="true" maxlength="50" value="<%=data.dataset?.SDX_1%>" />
-						</div>
-					</div>
-					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-3"><span id="SDX_2_label">3.2.2 หน่วยงานของรัฐที่ติดต่อ</span><span class="star"> *</span></label>
-						<div class="col-lg-5 space-between">
-							<input type="text" class="form-control" id="SDX_2" name="SDX_2" data-parsley-required="true" size="50" maxlength="100" value="<%=data.dataset?.SDX_2%>" />
-						</div>
-					</div>
-					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-3">3.2.3 พฤติกรรมโดยย่อพอสังเขป<span class="star"> *</span></label>
+						<label for="A2" class="col-form-label nText col-lg-3">3.2.1 พฤติกรรมโดยย่อพอสังเขป<span class="star"> *</span></label>
 						<div class="col-lg-5">
 							<textarea class="form-control" id="SDX_3" name="SDX_3" data-parsley-required="true"><%=data.dataset?.SDX_3%></textarea>
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-3">3.2.4 ประเภทความผิด<span class="star"> *</span></label>
+						<label for="A2" class="col-form-label nText col-lg-3">3.2.2 ประเภทความผิด<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_4_1" name="SDX_4" value="1" <%=page.checked("1",data.dataset?.SDX_4)%> data-parsley-required="true" /> (1) ถูกเรียกสินบนโดยเจ้าหน้าที่รัฐแลกกับการอำนวยความสะดวกหรือไม่จับกุม
@@ -43,7 +31,7 @@
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-3">3.2.5 ลักษณะความผิด<span class="star"> *</span></label>
+						<label for="A2" class="col-form-label nText col-lg-3">3.2.3 ลักษณะความผิด<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_5_1" name="SDX_5" value="1" <%=page.checked("1",data.dataset?.SDX_5)%> data-parsley-required="true" /> (1) การเรียกรับสินบนเล็กน้อย (การรับเงินที่ไม่ชอบธรรม หรือไม่ถูกต้องของเจ้าหน้าที่ของรัฐ เป็นจำนวนเงินที่ไม่มากนัก เพื่อดำเนินการบางอย่างให้กับผู้ที่ให้เงิน
@@ -60,7 +48,7 @@
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-5">3.2.6 สินบนหรือของกำนัลที่ให้คือสิ่งใด (ตอบได้มากกว่าหนึ่งอย่าง)<span class="star"> *</span></label>
+						<label for="A2" class="col-form-label nText col-lg-5">3.2.4 สินบนหรือของกำนัลที่ให้คือสิ่งใด (ตอบได้มากกว่าหนึ่งอย่าง)<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_6_1" name="SDX_6" value="1" <%=page.checked("1",data.dataset?.SDX_6)%> data-parsley-required="true" /> (1) เงิน
@@ -88,7 +76,7 @@
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-5">3.2.7 ท่านทราบได้อย่างไรว่าจะต้องมีการจ่ายเงินหรือมอบของขวัญ<span class="star"> *</span></label>
+						<label for="A2" class="col-form-label nText col-lg-5">3.2.5 ท่านทราบได้อย่างไรว่าจะต้องมีการจ่ายเงินหรือมอบของขวัญ<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_7_1" name="SDX_7" value="1" <%=page.checked("1",data.dataset?.SDX_7)%> data-parsley-required="true" /> (1) คำร้องขอโดยตรงจากเจ้าหน้าที่
@@ -116,7 +104,7 @@
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-5">3.2.8 มูลค่าของสิ่งที่ท่านให้สินบนหรือถูกเรียกสินบนโดยเจ้าหน้าที่ของรัฐ<span class="star"> *</span></label>
+						<label for="A2" class="col-form-label nText col-lg-5">3.2.6 มูลค่าของสิ่งที่ท่านให้สินบนหรือถูกเรียกสินบนโดยเจ้าหน้าที่ของรัฐ<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_8_1" name="SDX_8" value="1" <%=page.checked("1",data.dataset?.SDX_8)%> data-parsley-required="true" /> (1) ไม่มี
@@ -138,7 +126,7 @@
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-7">3.2.9 ท่านได้ร้องเรียนหรือรายงานต่อหน่วยงานของรัฐ (เช่น ตำรวจ อัยการ หน่วยงานต่อต้านการทุจริต ฯลฯ) หรือหน่วยงานที่ไม่เป็นทางการใด ๆ (เช่น สื่อและช่องทางโซเชียลมีเดีย) หรือไม่<span class="star"> *</span></label>
+						<label for="A2" class="col-form-label nText col-lg-7">3.2.7 ท่านได้ร้องเรียนหรือรายงานต่อหน่วยงานของรัฐ (เช่น ตำรวจ อัยการ หน่วยงานต่อต้านการทุจริต ฯลฯ) หรือหน่วยงานที่ไม่เป็นทางการใด ๆ (เช่น สื่อและช่องทางโซเชียลมีเดีย) หรือไม่<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_9_1" name="SDX_9" value="1" <%=page.checked("1",data.dataset?.SDX_9)%> data-parsley-required="true" /> (1) ใช่
@@ -160,7 +148,7 @@
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-8">3.2.10 หากท่านเคยร้องเรียนหรือรายงานเหตุดังกล่าวไปยังหน่วยงานทางการของรัฐ ท่านได้แจ้งไปที่หน่วยงานใด</label>
+						<label for="A2" class="col-form-label nText col-lg-8">3.2.8 หากท่านเคยร้องเรียนหรือรายงานเหตุดังกล่าวไปยังหน่วยงานทางการของรัฐ ท่านได้แจ้งไปที่หน่วยงานใด</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_10_1" name="SDX_10" value="1" <%=page.checked("1",data.dataset?.SDX_10)%> /> (1) ตำรวจ
@@ -194,7 +182,7 @@
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-8">3.2.11 หากท่านเคยร้องเรียนหรือรายงานเหตุการณ์ดังกล่าวไปยังหน่วยงานที่ไม่เป็นทางการ ท่านได้แจ้งไปที่หน่วยงานใด</label>
+						<label for="A2" class="col-form-label nText col-lg-8">3.2.9 หากท่านเคยร้องเรียนหรือรายงานเหตุการณ์ดังกล่าวไปยังหน่วยงานที่ไม่เป็นทางการ ท่านได้แจ้งไปที่หน่วยงานใด</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_11_1" name="SDX_11" value="1" <%=page.checked("1",data.dataset?.SDX_11)%> /> (1) สื่อมวลชน
@@ -222,7 +210,7 @@
 						</div>
 					</div>
 					<div class="row indent">
-						<label for="A2" class="col-form-label nText col-lg-8">3.2.12 หากท่านไม่ได้ร้องเรียนหรือรายงานถึงเหตุการณ์การให้สินบนหรือถูกเรียกสินบนโดยเจ้าหน้าที่ของรัฐ เหตุใดท่านถึงไม่รายงาน</label>
+						<label for="A2" class="col-form-label nText col-lg-8">3.2.10 หากท่านไม่ได้ร้องเรียนหรือรายงานถึงเหตุการณ์การให้สินบนหรือถูกเรียกสินบนโดยเจ้าหน้าที่ของรัฐ เหตุใดท่านถึงไม่รายงาน</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label  col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SDX_12_1" name="SDX_12" value="1" <%=page.checked("1",data.dataset?.SDX_12)%> /> (1) คิดว่าเป็นเรื่องปกติในการจ่ายหรือให้ของขวัญ

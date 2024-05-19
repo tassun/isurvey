@@ -131,3 +131,9 @@ a.width{
   vertical-align: middle
 }
 
+@media (min-width: 768px) {
+	div.document-panel {
+		max-width: 80%;
+	}
+}
+.document-panel { max-width: 100%; }

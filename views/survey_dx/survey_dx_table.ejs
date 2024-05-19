@@ -2,8 +2,7 @@
 	<thead>
 		<tr>
 			<th>ลำดับที่</th>
-			<th>รหัสคดี</th>
-			<th>หน่วยงานของรัฐที่ติดต่อ</th>
+			<th>พฤติกรรมโดยสังเขป</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -14,8 +13,7 @@
 					let item = rows[index]; %>
 		<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>" data-column="<%=item?.column_id%>">
 			<td class="text-center"><%=index+1%></td>
-			<td><%=item?.SDX_1%></td>
-			<td><%=item?.SDX_2%></td>
+			<td><%=item?.SDX_3%></td>
 			<td class="text-center">
 				<a href="javascript:void(0)" class="dx-edit-linker ui basic black button tiny"><i class="edit icon large"></i></a>
 				<a href="javascript:void(0)" class="dx-delete-linker ui basic red button tiny"><i class="trash icon large"></i></a>

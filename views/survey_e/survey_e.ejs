@@ -30,7 +30,7 @@
 					<div class="p-fluid p-formgrid p-grid">
 						<div class="p-field p-col">
 							<div class="row">
-								<table class="tg data-table" style="margin-left : 10px;">
+								<table class="tg data-table" style="margin-left : 10px;" id="SBEtable1">
 									<thead>
 										<tr>
 											<th class="tg-c3oa bg" rowspan="2">ลักษณะการกระทำผิด</th>
@@ -42,13 +42,13 @@
 											<th class="tg-c3oa bg">รอบ 1 ปี</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="SBEtablebody1">
 										<tr>
 											<td class="tg-0lax">1. ได้รับค่าจ้างน้อยกว่าที่ได้ตกลงทำสัญญา</td>
 											<td class="tg-0laa  nowrap">
-												<input type="radio" class="se-radio" id="SE_1_1_1" name="SE_1_1" value="1" <%=page.checked("1",data.dataset?.SE_1_1)%> />
+												<input type="radio" class="se-radio yes" id="SE_1_1_1" name="SE_1_1" value="1" <%=page.checked("1",data.dataset?.SE_1_1)%> />
 												<label for="SE_1_1_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_1_1_0" name="SE_1_1" value="0" <%=page.checked("0",data.dataset?.SE_1_1)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_1_1_0" name="SE_1_1" value="0" <%=page.checked("0",data.dataset?.SE_1_1)%> data-parsley-required="true" />
 												<label for="SE_1_1_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_1_1_R3" name="SE_1_1_R3" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_1_1_R3%>" readonly /></td>
@@ -57,9 +57,9 @@
 										<tr>
 											<td class="tg-0lax">2. ประเภทของงานแตกต่างจากที่ได้ตกลงทำสัญญา</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_1_2_1" name="SE_1_2" value="1" <%=page.checked("1",data.dataset?.SE_1_2)%> />
+												<input type="radio" class="se-radio yes" id="SE_1_2_1" name="SE_1_2" value="1" <%=page.checked("1",data.dataset?.SE_1_2)%> />
 												<label for="SE_1_2_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_1_2_0" name="SE_1_2" value="0" <%=page.checked("0",data.dataset?.SE_1_2)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_1_2_0" name="SE_1_2" value="0" <%=page.checked("0",data.dataset?.SE_1_2)%> data-parsley-required="true" />
 												<label for="SE_1_2_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_1_2_R3" name="SE_1_2_R3" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_1_2_R3%>" readonly /></td>
@@ -68,9 +68,9 @@
 										<tr>
 											<td class="tg-0lax">3. ชั่วโมงการทำงานเกินกว่าที่ได้ตกลงทำสัญญา</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_1_3_1" name="SE_1_3" value="1" <%=page.checked("1",data.dataset?.SE_1_3)%> />
+												<input type="radio" class="se-radio yes" id="SE_1_3_1" name="SE_1_3" value="1" <%=page.checked("1",data.dataset?.SE_1_3)%> />
 												<label for="SE_1_3_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_1_3_0" name="SE_1_3" value="0" <%=page.checked("0",data.dataset?.SE_1_3)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_1_3_0" name="SE_1_3" value="0" <%=page.checked("0",data.dataset?.SE_1_3)%> data-parsley-required="true" />
 												<label for="SE_1_3_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_1_3_R3" name="SE_1_3_R3" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_1_3_R3%>" readonly /></td>
@@ -79,9 +79,9 @@
 										<tr>
 											<td class="tg-0lax">4. ที่พักอาศัยในที่ทำงานมีสภาพแย่เกินกว่าที่ได้ตกลงทำสัญญา</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_1_4_1" name="SE_1_4" value="1" <%=page.checked("1",data.dataset?.SE_1_4)%> />
+												<input type="radio" class="se-radio yes" id="SE_1_4_1" name="SE_1_4" value="1" <%=page.checked("1",data.dataset?.SE_1_4)%> />
 												<label for="SE_1_4_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_1_4_0" name="SE_1_4" value="0" <%=page.checked("0",data.dataset?.SE_1_4)%>  data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_1_4_0" name="SE_1_4" value="0" <%=page.checked("0",data.dataset?.SE_1_4)%>  data-parsley-required="true" />
 												<label for="SE_1_4_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_1_4_R3" name="SE_1_4_R3" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_1_4_R3%>" readonly /></td>
@@ -90,9 +90,9 @@
 										<tr>
 											<td class="tg-0lax">5. ได้รับข้อมูลอันเป็นเท็จเกี่ยวกับข้อมูลของนายจ้าง</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_1_5_1" name="SE_1_5" value="1" <%=page.checked("1",data.dataset?.SE_1_5)%> />
+												<input type="radio" class="se-radio yes" id="SE_1_5_1" name="SE_1_5" value="1" <%=page.checked("1",data.dataset?.SE_1_5)%> />
 												<label for="SE_1_5_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_1_5_0" name="SE_1_5" value="0" <%=page.checked("0",data.dataset?.SE_1_5)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_1_5_0" name="SE_1_5" value="0" <%=page.checked("0",data.dataset?.SE_1_5)%> data-parsley-required="true" />
 												<label for="SE_1_5_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_1_5_R3" name="SE_1_5_R3" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_1_5_R3%>" readonly /></td>
@@ -101,9 +101,9 @@
 										<tr>
 											<td class="tg-0lax">6. ได้รับข้อมูลอันเป็นเท็จเกี่ยวกับลักษณะงานที่ทำหรือการจ้างงาน</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_1_6_1" name="SE_1_6" value="1" <%=page.checked("1",data.dataset?.SE_1_6)%> />
+												<input type="radio" class="se-radio yes" id="SE_1_6_1" name="SE_1_6" value="1" <%=page.checked("1",data.dataset?.SE_1_6)%> />
 												<label for="SE_1_6_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_1_6_0" name="SE_1_6" value="0" <%=page.checked("0",data.dataset?.SE_1_6)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_1_6_0" name="SE_1_6" value="0" <%=page.checked("0",data.dataset?.SE_1_6)%> data-parsley-required="true" />
 												<label for="SE_1_6_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_1_6_R3" name="SE_1_6_R3" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_1_6_R3%>" readonly /></td>
@@ -112,9 +112,9 @@
 										<tr>
 											<td class="tg-0lax">7. ไม่ได้รับค่าจ้างส่วนหนึ่งหรือค่าจ้างรายวัน โดยไม่มีเหตุผลอันสมควร</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_1_7_1" name="SE_1_7" value="1" <%=page.checked("1",data.dataset?.SE_1_7)%> />
+												<input type="radio" class="se-radio yes" id="SE_1_7_1" name="SE_1_7" value="1" <%=page.checked("1",data.dataset?.SE_1_7)%> />
 												<label for="SE_1_7_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_1_7_0" name="SE_1_7" value="0" <%=page.checked("0",data.dataset?.SE_1_7)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_1_7_0" name="SE_1_7" value="0" <%=page.checked("0",data.dataset?.SE_1_7)%> data-parsley-required="true" />
 												<label for="SE_1_7_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_1_7_R3" name="SE_1_7_R3" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_1_7_R3%>" readonly /></td>
@@ -131,7 +131,7 @@
 					<div class="p-fluid p-formgrid p-grid">
 						<div class="p-field p-col">
 							<div class="row">
-								<table class="tg data-table" style="margin-left : 10px;">
+								<table class="tg data-table" style="margin-left : 10px;" id="SBEtable2">
 									<thead>
 										<tr>
 											<th class="tg-c3oa bg" rowspan="2">ลักษณะการกระทำผิด</th>
@@ -144,13 +144,13 @@
 											<th class="tg-c3ow bg">รอบ 1 ปี</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="SBEtablebody2">
 										<tr>
 											<td class="tg-0lax">1. ถูกยึดเอกสารประจำตัว เช่น หนังสือเดินทาง วีซ่า สูติบัตร</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_2_1_1" name="SE_2_1" value="1" <%=page.checked("1",data.dataset?.SE_2_1)%> />
+												<input type="radio" class="se-radio yes" id="SE_2_1_1" name="SE_2_1" value="1" <%=page.checked("1",data.dataset?.SE_2_1)%> />
 												<label for="SE_2_1_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_2_1_0" name="SE_2_1" value="0" <%=page.checked("0",data.dataset?.SE_2_1)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_2_1_0" name="SE_2_1" value="0" <%=page.checked("0",data.dataset?.SE_2_1)%> data-parsley-required="true" />
 												<label for="SE_2_1_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_2_1_R5" name="SE_2_1_R5" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_2_1_R5%>" readonly /></td>
@@ -160,9 +160,9 @@
 										<tr>
 											<td class="tg-0lax">2. ถูกขัดขวางหรือจำกัดไม่ให้ติดต่อกับครอบครัว หรือการใช้โทรศัพท์ แม้จะอยู่นอกเวลาทำงาน</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_2_2_1" name="SE_2_2" value="1" <%=page.checked("1",data.dataset?.SE_2_2)%> />
+												<input type="radio" class="se-radio yes" id="SE_2_2_1" name="SE_2_2" value="1" <%=page.checked("1",data.dataset?.SE_2_2)%> />
 												<label for="SE_2_2_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_2_2_0" name="SE_2_2" value="0" <%=page.checked("0",data.dataset?.SE_2_2)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_2_2_0" name="SE_2_2" value="0" <%=page.checked("0",data.dataset?.SE_2_2)%> data-parsley-required="true" />
 												<label for="SE_2_2_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_2_2_R5" name="SE_2_2_R5" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_2_2_R5%>" readonly /></td>
@@ -172,9 +172,9 @@
 										<tr>
 											<td class="tg-0lax">3. ถูกขัดขวางหรือจำกัดไม่ให้ติดต่อกับบุคคลอื่น แม้จะอยู่นอกสถานที่ทำงานและนอกเวลาทำงาน</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_2_3_1" name="SE_2_3" value="1" <%=page.checked("1",data.dataset?.SE_2_3)%> />
+												<input type="radio" class="se-radio yes" id="SE_2_3_1" name="SE_2_3" value="1" <%=page.checked("1",data.dataset?.SE_2_3)%> />
 												<label for="SE_2_3_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_2_3_0" name="SE_2_3" value="0" <%=page.checked("0",data.dataset?.SE_2_3)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_2_3_0" name="SE_2_3" value="0" <%=page.checked("0",data.dataset?.SE_2_3)%> data-parsley-required="true" />
 												<label for="SE_2_3_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_2_3_R5" name="SE_2_3_R5" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_2_3_R5%>" readonly /></td>
@@ -184,9 +184,9 @@
 										<tr>
 											<td class="tg-0lax">4. ถูกกำจัดสถานที่ที่สามารถไปได้ในช่วงนอกเวลางาน</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_2_4_1" name="SE_2_4" value="1" <%=page.checked("1",data.dataset?.SE_2_4)%> />
+												<input type="radio" class="se-radio yes" id="SE_2_4_1" name="SE_2_4" value="1" <%=page.checked("1",data.dataset?.SE_2_4)%> />
 												<label for="SE_2_4_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_2_4_0" name="SE_2_4" value="0" <%=page.checked("0",data.dataset?.SE_2_4)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_2_4_0" name="SE_2_4" value="0" <%=page.checked("0",data.dataset?.SE_2_4)%> data-parsley-required="true" />
 												<label for="SE_2_4_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_2_4_R5" name="SE_2_4_R5" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_2_4_R5%>" readonly /></td>
@@ -196,9 +196,9 @@
 										<tr>
 											<td class="tg-0lax">5. ท่านรู้สึกถูกคุกคามทางร่างกายหรือจิตใจขณะทำงาน</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_2_5_1" name="SE_2_5" value="1" <%=page.checked("1",data.dataset?.SE_2_5)%> />
+												<input type="radio" class="se-radio yes" id="SE_2_5_1" name="SE_2_5" value="1" <%=page.checked("1",data.dataset?.SE_2_5)%> />
 												<label for="SE_2_5_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_2_5_0" name="SE_2_5" value="0" <%=page.checked("0",data.dataset?.SE_2_5)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_2_5_0" name="SE_2_5" value="0" <%=page.checked("0",data.dataset?.SE_2_5)%> data-parsley-required="true" />
 												<label for="SE_2_5_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_2_5_R5" name="SE_2_5_R5" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_2_5_R5%>" readonly /></td>
@@ -208,9 +208,9 @@
 										<tr>
 											<td class="tg-0lax">6. ท่านไม่สามารถลาออกจากงานโดยสมัครใจได้</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_2_6_1" name="SE_2_6" value="1" <%=page.checked("1",data.dataset?.SE_2_6)%> />
+												<input type="radio" class="se-radio yes" id="SE_2_6_1" name="SE_2_6" value="1" <%=page.checked("1",data.dataset?.SE_2_6)%> />
 												<label for="SE_2_6_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_2_6_0" name="SE_2_6" value="0" <%=page.checked("0",data.dataset?.SE_2_6)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_2_6_0" name="SE_2_6" value="0" <%=page.checked("0",data.dataset?.SE_2_6)%> data-parsley-required="true" />
 												<label for="SE_2_6_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_2_6_R5" name="SE_2_6_R5" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_2_6_R5%>" readonly /></td>
@@ -220,9 +220,9 @@
 										<tr>
 											<td class="tg-0lax">7. ถูกบังคับใช้แรงงานหรือบังคับให้ทำงานโดยสิ้นเชิงโดยไม่จ่ายค่าจ้าง (หรือจ่ายน้อยมาก)</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_2_7_1" name="SE_2_7" value="1" <%=page.checked("1",data.dataset?.SE_2_7)%> />
+												<input type="radio" class="se-radio yes" id="SE_2_7_1" name="SE_2_7" value="1" <%=page.checked("1",data.dataset?.SE_2_7)%> />
 												<label for="SE_2_7_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_2_7_0" name="SE_2_7" value="0" <%=page.checked("0",data.dataset?.SE_2_7)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_2_7_0" name="SE_2_7" value="0" <%=page.checked("0",data.dataset?.SE_2_7)%> data-parsley-required="true" />
 												<label for="SE_2_7_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_2_7_R5" name="SE_2_7_R5" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_2_7_R5%>" readonly /></td>
@@ -232,9 +232,9 @@
 										<tr>
 											<td class="tg-0lax">8. ถูกกักขังจำกัดเสรีภาพออกไปไหนมาไหนไม่ได้โดยถูกบังคับใช้แรงงานหรือบังคับให้ทำงานโดยสิ้นเชิงโดยไม่จ่ายค่าจ้างหรือจ่ายค่าจ้างน้อยมาก (เอาคนเป็นทาส)</td>
 											<td class="tg-0laa nowrap">
-												<input type="radio" class="se-radio" id="SE_2_8_1" name="SE_2_8" value="1" <%=page.checked("1",data.dataset?.SE_2_8)%> />
+												<input type="radio" class="se-radio yes" id="SE_2_8_1" name="SE_2_8" value="1" <%=page.checked("1",data.dataset?.SE_2_8)%> />
 												<label for="SE_2_8_1" class="se-label col-form-label">เคย&nbsp;&nbsp;</label>
-												<input type="radio" class="se-radio" id="SE_2_8_0" name="SE_2_8" value="0" <%=page.checked("0",data.dataset?.SE_2_8)%> data-parsley-required="true" />
+												<input type="radio" class="se-radio none" id="SE_2_8_0" name="SE_2_8" value="0" <%=page.checked("0",data.dataset?.SE_2_8)%> data-parsley-required="true" />
 												<label for="SE_2_8_0" class="se-label col-form-label">ไม่เคย</label>
 											</td>
 											<td class="tg-0laa"><input type="number" class="form-control iint" id="SE_2_8_R5" name="SE_2_8_R5" size="5" min="0" maxlength="3" value="<%=data.dataset?.SE_2_8_R5%>" readonly /></td>

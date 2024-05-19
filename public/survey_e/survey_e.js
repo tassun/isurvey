@@ -84,11 +84,14 @@ function updateSurvey(src) {
     });
 }
 function setupUI() {
+    canFocused = false;
     $("input.se-radio").change(function() {
         if ($(this).val() == '1') {
             $(this).closest("tr").find("input[type=number]").prop('readonly', false);
         } else {
             $(this).closest("tr").find("input[type=number]").prop('readonly', true).val('');
+            $("#SE_6_1_label").removeClass("parsley-error");
+            $("#SE_7_1_label").removeClass("parsley-error");
         }
     });
     $('input[name="SE_5"]').on('change', function() {
@@ -125,7 +128,31 @@ function setupUI() {
     $("input[type=checkbox]:checked",$("#form-data-layer")).trigger("change");
     canFocused = true;
 }
+function toggleRequiredFields(enabled="false") {
+    $("#SE_5_text").attr('data-parsley-required', enabled);
+    $("#SE_6_text").attr('data-parsley-required', enabled);
+    $("#SE_7_text").attr('data-parsley-required', enabled);
+    enableRequiredFields(enabled);
+}
+function enableRequiredFields(enabled="true") {
+    $("#SE_7_1").attr('data-parsley-required', enabled);
+    $("#SE_6_1").attr('data-parsley-required', enabled);
+    $("#SE_5_1").attr('data-parsley-required', enabled);
+    $("#SE_4_1").attr('data-parsley-required', enabled);
+    $("#SE_3_1").attr('data-parsley-required', enabled);
+}
+function checkedYes() {
+    enableRequiredFields("true");
+    let numofchecked = $("input.yes:checked",$("#form-data-layer")).length;
+    console.log("num of checked",numofchecked);
+    if(numofchecked == 0) {
+        toggleRequiredFields("false");
+        return true;
+    }
+    return false;
+}
 function validateSE6() {
+    if(checkedYes()) return true;
     let checked = $("#se6-layer").find("input[type=checkbox]:checked").length;
     if (checked == 0 || checked > 3) {
         $("#SE_6_1_label").addClass("parsley-error");
@@ -134,6 +161,7 @@ function validateSE6() {
     return true;
 }
 function validateSE7() {
+    if(checkedYes()) return true;
     let checked = $("#se7-layer").find("input[type=checkbox]:checked").length;
     if (checked == 0) {
         $("#SE_7_1_label").addClass("parsley-error");

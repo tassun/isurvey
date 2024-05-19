@@ -84,6 +84,13 @@ function updateSurvey(src) {
     });
 }
 function setupUI() {
+    canFocused = false;
+    $('input[name="SG_1"]').on('change', function() {
+        if ($(this).val() == '2') {
+            $("#SG_3_1_label").removeClass("parsley-error");
+            $("#SG_3_2_label").removeClass("parsley-error");
+        }
+    });
     $("#SG_3_1_6").change(function() {
         if($(this).is(":checked")) {
             $("#SG_3_1_text").attr('data-parsley-required', 'true').prop('readonly', false);
@@ -103,18 +110,24 @@ function setupUI() {
     canFocused = true;
 }
 function validateSG31() {
-    let checked = $("#sg31-layer").find("input[type=checkbox]:checked").length;
-    if (checked == 0) {
-        $("#SG_3_1_label").addClass("parsley-error");
-        return false;
+    let g1checked = $("#SG_1_1").is(":checked");
+    if(g1checked) {
+        let checked = $("#sg31-layer").find("input[type=checkbox]:checked").length;
+        if (checked == 0) {
+            $("#SG_3_1_label").addClass("parsley-error");
+            return false;
+        }
     }
     return true;
 }
 function validateSG32() {
-    let checked = $("#sg32-layer").find("input[type=checkbox]:checked").length;
-    if (checked == 0) {
-        $("#SG_3_2_label").addClass("parsley-error");
-        return false;
+    let g1checked = $("#SG_1_1").is(":checked");
+    if(g1checked) {
+        let checked = $("#sg32-layer").find("input[type=checkbox]:checked").length;
+        if (checked == 0) {
+            $("#SG_3_2_label").addClass("parsley-error");
+            return false;
+        }
     }
     return true;
 }

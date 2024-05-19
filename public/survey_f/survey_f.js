@@ -98,10 +98,13 @@ function setupUI() {
     canFocused = true;
 }
 function validateSF2() {
+    return true;
+    /*
     let checked = $("#sf2-layer").find("input[type=checkbox]:checked").length;
     if (checked == 0) {
         $("#SF_2_label").addClass("parsley-error");
         return false;
     }
     return true;
+    */
 }

@@ -83,6 +83,7 @@ function updateSurvey(src) {
     });
 }
 function setupUI() {
+    canFocused = false;
     $('input[name="fault_nature"]').on('change', function() {
         if ($(this).val() == '22') {
             $("#fault_nature_text").attr('data-parsley-required', 'true').prop('readonly', false);
@@ -232,7 +233,28 @@ function setupUI() {
     $("input[type=checkbox]:checked",$("#bx-form-data-layer")).trigger("change");
     canFocused = true;
 }
+function enableRequiredFields(enabled="true") {
+    $("#fault_nature_1").attr('data-parsley-required', enabled);
+    $("#fault_relation_1").attr('data-parsley-required', enabled);
+    $("#fault_location_1").attr('data-parsley-required', enabled);
+}
+function checkCaused() {
+    enableRequiredFields("true");
+    let notnotify = $("#SB1_2_1_1").is(":checked");
+    if(notnotify) {
+        $("#SB1_2_4_4").attr('data-parsley-required', 'false');
+    } else {
+        $("#SB1_2_4_4").attr('data-parsley-required', 'true');
+    }
+    let notsuccessed = $("#fault_status_0").is(":checked");
+    if(notsuccessed) {
+        enableRequiredFields("false");
+        return true;
+    }
+    return false;
+}
 function validateSB22() {
+    if(checkCaused()) return true;
     if($("#SB1_2_1_2").is(":checked")) {
         let checked = $("#SB1_2_2_layer").find("input[type=checkbox]:checked").length;
         if (checked == 0) {
@@ -244,6 +266,7 @@ function validateSB22() {
     return true;
 }
 function validateSB23() {
+    if(checkCaused()) return true;
     if($("#SB1_2_1_1").is(":checked")) {
         let checked = $("#SB1_2_3_layer").find("input[type=checkbox]:checked").length;
         if (checked == 0) {

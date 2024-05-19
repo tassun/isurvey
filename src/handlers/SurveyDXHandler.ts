@@ -73,7 +73,7 @@ export class SurveyDXHandler extends SurveyOperateHandler {
         let column_id = context.params.column_id;
         let sql = new KnSQL();
         sql.append("select profile_id,survey_id,master_id,column_id,");
-        sql.append("SDX_1,SDX_2,create_millis ");
+        sql.append("SDX_1,SDX_2,SDX_3,create_millis ");
         sql.append("from ").append(this.model?.name);
         sql.append(" where master_id = ?master_id and column_id = ?column_id ");
         sql.append("order by create_millis ");
