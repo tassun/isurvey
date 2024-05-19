@@ -310,3 +310,16 @@ function startEditFamily(survey_id,sb_profile,callback) {
         }
     });
 }
+function gotoHomerForm() {
+    let token_key = $("#bx_token_key").val();
+    submitWindow({url: BASE_URL+"/index", params: {token_key: token_key}, windowName: "_self"});
+}
+function gotoMemberForm() {
+    let token_key = $("#bx_token_key").val();
+    submitWindow({url: BASE_URL+"/user/listalls", params: {token_key: token_key}, windowName: "_self"});
+}
+function gotoSurveyForm(profile_id) {
+    if(!profile_id) profile_id = $("#bx_profile_id").val();
+    let token_key = $("#bx_token_key").val();
+    submitWindow({url: BASE_URL+"/survey/form", params: {token_key: token_key, profile_id: profile_id}, windowName: "_self"});
+}
