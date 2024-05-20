@@ -209,6 +209,7 @@ CREATE TABLE IF NOT EXISTS `measure_e` (
   `ME_3_30` varchar(2) DEFAULT NULL COMMENT '(30) เหตุผลอื่นๆ ในการไม่ได้เข้าสู่การระงับข้อพิพาท',
   `ME_3_30_text` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `ME_4_1` varchar(2) DEFAULT NULL COMMENT '3.3 หากในช่วงสองปีที่ผ่านท่านเคยประสบข้อพิพาทและได้เข้ารับการระงับข้อพิพาท ปัญหาของท่านที่ท่านพบได้รับการแก้ไขอย่างไร',
+  `ME_4_2` varchar(2) DEFAULT NULL COMMENT '3.4. ในภาพรวมท่านมีความพึงพอใจต่อกระบวนการระงับข้อพิพาททั้งที่เป็นทางการและไม่เป็นทางการที่ท่านได้ใช้บริการมากน้อยเพียงใด',
   `ME_C_3_21_sum` int DEFAULT NULL COMMENT 'sum(ME_3_1,ME_3_2)',
   `ME_C_3_22_sum` int DEFAULT NULL COMMENT 'sum(ME_3_3 - ME_3_19)',
   `ME_C_3_23_sum` int DEFAULT NULL COMMENT 'sum(ME_3_20 - ME_3_30)',

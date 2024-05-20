@@ -68,6 +68,7 @@ export class MeasureEHandler extends SurveyOperateHandler {
             ME_3_30: { type: "STRING", created: true, updated: true  },
             ME_3_30_text: { type: "STRING", created: true, updated: true  },
             ME_4_1: { type: "STRING", created: true, updated: true  },
+            ME_4_2: { type: "STRING", created: true, updated: true  },
             ME_C_3_21_sum: { type: "INTEGER", created: true, updated: true  },
             ME_C_3_22_sum: { type: "INTEGER", created: true, updated: true  },
             ME_C_3_23_sum: { type: "INTEGER", created: true, updated: true  },
