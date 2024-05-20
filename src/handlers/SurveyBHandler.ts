@@ -60,6 +60,7 @@ export class SurveyBHandler extends SurveyOperateHandler {
                     data.SB_gender = row.A_01;
                     data.SB_age = row.age_code;
                     data.SB_age_text = row.SB_age;
+                    data.SB_type = "A";
                     await this.doPersist(context, db, data);
                 }
             }
@@ -110,6 +111,7 @@ export class SurveyBHandler extends SurveyOperateHandler {
     }
 
     public async processPersist(context: KnContextInfo, db: KnDBConnector, data: any) : Promise<KnRecordSet> {
+        let SB_type = data.SB_type;
         data.survey_profile = data.SB_profile;
         data.SB_crime = null;
         data.SB_remark = null;
@@ -118,6 +120,7 @@ export class SurveyBHandler extends SurveyOperateHandler {
         let handler = new SurveyFamilyHandler(this.logger);
         let rs = await handler.performUpdate(context, db, data);
         if(rs.records==0) {
+            data.SB_type = SB_type;
             rs = await this.performInsert(context, db, data);
         }
         return Promise.resolve(rs);
