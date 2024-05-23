@@ -203,7 +203,8 @@ export class SurveyProfileHandler extends OperateHandler {
 
     public override async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         let userid = context.params.userid || context.meta?.user?.userid;
-        let accessor = context.params.accessor;
+        let accessor = userid; //context.params.accessor;
+        if(context.meta?.user?.level=="ADMIN") accessor = null;
         let sql = new KnSQL();
         sql.append("select s.profile_id,s.profile_code,s.A2 AS house_no,if(s.A4='1',s.A4_1_1_text,s.A4_2_1_text) AS province_name,");
         sql.append("s.A_01 AS gender_code,s.A_02 AS age_code,s.A_02_text AS ages,if(s.create_by=?userid,'1','0') as ownered,");
