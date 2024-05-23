@@ -18,6 +18,7 @@ services:
     user: "node"
     working_dir: /usr/node/app
     environment:
+      - TZ=Asia/Bangkok
       - EXPRESS_HTTPS=false
     restart: always
     volumes:
