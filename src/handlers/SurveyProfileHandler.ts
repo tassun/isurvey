@@ -203,6 +203,7 @@ export class SurveyProfileHandler extends OperateHandler {
 
     public override async processList(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
         let userid = context.params.userid || context.meta?.user?.userid;
+        let accessor = context.params.accessor;
         let sql = new KnSQL();
         sql.append("select s.profile_id,s.profile_code,s.A2 AS house_no,if(s.A4='1',s.A4_1_1_text,s.A4_2_1_text) AS province_name,");
         sql.append("s.A_01 AS gender_code,s.A_02 AS age_code,s.A_02_text AS ages,if(s.create_by=?userid,'1','0') as ownered,");
@@ -210,7 +211,11 @@ export class SurveyProfileHandler extends OperateHandler {
         sql.append("from ").append(this.model.name).append(" s ");
         sql.append("left join tgender on tgender.key_code = s.A_01 ");
         sql.append("left join tusers on tusers.userid = s.create_by ");
-        sql.append("where s.master_id is null or s.master_id = '' ");
+        sql.append("where ( s.master_id is null or s.master_id = '' ) ");
+        if(accessor && accessor.trim().length>0) {
+            sql.append("and s.create_by = ?accessor ");
+            sql.set("accessor",accessor);
+        }
         sql.append("order by profile_code desc ");
         sql.set("userid",userid);
         this.logger.info(this.constructor.name+".processList:",sql);

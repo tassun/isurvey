@@ -25,6 +25,7 @@
 				<a href="javascript:void(0);" id="export-linker" class="btn btn-default ui blue button"><i class="download icon small"></i> นำออกข้อมูลแบบสำรวจ</a>
 				<div class="page-title"><h1 class="page-header">รายการแบบสำรวจ</h1></div>
 				<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
+				<input type="hidden" id="accessor" name="accessor" value="<%=(meta.user?.level=='ADMIN'?'':meta.user?.userid)%>" />
 				<div id="listtablepanel" class="table-responsive">
 					<table id="data-table" class="table table-bordered table-hover table-striped table-td-valign-middle">
 						<thead>
