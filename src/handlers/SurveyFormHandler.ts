@@ -32,8 +32,13 @@ export class SurveyFormHandler extends OperateHandler {
     }
 
     public async processCatalog(context: KnContextInfo, db: KnDBConnector) : Promise<KnDataTable> {
-        let dataset : KnDataSet = {profile_id: context.params.profile_id};
+        let dataset : KnDataSet = {profile_id: context.params.profile_id, use_service: false };
         let entity : KnDataSet = {};
+        let prs = await this.getProfileInfo(context, db);
+        if(prs && prs.rows.length > 0) {
+            let row = prs.rows[0];
+            dataset.use_service = row["A_14"] == "1";
+        }
         let rs = await this.processList(context, db);
         if(rs.rows.length > 0) {
             for(let row of rs.rows) {
@@ -45,6 +50,9 @@ export class SurveyFormHandler extends OperateHandler {
                     entity[type] = data;
                 }
                 let rows = entity[type]["rows"];
+                //only use service can take survey form measure_g
+                let form_id = row["form_id"];
+                if(!dataset.use_service && ("MEASURE_G"==form_id)) continue;
                 rows.push({
                     form_id: row["form_id"],
                     form_title: row["form_title"],
@@ -71,6 +79,16 @@ export class SurveyFormHandler extends OperateHandler {
         sql.append("ORDER BY typeno, seqno ");        
         sql.set("profile_id",profile_id);
         this.logger.info(this.constructor.name+".processList:",sql);
+        let rs = await sql.executeQuery(db,context);
+        return Promise.resolve(this.createRecordSet(rs));
+    }
+
+    public async getProfileInfo(context: KnContextInfo, db: KnDBConnector,profile_id: string = context.params.profile_id) : Promise<KnRecordSet> {
+        if(!profile_id || profile_id.trim().length==0) return Promise.resolve(this.createRecordSet());
+        let sql = new KnSQL();
+        sql.append("select A_14 from survey_profile where profile_id = ?profile_id ");
+        sql.set("profile_id",profile_id);
+        this.logger.info(this.constructor.name+".getProfileInfo:",sql);
         let rs = await sql.executeQuery(db,context);
         return Promise.resolve(this.createRecordSet(rs));
     }
