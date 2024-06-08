@@ -2,8 +2,8 @@
 									<thead>
 										<tr>
 											<th>ลำดับที่สมาชิก<br/>ในครัวเรือน</th>
-											<th>เพศ<span class="star"> *</span></th>
-											<th>อายุ<span class="star"> *</span></th>
+											<th class="text-center">เพศ<span class="star"> *</span></th>
+											<th class="text-center">อายุ<span class="star"> *</span></th>
 											<th>การตกเป็นเหยื่อ<br/>อาชญากรรม<br/>(1 ม.ค. – 31 ธ.ค. 66)<span class="star"> *</span></th>
 											<th><u>หมายเหตุ</u><br/>(กรณีไม่ระบุคำตอบ)</th>
 											<th>กรอกข้อมูลและรายละเอียด<br/>การตกเป็นเหยื่ออาชญากรรม</th>
@@ -25,8 +25,8 @@
 												<input type="hidden" id="SB_survey_<%=index%>" name="SB_survey" value="<%=item?.survey_id%>" />
 												<label class="seqno-label"><%=index+1%></label><%=(item?.SB_type == "A" ? ". (ตัวผู้ตอบ)" : ".")%>
 											</td>
-											<td class="nowrap"><%=item?.SB_gender%></td>
-											<td class="nowrap"><%=SB_age%></td>
+											<td class="text-center nowrap"><%=item?.SB_gender%></td>
+											<td class="text-center nowrap"><%=SB_age%></td>
 											<td class="nowrap">
 												<input type="radio" class="sb-radio sb-used" id="SB_crime_1_<%=index%>" name="SB_crime_<%=index%>" value="1" <%=page.checked("1",item?.SB_crime)%> />
 												<label class="ctrl-label" for="SB_crime_1_<%=index%>">&nbsp;เคย&nbsp;&nbsp;</label>
