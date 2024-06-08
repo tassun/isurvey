@@ -8,18 +8,11 @@
 					<input type="hidden" id="column_id" name="column_id" value="survey_b3" />
 					<label>ส่วนที่ 1 แบบบันทึกรายละเอียดความผิด</label><br/>
 					<div class="row">
-						<label class="col-form-label">1. พฤติกรรมโดยย่อพอสังเขป<span class="star"> *</span></label>
 						<div class="col-lg-12">
-							<textarea rows="5" class="form-control" id="fault_behavior" name="fault_behavior" data-parsley-required="true"><%=data.dataset?.fault_behavior%></textarea>
-						</div>
-					</div>
-					<br />
-					<div class="row">
-						<div class="col-lg-12">
-							<label class="col-form-label">2. ประเภทความผิด<span class="star"> *</span></label>
+							<label class="col-form-label">1. ประเภทความผิด<span class="star"> *</span></label>
 						</div>
 						<br/>
-						<label class="col-form-label">2.1 ความรุนแรงทางเพศ (Sexual Violence)</label>
+						<label class="col-form-label">1.1 ความรุนแรงทางเพศ (Sexual Violence)</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
 								<input type="radio" id="fault_type_1" name="fault_type" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_type)%> /> (1) ข่มขืนโดยใช้กำลังบังคับ
@@ -41,7 +34,7 @@
 							</label>
 						</div>
 						<br/>
-						<label class="col-form-label">2.2 คุกคามทางเพศ (Sexual Harassment)</label>
+						<label class="col-form-label">1.2 คุกคามทางเพศ (Sexual Harassment)</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
 								<input type="radio" id="fault_type_7" name="fault_type" value="7" data-parsley-required="true" <%=page.checked("7",data.dataset?.fault_type)%> /> (7) พูดจาลวนลาม/ลอบแอบมอง
@@ -82,10 +75,18 @@
 					</div>
 					<br />
 					<div class="row">
+						<label class="col-form-label">2. พฤติกรรมโดยย่อพอสังเขป<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<textarea rows="5" class="form-control data-parsley" id="fault_behavior" name="fault_behavior" data-parsley-required="true"><%=data.dataset?.fault_behavior%></textarea>
+						</div>
+					</div>
+					<br />
+					<div class="row topic-row" id="topic-row"></div>
+					<div class="row">
 						<label class="col-form-label">3. ลักษณะการกระทำผิด<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-5" style="margin-left: 10px;">
-								<input type="radio" id="fault_nature_1" name="fault_nature" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_nature)%> />(1) ข่มขืนหรือถูกบังคับให้มีเพศสัมพันธ์ โดยข่มขู่ กักขัง หรือทำร้ายร่างกาย
+								<input type="radio" id="fault_nature_1" name="fault_nature" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_nature)%> />(1) ข่มขืนหรือถูกบังคับให้มีเพศสัมพันธ์ โดยข่มขู่ กักขัง หรือทำร้ายร่างกาย
 							</label>
 							<label class="radio-inline col-form-label col-lg-5">
 								<input type="radio" id="fault_nature_2" name="fault_nature" value="2" <%=page.checked("2",data.dataset?.fault_nature)%> /> (2) พยายามบังคับให้มีเพศสัมพันธ์ โดยข่มขู่ กักขัง ทำร้ายร่างกาย แต่ไม่เกิดเหตุการณ์ขึ้น
@@ -135,7 +136,6 @@
 						</div>
 					</div>
 					<br/>
-					<div class="row topic-row" id="topic-row"></div>
 					<div class="row">
 						<label class="col-form-label">4. ความสัมพันธ์ระหว่างเหยื่อกับผู้ก่อเหตุ<span class="star"> *</span></label>
 						<div class="col-lg-12">

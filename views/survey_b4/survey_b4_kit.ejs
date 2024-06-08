@@ -8,14 +8,7 @@
 					<input type="hidden" id="column_id" name="column_id" value="survey_b4" />
 					<label>ส่วนที่ 1 แบบบันทึกรายละเอียดความผิด</label><br/>
 					<div class="row">
-						<label class="col-form-label">1. พฤติกรรมโดยย่อพอสังเขป<span class="star"> *</span></label>
-						<div class="col-lg-12">
-							<textarea rows="5" class="form-control" id="fault_behavior" name="fault_behavior" data-parsley-required="true"><%=data.dataset?.fault_behavior%></textarea>
-						</div>
-					</div>
-					<br />
-					<div class="row">
-						<label class="col-form-label">2. ประเภทความผิด<span class="star"> *</span></label>
+						<label class="col-form-label">1. ประเภทความผิด<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
 								<input type="radio" id="fault_type_1" name="fault_type" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_type)%> /> (1) แอบอ้างใช้ข้อมูล/เอกสารส่วนตัว
@@ -57,10 +50,18 @@
 					</div>
 					<br />
 					<div class="row">
+						<label class="col-form-label">2. พฤติกรรมโดยย่อพอสังเขป<span class="star"> *</span></label>
+						<div class="col-lg-12">
+							<textarea rows="5" class="form-control data-parsley" id="fault_behavior" name="fault_behavior" data-parsley-required="true"><%=data.dataset?.fault_behavior%></textarea>
+						</div>
+					</div>
+					<br />
+					<div class="row topic-row" id="topic-row"></div>
+					<div class="row">
 						<label class="col-form-label">3. ลักษณะความผิด<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-5" style="margin-left: 10px;">
-								<input type="radio" id="fault_nature_1" name="fault_nature" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_nature)%> />(1) แอบอ้างใช้ข้อมูล/เอกสารส่วนตัวไปใช้ในทางมิชอบ เช่น ลักลอบเอาข้อมูลบัตรเครดิตไปซื้อสินค้า   นำสำเนาบัตรประชาชนไปเปิดโทรศัพท์หรือบัญชีธนาคารนำไปขอกู้เงิน
+								<input type="radio" id="fault_nature_1" name="fault_nature" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_nature)%> />(1) แอบอ้างใช้ข้อมูล/เอกสารส่วนตัวไปใช้ในทางมิชอบ เช่น ลักลอบเอาข้อมูลบัตรเครดิตไปซื้อสินค้า   นำสำเนาบัตรประชาชนไปเปิดโทรศัพท์หรือบัญชีธนาคารนำไปขอกู้เงิน
 							</label>
 							<label class="radio-inline col-form-label col-lg-5">
 								<input type="radio" id="fault_nature_2" name="fault_nature" value="2" <%=page.checked("2",data.dataset?.fault_nature)%> /> (2) ตกเป็นเหยื่อ มีผู้ใช้เงินปลอมมาชำระหนี้/ซื้อขายสินค้า
@@ -154,7 +155,6 @@
 						</div>
 					</div>
 					<br/>
-					<div class="row topic-row" id="topic-row"></div>
 					<div class="row">
 						<label class="col-form-label">4. ความสัมพันธ์ระหว่างเหยื่อกับผู้ก่อเหตุ<span class="star"> *</span></label>
 						<div class="col-lg-12">

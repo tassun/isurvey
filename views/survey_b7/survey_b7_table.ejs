@@ -2,9 +2,9 @@
 									<thead>
 										<tr>
 											<th class="tg-c3oa bg">ลำดับที่</th>
-											<th class="tg-9wq8 bg">ลักษณะความผิด<br></th>
 											<th class="tg-c3oa bg">ประเภทความผิด</th>
 											<th class="tg-c3oa bg nowrap">สถานะ</th>
+											<th class="tg-9wq8 bg">ลักษณะความผิด<br></th>
 											<th class="tg-c3oa bg">สถานที่เกิดเหตุ</th>
 											<th class="tg-c3oa bg"></th>
 										</tr>
@@ -33,9 +33,9 @@
 												%>
 										<tr data-survey="<%=item?.survey_id%>" data-master="<%=item?.master_id%>">
 											<td class="tg-0lax text-center"><%=index+1%></td>
-											<td class="tg-0laa text-left"><%=fault_nature%></td>
 											<td class="tg-0laa text-left"><%=fault_type%></td>
 											<td class="tg-0laa"><%=fault_status%></td>
+											<td class="tg-0laa text-left"><%=fault_nature%></td>
 											<td class="tg-0laa text-left"><%=fault_location%></td>
 											<td class="tg-0laa nowrap">
 												<a href="javascript:void(0)" class="bx-edit-linker ui basic black button tiny"><i class="edit icon large"></i></a>

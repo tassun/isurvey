@@ -87,8 +87,10 @@ function setupUI() {
     $('input[name="fault_status"]').on('change', function() {
         if ($(this).val() == '0') {
             toggleFaultStatus(true);
+            $("#fault_behavior").prop('readonly', true).attr("data-parsley-required", false);
         } else {
             toggleFaultStatus(false);
+            $("#fault_behavior").removeAttr('readonly').attr("data-parsley-required", true);;
         }
     });
     $('input[name="fault_character"]').on('change', function() {
