@@ -6,6 +6,7 @@ import { VerifyError } from '../models/VerifyError';
 import { HTTP } from '../api/HTTP';
 import { SurveyProfileHandler } from './SurveyProfileHandler';
 import { SurveyFamilyHandler } from './SurveyFamilyHandler';
+import { SurveyBXHandler } from './SurveyBXHandler';
 
 export class SurveyBHandler extends SurveyOperateHandler {
     public readonly form_id : string = "SURVEY_B";
@@ -19,6 +20,9 @@ export class SurveyBHandler extends SurveyOperateHandler {
             SB_profile: { type: "STRING", created: true, updated: false, remark: "survey_profile.profile_id" },
             SB_type: { type: "STRING", created: true, updated: false, remark: "A=Answerer,F=Family"  },
             SB_crime: { type: "STRING", created: true, updated: true },
+            SB_gender: { type: "STRING", created: true, updated: false },
+            SB_age: { type: "STRING", created: true, updated: false },
+            SB_age_text: { type: "STRING", created: true, updated: false },
             SB_remark: { type: "STRING", created: true, updated: true },
             create_date: { type: "DATE", created: true, updated: false  },
             create_time: { type: "TIME", created: true, updated: false  },
@@ -140,6 +144,13 @@ export class SurveyBHandler extends SurveyOperateHandler {
         sql.set("profile_id",context.params.profile_id);
         this.logger.info(this.constructor.name+".processRetrieve:",sql);
         let rs = await sql.executeQuery(db,context);
+        if(rs && rs.rows && rs.rows.length>0) {
+            let handler = new SurveyBXHandler(this.logger);
+            for(let row of rs.rows) {
+                let crs = await handler.getRecordCount(context, db, row.survey_id);
+                row.record_count = crs.records;
+            }
+        }
         return Promise.resolve(this.createRecordSet(rs));
     }
 

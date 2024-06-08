@@ -118,6 +118,12 @@ function setupUI() {
             $("#SE_7_text").removeClass("parsley-error").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
+    $("input[type=radio]",$("#SBEtable1")).change(function() {
+        toggleInputFields();
+    });
+    $("input[type=radio]",$("#SBEtable2")).change(function() {
+        toggleInputFields();
+    });
     $("#se6-layer").find("input[type=checkbox]").change(function() {
         $("#SE_6_1_label").removeClass("parsley-error");
     });
@@ -140,6 +146,19 @@ function enableRequiredFields(enabled="true") {
     $("#SE_5_1").attr('data-parsley-required', enabled);
     $("#SE_4_1").attr('data-parsley-required', enabled);
     $("#SE_3_1").attr('data-parsley-required', enabled);
+}
+function toggleInputFields() {
+    let numofchecked = $("input.none:checked",$("#form-data-layer")).length;
+    console.log("num of checked",numofchecked);
+    if(numofchecked == 15) {
+        $("#topic-row").nextAll().each(function() {
+            $("input[type=radio]",$(this)).prop('disabled', true);
+        });
+    } else {
+        $("#topic-row").nextAll().each(function() {
+            $("input[type=radio]",$(this)).removeAttr('disabled');
+        });
+    }
 }
 function checkedYes() {
     enableRequiredFields("true");

@@ -50,4 +50,30 @@ export class SurveyMasterHandler extends SurveyOperateHandler {
         return dt;
     }
 
+    public async updateCrime(context: KnContextInfo, db: KnDBConnector, survey_id: string, crime: string = "1") : Promise<KnRecordSet> {
+        if(!survey_id || survey_id.trim().length==0) return Promise.reject(this.createRecordSet());
+        let sql = new KnSQL();
+        sql.append("update survey_b set SB_crime = ?SB_crime where survey_id = ?survey_id ");
+        sql.set("SB_crime",crime);
+        sql.set("survey_id",survey_id);
+        this.logger.info(this.constructor.name+".updateCrime:",sql);
+        let rs = await sql.executeUpdate(db,context);
+        this.logger.info(this.constructor.name+".updateCrime:",rs);
+        return this.createRecordSet(rs);
+    }
+
+    public override async processInsert(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        let master_id = context.params.master_id;
+        let rs = await super.processInsert(context, db);        
+        await this.updateCrime(context, db, master_id, "1");
+        return Promise.resolve(rs);
+    }
+
+    public override async processUpdate(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        let master_id = context.params.master_id;
+        let rs = await super.processUpdate(context, db);
+        await this.updateCrime(context, db, master_id, "1");
+        return Promise.resolve(rs);
+    }
+
 }

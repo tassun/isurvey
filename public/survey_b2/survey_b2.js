@@ -84,6 +84,13 @@ function updateSurvey(src) {
 }
 function setupUI() {
     canFocused = false;
+    $('input[name="fault_status"]').on('change', function() {
+        if ($(this).val() == '0') {
+            toggleFaultStatus(true);
+        } else {
+            toggleFaultStatus(false);
+        }
+    });
     $('input[name="fault_nature"]').on('change', function() {
         if ($(this).val() == '17') {
             $("#fault_nature_text").attr('data-parsley-required', 'true').prop('readonly', false);
@@ -215,6 +222,21 @@ function setupUI() {
             $("#SB2_3_2_4_7_text").attr('data-parsley-required', 'false').prop('readonly', true).val('');
         }
     });
+    $('input[name="SB2_3_1"]').on('change', function() {
+        if ($(this).val() == '2') {
+            $("#topic-third").nextAll().each(function() {
+                $("input[type=radio]",$(this)).prop('disabled', true);
+                $("input[type=checkbox]",$(this)).prop('disabled', true);
+                $('.data-parsley',$(this)).attr('data-parsley-required', false);
+            });        
+        } else {
+            $("#topic-third").nextAll().each(function() {
+                $("input[type=radio]",$(this)).removeAttr('disabled');
+                $("input[type=checkbox]",$(this)).removeAttr('disabled');
+                $('.data-parsley',$(this)).attr('data-parsley-required', true);
+            });        
+        }
+    });
     $("#SB2_2_2_layer").find("input[type=checkbox]").change(function() {
         $("#SB2_2_2_label").removeClass("parsley-error");
     });
@@ -225,6 +247,13 @@ function setupUI() {
     $("input[type=checkbox]:checked",$("#bx-form-data-layer")).trigger("change");
     canFocused = true;
 }
+function toggleFaultStatus(state) {
+    $("#topic-row").nextAll().each(function() {
+        $("input[type=radio]",$(this)).prop('disabled', state);
+        $("input[type=checkbox]",$(this)).prop('disabled', state);
+        $('.data-parsley').attr('data-parsley-required', !state);
+    });
+}
 function enableRequiredFields(enabled="true") {
     $("#fault_nature_1").attr('data-parsley-required', enabled);
     $("#fault_relation_1").attr('data-parsley-required', enabled);
@@ -233,15 +262,17 @@ function enableRequiredFields(enabled="true") {
 function checkCaused() {
     enableRequiredFields("true");
     let notnotify = $("#SB2_2_1_1").is(":checked");
-    if(notnotify) {
-        $("#SB2_2_4_4").attr('data-parsley-required', 'false');
-    } else {
-        $("#SB2_2_4_4").attr('data-parsley-required', 'true');
-    }
     let notsuccessed = $("#fault_status_0").is(":checked");
     if(notsuccessed) {
+        $('.data-parsley').attr('data-parsley-required', false);
         enableRequiredFields("false");
         return true;
+    } else {
+        if(notnotify) {
+            $("#SB2_2_4_4").attr('data-parsley-required', 'false');
+        } else {
+            $("#SB2_2_4_4").attr('data-parsley-required', 'true');
+        }    
     }
     return false;
 }

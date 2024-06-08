@@ -154,11 +154,12 @@
 						</div>
 					</div>
 					<br/>
+					<div class="row topic-row" id="topic-row"></div>
 					<div class="row">
 						<label class="col-form-label">4. ความสัมพันธ์ระหว่างเหยื่อกับผู้ก่อเหตุ<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
-								<input type="radio" id="fault_relation_1" name="fault_relation" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_relation)%> /> (1) บิดา/มารดา
+								<input type="radio" id="fault_relation_1" name="fault_relation" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_relation)%> /> (1) บิดา/มารดา
 							</label>
 							<label class="radio-inline col-form-label col-lg-3">
 								<input type="radio" id="fault_relation_2" name="fault_relation" value="2" <%=page.checked("2",data.dataset?.fault_relation)%> /> (2) ผู้ปกครอง
@@ -226,7 +227,7 @@
 						<label class="col-form-label">5. สถานที่เกิดเหตุ<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
-								<input type="radio" id="fault_location_1" name="fault_location" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_location)%> /> (1) บ้าน/ที่อยู่อาศัยส่วนตัว
+								<input type="radio" id="fault_location_1" name="fault_location" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.fault_location)%> /> (1) บ้าน/ที่อยู่อาศัยส่วนตัว
 							</label>
 							<label class="radio-inline col-form-label col-lg-3">
 								<input type="radio" id="fault_location_2" name="fault_location" value="2" <%=page.checked("2",data.dataset?.fault_location)%> /> (2) สถานที่เชิงพาณิชย์ เช่น ร้านอาหาร ห้างสรรพสินค้า ร้านค้า ฯลฯ
@@ -267,7 +268,7 @@
 						<label class="col-form-label">2.1 มีการแจ้งต่อเจ้าหน้าที่หรือไม่<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
-								<input type="radio" id="SB4_2_1_1" name="SB4_2_1" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_2_1)%> /> (1) ไม่มี
+								<input type="radio" id="SB4_2_1_1" name="SB4_2_1" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_2_1)%> /> (1) ไม่มี
 							</label>
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
 								<input type="radio" id="SB4_2_1_2" name="SB4_2_1" value="2" <%=page.checked("2",data.dataset?.SB4_2_1)%> /> (2) มี
@@ -372,7 +373,7 @@
 						<label class="col-form-label">2.4 (เฉพาะกรณีที่แจ้งต่อเจ้าหน้าที่) ท่านมีความพึงพอใจต่อการดำเนินงานของเจ้าหน้าที่ต่อการรับแจ้งเหตุของท่านมากน้อยเพียงใด</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
-								<input type="radio" id="SB4_2_4_4" name="SB4_2_4" value="4" data-parsley-required="true" <%=page.checked("4",data.dataset?.SB4_2_4)%> /> (4) พอใจมาก	
+								<input type="radio" id="SB4_2_4_4" name="SB4_2_4" value="4" class="data-parsley" data-parsley-required="true" <%=page.checked("4",data.dataset?.SB4_2_4)%> /> (4) พอใจมาก	
 							</label>
 							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SB4_2_4_3" name="SB4_2_4" value="3" <%=page.checked("3",data.dataset?.SB4_2_4)%> /> (3) พอใจค่อนข้างมาก
@@ -396,11 +397,11 @@
 					<br/>
 					<label>ส่วนที่ 3 ความเสียหายต่อชีวิตร่างกาย ทรัพย์สิน</label>
 					</br>
-					<div class="row">
+					<div class="row" id="topic-third">
 						<label class="col-form-label">3.1 กรณีเหตุที่เกิดขึ้นได้ก่อให้เกิดอันตรายต่อชีวิต ร่างกาย จิตใจ หรือทรัพย์สิน กับเหยื่ออาชญากรรมหรือไม่<span class="star"> *</span></label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
-								<input type="radio" id="SB4_3_1_1" name="SB4_3_1" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_3_1)%> /> (1) ใช่
+								<input type="radio" id="SB4_3_1_1" name="SB4_3_1" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_3_1)%> /> (1) ใช่
 							</label>
 							<label class="radio-inline col-form-label col-lg-3" style="margin-left: 10px;">
 								<input type="radio" id="SB4_3_1_2" name="SB4_3_1" value="2" <%=page.checked("2",data.dataset?.SB4_3_1)%> /> (2) ไม่ใช่
@@ -412,7 +413,7 @@
 						<label class="col-form-label">3.2.1 ความเสียหายหรืออันตรายต่อชีวิต ร่างกาย (เลือกตอบกรณีที่หนักที่สุดตัวเลือกเดียว)</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
-								<input type="radio" id="SB4_3_2_1_1" name="SB4_3_2_1" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_3_2_1)%> /> (1) ไม่มี
+								<input type="radio" id="SB4_3_2_1_1" name="SB4_3_2_1" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_3_2_1)%> /> (1) ไม่มี
 							</label>
 							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SB4_3_2_1_2" name="SB4_3_2_1" value="2" <%=page.checked("2",data.dataset?.SB4_3_2_1)%> /> (2) ไม่ได้รับบาดเจ็บ
@@ -444,7 +445,7 @@
 						<label class="col-form-label">3.2.2 ความเสียหายหรืออันตรายทางจิตใจ</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
-								<input type="radio" id="SB4_3_2_2_1" name="SB4_3_2_2" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_3_2_2)%> /> (1) ไม่มี
+								<input type="radio" id="SB4_3_2_2_1" name="SB4_3_2_2" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_3_2_2)%> /> (1) ไม่มี
 							</label>
 							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SB4_3_2_2_2" name="SB4_3_2_2" value="2" <%=page.checked("2",data.dataset?.SB4_3_2_2)%> /> (2) ได้รับอันตรายทางจิตใจจนถึงขั้นเข้ารับการบำบัดทางจิต
@@ -455,7 +456,7 @@
 						<label class="col-form-label">3.2.3 ความเสียหายต่อทรัพย์</label>
 						<div class="col-lg-12">
 							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
-								<input type="radio" id="SB4_3_2_3_1" name="SB4_3_2_3" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_3_2_3)%> /> (1) ไม่มี
+								<input type="radio" id="SB4_3_2_3_1" name="SB4_3_2_3" value="1" class="data-parsley" data-parsley-required="true" <%=page.checked("1",data.dataset?.SB4_3_2_3)%> /> (1) ไม่มี
 							</label>
 							<label class="radio-inline col-form-label col-lg-12" style="margin-left: 10px;">
 								<input type="radio" id="SB4_3_2_3_2" name="SB4_3_2_3" value="2" <%=page.checked("2",data.dataset?.SB4_3_2_3)%> /> (2) มี

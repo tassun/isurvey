@@ -82,6 +82,19 @@ function updateSurvey(src) {
     });
 }
 function setupUI() {
+    $('input[name="SF_1"]').on('change', function() {
+        if ($(this).val() == '11') {
+            $("#topic-row").nextAll().each(function() {
+                $("input[type=radio]",$(this)).prop('disabled', true);
+                $("input[type=checkbox]",$(this)).prop('disabled', true);
+            });
+        } else {
+            $("#topic-row").nextAll().each(function() {
+                $("input[type=radio]",$(this)).removeAttr('disabled');
+                $("input[type=checkbox]",$(this)).removeAttr('disabled');
+            });
+        }
+    });
     $("#SF_2_12").change(function() {
         if($(this).is(":checked")) {
             $("#SF_2_text").attr('data-parsley-required', 'true').prop('readonly', false);

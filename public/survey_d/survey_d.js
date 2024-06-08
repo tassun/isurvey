@@ -109,6 +109,18 @@ function setupUI() {
             $(this).closest("tr").find("a.sd-linker").prop('disabled', true).addClass("disabled");
         }
     });
+    $("input.sd-unused").each(function(index,element) {
+        let tr = $(element).closest("tr");
+        let $idx = tr.attr("data-index");
+        let inputname = "SD_"+$idx+"_1";
+        $('input[name="'+inputname+'"]').on('change', function() {
+            if ($(this).val() == '0') {
+                let $tr = $(this).closest("tr");
+                let $index = $tr.attr("data-index");
+                $("#SD_"+$index+"_2_0").prop('checked', true);
+            }
+        });
+    });
     $("input[type=radio]:checked",$("#form-data-layer")).trigger("change");
 }
 function displaySurveyDXDataTable() {

@@ -24,7 +24,10 @@ function confirmCancelSurvey(src) {
 }
 function confirmSaveSurvey(src) {
     var $form = $('#form-data-validate');
-    if (validBlank() && $form.parsley().validate()) {
+    $form.parsley().reset();
+    let formvalid = $form.parsley().validate();
+    let valid = validateUsedRecords();
+    if (validBlank() && formvalid && valid) {
         confirmSaveMessage(function() { saveSurvey(src); });
     } else {
         warningMessage();
@@ -32,7 +35,10 @@ function confirmSaveSurvey(src) {
 }
 function confirmUpdateSurvey(src) {
     var $form = $('#form-data-validate');
-    if (validBlank() && $form.parsley().validate()) {
+    $form.parsley().reset();
+    let formvalid = $form.parsley().validate();
+    let valid = validateUsedRecords();
+    if (validBlank() && formvalid && valid) {
         confirmUpdateMessage(function() { updateSurvey(src); });
     } else {
         warningMessage();
@@ -322,4 +328,20 @@ function gotoSurveyForm(profile_id) {
     if(!profile_id) profile_id = $("#bx_profile_id").val();
     let token_key = $("#bx_token_key").val();
     submitWindow({url: BASE_URL+"/survey/form", params: {token_key: token_key, profile_id: profile_id}, windowName: "_self"});
+}
+function validateUsedRecords() {
+    let valid = true;
+    $("input.sb-used").each(function() {
+        let input = $(this);
+        if(input.is(":checked")) {
+            let tr = input.closest("tr");
+            let record = tr.attr("data-record");
+            console.log("validateUsedRecords: record: "+record);
+            if(record == "" || record == "0") {
+                input.closest("td").addClass("parsley-error");
+                valid = false;
+            }
+        }
+    });
+    return valid;
 }

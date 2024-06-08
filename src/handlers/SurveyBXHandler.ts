@@ -52,6 +52,7 @@ export class SurveyBXHandler extends SurveyOperateHandler {
             sql.append(" where master_id = ?master_id ");
             sql.append("GROUP BY fault_status ");
             sql.set("master_id",survey_id);
+            this.logger.info(this.constructor.name+".getDataListing:",sql);
             let rs = await sql.executeQuery(db,context);
             if(rs.rows && rs.rows.length>0) {
                 let total = 0;
@@ -67,6 +68,24 @@ export class SurveyBXHandler extends SurveyOperateHandler {
             }
         }
         return Promise.resolve(dt);    
+    }
+
+    public async getRecordCount(context: KnContextInfo, db: KnDBConnector, survey_id: string) : Promise<KnRecordSet> {
+        let result = this.createRecordSet();
+        let sql = new KnSQL();
+        for(let table of this.TABLE_NAMES) {
+            sql.clear();
+            sql.append("SELECT COUNT(*) as counter from ").append(table);
+            sql.append(" where master_id = ?master_id ");
+            sql.set("master_id",survey_id);
+            this.logger.info(this.constructor.name+".getRecordCount:",sql);
+            let rs = await sql.executeQuery(db,context);
+            if(rs && rs.rows && rs.rows.length>0) {
+                let row = rs.rows[0];
+                result.records += row.counter;
+            }
+        }
+        return Promise.resolve(result);    
     }
 
 }
