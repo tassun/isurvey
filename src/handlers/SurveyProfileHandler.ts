@@ -9,6 +9,12 @@ import { Utilities } from 'will-util';
 import { SurveyFamilyHandler } from './SurveyFamilyHandler';
 
 export class SurveyProfileHandler extends OperateHandler {
+    public readonly TABLE_NAMES : string[] = [
+        "survey_profile_form",
+        "survey_b","survey_c","survey_d","survey_e","survey_f","survey_g","survey_dx",
+        "survey_b1","survey_b2","survey_b3","survey_b4","survey_b5","survey_b6","survey_b7",
+        "measure_b","measure_c","measure_d","measure_e","measure_f","measure_g",
+    ];
 
     public model : KnModel = {
         name: "survey_profile",
@@ -198,6 +204,7 @@ export class SurveyProfileHandler extends OperateHandler {
         this.logger.info(this.constructor.name+".processRemove:",sql);
         let rs = await sql.executeUpdate(db,context);
         this.logger.debug(this.constructor.name+".processRemove:",rs);
+        await this.processRemoveRecord(context,db);
         return Promise.resolve(this.createRecordSet(rs));
     }
 
@@ -290,6 +297,24 @@ export class SurveyProfileHandler extends OperateHandler {
             else if(ages>=90) data.A_02_16 = "1";
         }
         return data;
+    }
+
+    public async processRemoveRecord(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        let profile_id = context.params.profile_id;
+        let result = this.createRecordSet();
+        let sql = new KnSQL();
+        for(let table of this.TABLE_NAMES) {
+            sql.clear();
+            sql.append("delete from ").append(table);
+            sql.append(" where profile_id = ?profile_id ");
+            sql.set("profile_id",profile_id);
+            this.logger.info(this.constructor.name+".processRemoveRecord:",sql);
+            let rs = await sql.executeUpdate(db,context);
+            let rss = this.createRecordSet(rs);
+            result.records += rss.records;
+        }
+        this.logger.info(this.constructor.name+".processRemoveRecord:",result);
+        return result;
     }
 
 }
