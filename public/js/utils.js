@@ -11,7 +11,7 @@ function validBlank() {
 	});
 	return pass;
 }
-function warningMessage(callback, addon, title = 'กรอกข้อมูลไม่ครบถ้วน', message = 'กรุณากรอกข้อมูลที่เป็น <span class="star">* สีแดง</span>ให้ครบก่อนบันทึกข้อมูล') {
+function warningMessage(callback, addon, title = 'กรอกข้อมูลไม่ครบถ้วน', message = 'กรุณากรอกข้อมูลที่เป็น <span class="star">* สีแดง</span> ให้ครบก่อนบันทึกข้อมูล') {
 	$.alert({
 		icon: 'warning sign icon',
 		title: title,
@@ -21,7 +21,11 @@ function warningMessage(callback, addon, title = 'กรอกข้อมูล
 		confirmIcon: true,
 		confirmIconClass: 'fa fa-ok',
 		columnClass: 'ui grid center aligned',
-		confirm: function () { if(callback) callback(); }
+		draggable: true,
+		confirm: function () { if(callback) callback(); },
+		onOpen: function () {
+			$("div.jconfirm-box").draggable();
+		}
 	});
 }
 function confirmMessage(callback, addon, title = 'ยืนยัน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยัน') {
@@ -36,7 +40,11 @@ function confirmMessage(callback, addon, title = 'ยืนยัน&nbsp;&nbsp;
         columnClass: 'ui grid center aligned',
         closeIcon: true,
         closeIconClass: 'fa fa-close',
-        confirm: function () { if(callback) callback(); }
+		draggable: true,
+        confirm: function () { if(callback) callback(); },
+		onOpen: function () {
+			$("div.jconfirm-box").draggable();
+		}
     });
 }
 function confirmSaveMessage(callback, addon, title = 'ยืนยันการบันทึกข้อมูล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยันการบันทึกข้อมูล') {
@@ -61,6 +69,56 @@ function successMessage(callback, addon, title = "การดำเนินก
 		confirmIcon: true,
 		confirmIconClass: 'fa fa-ok',
 		columnClass: 'ui grid center aligned',
-		confirm: function () { if(callback) callback(); }		
+		draggable: true,
+		confirm: function () { if(callback) callback(); },
+		onOpen: function () {
+			$("div.jconfirm-box").draggable();
+		}
 	});
 }
+/*
+function warningMessage(callback, addon, title = 'กรอกข้อมูลไม่ครบถ้วน', message = 'กรุณากรอกข้อมูลที่เป็น <span class="star">* สีแดง</span> ให้ครบก่อนบันทึกข้อมูล') {
+	bootbox.alert({
+		title: "<i class='fa fa-warning'></i> "+title,
+		message: message+(addon ? '<br/>'+addon : ''),
+		animate: true,
+		callback: function() {    		
+			if(callback) callback();
+		},
+		buttons: {
+			ok:  { label: 'ตกลง', className: "btn-primary" }
+		}    		
+	}); 
+	$(".bootbox > .modal-dialog").draggable();
+}
+function confirmMessage(callback, addon, title = 'ยืนยัน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', message = 'กดปุ่ม <b>ตกลง</b> เพื่อทำการยืนยัน') {
+	bootbox.confirm({
+		title: "<i class='fa fa-question-circle'></i> "+title,
+		message: message+(addon ? '<br/>'+addon : ''),
+		callback: function(result) {
+			if(result) {
+				if(callback) callback(result);
+			}		
+		},
+		buttons: {
+			confirm : { label: 'ตกลง', className: "btn-success" },
+			cancel: { label: 'ยกเลิก', className: "btn-danger" }
+		}
+	}); 
+	$(".bootbox > .modal-dialog").draggable();
+}
+function successMessage(callback, addon, title = "การดำเนินการ", message = "สำเร็จเรียบร้อยแล้ว") {
+	bootbox.alert({
+		title: "<i class='fa fa-smile-o'></i> "+title,
+		message: message+(addon ? '<br/>'+addon : ''),
+		animate: true,
+		callback: function() {    		
+			if(callback) callback();
+		},
+		buttons: {
+			ok:  { label: 'ตกลง', className: "btn-primary" }
+		}    		
+	}); 
+	$(".bootbox > .modal-dialog").draggable();
+}
+*/

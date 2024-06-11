@@ -234,3 +234,4 @@ a:hover{
 	}
 }
 .containerMain { background-image: url(/img/BG.jpg); background-size: cover; }
+#buttonsatisfy { width: 100%; border-radius: 25px; margin-top: 10px; }

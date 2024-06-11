@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Survey</title>
+	<%- include('../asset/meta') %>		
+	<%- include('../asset/styles') %>		
+	<%- include('../asset/scripts') %>
+	<script type="text/javascript" src="<%=meta.cdn_url%>/survey_s/survey_s.js"></script>
+	<style nonce="YXNzdXJl">
+		.row-label { font-weight: 100; }
+		.indent-10 { margin-left: 10px; }
+		.indent-20 { margin-left: 20px; }
+		.fix-width { min-width: 95px; }
+		.row-indent { padding-left: 40px; }
+		.data-table { width: 100%; }
+		@media (max-width: 768px) { .indent { padding-left: .8em; } .row-indent { padding-left: 10px; } }
+	</style>
+</head>
+<body>
+	<div id="page-container" class="page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer page-without-sidebar">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/index" class="navbar-brand"><img src="/img/logo.png" class="logo" alt="" />สํานักงานกิจการยุติธรรม</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="/index">เข้าสู่ระบบ</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel container" style="margin-top : 10px;">
+			<h1 class="page-header" style="margin-top : 10px;">แบบสำรวจความมั่นใจ หรือความไว้วางใจที่ประชาชนมีต่อขั้นตอน วิธีการ การดำเนินการของหน่วยงานกระบวนการยุติธรรมในกระบวนการยุติธรรม</h1>
+			<div class="body" id="form-data-layer">
+				<form class="a form app form-horizontal" id="form-data-validate" data-parsley-errors-messages-disabled data-parsley-inputs="input:not([type='checkbox']), textarea, select" method="post">
+					<input type="hidden" id="ajax" name="ajax" value="true" />
+					<input type="hidden" id="token_key" name="token_key" value="<%=meta.token_key%>" />
+					<input type="hidden" id="survey_id" name="survey_id" value="<%=data.dataset?.survey_id%>" />
+					<label><b>ส่วนที่ 1 ข้อมูลการรับบริการ</b></label><br/>
+					<div class="row">
+						<label class="col-form-label">1. ท่านมาติดต่อหรือรับบริการจากหน่วยงานในกระบวนการยุติธรรมในฐานะผู้เกี่ยวข้องในคดีหรือไม่ และมาติดต่อหรือรับบริการในฐานะใด<span class="star"> *</span></label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_1_topic indent-10">
+							<input type="radio" id="SS_1_1_1" name="SS_1_1" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SS_1_1)%> /> 1.1 ไม่เกี่ยวข้องในคดีโดยตรง
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_1" id="SS_1_1_1_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_1_1_1" name="SS_1_1_1" value="1" <%=page.checked("1",data.dataset?.SS_1_1_1)%> /> (1) ติดต่อแจ้งเบาะแส/ร้องเรียนการกระทำผิด
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_1_2" name="SS_1_1_1" value="2" <%=page.checked("2",data.dataset?.SS_1_1_1)%> /> (2) ญาติ ผู้ปกครอง หรือเพื่อนฝ่ายผู้เสียหาย/โจทก์
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_1_3" name="SS_1_1_1" value="3" <%=page.checked("3",data.dataset?.SS_1_1_1)%> /> (3) ญาติ ผู้ปกครอง หรือเพื่อนฝ่ายผู้ต้องหา/จำเลย/ผู้กระทำผิด
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_1_4" name="SS_1_1_1" value="4" <%=page.checked("4",data.dataset?.SS_1_1_1)%> /> (4) ผู้ซื้อทรัพย์/ผู้ประมูลทรัพย์ในการบังคับคดี
+						</label>
+						<label class="radio-inline col-form-label col-lg-10 indent-20">
+							<input type="radio" id="SS_1_1_1_5" name="SS_1_1_1" value="5" <%=page.checked("5",data.dataset?.SS_1_1_1)%> /> (5) ประชาชนทั่วไปไม่เกี่ยวข้องกับคดี (เช่น ติดต่อขออนุญาต ขอรับเอกสาร ติดต่องานธุรการ)
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_1_topic indent-10">
+							<input type="radio" id="SS_1_1_2" name="SS_1_1" value="2" data-parsley-required="true" <%=page.checked("2",data.dataset?.SS_1_1)%> /> 1.2 ผู้เกี่ยวข้องในคดีอาญา
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_1" id="SS_1_1_2_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_1_2_1" name="SS_1_1_1_2" value="6" <%=page.checked("6",data.dataset?.SS_1_1_1)%> /> (6) ผู้เสียหายแทนญาติที่ถูกฆ่าเสียชีวิต
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_2_2" name="SS_1_1_1_2" value="7" <%=page.checked("7",data.dataset?.SS_1_1_1)%> /> (7) เหยื่ออาชญากรรมหรือผู้เสียหายในคดีอาญา
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_2_3" name="SS_1_1_1_2" value="8" <%=page.checked("8",data.dataset?.SS_1_1_1)%> /> (8) ผู้ต้องหาหรือจำเลยในคดีอาญา (ศาลยังไม่ตัดสิน)
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_2_4" name="SS_1_1_1_2" value="9" <%=page.checked("9",data.dataset?.SS_1_1_1)%> /> (9) ผู้กระทำผิดในคดีอาญา (ศาลตัดสินแล้ว เช่น นักโทษ ผู้ถูกคุมประพฤติ นักโทษที่ได้รับการพักการลงโทษหรือลดวันต้องโทษ เด็กหรือเยาวชนที่กระทำผิด)
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_2_5" name="SS_1_1_1_2" value="10" <%=page.checked("10",data.dataset?.SS_1_1_1)%> /> (10) พยาน
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_2_6" name="SS_1_1_1_2" value="11" <%=page.checked("11",data.dataset?.SS_1_1_1)%> /> (11) ทนายความ/ที่ปรึกษากฎหมาย
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_1_topic indent-10">
+							<input type="radio" id="SS_1_1_3" name="SS_1_1" value="3" data-parsley-required="true" <%=page.checked("3",data.dataset?.SS_1_1)%> /> 1.3 ผู้เกี่ยวข้องในคดีแพ่ง
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_1" id="SS_1_1_3_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_1_3_1" name="SS_1_1_1_3" value="12" <%=page.checked("12",data.dataset?.SS_1_1_1)%> /> (12) ผู้เสียหายหรือโจทก์ในคดีแพ่ง
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_3_2" name="SS_1_1_1_3" value="13" <%=page.checked("13",data.dataset?.SS_1_1_1)%> /> (13) จำเลยหรือผู้ถูกกล่าวหาในคดีแพ่ง
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_3_3" name="SS_1_1_1_3" value="14" <%=page.checked("14",data.dataset?.SS_1_1_1)%> /> (14) พยานในคดีแพ่ง
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_1_3_4" name="SS_1_1_1_3" value="15" <%=page.checked("15",data.dataset?.SS_1_1_1)%> /> (15) ทนายความ/ที่ปรึกษากฎหมายในคดีแพ่ง
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-3 SS_1_1_topic indent-10">
+							<input type="radio" id="SS_1_1_4" name="SS_1_1" value="4" data-parsley-required="true" <%=page.checked("4",data.dataset?.SS_1_1)%> /> 1.4 อื่น ๆ
+						</label>
+					</div>
+					<div class="row row-indent">
+						<div class="col-form-label inputTextFix indent-10">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="SS_1_1_text" name="SS_1_1_text" value="<%=data.dataset?.SS_1_1_text%>" maxlength="100" />
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<label class="col-form-label">2. ท่านมาติดต่อหรือรับบริการจากหน่วยงานในกระบวนการยุติธรรมเพื่อรับบริการใดเป็นสาเหตุหลัก<span class="star"> *</span></label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_1" name="SS_1_2" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SS_1_2)%> /> 2.1 รับบริการทั่วไป 
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_1_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_1_1" name="SS_1_2_1" value="1" <%=page.checked("1",data.dataset?.SS_1_2_1)%> /> (1) ให้ข้อมูล/แจ้งเบาะแสการกระทำผิด
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_1_2" name="SS_1_2_1" value="2" <%=page.checked("2",data.dataset?.SS_1_2_1)%> /> (2) ร้องเรียนหน่วยงานหรือเจ้าหน้าที่
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_1_3" name="SS_1_2_1" value="3" <%=page.checked("3",data.dataset?.SS_1_2_1)%> /> (3) เข้าซื้อทรัพย์/ประมูลทรัพย์จากการบังคับคดีขายทอดตลาด
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_1_4" name="SS_1_2_1" value="4" <%=page.checked("4",data.dataset?.SS_1_2_1)%> /> (4) ขอรับการอนุญาตต่าง ๆ
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_1_5" name="SS_1_2_1" value="5" <%=page.checked("5",data.dataset?.SS_1_2_1)%> /> (5) ติดต่องานธุรการ (เช่น ยื่นคำร้อง ขอรับสำเนาเอกสาร ฯลฯ)
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_1_6" name="SS_1_2_1" value="6" <%=page.checked("6",data.dataset?.SS_1_2_1)%> /> (6) ติดต่อขอรับบริการทั่วไปที่ไม่เกี่ยวกับคดีโดยตรง (ไม่ได้เป็นผู้เกี่ยวข้องกับคดีโดยตรง เช่น ประกันตัวผู้ต้องหา เยี่ยมญาติ เป็นต้น)
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_2" name="SS_1_2" value="2" data-parsley-required="true" <%=page.checked("2",data.dataset?.SS_1_2)%> /> 2.2 การสืบสวนสอบสวนเพื่อหาข้อเท็จจริง
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_2_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_2_1" name="SS_1_2_1_2" value="7" <%=page.checked("7",data.dataset?.SS_1_2_1)%> /> (7) แจ้งความร้องทุกข์/กล่าวโทษคดี
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_2_2" name="SS_1_2_1_2" value="8" <%=page.checked("8",data.dataset?.SS_1_2_1)%> /> (8) ติดต่อทางคดีในคดีอาญา (เช่น ให้ปากคำ เป็นพยาน) 
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_3" name="SS_1_2" value="3" data-parsley-required="true" <%=page.checked("3",data.dataset?.SS_1_2)%> /> 2.3 ผู้ถูกกล่าวหาหรือจำเลยในคดี
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_3_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_3_1" name="SS_1_2_1_3" value="9" <%=page.checked("9",data.dataset?.SS_1_2_1)%> /> (9) เป็นผู้ต้องหาหรือถูกกล่าวหาในชั้นตำรวจหรือชั้นพนักงานสอบสวน
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_3_2" name="SS_1_2_1_3" value="10" <%=page.checked("10",data.dataset?.SS_1_2_1)%> /> (10) ตกเป็นจำเลย (ในชั้นศาล) ในคดีอาญา
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_3_3" name="SS_1_2_1_3" value="11" <%=page.checked("11",data.dataset?.SS_1_2_1)%> /> (11) ตกเป็นจำเลย (ในชั้นศาล) ในคดีแพ่ง
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_3_4" name="SS_1_2_1_3" value="12" <%=page.checked("12",data.dataset?.SS_1_2_1)%> /> (12) ชี้แจงกรณีถูกยึดหรืออายัดทรัพย์
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_4" name="SS_1_2" value="4" data-parsley-required="true" <%=page.checked("4",data.dataset?.SS_1_2)%> /> 2.4 การฟ้องและพิจารณาคดีในคดีอาญา
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_4_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_4_1" name="SS_1_2_1_4" value="13" <%=page.checked("13",data.dataset?.SS_1_2_1)%> /> (13) ติดต่อทางคดีในชั้นพนักงานอัยการ
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_4_2" name="SS_1_2_1_4" value="14" <%=page.checked("14",data.dataset?.SS_1_2_1)%> /> (14) ติดต่อทางคดีในชั้นศาลในคดีอาญา (เช่น ขึ้นศาล เป็นพยาน ยื่นคำร้อง ขอหมาย) 
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_5" name="SS_1_2" value="5" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_1_2)%> /> 2.5 การฟ้องและพิจารณาคดีในคดีแพ่ง
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_5_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_5_1" name="SS_1_2_1_5" value="15" <%=page.checked("15",data.dataset?.SS_1_2_1)%> /> (15) ยื่นคำร้องหรือฟ้องคดีต่อศาล
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_5_2" name="SS_1_2_1_5" value="16" <%=page.checked("16",data.dataset?.SS_1_2_1)%> /> (16) ติดต่อทางคดีในคดีแพ่ง (เช่น ขึ้นศาล เป็นพยาน ยื่นคำร้อง ขอหมาย)
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_5_3" name="SS_1_2_1_5" value="17" <%=page.checked("17",data.dataset?.SS_1_2_1)%> /> (17) ติดต่อเกี่ยวกับการบังคับคดีแพ่ง
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_6" name="SS_1_2" value="6" data-parsley-required="true" <%=page.checked("6",data.dataset?.SS_1_2)%> /> 2.6 การฟ้องและพิจารณาคดีในคดีปกครอง
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_6_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_6_1" name="SS_1_2_1_6" value="18" <%=page.checked("18",data.dataset?.SS_1_2_1)%> /> (18) ยื่นคำร้องหรือฟ้องคดีต่อศาล
+						</label>
+						<label class="radio-inline col-form-label col-lg-4 indent-20">
+							<input type="radio" id="SS_1_2_6_2" name="SS_1_2_1_6" value="19" <%=page.checked("19",data.dataset?.SS_1_2_1)%> /> (19) ติดต่อทางคดีในคดีปกครอง (เช่น ขึ้นศาล เป็นพยาน ยื่นคำร้อง ขอหมาย)
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_6_3" name="SS_1_2_1_6" value="20" <%=page.checked("20",data.dataset?.SS_1_2_1)%> /> (20) ติดต่อเกี่ยวกับการบังคับคดีแพ่ง
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_7" name="SS_1_2" value="7" data-parsley-required="true" <%=page.checked("7",data.dataset?.SS_1_2)%> /> 2.7 การขอรับความช่วยเหลือในการเข้าถึงกระบวนการยุติธรรม
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_7_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_7_1" name="SS_1_2_1_7" value="21" <%=page.checked("21",data.dataset?.SS_1_2_1)%> /> (21) ขอรับความช่วยเหลือการเข้าถึงกระบวนการยุติธรรม (เช่น ขอทนาย ขอรับเงินสนับสนุนในการจ้างทนายหรือค่าใช้จ่ายในการดำเนินคดี ขอรับการช่วยเหลือในการประกันตัวหรือปล่อยตัวชั่วคราว ฯลฯ)
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_7_2" name="SS_1_2_1_7" value="22" <%=page.checked("22",data.dataset?.SS_1_2_1)%> /> (22) ติดต่อขอรับเงินชดเชย/เยียวยาจากการตกเป็นเหยื่ออาชญากรรม
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_7_3" name="SS_1_2_1_7" value="23" <%=page.checked("23",data.dataset?.SS_1_2_1)%> /> (23) ติดต่อขอรับเงินชดเชย/เยียวยาจากจากการถูกควบคุมตัวโดยไม่ได้เป็นผู้กระทำผิด
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_8" name="SS_1_2" value="8" data-parsley-required="true" <%=page.checked("8",data.dataset?.SS_1_2)%> /> 2.8 การไกล่เกลี่ยหรือระงับข้อพิพาทในคดีทางเลือก
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_8_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_8_1" name="SS_1_2_1_8" value="24" <%=page.checked("24",data.dataset?.SS_1_2_1)%> /> (24) การไกล่เกลี่ยในคดีอาญา
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_8_2" name="SS_1_2_1_8" value="25" <%=page.checked("25",data.dataset?.SS_1_2_1)%> /> (25) การไกล่เกลี่ยในคดีแพ่ง
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_8_2" name="SS_1_2_1_8" value="26" <%=page.checked("26",data.dataset?.SS_1_2_1)%> /> (26) การไกล่เกลี่ยในคดีปกครอง
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_8_3" name="SS_1_2_1_8" value="27" <%=page.checked("27",data.dataset?.SS_1_2_1)%> /> (27) การระงับข้อพิพาทในอนุญาโตตุลาการ
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_9" name="SS_1_2" value="9" <%=page.checked("9",data.dataset?.SS_1_2)%> /> 2.9 การควบคุมตัวและการบำบัดฟื้นฟูหรือแก้ไขพฤติกรรมผู้กระทำผิด 
+						</label>
+					</div>
+					<div class="row indent row-indent fa-hidden SS_1_2" id="SS_1_2_9_layer">
+						<label class="radio-inline col-form-label col-lg-5 indent-10">
+							<input type="radio" id="SS_1_2_9_1" name="SS_1_2_1_9" value="28" <%=page.checked("28",data.dataset?.SS_1_2_1)%> /> (28) ผู้ถูกคุมขังระหว่างการสอบสวนหรือการพิจารณาคดี
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_9_2" name="SS_1_2_1_9" value="29" <%=page.checked("29",data.dataset?.SS_1_2_1)%> /> (29)	บำบัดยาเสพติด
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_9_3" name="SS_1_2_1_9" value="30" <%=page.checked("30",data.dataset?.SS_1_2_1)%> /> (30) รับโทษจำคุก 
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_9_4" name="SS_1_2_1_9" value="31" <%=page.checked("31",data.dataset?.SS_1_2_1)%> /> (31) บริการสังคม/คุมความประพฤติ
+						</label>
+						<label class="radio-inline col-form-label col-lg-5 indent-20">
+							<input type="radio" id="SS_1_2_9_5" name="SS_1_2_1_9" value="32" <%=page.checked("32",data.dataset?.SS_1_2_1)%> /> (32) เยี่ยมญาติ/เยี่ยมผู้ต้องขัง
+						</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-10 SS_1_2_topic indent-10">
+							<input type="radio" id="SS_1_2_10" name="SS_1_2" value="10" <%=page.checked("10",data.dataset?.SS_1_2)%> /> 2.10 อื่น ๆ 
+						</label>
+					</div>
+					<div class="row row-indent">
+						<div class="col-form-label inputTextFix indent-10">
+							โปรดระบุ
+						</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="SS_1_2_text" name="SS_1_2_text" value="<%=data.dataset?.SS_1_2_text%>" maxlength="100" />
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<label class="col-form-label">3. ท่านมาติดต่อหรือรับบริการจากหน่วยงานใด (นับการเข้ารับบริการครั้งล่าสุด)</label>
+					</div>
+					<div class="row indent">
+							<label class="radio-inline col-form-label col-lg-5 indent-10">
+								<input type="radio" id="SS_1_3_1" name="SS_1_3" value="1" data-parsley-required="true" <%=page.checked("1",data.dataset?.SS_1_3)%> /> (1) ตำรวจ
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_2" name="SS_1_3" value="2" <%=page.checked("2",data.dataset?.SS_1_3)%> /> (2) อัยการ
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_3" name="SS_1_3" value="3" <%=page.checked("3",data.dataset?.SS_1_3)%> /> (3) ศาล
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_4" name="SS_1_3" value="4" <%=page.checked("4",data.dataset?.SS_1_3)%> /> (4) สำนักงานคณะกรรมการป้องกันและปราบปรามการทุจริตแห่งชาติ (ป.ป.ช.) หรือสำนักงาน ป.ป.ช.ภาค หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_5" name="SS_1_3" value="5" <%=page.checked("5",data.dataset?.SS_1_3)%> /> (5) สำนักงานคณะกรรมการป้องกันและปราบปรามการทุจริตในภาครัฐ (ป.ป.ท.) หรือสำนักงาน ป.ป.ท. ภาค หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_6" name="SS_1_3" value="6" <%=page.checked("6",data.dataset?.SS_1_3)%> /> (6) สำนักงานคณะกรรมการป้องกันและปราบปรามยาเสพติด (ป.ป.ส.) หรือสำนักงาน ป.ป.ส. ภาคหรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_7" name="SS_1_3" value="7" <%=page.checked("7",data.dataset?.SS_1_3)%> /> (7) กรมสอบสวนคดีพิเศษ หรือกองปฏิบัติการคดีพิเศษภาค หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_8" name="SS_1_3" value="8" <%=page.checked("8",data.dataset?.SS_1_3)%> /> (8) สำนักงานป้องกันและปราบปรามการฟอกเงิน (ปปง.) หรือหน่วยงานในสังกัด)
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_9" name="SS_1_3" value="9" <%=page.checked("9",data.dataset?.SS_1_3)%> /> (9) สำนักงานกองทุนยุติธรรม
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_10" name="SS_1_3" value="10" <%=page.checked("10",data.dataset?.SS_1_3)%> /> (10) สำนักงานยุติธรรมจังหวัด/สำนักงานยุติธรรมชุมชน
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_11" name="SS_1_3" value="11" <%=page.checked("11",data.dataset?.SS_1_3)%> /> (11) สถาบันนิติวิทยาศาสตร์ หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_12" name="SS_1_3" value="12" <%=page.checked("12",data.dataset?.SS_1_3)%> /> (12) กรมคุ้มครองสิทธิและเสรีภาพ หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_13" name="SS_1_3" value="13" <%=page.checked("13",data.dataset?.SS_1_3)%> /> (13) กรมคุมประพฤติ หรือสำนักงานคุมประพฤติ หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_14" name="SS_1_3" value="14" <%=page.checked("14",data.dataset?.SS_1_3)%> /> (14) กรมพินิจและคุ้มครองเด็กและเยาวชน หรือสถานพินิจคุ้มครองเด็กและเยาวชน หรือศูนย์ฝึกอบรมเด็กและเยาวชน หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_15" name="SS_1_3" value="15" <%=page.checked("15",data.dataset?.SS_1_3)%> /> (15) กรมราชทัณฑ์ หรือเรือนจำ/ทัณฑสถาน หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_16" name="SS_1_3" value="16" <%=page.checked("16",data.dataset?.SS_1_3)%> /> (16) กรมบังคับคดี หรือสำนักงานบังคับคดี หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_17" name="SS_1_3" value="17" <%=page.checked("17",data.dataset?.SS_1_3)%> /> (17) สถาบันอนุญาโตตุลาการ
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_18" name="SS_1_3" value="18" <%=page.checked("18",data.dataset?.SS_1_3)%> /> (18) ศาลปกครอง หรือศาลปกครองภาค หรือหน่วยงานในสังกัด
+							</label>
+							<label class="radio-inline col-form-label col-lg-5">
+								<input type="radio" id="SS_1_3_19" name="SS_1_3" value="19" <%=page.checked("19",data.dataset?.SS_1_3)%> /> (19) สำนักงานคณะกรรมการสิทธิมนุษยชนแห่งชาติ
+							</label>
+					</div>
+					<div id="datatablelayer">
+					<br/>
+					<label><b>ส่วนที่ 2 ความเชื่อมั่นต่อขั้นตอน วิธีการ และการดำเนินการของหน่วยงานในกระบวนการยุติธรรม</b></label>
+					<label>(บันทึกเฉพาะงานบริการที่มารับบริการเป็นหลัก)</label>
+					<div id="datatable" class="fa-hidden">
+						<div id="datatablebody">
+							<div class="row SS_1_2_1_row">
+								<label class="col-form-label">1. การรับบริการงานทั่วไป</label>
+							</div>
+							<div class="row SS_1_2_1_row">
+								<label class="col-form-label row-label">1.1 ท่านได้รับบริการหรือได้รับความช่วยเหลือจากเจ้าหน้าที่อย่างครบถ้วนตามที่ร้องขอ</label>
+							</div>
+							<div class="row indent SS_1_2_1_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_1_5" name="SS_2_1_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_1_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_1_4" name="SS_2_1_1" value="4" <%=page.checked("4",data.dataset?.SS_2_1_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_1_3" name="SS_2_1_1" value="3" <%=page.checked("3",data.dataset?.SS_2_1_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_1_2" name="SS_2_1_1" value="2" <%=page.checked("2",data.dataset?.SS_2_1_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_1_1" name="SS_2_1_1" value="1" <%=page.checked("1",data.dataset?.SS_2_1_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_1_row">
+								<label class="col-form-label row-label">1.2 คำร้องขอหรือการขอรับบริการของท่านได้รับการตอบสนองหรือให้ความช่วยเหลืออย่างทันท่วงที</label>
+							</div>
+							<div class="row indent SS_1_2_1_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_2_5" name="SS_2_1_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_1_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_2_4" name="SS_2_1_2" value="4" <%=page.checked("4",data.dataset?.SS_2_1_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_2_3" name="SS_2_1_2" value="3" <%=page.checked("3",data.dataset?.SS_2_1_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_2_2" name="SS_2_1_2" value="2" <%=page.checked("2",data.dataset?.SS_2_1_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_1_2_1" name="SS_2_1_2" value="1" <%=page.checked("1",data.dataset?.SS_2_1_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label">2. กระบวนการสืบสวนสอบสวนเพื่อหาข้อเท็จจริง</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label row-label">2.1 ท่านเชื่อมั่นต่อความรู้ความสามารถของเจ้าหน้าที่ในการให้ความช่วยเหลือดำเนินคดีที่มาแจ้งความ ร้องทุกข์หรือคดีที่ผ่านเข้ามาเกี่ยวข้อง</label>
+							</div>
+							<div class="row indent SS_1_2_2_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_1_5" name="SS_2_2_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_2_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_1_4" name="SS_2_2_1" value="4" <%=page.checked("4",data.dataset?.SS_2_2_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_1_3" name="SS_2_2_1" value="3" <%=page.checked("3",data.dataset?.SS_2_2_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_1_2" name="SS_2_2_1" value="2" <%=page.checked("2",data.dataset?.SS_2_2_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_1_1" name="SS_2_2_1" value="1" <%=page.checked("1",data.dataset?.SS_2_2_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label row-label">2.2 ท่านเชื่อมั่นว่าเจ้าหน้าที่จะทำการสืบสวนสอบสวนรวบรวมพยานหลักฐานในทางคดีอย่างครบถ้วนตรงไปตรงมาเป็นไปตามพยานหลักฐานที่ปรากฎ</label>
+							</div>
+							<div class="row indent SS_1_2_2_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_2_5" name="SS_2_2_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_2_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_2_4" name="SS_2_2_2" value="4" <%=page.checked("4",data.dataset?.SS_2_2_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_2_3" name="SS_2_2_2" value="3" <%=page.checked("3",data.dataset?.SS_2_2_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_2_2" name="SS_2_2_2" value="2" <%=page.checked("2",data.dataset?.SS_2_2_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_2_1" name="SS_2_2_2" value="1" <%=page.checked("1",data.dataset?.SS_2_2_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label row-label">2.3 ท่านเชื่อมั่นว่าการดำเนินคดีในชั้นสืบสวนสอบสวนปราศจากการแทรกแซงด้วยอำนาจหรือการใช้อิทธิพลโดยมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_2_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_3_5" name="SS_2_2_3" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_2_3)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_3_4" name="SS_2_2_3" value="4" <%=page.checked("4",data.dataset?.SS_2_2_3)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_3_3" name="SS_2_2_3" value="3" <%=page.checked("3",data.dataset?.SS_2_2_3)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_3_2" name="SS_2_2_3" value="2" <%=page.checked("2",data.dataset?.SS_2_2_3)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_3_1" name="SS_2_2_3" value="1" <%=page.checked("1",data.dataset?.SS_2_2_3)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label row-label">2.4 ท่านเชื่อว่าเจ้าหน้าที่ปฏิบัติต่อทุกคนเช่นเดียวกันโดยไม่มีการเลือกปฏิบัติ (จากสถานะทางเศรษฐกิจ สังคม เพศ ความเชื่อ ศาสนา เชื้อชาติ ฯลฯ)</label>
+							</div>
+							<div class="row indent SS_1_2_2_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_4_5" name="SS_2_2_4" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_2_4)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_4_4" name="SS_2_2_4" value="4" <%=page.checked("4",data.dataset?.SS_2_2_4)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_4_3" name="SS_2_2_4" value="3" <%=page.checked("3",data.dataset?.SS_2_2_4)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_4_2" name="SS_2_2_4" value="2" <%=page.checked("2",data.dataset?.SS_2_2_4)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_4_1" name="SS_2_2_4" value="1" <%=page.checked("1",data.dataset?.SS_2_2_4)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label row-label">2.5 การสืบสวนสอบสวนคดีดำเนินการโดยปราศจากการคอรัปชั่น การเรียกรับสินบน หรือการเรียกรับผลประโยชน์ในทางมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_2_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_5_5" name="SS_2_2_5" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_2_5)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_5_4" name="SS_2_2_5" value="4" <%=page.checked("4",data.dataset?.SS_2_2_5)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_5_3" name="SS_2_2_5" value="3" <%=page.checked("3",data.dataset?.SS_2_2_5)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_5_2" name="SS_2_2_5" value="2" <%=page.checked("2",data.dataset?.SS_2_2_5)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_5_1" name="SS_2_2_5" value="1" <%=page.checked("1",data.dataset?.SS_2_2_5)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label row-label">2.6 ท่านเชื่อมั่นว่าเจ้าหน้าที่จะสามารถสืบสวนสอบสวนติดตามตัวคนร้ายและดำเนินคดีกับผู้กระทำความผิดได้</label>
+							</div>
+							<div class="row indent SS_1_2_2_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_6_5" name="SS_2_2_6" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_2_6)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_6_4" name="SS_2_2_6" value="4" <%=page.checked("4",data.dataset?.SS_2_2_6)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_6_3" name="SS_2_2_6" value="3" <%=page.checked("3",data.dataset?.SS_2_2_6)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_6_2" name="SS_2_2_6" value="2" <%=page.checked("2",data.dataset?.SS_2_2_6)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_6_1" name="SS_2_2_6" value="1" <%=page.checked("1",data.dataset?.SS_2_2_6)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label row-label">2.7 ท่านเชื่อมั่นต่อข้อมูล วิธีการรวบรวม และเทคโนโลยีในการพิสูจน์หลักฐานในการสืบสวนสอบสวนหาข้อเท็จจริงและยืนยันการกระทำผิด</label>
+							</div>
+							<div class="row indent SS_1_2_2_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_7_5" name="SS_2_2_7" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_2_7)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_7_4" name="SS_2_2_7" value="4" <%=page.checked("4",data.dataset?.SS_2_2_7)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_7_3" name="SS_2_2_7" value="3" <%=page.checked("3",data.dataset?.SS_2_2_7)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_7_2" name="SS_2_2_7" value="2" <%=page.checked("2",data.dataset?.SS_2_2_7)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_7_1" name="SS_2_2_7" value="1" <%=page.checked("1",data.dataset?.SS_2_2_7)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_2_row">
+								<label class="col-form-label row-label">2.8 เจ้าหน้าที่ได้ให้การคุ้มครองความปลอดภัยของผู้เสียหายหรือพยานอย่างเหมาะสม</label>
+							</div>
+							<div class="row indent SS_1_2_2_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_8_5" name="SS_2_2_8" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_2_8)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_8_4" name="SS_2_2_8" value="4" <%=page.checked("4",data.dataset?.SS_2_2_8)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_8_3" name="SS_2_2_8" value="3" <%=page.checked("3",data.dataset?.SS_2_2_8)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_8_2" name="SS_2_2_8" value="2" <%=page.checked("2",data.dataset?.SS_2_2_8)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_2_8_1" name="SS_2_2_8" value="1" <%=page.checked("1",data.dataset?.SS_2_2_8)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label">3. ผู้ถูกกล่าวหาหรือจำเลยในคดี</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.1 ท่านเชื่อมั่นต่อความรู้ความสามารถของเจ้าหน้าที่ในการดำเนินคดีที่ท่านตกเป็นผู้ต้องหาหรือจำเลย</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_1_5" name="SS_2_3_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_1_4" name="SS_2_3_1" value="4" <%=page.checked("4",data.dataset?.SS_2_3_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_1_3" name="SS_2_3_1" value="3" <%=page.checked("3",data.dataset?.SS_2_3_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_1_2" name="SS_2_3_1" value="2" <%=page.checked("2",data.dataset?.SS_2_3_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_1_1" name="SS_2_3_1" value="1" <%=page.checked("1",data.dataset?.SS_2_3_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.2 ท่านเชื่อมั่นว่าการดำเนินคดีเป็นไปอย่างตรงไปตรงมาตามพยานหลักฐานที่ปรากฎ</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_2_5" name="SS_2_3_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_2_4" name="SS_2_3_2" value="4" <%=page.checked("4",data.dataset?.SS_2_3_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_2_3" name="SS_2_3_2" value="3" <%=page.checked("3",data.dataset?.SS_2_3_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_2_2" name="SS_2_3_2" value="2" <%=page.checked("2",data.dataset?.SS_2_3_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_2_1" name="SS_2_3_2" value="1" <%=page.checked("1",data.dataset?.SS_2_3_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.3 ท่านเชื่อมั่นว่าการดำเนินคดีปราศจากการแทรกแซงด้วยอำนาจหรือการใช้อิทธิพลโดยมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_3_5" name="SS_2_3_3" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_3)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_3_4" name="SS_2_3_3" value="4" <%=page.checked("4",data.dataset?.SS_2_3_3)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_3_3" name="SS_2_3_3" value="3" <%=page.checked("3",data.dataset?.SS_2_3_3)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_3_2" name="SS_2_3_3" value="2" <%=page.checked("2",data.dataset?.SS_2_3_3)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_3_1" name="SS_2_3_3" value="1" <%=page.checked("1",data.dataset?.SS_2_3_3)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.4 ท่านเชื่อว่าเจ้าหน้าที่ปฏิบัติต่อทุกคนในการดำเนินคดีเช่นเดียวกันโดยไม่มีการเลือกปฏิบัติ (จากสถานะทางเศรษฐกิจ สังคม เพศ ความเชื่อ ศาสนา เชื้อชาติ ฯลฯ)</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_4_5" name="SS_2_3_4" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_4)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_4_4" name="SS_2_3_4" value="4" <%=page.checked("4",data.dataset?.SS_2_3_4)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_4_3" name="SS_2_3_4" value="3" <%=page.checked("3",data.dataset?.SS_2_3_4)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_4_2" name="SS_2_3_4" value="2" <%=page.checked("2",data.dataset?.SS_2_3_4)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_4_1" name="SS_2_3_4" value="1" <%=page.checked("1",data.dataset?.SS_2_3_4)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.5 การดำเนินคดีเป็นไปโดยถูกต้องปราศจากการคอรัปชั่น การเรียกรับสินบน หรือการเรียกรับผลประโยชน์ในทางมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_5_5" name="SS_2_3_5" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_5)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_5_4" name="SS_2_3_5" value="4" <%=page.checked("4",data.dataset?.SS_2_3_5)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_5_3" name="SS_2_3_5" value="3" <%=page.checked("3",data.dataset?.SS_2_3_5)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_5_2" name="SS_2_3_5" value="2" <%=page.checked("2",data.dataset?.SS_2_3_5)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_5_1" name="SS_2_3_5" value="1" <%=page.checked("1",data.dataset?.SS_2_3_5)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.6 ท่านมีสิทธิได้พบทนายหรือผู้ที่ตนได้รับความไว้วางใจให้ร่วมรับฟังพยานหลักฐานอันเกี่ยวกับข้อกล่าวหา</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_6_5" name="SS_2_3_6" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_6)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_6_4" name="SS_2_3_6" value="4" <%=page.checked("4",data.dataset?.SS_2_3_6)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_6_3" name="SS_2_3_6" value="3" <%=page.checked("3",data.dataset?.SS_2_3_6)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_6_2" name="SS_2_3_6" value="2" <%=page.checked("2",data.dataset?.SS_2_3_6)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_6_1" name="SS_2_3_6" value="1" <%=page.checked("1",data.dataset?.SS_2_3_6)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.7 เจ้าหน้าที่ได้ใช้อำนาจในการจับกุม ตรวจค้น ตรวจยึดทรัพย์ หรือใช้อำนาจในการดำเนินคดีด้วยความจำเป็นภายใต้กรอบกฎหมายและระเบียบปฏิบัติ ไม่มีการใช้ความรุนแรงเกินความจำเป็น ไม่มีการซ้อมทรมานหรือข่มขู่บังคับให้ยอมตาม</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_7_5" name="SS_2_3_7" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_7)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_7_4" name="SS_2_3_7" value="4" <%=page.checked("4",data.dataset?.SS_2_3_7)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_7_3" name="SS_2_3_7" value="3" <%=page.checked("3",data.dataset?.SS_2_3_7)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_7_2" name="SS_2_3_7" value="2" <%=page.checked("2",data.dataset?.SS_2_3_7)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_7_1" name="SS_2_3_7" value="1" <%=page.checked("1",data.dataset?.SS_2_3_7)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.8 ท่านมีสิทธิชี้แจงและนำเสนอพยานหลักฐานแก้ต่างข้อกล่าวหาอย่างเต็มที่</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_8_5" name="SS_2_3_8" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_8)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_8_4" name="SS_2_3_8" value="4" <%=page.checked("4",data.dataset?.SS_2_3_8)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_8_3" name="SS_2_3_8" value="3" <%=page.checked("3",data.dataset?.SS_2_3_8)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_8_2" name="SS_2_3_8" value="2" <%=page.checked("2",data.dataset?.SS_2_3_8)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_8_1" name="SS_2_3_8" value="1" <%=page.checked("1",data.dataset?.SS_2_3_8)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.9 ท่านเชื่อมั่นว่าจะได้รับความเป็นธรรมในการถูกกล่าวหาหรือตกเป็นจำเลยในคดีนี้</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_9_5" name="SS_2_3_9" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_9)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_9_4" name="SS_2_3_9" value="4" <%=page.checked("4",data.dataset?.SS_2_3_9)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_9_3" name="SS_2_3_9" value="3" <%=page.checked("3",data.dataset?.SS_2_3_9)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_9_2" name="SS_2_3_9" value="2" <%=page.checked("2",data.dataset?.SS_2_3_9)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_9_1" name="SS_2_3_9" value="1" <%=page.checked("1",data.dataset?.SS_2_3_9)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_3_row">
+								<label class="col-form-label row-label">3.10 ท่านเชื่อว่าการคุมขังหรือควบคุมตัวผู้ต้องหาหรือจำเลยในคดีได้กระทำเท่าจำเป็นโดยผู้ต้องหาหรือจำเลยสามารถขอปล่อยตัวชั่วคราวได้หากไม่ไปคุกคามพยาน ยุ่งเหยิงต่อพยานหลักฐาน หรือจะหลบหนี และไม่มีการเรียกหลักประกันเกินควรหรือจะไม่เรียกหลักประกันก็ได้</label>
+							</div>
+							<div class="row indent SS_1_2_3_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_10_5" name="SS_2_3_10" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_3_10)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_10_4" name="SS_2_3_10" value="4" <%=page.checked("4",data.dataset?.SS_2_3_10)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_10_3" name="SS_2_3_10" value="3" <%=page.checked("3",data.dataset?.SS_2_3_10)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_10_2" name="SS_2_3_10" value="2" <%=page.checked("2",data.dataset?.SS_2_3_10)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_3_10_1" name="SS_2_3_10" value="1" <%=page.checked("1",data.dataset?.SS_2_3_10)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_4_row">
+								<label class="col-form-label">4. การฟ้องและพิจารณาคดีในคดีอาญา</label>
+							</div>
+							<div class="row SS_1_2_4_row">
+								<label class="col-form-label row-label">4.1 ท่านเชื่อมั่นต่อความรู้ความสามารถของพนักงานอัยการหรือศาลในการสั่งฟ้องหรือพิจารณาคดี</label>
+							</div>
+							<div class="row indent SS_1_2_4_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_1_5" name="SS_2_4_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_4_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_1_4" name="SS_2_4_1" value="4" <%=page.checked("4",data.dataset?.SS_2_4_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_1_3" name="SS_2_4_1" value="3" <%=page.checked("3",data.dataset?.SS_2_4_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_1_2" name="SS_2_4_1" value="2" <%=page.checked("2",data.dataset?.SS_2_4_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_1_1" name="SS_2_4_1" value="1" <%=page.checked("1",data.dataset?.SS_2_4_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_4_row">
+								<label class="col-form-label row-label">4.2 การสั่งฟ้องหรือพิจารณาคดีดำเนินการอย่างตรงไปตรงมาเป็นไปตามพยานหลักฐานที่ปรากฎ</label>
+							</div>
+							<div class="row indent SS_1_2_4_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_2_5" name="SS_2_4_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_4_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_2_4" name="SS_2_4_2" value="4" <%=page.checked("4",data.dataset?.SS_2_4_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_2_3" name="SS_2_4_2" value="3" <%=page.checked("3",data.dataset?.SS_2_4_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_2_2" name="SS_2_4_2" value="2" <%=page.checked("2",data.dataset?.SS_2_4_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_2_1" name="SS_2_4_2" value="1" <%=page.checked("1",data.dataset?.SS_2_4_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_4_row">
+								<label class="col-form-label row-label">4.3 ท่านเชื่อมั่นว่าการสั่งฟ้องหรือพิจารณาคดีปราศจากการแทรกแซงด้วยอำนาจหรือการใช้อิทธิพลโดยมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_4_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_3_5" name="SS_2_4_3" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_4_3)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_3_4" name="SS_2_4_3" value="4" <%=page.checked("4",data.dataset?.SS_2_4_3)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_3_3" name="SS_2_4_3" value="3" <%=page.checked("3",data.dataset?.SS_2_4_3)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_3_2" name="SS_2_4_3" value="2" <%=page.checked("2",data.dataset?.SS_2_4_3)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_3_1" name="SS_2_4_3" value="1" <%=page.checked("1",data.dataset?.SS_2_4_3)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_4_row">
+								<label class="col-form-label row-label">4.4 ท่านเชื่อว่าการสั่งฟ้องหรือพิจารณาคดีไม่มีการเลือกปฏิบัติ (จากสถานะทางเศรษฐกิจ สังคม เพศ ความเชื่อ ศาสนา เชื้อชาติ ฯลฯ)</label>
+							</div>
+							<div class="row indent SS_1_2_4_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_4_5" name="SS_2_4_4" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_4_4)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_4_4" name="SS_2_4_4" value="4" <%=page.checked("4",data.dataset?.SS_2_4_4)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_4_3" name="SS_2_4_4" value="3" <%=page.checked("3",data.dataset?.SS_2_4_4)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_4_2" name="SS_2_4_4" value="2" <%=page.checked("2",data.dataset?.SS_2_4_4)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_4_1" name="SS_2_4_4" value="1" <%=page.checked("1",data.dataset?.SS_2_4_4)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_4_row">
+								<label class="col-form-label row-label">4.5 ท่านเชื่อว่าการสั่งฟ้องหรือพิจารณาคดีดำเนินการโดยปราศจากการคอรัปชั่น การเรียกรับสินบน หรือการเรียกรับผลประโยชน์ในทางมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_4_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_5_5" name="SS_2_4_5" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_4_5)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_5_4" name="SS_2_4_5" value="4" <%=page.checked("4",data.dataset?.SS_2_4_5)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_5_3" name="SS_2_4_5" value="3" <%=page.checked("3",data.dataset?.SS_2_4_5)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_5_2" name="SS_2_4_5" value="2" <%=page.checked("2",data.dataset?.SS_2_4_5)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_5_1" name="SS_2_4_5" value="1" <%=page.checked("1",data.dataset?.SS_2_4_5)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_4_row">
+								<label class="col-form-label row-label">4.6 ท่านเชื่อมั่นว่าจะไม่เกิดการตัดสินที่ผิดพลาดในกระบวนการพิจารณาคดีในชั้นศาล</label>
+							</div>
+							<div class="row indent SS_1_2_4_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_6_5" name="SS_2_4_6" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_4_6)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_6_4" name="SS_2_4_6" value="4" <%=page.checked("4",data.dataset?.SS_2_4_6)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_6_3" name="SS_2_4_6" value="3" <%=page.checked("3",data.dataset?.SS_2_4_6)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_6_2" name="SS_2_4_6" value="2" <%=page.checked("2",data.dataset?.SS_2_4_6)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_6_1" name="SS_2_4_6" value="1" <%=page.checked("1",data.dataset?.SS_2_4_6)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_4_row">
+								<label class="col-form-label row-label">4.7 ท่านเชื่อมั่นว่าจะได้รับความเป็นธรรมจากการสั่งฟ้องหรือพิจารณาคดีในคดีนี้</label>
+							</div>
+							<div class="row indent SS_1_2_4_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_7_5" name="SS_2_4_7" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_4_7)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_7_4" name="SS_2_4_7" value="4" <%=page.checked("4",data.dataset?.SS_2_4_7)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_7_3" name="SS_2_4_7" value="3" <%=page.checked("3",data.dataset?.SS_2_4_7)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_7_2" name="SS_2_4_7" value="2" <%=page.checked("2",data.dataset?.SS_2_4_7)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_4_7_1" name="SS_2_4_7" value="1" <%=page.checked("1",data.dataset?.SS_2_4_7)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_5_row">
+								<label class="col-form-label">5. การฟ้องและพิจารณาคดีในคดีแพ่ง</label>
+							</div>
+							<div class="row SS_1_2_5_row">
+								<label class="col-form-label row-label">5.1 ท่านเชื่อมั่นต่อความรู้ความสามารถของศาลในการพิจารณาคดี</label>
+							</div>
+							<div class="row indent SS_1_2_5_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_1_5" name="SS_2_5_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_5_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_1_4" name="SS_2_5_1" value="4" <%=page.checked("4",data.dataset?.SS_2_5_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_1_3" name="SS_2_5_1" value="3" <%=page.checked("3",data.dataset?.SS_2_5_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_1_2" name="SS_2_5_1" value="2" <%=page.checked("2",data.dataset?.SS_2_5_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_1_1" name="SS_2_5_1" value="1" <%=page.checked("1",data.dataset?.SS_2_5_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_5_row">
+								<label class="col-form-label row-label">5.2 การพิจารณาคดีดำเนินการอย่างตรงไปตรงมาเป็นไปตามพยานหลักฐานที่ปรากฎ</label>
+							</div>
+							<div class="row indent SS_1_2_5_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_2_5" name="SS_2_5_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_5_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_2_4" name="SS_2_5_2" value="4" <%=page.checked("4",data.dataset?.SS_2_5_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_2_3" name="SS_2_5_2" value="3" <%=page.checked("3",data.dataset?.SS_2_5_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_2_2" name="SS_2_5_2" value="2" <%=page.checked("2",data.dataset?.SS_2_5_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_2_1" name="SS_2_5_2" value="1" <%=page.checked("1",data.dataset?.SS_2_5_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_5_row">
+								<label class="col-form-label row-label">5.3 ท่านเชื่อมั่นว่าการพิจารณาคดีปราศจากการแทรกแซงด้วยอำนาจหรือการใช้อิทธิพลโดยมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_5_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_3_5" name="SS_2_5_3" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_5_3)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_3_4" name="SS_2_5_3" value="4" <%=page.checked("4",data.dataset?.SS_2_5_3)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_3_3" name="SS_2_5_3" value="3" <%=page.checked("3",data.dataset?.SS_2_5_3)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_3_2" name="SS_2_5_3" value="2" <%=page.checked("2",data.dataset?.SS_2_5_3)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_3_1" name="SS_2_5_3" value="1" <%=page.checked("1",data.dataset?.SS_2_5_3)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_5_row">
+								<label class="col-form-label row-label">5.4 ท่านเชื่อว่าการพิจารณาคดีไม่มีการเลือกปฏิบัติ (จากสถานะทางเศรษฐกิจ สังคม เพศ ความเชื่อ ศาสนา เชื้อชาติ ฯลฯ)</label>
+							</div>
+							<div class="row indent SS_1_2_5_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_4_5" name="SS_2_5_4" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_5_4)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_4_4" name="SS_2_5_4" value="4" <%=page.checked("4",data.dataset?.SS_2_5_4)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_4_3" name="SS_2_5_4" value="3" <%=page.checked("3",data.dataset?.SS_2_5_4)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_4_2" name="SS_2_5_4" value="2" <%=page.checked("2",data.dataset?.SS_2_5_4)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_4_1" name="SS_2_5_4" value="1" <%=page.checked("1",data.dataset?.SS_2_5_4)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_5_row">
+								<label class="col-form-label row-label">5.5 ท่านเชื่อว่าพิจารณาคดีดำเนินการโดยปราศจากการคอรัปชั่น การเรียกรับสินบน หรือการเรียกรับผลประโยชน์ในทางมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_5_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_5_5" name="SS_2_5_5" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_5_5)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_5_4" name="SS_2_5_5" value="4" <%=page.checked("4",data.dataset?.SS_2_5_5)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_5_3" name="SS_2_5_5" value="3" <%=page.checked("3",data.dataset?.SS_2_5_5)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_5_2" name="SS_2_5_5" value="2" <%=page.checked("2",data.dataset?.SS_2_5_5)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_5_1" name="SS_2_5_5" value="1" <%=page.checked("1",data.dataset?.SS_2_5_5)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_5_row">
+								<label class="col-form-label row-label">5.6 ท่านเชื่อมั่นว่าจะไม่เกิดการตัดสินที่ผิดพลาดในกระบวนการพิจารณาคดีในชั้นศาล</label>
+							</div>
+							<div class="row indent SS_1_2_5_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_6_5" name="SS_2_5_6" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_5_6)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_6_4" name="SS_2_5_6" value="4" <%=page.checked("4",data.dataset?.SS_2_5_6)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_6_3" name="SS_2_5_6" value="3" <%=page.checked("3",data.dataset?.SS_2_5_6)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_6_2" name="SS_2_5_6" value="2" <%=page.checked("2",data.dataset?.SS_2_5_6)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_6_1" name="SS_2_5_6" value="1" <%=page.checked("1",data.dataset?.SS_2_5_6)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_5_row">
+								<label class="col-form-label row-label">5.7 ท่านเชื่อมั่นว่าจะได้รับความเป็นธรรมจากการพิจารณาคดีในคดีนี้</label>
+							</div>
+							<div class="row indent SS_1_2_5_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_7_5" name="SS_2_5_7" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_5_7)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_7_4" name="SS_2_5_7" value="4" <%=page.checked("4",data.dataset?.SS_2_5_7)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_7_3" name="SS_2_5_7" value="3" <%=page.checked("3",data.dataset?.SS_2_5_7)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_7_2" name="SS_2_5_7" value="2" <%=page.checked("2",data.dataset?.SS_2_5_7)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_5_7_1" name="SS_2_5_7" value="1" <%=page.checked("1",data.dataset?.SS_2_5_7)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label">6. การฟ้องและพิจารณาคดีในคดีปกครอง</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.1 ท่านเชื่อมั่นต่อความรู้ความสามารถของเจ้าหน้าที่คดีในการรวบรวมข้อมูลและพยานหลักฐาน</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_1_5" name="SS_2_6_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_1_4" name="SS_2_6_1" value="4" <%=page.checked("4",data.dataset?.SS_2_6_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_1_3" name="SS_2_6_1" value="3" <%=page.checked("3",data.dataset?.SS_2_6_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_1_2" name="SS_2_6_1" value="2" <%=page.checked("2",data.dataset?.SS_2_6_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_1_1" name="SS_2_6_1" value="1" <%=page.checked("1",data.dataset?.SS_2_6_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.2 ท่านเชื่อมั่นต่อความรู้ความสามารถของศาลในการพิจารณาคดี</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_2_5" name="SS_2_6_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_2_4" name="SS_2_6_2" value="4" <%=page.checked("4",data.dataset?.SS_2_6_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_2_3" name="SS_2_6_2" value="3" <%=page.checked("3",data.dataset?.SS_2_6_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_2_2" name="SS_2_6_2" value="2" <%=page.checked("2",data.dataset?.SS_2_6_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_2_1" name="SS_2_6_2" value="1" <%=page.checked("1",data.dataset?.SS_2_6_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.3 การพิจารณาคดีดำเนินการอย่างตรงไปตรงมาเป็นไปตามพยานหลักฐานที่ปรากฎ</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_3_5" name="SS_2_6_3" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_3)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_3_4" name="SS_2_6_3" value="4" <%=page.checked("4",data.dataset?.SS_2_6_3)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_3_3" name="SS_2_6_3" value="3" <%=page.checked("3",data.dataset?.SS_2_6_3)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_3_2" name="SS_2_6_3" value="2" <%=page.checked("2",data.dataset?.SS_2_6_3)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_3_1" name="SS_2_6_3" value="1" <%=page.checked("1",data.dataset?.SS_2_6_3)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.4 ท่านเชื่อมั่นว่าการพิจารณาคดีปราศจากการแทรกแซงด้วยอำนาจหรือการใช้อิทธิพลโดยมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_4_5" name="SS_2_6_4" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_4)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_4_4" name="SS_2_6_4" value="4" <%=page.checked("4",data.dataset?.SS_2_6_4)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_4_3" name="SS_2_6_4" value="3" <%=page.checked("3",data.dataset?.SS_2_6_4)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_4_2" name="SS_2_6_4" value="2" <%=page.checked("2",data.dataset?.SS_2_6_4)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_4_1" name="SS_2_6_4" value="1" <%=page.checked("1",data.dataset?.SS_2_6_4)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.5 ท่านเชื่อว่าการพิจารณาคดีไม่มีการเลือกปฏิบัติ (จากสถานะทางเศรษฐกิจ สังคม เพศ ความเชื่อ ศาสนา เชื้อชาติ ฯลฯ)</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_5_5" name="SS_2_6_5" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_5)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_5_4" name="SS_2_6_5" value="4" <%=page.checked("4",data.dataset?.SS_2_6_5)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_5_3" name="SS_2_6_5" value="3" <%=page.checked("3",data.dataset?.SS_2_6_5)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_5_2" name="SS_2_6_5" value="2" <%=page.checked("2",data.dataset?.SS_2_6_5)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_5_1" name="SS_2_6_5" value="1" <%=page.checked("1",data.dataset?.SS_2_6_5)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.6 ท่านเชื่อว่าพิจารณาคดีดำเนินการโดยปราศจากการคอรัปชั่น การเรียกรับสินบน หรือการเรียกรับผลประโยชน์ในทางมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_6_5" name="SS_2_6_6" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_6)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_6_4" name="SS_2_6_6" value="4" <%=page.checked("4",data.dataset?.SS_2_6_6)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_6_3" name="SS_2_6_6" value="3" <%=page.checked("3",data.dataset?.SS_2_6_6)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_6_2" name="SS_2_6_6" value="2" <%=page.checked("2",data.dataset?.SS_2_6_6)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_6_1" name="SS_2_6_6" value="1" <%=page.checked("1",data.dataset?.SS_2_6_6)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.7 ท่านเชื่อมั่นต่อการรวบรวมข้อมูลและแสวงหาข้อเท็จจริงในทางคดี</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_7_5" name="SS_2_6_7" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_7)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_7_4" name="SS_2_6_7" value="4" <%=page.checked("4",data.dataset?.SS_2_6_7)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_7_3" name="SS_2_6_7" value="3" <%=page.checked("3",data.dataset?.SS_2_6_7)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_7_2" name="SS_2_6_7" value="2" <%=page.checked("2",data.dataset?.SS_2_6_7)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_7_1" name="SS_2_6_7" value="1" <%=page.checked("1",data.dataset?.SS_2_6_7)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.8 ท่านเชื่อมั่นว่าจะไม่เกิดการตัดสินที่ผิดพลาดในกระบวนการพิจารณาคดีในชั้นศาล</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_8_5" name="SS_2_6_8" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_8)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_8_4" name="SS_2_6_8" value="4" <%=page.checked("4",data.dataset?.SS_2_6_8)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_8_3" name="SS_2_6_8" value="3" <%=page.checked("3",data.dataset?.SS_2_6_8)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_8_2" name="SS_2_6_8" value="2" <%=page.checked("2",data.dataset?.SS_2_6_8)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_8_1" name="SS_2_6_8" value="1" <%=page.checked("1",data.dataset?.SS_2_6_8)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_6_row">
+								<label class="col-form-label row-label">6.9 ท่านเชื่อมั่นว่าจะได้รับความเป็นธรรมจากการพิจารณาคดีในคดีนี้</label>
+							</div>
+							<div class="row indent SS_1_2_6_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_9_5" name="SS_2_6_9" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_6_9)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_9_4" name="SS_2_6_9" value="4" <%=page.checked("4",data.dataset?.SS_2_6_9)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_9_3" name="SS_2_6_9" value="3" <%=page.checked("3",data.dataset?.SS_2_6_9)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_9_2" name="SS_2_6_9" value="2" <%=page.checked("2",data.dataset?.SS_2_6_9)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_6_9_1" name="SS_2_6_9" value="1" <%=page.checked("1",data.dataset?.SS_2_6_9)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_7_row">
+								<label class="col-form-label">7. การขอรับความช่วยเหลือในการเข้าถึงกระบวนการยุติธรรม</label>
+							</div>
+							<div class="row SS_1_2_7_row">
+								<label class="col-form-label row-label">7.1 ท่านเชื่อมั่นต่อความรู้ความสามารถของเจ้าหน้าที่ในการให้ความช่วยเหลือ</label>
+							</div>
+							<div class="row indent SS_1_2_7_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_1_5" name="SS_2_7_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_7_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_1_4" name="SS_2_7_1" value="4" <%=page.checked("4",data.dataset?.SS_2_7_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_1_3" name="SS_2_7_1" value="3" <%=page.checked("3",data.dataset?.SS_2_7_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_1_2" name="SS_2_7_1" value="2" <%=page.checked("2",data.dataset?.SS_2_7_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_1_1" name="SS_2_7_1" value="1" <%=page.checked("1",data.dataset?.SS_2_7_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_7_row">
+								<label class="col-form-label row-label">7.2 ท่านได้รับบริการหรือได้รับความช่วยเหลือจากเจ้าหน้าที่โดยเป็นไปตามหลักเกณฑ์และระเบียบกฎหมายที่กำหนด</label>
+							</div>
+							<div class="row indent SS_1_2_7_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_2_5" name="SS_2_7_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_7_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_2_4" name="SS_2_7_2" value="4" <%=page.checked("4",data.dataset?.SS_2_7_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_2_3" name="SS_2_7_2" value="3" <%=page.checked("3",data.dataset?.SS_2_7_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_2_2" name="SS_2_7_2" value="2" <%=page.checked("2",data.dataset?.SS_2_7_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_2_1" name="SS_2_7_2" value="1" <%=page.checked("1",data.dataset?.SS_2_7_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_7_row">
+								<label class="col-form-label row-label">7.3 คำร้องขอหรือการขอรับความช่วยเหลือของท่านได้รับการตอบสนองหรือให้ความช่วยเหลืออย่างทันท่วงที</label>
+							</div>
+							<div class="row indent SS_1_2_7_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_3_5" name="SS_2_7_3" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_7_3)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_3_4" name="SS_2_7_3" value="4" <%=page.checked("4",data.dataset?.SS_2_7_3)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_3_3" name="SS_2_7_3" value="3" <%=page.checked("3",data.dataset?.SS_2_7_3)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_3_2" name="SS_2_7_3" value="2" <%=page.checked("2",data.dataset?.SS_2_7_3)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_7_3_1" name="SS_2_7_3" value="1" <%=page.checked("1",data.dataset?.SS_2_7_3)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_8_row">
+								<label class="col-form-label">8. การไกล่เกลี่ยหรือระงับข้อพิพาทในคดีทางเลือก</label>
+							</div>
+							<div class="row SS_1_2_8_row">
+								<label class="col-form-label row-label">8.1 ท่านเชื่อมั่นต่อความรู้ความสามารถของเจ้าหน้าที่ผู้ให้ความช่วยเหลือในการจัดการไกล่เกลี่ยหรือระงับข้อพิพาท</label>
+							</div>
+							<div class="row indent SS_1_2_8_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_1_5" name="SS_2_8_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_8_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_1_4" name="SS_2_8_1" value="4" <%=page.checked("4",data.dataset?.SS_2_8_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_1_3" name="SS_2_8_1" value="3" <%=page.checked("3",data.dataset?.SS_2_8_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_1_2" name="SS_2_8_1" value="2" <%=page.checked("2",data.dataset?.SS_2_8_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_1_1" name="SS_2_8_1" value="1" <%=page.checked("1",data.dataset?.SS_2_8_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_8_row">
+								<label class="col-form-label row-label">8.2 ท่านเชื่อมั่นว่าการไกล่เกลี่ยหรือระงับข้อพิพาทที่ท่านมาขอรับการช่วยเหลือจะช่วยให้เกิดการประนีประนอมกับคู่กรณีได้</label>
+							</div>
+							<div class="row indent SS_1_2_8_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_2_5" name="SS_2_8_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_8_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_2_4" name="SS_2_8_2" value="4" <%=page.checked("4",data.dataset?.SS_2_8_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_2_3" name="SS_2_8_2" value="3" <%=page.checked("3",data.dataset?.SS_2_8_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_2_2" name="SS_2_8_2" value="2" <%=page.checked("2",data.dataset?.SS_2_8_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_2_1" name="SS_2_8_2" value="1" <%=page.checked("1",data.dataset?.SS_2_8_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_8_row">
+								<label class="col-form-label row-label">8.3 ท่านเชื่อมั่นว่าบริการไกล่เกลี่ยหรือระงับข้อพิพาทจะช่วยลดขั้นตอนและระยะเวลาในการดำเนินการได้ดีกว่าการนำคดีขึ้นสู่ศาลในกระบวนการยุติธรรมตามปกติ</label>
+							</div>
+							<div class="row indent SS_1_2_8_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_3_5" name="SS_2_8_3" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_8_3)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_3_4" name="SS_2_8_3" value="4" <%=page.checked("4",data.dataset?.SS_2_8_3)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_3_3" name="SS_2_8_3" value="3" <%=page.checked("3",data.dataset?.SS_2_8_3)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_3_2" name="SS_2_8_3" value="2" <%=page.checked("2",data.dataset?.SS_2_8_3)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_8_3_1" name="SS_2_8_3" value="1" <%=page.checked("1",data.dataset?.SS_2_8_3)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label">9. การควบคุมตัวและการบำบัดฟื้นฟูหรือแก้ไขพฤติกรรมผู้กระทำผิด</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label row-label">9.1 ท่านเชื่อมั่นต่อความรู้ความสามารถของเจ้าหน้าที่ในการดูแลแก้ไขพฤติกรรมของผู้กระทำผิดไม่ให้กลับไปกระทำผิดอีก</label>
+							</div>
+							<div class="row indent SS_1_2_9_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_1_5" name="SS_2_9_1" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_9_1)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_1_4" name="SS_2_9_1" value="4" <%=page.checked("4",data.dataset?.SS_2_9_1)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_1_3" name="SS_2_9_1" value="3" <%=page.checked("3",data.dataset?.SS_2_9_1)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_1_2" name="SS_2_9_1" value="2" <%=page.checked("2",data.dataset?.SS_2_9_1)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_1_1" name="SS_2_9_1" value="1" <%=page.checked("1",data.dataset?.SS_2_9_1)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label row-label">9.2 ท่านเชื่อมั่นว่ากระบวนการยุติธรรมมีการปฏิบัติต่อผู้กระทำผิดที่เหมาะสม ได้สัดส่วนกับความร้ายแรงของการกระทำผิด</label>
+							</div>
+							<div class="row indent SS_1_2_9_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_2_5" name="SS_2_9_2" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_9_2)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_2_4" name="SS_2_9_2" value="4" <%=page.checked("4",data.dataset?.SS_2_9_2)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_2_3" name="SS_2_9_2" value="3" <%=page.checked("3",data.dataset?.SS_2_9_2)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_2_2" name="SS_2_9_2" value="2" <%=page.checked("2",data.dataset?.SS_2_9_2)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_2_1" name="SS_2_9_2" value="1" <%=page.checked("1",data.dataset?.SS_2_9_2)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label row-label">9.3 ท่านเชื่อมั่นว่ากระบวนการยุติธรรมมีการแก้ไขบำบัดฟื้นฟูผู้กระทำผิดที่เหมาะสมสามารถคืนคนดีสู่สังคมได้อย่างเป็นปกติสุข</label>
+							</div>
+							<div class="row indent SS_1_2_9_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_3_5" name="SS_2_9_3" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_9_3)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_3_4" name="SS_2_9_3" value="4" <%=page.checked("4",data.dataset?.SS_2_9_3)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_3_3" name="SS_2_9_3" value="3" <%=page.checked("3",data.dataset?.SS_2_9_3)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_3_2" name="SS_2_9_3" value="2" <%=page.checked("2",data.dataset?.SS_2_9_3)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_3_1" name="SS_2_9_3" value="1" <%=page.checked("1",data.dataset?.SS_2_9_3)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label row-label">9.4 ท่านเชื่อมั่นว่าการปฏิบัติต่อผู้กระทำผิดปราศจากการแทรกแซงด้วยอำนาจหรือการใช้อิทธิพลโดยมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_9_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_4_5" name="SS_2_9_4" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_9_4)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_4_4" name="SS_2_9_4" value="4" <%=page.checked("4",data.dataset?.SS_2_9_4)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_4_3" name="SS_2_9_4" value="3" <%=page.checked("3",data.dataset?.SS_2_9_4)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_4_2" name="SS_2_9_4" value="2" <%=page.checked("2",data.dataset?.SS_2_9_4)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_4_1" name="SS_2_9_4" value="1" <%=page.checked("1",data.dataset?.SS_2_9_4)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label row-label">9.5 ท่านเชื่อว่าการปฏิบัติต่อผู้กระทำผิดไม่มีการเลือกปฏิบัติ (จากสถานะทางเศรษฐกิจ สังคม เพศ ความเชื่อ ศาสนา เชื้อชาติ ฯลฯ)</label>
+							</div>
+							<div class="row indent SS_1_2_9_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_5_5" name="SS_2_9_5" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_9_5)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_5_4" name="SS_2_9_5" value="4" <%=page.checked("4",data.dataset?.SS_2_9_5)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_5_3" name="SS_2_9_5" value="3" <%=page.checked("3",data.dataset?.SS_2_9_5)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_5_2" name="SS_2_9_5" value="2" <%=page.checked("2",data.dataset?.SS_2_9_5)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_5_1" name="SS_2_9_5" value="1" <%=page.checked("1",data.dataset?.SS_2_9_5)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label row-label">9.6 ท่านเชื่อว่าการปฏิบัติต่อผู้กระทำผิดปราศจากการคอรัปชั่น การเรียกรับสินบน หรือการเรียกรับผลประโยชน์ในทางมิชอบ</label>
+							</div>
+							<div class="row indent SS_1_2_9_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_6_5" name="SS_2_9_6" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_9_6)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_6_4" name="SS_2_9_6" value="4" <%=page.checked("4",data.dataset?.SS_2_9_6)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_6_3" name="SS_2_9_6" value="3" <%=page.checked("3",data.dataset?.SS_2_9_6)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_6_2" name="SS_2_9_6" value="2" <%=page.checked("2",data.dataset?.SS_2_9_6)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_6_1" name="SS_2_9_6" value="1" <%=page.checked("1",data.dataset?.SS_2_9_6)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label row-label">9.7 ท่านเชื่อว่าผู้ถูกคุมขังหรือควบคุมตัวได้รับการปฏิบัติในระหว่างถูกควบคุมตัวอย่างเหมาะสม และมีการดูแลสวัสดิภาพและความเป็นอยู่อย่างเหมาะสม</label>
+							</div>
+							<div class="row indent SS_1_2_9_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_7_5" name="SS_2_9_7" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_9_7)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_7_4" name="SS_2_9_7" value="4" <%=page.checked("4",data.dataset?.SS_2_9_7)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_7_3" name="SS_2_9_7" value="3" <%=page.checked("3",data.dataset?.SS_2_9_7)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_7_2" name="SS_2_9_7" value="2" <%=page.checked("2",data.dataset?.SS_2_9_7)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_7_1" name="SS_2_9_7" value="1" <%=page.checked("1",data.dataset?.SS_2_9_7)%> /> น้อย
+								</label>
+							</div>
+							<div class="row SS_1_2_9_row">
+								<label class="col-form-label row-label">9.8 ท่านเชื่อว่าผู้พ้นโทษได้รับการสงเคราะห์ช่วยเหลือและได้รับการดูแลหลังปล่อยอย่างเหมาะสมตรงกับสาเหตุการกระทำผิดเพื่อป้องกันไม่ให้กลับไปกระทำความผิดอีก</label>
+							</div>
+							<div class="row indent SS_1_2_9_row">
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_8_5" name="SS_2_9_8" value="5" class="data-parsley" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_2_9_8)%> /> มาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_8_4" name="SS_2_9_8" value="4" <%=page.checked("4",data.dataset?.SS_2_9_8)%> /> ค่อนข้างมาก
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_8_3" name="SS_2_9_8" value="3" <%=page.checked("3",data.dataset?.SS_2_9_8)%> /> ปานกลาง
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_8_2" name="SS_2_9_8" value="2" <%=page.checked("2",data.dataset?.SS_2_9_8)%> /> ค่อนข้างน้อย
+								</label>
+								<label class="radio-inline col-form-label col-lg-2 indent-10">
+									<input type="radio" id="SS_2_9_8_1" name="SS_2_9_8" value="1" <%=page.checked("1",data.dataset?.SS_2_9_8)%> /> น้อย
+								</label>
+							</div>
+						</div>
+					</div>
+					<label>หมายเหตุ: ผู้ตอบแบบสอบถามตอบคำถามในส่วนที่ตนเองได้รับบริการจากหน่วยงานในกระบวนการยุติธรรมตามข้อ 2. ในส่วนที่ 1</label>
+					<br/> <br/>
+					<label><b>ส่วนที่ 3 ความพึงพอใจของประชาชนต่อการดำเนินงานของหน่วยงานในกระบวนการยุติธรรม</b></label>
+					<div class="row">
+						<label class="col-form-label row-label">1. ท่านได้รับบริการหรือได้รับความช่วยเหลือจากเจ้าหน้าที่อย่างครบถ้วนตรงกับความต้องการ</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_1_5" name="SS_3_1" value="5" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_3_1)%> /> มาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_1_4" name="SS_3_1" value="4" <%=page.checked("4",data.dataset?.SS_3_1)%> /> ค่อนข้างมาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_1_3" name="SS_3_1" value="3" <%=page.checked("3",data.dataset?.SS_3_1)%> /> ปานกลาง
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_1_2" name="SS_3_1" value="2" <%=page.checked("2",data.dataset?.SS_3_1)%> /> ค่อนข้างน้อย
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_1_1" name="SS_3_1" value="1" <%=page.checked("1",data.dataset?.SS_3_1)%> /> น้อย
+						</label>
+					</div>
+					<div class="row">
+						<label class="col-form-label row-label">2. หน่วยงานมีการจัดทำข้อมูลเผยแพร่หรือจัดเจ้าหน้าที่ผู้ให้ความช่วยเหลือในการแนะนำข้อกฎหมาย ขั้นตอนการปฏิบัติ ให้คำแนะนำ หรือตอบข้อสงสัยได้อย่างเพียงพอและเข้าใจได้อย่างชัดเจน</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_2_5" name="SS_3_2" value="5" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_3_2)%> /> มาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_2_4" name="SS_3_2" value="4" <%=page.checked("4",data.dataset?.SS_3_2)%> /> ค่อนข้างมาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_2_3" name="SS_3_2" value="3" <%=page.checked("3",data.dataset?.SS_3_2)%> /> ปานกลาง
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_2_2" name="SS_3_2" value="2" <%=page.checked("2",data.dataset?.SS_3_2)%> /> ค่อนข้างน้อย
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_2_1" name="SS_3_2" value="1" <%=page.checked("1",data.dataset?.SS_3_2)%> /> น้อย
+						</label>
+					</div>
+					<div class="row">
+						<label class="col-form-label row-label">3. เจ้าหน้าที่มีความรู้ความสามารถเพียงพอต่อการให้บริการ</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_3_5" name="SS_3_3" value="5" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_3_3)%> /> มาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_3_4" name="SS_3_3" value="4" <%=page.checked("4",data.dataset?.SS_3_3)%> /> ค่อนข้างมาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_3_3" name="SS_3_3" value="3" <%=page.checked("3",data.dataset?.SS_3_3)%> /> ปานกลาง
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_3_2" name="SS_3_3" value="2" <%=page.checked("2",data.dataset?.SS_3_3)%> /> ค่อนข้างน้อย
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_3_1" name="SS_3_3" value="1" <%=page.checked("1",data.dataset?.SS_3_3)%> /> น้อย
+						</label>
+					</div>
+					<div class="row">
+						<label class="col-form-label row-label">4. เจ้าหน้าที่ให้ดูแลต้อนรับเป็นอย่างดี กริยาวาจาของเจ้าหน้าที่ ความสุภาพอ่อนโยน เป็นมิตรต่อประชาชน</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_4_5" name="SS_3_4" value="5" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_3_4)%> /> มาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_4_4" name="SS_3_4" value="4" <%=page.checked("4",data.dataset?.SS_3_4)%> /> ค่อนข้างมาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_4_3" name="SS_3_4" value="3" <%=page.checked("3",data.dataset?.SS_3_4)%> /> ปานกลาง
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_4_2" name="SS_3_4" value="2" <%=page.checked("2",data.dataset?.SS_3_4)%> /> ค่อนข้างน้อย
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_4_1" name="SS_3_4" value="1" <%=page.checked("1",data.dataset?.SS_3_4)%> /> น้อย
+						</label>
+					</div>
+					<div class="row">
+						<label class="col-form-label row-label">5. ระยะเวลาในการให้บริการมีความเหมาะสม</label>
+					</div>
+					<div class="row indent">
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_5_5" name="SS_3_5" value="5" data-parsley-required="true" <%=page.checked("5",data.dataset?.SS_3_5)%> /> มาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_5_4" name="SS_3_5" value="4" <%=page.checked("4",data.dataset?.SS_3_5)%> /> ค่อนข้างมาก
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_5_3" name="SS_3_5" value="3" <%=page.checked("3",data.dataset?.SS_3_5)%> /> ปานกลาง
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_5_2" name="SS_3_5" value="2" <%=page.checked("2",data.dataset?.SS_3_5)%> /> ค่อนข้างน้อย
+						</label>
+						<label class="radio-inline col-form-label col-lg-2 indent-10">
+							<input type="radio" id="SS_3_5_1" name="SS_3_5" value="1" <%=page.checked("1",data.dataset?.SS_3_5)%> /> น้อย
+						</label>
+					</div>
+				</br>
+				</form>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-lg-1.5" style="margin-left: auto; margin-right: 0;">
+					<% if(!page.isUpdateMode(data.action)) {%>
+						<button id="buttonsave" class="ui basic green button btn-form-varidate-save"><i class="save icon large button"></i> บันทึก</button>
+					<% } %>
+					<% if(page.isUpdateMode(data.action)) {%>
+						<button id="buttonupdate" class="ui basic green button btn-form-varidate-edit" data-key="<%=data.dataset?.survey_id%>"><i class="save icon large button"></i> ปรับปรุง</button>
+					<% } %>
+				</div>
+				<div class="col-lg-1.5">
+					<button id="buttoncancel" class="ui basic red button"><i class="cancel icon large button"></i> ยกเลิก</button>
+				</div>
+			</div>
+			<br/>
+		</div>
+	</div>
+</body>
+</html>

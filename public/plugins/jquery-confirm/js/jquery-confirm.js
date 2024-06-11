@@ -446,7 +446,6 @@ var jconfirm, Jconfirm;
             }
         },
         setDialogCenter: function () {
-            console.log('setting dialog to center');
             if (this.$contentPane.css('display') == 'none') {
                 var contentHeight = 0;
                 var paneHeight = 0;
@@ -459,7 +458,6 @@ var jconfirm, Jconfirm;
             }
             var off = 100;
             var w = this.$content.outerWidth();
-
             //var s = '-clip-path: inset(0px 0px '+contentHeight+'px 0px);' +
             //    'clip-path: inset(0px 0px '+contentHeight+'px 0px)';
 

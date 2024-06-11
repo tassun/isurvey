@@ -5,106 +5,14 @@ body {
 	background-size: cover; 
 	background-position: top center;
 }
-/*
-.btn-base {
-	color: #555555;
-	border: 1px solid #767575;
-	background: #e6e6e6;
-	min-width: 70px;
-}
-.btn-base:hover,
-.btn-base:focus,
-.btn-base:active,
-.btn-base.active,
-.open > .dropdown-toggle.btn-base {
- color: #212121; 
- border: 1px solid #999999; 
- background: #dadada; 
-}
-
-.btn.btn-success {
-	color: #FFFFFF;
-	border: 1px solid #028575;
-	background-color: #028575;		
-	min-width: 70px;
-}
-.btn.btn-success:hover,
-.btn.btn-success:focus,
-.btn.btn-success:active,
-.btn.btn-success.active,
-.open > .dropdown-toggle.btn-spot {
- background-color: #00B29D;
- color: #FFFFFF;
-}
-
-.btn.btn-dark {
-	color: #FFFFFF;
-	border: 1px solid #767575;
-	background-color: #767575;	
-	min-width: 70px;
-}
-.btn.btn-dark:hover,
-.btn.btn-dark:focus,
-.btn.btn-dark:active,
-.btn.btn-dark.active,
-.open > .dropdown-toggle.btn-dark {
- background-color: #555555;
- color: #FFFFFF;
-}
-
-.btn.btn-primary {
-	color: #FFFFFF;
-	border: 1px solid #555555;
-	background-color: #555555;	
-	min-width: 70px;
-}
-.btn.btn-primary:hover,
-.btn.btn-primary:focus,
-.btn.btn-primay:active,
-.btn.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-	background-color: #767575;
-	color: #FFFFFF;	
-}
-
-.btn.btn-danger {
-	color: #FFFFFF;
-	border: 1px solid #A94442;
-	background-color: #A94442;	
-	min-width: 70px;
-}
-.btn.btn-danger:hover,
-.btn.btn-danger:focus,
-.btn.btn-danger:active,
-.btn.btn-danger.active,
-.open > .dropdown-toggle.btn-danger {
-	background-color: crimson;
-	color: #FFFFFF;	
-}
-
-.btn.btn-info {
-	color: #FFFFFF;
-	border: 1px solid #1e77c5;
-	background-color: #1e77c5;	
-	min-width: 70px;
-}
-.btn.btn-info:hover,
-.btn.btn-info:focus,
-.btn.btn-info:active,
-.btn.btn-info.active,
-.open > .dropdown-toggle.btn-info {
-	background-color: #0062cc;
-	color: #FFFFFF;	
-}
-*/
-
 .btn.btn-primary { min-width: 70px; };
 .btn.btn-success { min-width: 70px; };
 .btn.btn-danger { min-width: 70px; };
 .btn.btn-info { min-width: 70px; };
 .btn.btn-dark { min-width: 70px; };
 .btn.btn-base { min-width: 70px; };
-
+.btn-green { background-color: green; }
+.btn-red { background-color: red; }
 .btn-edit {
 	background-image: url(../img/ic_edit.png);
 	background-repeat: no-repeat;

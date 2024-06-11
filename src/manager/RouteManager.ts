@@ -30,6 +30,7 @@ import { SurveyB4Router } from '../routers/SurveyB4Router';
 import { SurveyB5Router } from '../routers/SurveyB5Router';
 import { SurveyB6Router } from '../routers/SurveyB6Router';
 import { SurveyB7Router } from '../routers/SurveyB7Router';
+import { SurveySRouter } from '../routers/SurveySRouter';
 
 const errorHandler = require('express-error-handler');
 export class RouteManager extends BaseRouter {
@@ -121,6 +122,7 @@ export class RouteManager extends BaseRouter {
         let survey_b5 = new SurveyB5Router(this.dir,this.logger);
         let survey_b6 = new SurveyB6Router(this.dir,this.logger);
         let survey_b7 = new SurveyB7Router(this.dir,this.logger);
+        let survey_s = new SurveySRouter(this.dir,this.logger);
 
         app.use(async (req: Request, res: Response, next: Function) => {
             try {
@@ -140,6 +142,8 @@ export class RouteManager extends BaseRouter {
         app.get('/main', (req: Request, res: Response) => { render.doMain(req,res); });
         app.get('/login', (req: Request, res: Response) => { render.doLogin(req,res); });
         app.use("/signin", signin.route(app));
+        
+        app.use("/survey_s", survey_s.route(app));
 
         app.use(async (req: Request, res: Response, next: Function) => { this.doValidate(req,res,next); });
 
