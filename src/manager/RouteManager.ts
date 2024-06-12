@@ -128,6 +128,7 @@ export class RouteManager extends BaseRouter {
             try {
                 this.logger.debug(this.constructor.name+".route: url="+req.originalUrl);
                 this.logger.debug(this.constructor.name+".route: headers",req.headers);
+                this.logger.debug(this.constructor.name+".route: ip",req.ip,",ips",req.ips);
             } catch(ex) { }
             next();
         });
