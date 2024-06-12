@@ -185,8 +185,11 @@ function topicLabelError() {
     if(found) $("label.SS_1_2_topic").addClass("parsley-error");
 }
 function gotoSurveySuccess(profile_id) {
-    gotoSurveyForm();
+    gotoSuccessPage();
 }
 function gotoSurveyCancel() {
-    gotoSurveyForm();
+    gotoSuccessPage();
+}
+function gotoSuccessPage() {
+    window.open("/success.html","_self");
 }

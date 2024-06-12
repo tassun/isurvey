@@ -1,5 +1,6 @@
-import { KnDBConnector } from 'will-sql';
-import { KnModel, KnDataSet, KnContextInfo, KnValidateInfo } from '../models/AssureAlias';
+import { v4 as uuid } from 'uuid';
+import { KnDBConnector, KnRecordSet } from 'will-sql';
+import { KnModel, KnDataSet, KnContextInfo, KnValidateInfo, KnDataTable } from '../models/AssureAlias';
 import { VerifyError } from '../models/VerifyError';
 import { HTTP } from '../api/HTTP';
 import { SurveyOperateHandler } from './SurveyOperateHandler';
@@ -90,6 +91,20 @@ export class SurveySHandler extends SurveyOperateHandler {
             update_by: { type: "STRING", created: true, updated: true  }
         }
     };
+
+    public override async getDataAdd(context: KnContextInfo) : Promise<KnDataTable> {
+        let dt = await super.getDataAdd(context);
+        dt.dataset.survey_id = uuid();
+        return dt;
+    }
+
+    public override async processInsert(context: KnContextInfo, db: KnDBConnector) : Promise<KnRecordSet> {
+        let rs = await super.processUpdate(context, db);
+        if(rs && rs.records <= 0) {
+            rs = await super.processInsert(context, db);
+        }
+        return Promise.resolve(rs);
+    }
 
     protected override validateRequireFields(context: KnContextInfo, throwError: boolean = false, action?: string) : Promise<KnValidateInfo> {
         let vi = this.validateParameters(context.params,"survey_id");
