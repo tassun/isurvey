@@ -188,7 +188,7 @@ function gotoSurveySuccess(profile_id) {
     gotoSuccessPage();
 }
 function gotoSurveyCancel() {
-    gotoSuccessPage();
+    window.history.back();
 }
 function gotoSuccessPage() {
     window.open("/success.html","_self");
